@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				margin: 10px;
+				background-color: bisque;
+				height: 500px;
+			}
+
+			.box1 {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+			}
+
+			.box2 {
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function() {
+				var source = document.getElementById('source')
+				var target = document.getElementById('target')
+				source.ondragstart = function(event) {
+					var e = event || window.event
+					console.log('开始拖拽');
+				}
+				source.ondrag = function() {
+					console.log('拖拽中');
+				}
+				source.ondragend = function() {
+					console.log('拖拽结束')
+				}
+
+				target.ondragenter = function() {
+					console.log('进入目标元素')
+				}
+				target.ondragover = function(event) {
+					var event = event || window.event;
+					console.log('在目标元素中拖拽');
+					event.preventDefault()
+				}
+				target.ondragleave = function() {
+					console.log('拖放离开目标元素')
+				}
+				target.ondrop = function(event) {
+					console.log('拖放');
+					var e = event || window.event;
+
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div class="box1" draggable="true" id="source"></div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div class="box2" id="target"></div>
+	</body>
+</html>

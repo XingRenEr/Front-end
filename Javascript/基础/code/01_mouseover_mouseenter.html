@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			ul {
+				height: 200px;
+				background-color: aliceblue;
+			}
+			li {
+				height: 50px;
+				background-color: aqua;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>li1</li>
+			<br />
+			<li>li2</li>
+		</ul>
+		<script type="text/javascript">
+			var oUl = document.querySelector('ul');
+			var aLis = document.querySelectorAll('li');
+			oUl.addEventListener('mouseenter', () => {
+				console.log('ul mouseenter')
+			});
+			oUl.addEventListener('mouseover', () => {
+				console.log('ul mouseover')
+			});
+			oUl.addEventListener('mouseleave', () => {
+				console.log('ul mouseleave')
+			});
+			oUl.addEventListener('mouseout', () => {
+				console.log('ul mouseout')
+			});
+		</script>
+	</body>
+</html>
