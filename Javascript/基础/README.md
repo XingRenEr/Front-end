@@ -771,10 +771,14 @@ AMD 和 CMD 最大的区别是对依赖模块的执行时机处理不同，注�
 * `toString`：变成字符串
 * `sort`：元素排序
 
-![](README_files/1.png)  
+![1.png](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/images/1.png)  
+
+* [x] [数组方法](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84.md)  
 
 ### <a name="" id=""></a>17.1 字符串常见 API
-![](README_files/2.png)  
+![2.png](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/images/2.png)  
+
+* [x] [字符串方法](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E5%AD%97%E7%AC%A6%E4%B8%B2.md)  
 
 ### <a name="chapter-seventeen-two" id="chapter-seventeen-two"></a>17.2 常见 DOM API
 
