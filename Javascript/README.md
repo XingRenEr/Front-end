@@ -18,7 +18,7 @@
 
 
 
-文章地址：[变量](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%8F%98%E9%87%8F.md)
+文章地址：[变量](https://github.com/XingRenEr/Front-end/tree/master/Javascript/%E5%9F%BA%E7%A1%80)
 
 知识点：
 
