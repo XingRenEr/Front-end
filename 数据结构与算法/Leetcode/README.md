@@ -1,5 +1,5 @@
 # 字符串
-## 剑指 Offer 58 - Ⅱ.左旋转字符串
+## 剑指 Offer 58 - Ⅱ. 左旋转字符串
 字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串"abcdefg"和数字2，该函数将返回左旋转两位得到的结果"cdefgab"。
 
 示例 1：
@@ -23,7 +23,7 @@ var reverseLeftWords = function(s, n) {
 };
 ```
 
-## 剑指 Offer 58 - Ⅰ.翻转单词顺序
+## 剑指 Offer 58 - Ⅰ. 翻转单词顺序
 输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串"I am a student. "，则输出"student. a am I"。
 
 示例 1：
@@ -57,8 +57,8 @@ var reverseWords = function(s) {
 ```
 
 # 数组
-## <a id="two-two"></a>数组去重
-### 剑指 Offer 03.数组中的重复数字
+## 数组去重
+### 剑指 Offer 03. 数组中的重复数字
 找出数组中重复的数字。
 
 
@@ -177,4 +177,48 @@ for (var i = 1; i < arr.length; i++) {
 }
 console.log('newArr4', newArr4);
 // (2) 二分法
+```
+
+## 剑指 Offer 53 - Ⅰ. 在排序数组中查找数字Ⅰ
+统计一个数字在排序数组中出现的次数。
+
+示例 1:
+
+输入: nums = [5,7,7,8,8,10], target = 8
+输出: 2
+示例 2:
+
+输入: nums = [5,7,7,8,8,10], target = 6
+输出: 0
+
+限制：
+
+0 <= 数组长度 <= 50000
+
+```JS
+var search = function(nums, target) {
+  var left = 0,
+    right = nums.length - 1,
+    middle, count = 0;
+
+  while (left < right) {
+    middle = Math.floor((right - left) / 2);
+    if (nums[middle] >= target) {
+      right = middle
+    } else {
+      left = middle + 1
+    }
+  }
+
+  while (left < nums.length && nums[left++] == target) {
+    count++
+  }
+  
+  return count
+
+};
+
+var nums = [5, 7, 7, 8, 8, 10],
+  target = 6;
+console.log(search(nums, target));
 ```
