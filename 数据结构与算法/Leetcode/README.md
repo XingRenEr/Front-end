@@ -57,7 +57,7 @@ var reverseWords = function(s) {
 ```
 
 # 数组
-## 数组去重
+## <a id="two-two"></a>数组去重
 ### 剑指 Offer 03.数组中的重复数字
 找出数组中重复的数字。
 
@@ -122,3 +122,61 @@ var findRepeatNumber = function(nums) {
 // 方法四：二分法 如果面试官要求空间O(1)并且不能修改原数组，还得写成二分法
 ```
 
+### 数组去重
+
+> [返回目录](#chapter-one)
+
+数组去重是个经常提及的点：
+
+```JS
+const arr = [1, 1, 2, 3, 3];
+// 期望得到：[1, 2, 3]
+```
+
+解答：  
+```JS
+// 方法一：includes
+const newArr1 = [];
+for (let i = 0; i < arr.length; i++) {
+  if (!newArr1.includes(arr[i])) {
+    newArr1.push(arr[i]); 
+  }
+}
+console.log('newArr1：', newArr1);
+```
+
+```JS
+// 方法二： Set
+const newArr2 = [...new Set(arr)];
+console.log('newArr2：', newArr2);
+```
+
+```JS
+// 方法三： filter
+const newArr3 = arr.filter((item, index) => arr.lastIndexOf(item) === index);
+console.log('newArr3：', newArr3);
+```
+
+有一次面试碰到的有意思的提问是：不使用数组 `API` 进行去重。
+
+> 注意：不能使用 `push`、`indexOf` 等 `API`
+
+```JS
+// 方法四：不使用数组API
+// (1) 暴力遍历
+var newArr4 = [arr[0]];
+for (var i = 1; i < arr.length; i++) {
+  var repeatflag = false;
+  for (var j = 0; j < newArr4.length; j++) {
+    if (arr[i] === newArr4[j]) {
+      repeatflag = true;
+      break;
+    }
+  }
+  if (!repeatflag) {
+    newArr4[newArr4.length] = arr[i];
+  }
+}
+console.log('newArr4', newArr4);
+// (2) 二分法
+```

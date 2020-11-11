@@ -2,62 +2,51 @@
 ===
 
 <!-- 目录开始 -->
-## <a name="chapter-one" id="chapter-one"></a>一 目录
+## <a id="one"></a>目录
 
 | 目录 |
 | --- |
-| [三 DOM 常用 API](#chapter-three) |
-| [四 null 和 undefined 的区别](#chapter-four) |
-| [五 事件流](#chapter-five) |
-| &emsp;[5.1 addEventListener](#chapter-five-one) |
-| &emsp;[5.2 原理](#chapter-five-two) |
-| &emsp;[5.3 案例](#chapter-five-three) |
-| &emsp;[5.4 练习题](#chapter-five-four) |
-| &emsp;[5.5 阻止冒泡](#chapter-five-five) |
-| &emsp;[5.6 onmouseover 和 onmouseenter 区别](#chapter-five-six) |
-| &emsp;[5.7 科普](#chapter-five-seven) |
-| [六 typeof 和 instanceof 的区别](#chapter-six) |
-| [七 一句话描述 this](#chapter-seven) |
-| [八 JS 位置](#chapter-eight) |
-| [九 JS 拖拽](#chapter-night) |
-| [十 setTimeout 实现 setInterval](#chapter-ten) |
-| [十一 实现 Sleep](#chapter-eleven) |
-| [十二 执行上下文](#chapter-twelve) |
-| &emsp;[12.1 执行上下文类型](#chapter-twelve-one) |
-| &emsp;[12.2 执行栈](#chapter-twelve-two) |
-| [十三 函数式编程](#chapter-thirteen) |
-| &emsp;[13.1 函数式编程特点](#chapter-thirteen-one) |
-| &emsp;[13.2 纯函数](#chapter-thirteen-two) |
-| [十四 渐进式网络应用（PWA）](#chapter-fourteen) |
-| &emsp;[14.1 优点](#chapter-fourteen-one) |
-| &emsp;[14.2 缺点](#chapter-fourteen-two) |
-| [十五 规范化](#chapter-fifteen) |
-| &emsp;[15.1 CommonJS 规范](#chapter-fifteen-one) |
-| &emsp;[15.2 AMD 规范](#chapter-fifteen-two) |
-| &emsp;[15.3 CMD 规范](#chapter-fifteen-three) |
-| &emsp;[15.4 ES6 Modules 规范](#chapter-fifteen-four) |
-| [十六 babel 编译原理](#chapter-sixteen) |
-| [十七 题集](#chapter-seventeen) |
-| &emsp;[17.1 数组常见 API](#chapter-seventeen-one) |
-| &emsp;[17.2 常见 DOM API](#chapter-seventeen-two) |
-| &emsp;[17.3 数组去重](#chapter-seventeen-three) |
-| &emsp;[17.4 数字化金额](#chapter-seventeen-four) |
-| &emsp;[17.5 遍历问题](#chapter-seventeen-five) |
-| &emsp;[17.6 setTimeout](#chapter-seventeen-six) |
-| &emsp;[17.7 requestAnimationFrame](#chapter-seventeen-seven) |
-| &emsp;[17.8 暂时性死区](#chapter-seventeen-eight) |
-| &emsp;[17.9 输出打印结果](#chapter-seventeen-night) |
-| &emsp;[17.10 输出打印结果](#chapter-seventeen-ten) |
-| &emsp;[17.11 Event Loop](#chapter-seventeen-eleven) |
-| &emsp;[17.12 输出打印结果](#chapter-seventeen-twelve) |
-| &emsp;[17.13 使 a == 1 && a == 2 成立](#chapter-seventeen-thirteen) |
-| [十八 More](#chapter-eighteen) |
+| [二 数据类型](#two) |
+| &emsp;[2.1 null 和 undefined 的区别](#two-one) |
+| &emsp;[2.2 数组](#two-two) |
+| &emsp;[2.3 字符串](#two-three) |
+| &emsp;[2.4 RegExp](#two-four) |
+| &emsp;[2.5 typeof 和 instanceof 的区别](#two-five) |
+| [三 变量与作用域](#three) |
+| &emsp;[3.1 变量](#three-one) |
+| &emsp;[3.2 this](#three-two) |
+| &emsp;[3.3 执行上下文](#three-three) |
+| [面向对象](#four) |
+| &emsp;[4.1 原型与原型链](#four-one) |
+| [五 函数](#five) |
+| &emsp;[5.1 闭包](#five-one) |
+| [六 Promise与异步函数](#six) |
+| &emsp;[6.1 setTimeout 实现 setInterval](#six-one) |
+| [七 BOM](#seven) |
+| &emsp;[7.1 位置](#seven-one) |
+| [八 DOM](#eight) |
+| [九 事件](#nine) |
+| &emsp;[9.1 事件流](#nine-one) |
+| &emsp;[9.2 事件处理程序](#nine-two) |
+| &emsp;[9.3 事件类型](#nine-three) |
+| [十 Javascript API](#ten) |
+| &emsp;[10.1 拖拽](#ten-one) |
+| [十一 模块化开发](#eleven) |
+| &emsp;[11.1 CommonJS 规范](#eleven-one) |
+| &emsp;[11.2 AMD 规范](#eleven-two) |
+| &emsp;[11.3 CMD 规范](#eleven-three) |
+| &emsp;[11.4 ES6 Modules 规范](#eleven-four) |
+| [十二 渐进式网络应用（PWA）](#twelve) |
+| &emsp;[12.1 优点](#twelve-one) |
+| &emsp;[12.2 缺点](#twelve-two) |
+| [十三 题集](#thirteen) |
+| [More](#fourteen) |
 <!-- 目录结束 -->
 
-## <a id=""></a>数据类型
-### <a id="chapter-four"></a>null 和 undefined 的区别
+## <a id="two"></a>二 数据类型
+### <a id="two-one"></a>2.1 null 和 undefined 的区别
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 使用场景细分如下：
 
@@ -75,12 +64,99 @@
 4. 对象没有赋值，这个属性的值为 `undefined`。
 5. 函数没有返回值，默认返回 `undefined`。
 
-### <a id=""></a>数组
-### <a id=""></a>字符串
-### <a id=""></a>RegExp
-### <a id="chapter-six"></a>typeof 和 instanceof 的区别
+### <a id="two-two"></a>2.2 数组
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
+
+**ES5**  
+- `Array.isArray()`:   方法用来判断一个值是否为数组。它可以弥补typeof运算符的不足
+- `valueOf()`:  方法返回数组本身
+- `toString()`:  方法返回数组的字符串形式
+- `push()`:  方法用于在数组的末端添加一个或多个元素，并返回添加新元素后的数组长度。注意，该方法会改变原数组。
+- `pop()`:  方法用于删除数组的最后一个元素，并返回该元素。注意，该方法会改变原数组。
+- `join()`:  方法以参数作为分隔符，将所有数组成员组成一个字符串返回。如果不提供参数，默认用逗号分隔。
+- `concat()`:  方法用于多个数组的合并。它将新数组的成员，添加到原数组成员的后部，然后返回一个新数组，原数组不变。
+- `shift()`:  方法用于删除数组的第一个元素，并返回该元素。注意，该方法会改变原数组。
+- `unshift()`:  方法用于在数组的第一个位置添加元素，并返回添加新元素后的数组长度。注意，该方法会改变原数组。
+- `reverse()`:  方法用于颠倒数组中元素的顺序，返回改变后的数组。注意，该方法将改变原数组。
+- `slice()`:  方法用于提取原数组的一部分，返回一个新数组，原数组不变。
+- `splice()`:  方法用于删除原数组的一部分成员，并可以在被删除的位置添加入新的数组成员，返回值是被删除的元素。注意，该方法会改变原数组。  
+- `sort()`:  方法对数组成员进行排序，默认是按照字典顺序排序。排序后，原数组将被改变。
+- `map()`:  方法对数组的所有成员依次调用一个函数，根据函数结果返回一个新数组。
+- `forEach()`:  遍历数组的所有成员，执行某种操作，不返回值。  
+- `filter()`:  方法的参数是一个函数，所有数组成员依次执行该函数，返回结果为true的成员组成一个新数组返回。该方法不会改变原数组。
+- `some()`，`every()`: some方法是只要有一个数组成员的返回值是true，则整个some方法的返回值就是true，否则false。
+- `reduce()`，`reduceRight()`: 归并
+- `indexOf()`，`lastIndexOf()`: indexOf 方法返回给定元素在数组中第一次出现的位置/-1。lastIndexOf 方法返回给定元素在数组中最后一次出现的位置/-1。  
+
+**ES6**  
+- 扩展运算符
+- `Array.from()`:  类数组转换成数组
+- `Array.of()`:  方法用于将一组值，转换为数组。
+- `copyWithin()`:   在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组。
+- `find()`:  用于找出第一个符合条件的数组成员。如果没有符合条件的成员，则返回undefined。
+- `findIndex()`:   返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回-1。
+- `fill()`:  方法使用给定值，填充一个数组。
+- `entries()`，`keys()` 和 `values()`:  用于遍历数组。keys()是对键名的遍历、values()是对键值的遍历，entries()是对键值对的遍历
+- `includes()`:  方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的includes方法类似。ES2016 引入了该方法。
+- 数组的空位: 数组的某一个位置没有任何值。比如，Array构造函数返回的数组都是空位。
+
+![1.png](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/images/1.png)  
+
+* [x] [数组方法](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84.md)  
+
+### <a id="two-three"></a>2.3 字符串
+**ES5**  
+- `split()`: 把字符串分割为子字符串数组
+- `charAt()`: 返回指定索引位置的字符
+- `charCodeAt()`: 返回指定索引位置字符的 Unicode 值
+- `String.fromCharCode()`: 将 Unicode 转换为字符串
+- `indexOf()`: 返回字符串中检索指定字符第一次出现的位置
+- `lastIndexOf()`: 返回字符串中检索指定字符最后一次出现的位置
+- `match()`: 找到一次或多次表达式的匹配。
+- `search()`: 返回 stringObject 中第一个与表达式相匹配的子串的起始位置。若没有找到任何匹配的子串，则返回 -1。
+- `replace()`: 替换与正则表达式匹配的子串
+- `concat()`: 连接两个或多个字符串，返回连接后的字符串
+- `slice()`: 提取字符串的片断，并在新的字符串中返回被提取的部分
+- `substr()`: 从起始索引号提取字符串中指定数目的字符
+- `substring()`: 提取字符串中两个指定的索引号之间的字符
+- `toLowerCase()`: 把字符串转换为小写
+- `toUpperCase()`: 把字符串转换为大写
+- `toLocaleLowerCase()`
+- `toLocaleUpperCase()`
+- `trim()`: 移除字符串首尾空白
+
+**ES6**  
+- `includes()`: 返回布尔值，表示是否找到了参数字符串
+- `startsWith()`: 返回布尔值，表示参数字符串是否在原字符串的头部
+- `endsWith()`: 返回布尔值，表示参数字符串是否在原字符串的尾部
+- `repeat()`: 将原字符串重复n次
+- `padStart()`: 在字符串尾部补全长度
+- `padEnd()`: 在字符串头部补全长度
+- `trimStart()`: 消除字符串头部的空格
+- `trimEnd()`: 消除尾部的空格
+
+**document.write()中**  
+- `big()`  
+- `blink()`  
+- `bold()`  
+- `fixed()`  
+- `strike()`  
+- `fontcolor()`  
+- `fontsize()`  
+- `link()`  
+- `sub()`  
+- `sup()`  
+
+![2.png](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/images/2.png)  
+
+* [x] [字符串方法](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E5%AD%97%E7%AC%A6%E4%B8%B2.md)  
+
+### <a id="two-four"></a>2.4 RegExp
+
+### <a id="two-five"></a>2.5 typeof 和 instanceof 的区别
+
+> [返回目录](#one)
 
 * `typeof`：对某个变量类型的检测，基本类型除了 `null` 之外，都能正常地显示为对应的类型，引用类型除了函数会显示为 `function`，其他都显示为 `object`。
 * `instanceof` 主要用于检测某个构造函数的原型对象在不在某个对象的原型链上。
@@ -91,28 +167,127 @@
 
 详细可见：[JavaScript - 变量](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%8F%98%E9%87%8F.md)
 
-## <a id=""></a>变量与作用域
-### <a id=""></a>变量
-### <a name="chapter-seven" id="chapter-seven"></a>this
-一句话描述 this
+## <a id="three"></a>三 变量与作用域
+### <a id="three-one"></a>3.1 变量
+### <a id="three-two"></a>3.2 this
+> [返回目录](#one)
 
-> [返回目录](#chapter-one)
+一句话描述 this
 
 对于函数而言，指向最后调用函数的那个对象，是函数运行时内部自动生成的一个内部对象，只能在函数内部使用；对于全局而言，`this` 指向 `window`。
 
-## <a id=""></a>面对对象
-### <a id=""></a>原型与原型链
+### <a id="three-three"></a>3.3 执行上下文
 
-## <a id=""></a>函数
-### <a id=""></a>闭包
+> [返回目录](#one)
 
-## <a id=""></a>BOM
+#### <a id="twelve-one"></a>执行上下文类型
 
-## <a id="chapter-three"></a>DOM
+> [返回目录](#one)
 
-> [返回目录](#chapter-one)
+JavaScript 中有 3 种执行上下文类型：
+
+* **全局执行上下文**：这是默认或者说基础的上下文，任何不在函数内部的代码都在全局上下文中。它会执行两件事：创建一个全局的 `window` 对象（浏览器的情况下），并且设置 `this` 的值等于这个全局对象。一个程序中只会有一个全局执行上下文。
+* **函数执行上下文**：每当一个函数被调用时, 都会为该函数创建一个新的上下文。每个函数都有它自己的执行上下文，不过是在函数被调用时创建的。函数上下文可以有任意多个。每当一个新的执行上下文被创建，它会按定义的顺序执行一系列步骤。
+* **Eval 函数执行上下文**：执行在 `eval` 函数内部的代码也会有它属于自己的执行上下文，但由于 JavaScript 开发者并不经常使用 `eval`，所以在这里我不会讨论它。
+
+#### <a id="twelve-two"></a>执行栈
+
+> [返回目录](#one)
+
+执行栈，也就是在其它编程语言中所说的 “调用栈”，是一种拥有 `LIFO`（后进先出）数据结构的栈，被用来存储代码运行时创建的所有执行上下文。
+
+当 JavaScript 引擎第一次遇到你的脚本时，它会创建一个全局的执行上下文并且压入当前执行栈。每当引擎遇到一个函数调用，它会为该函数创建一个新的执行上下文并压入栈的顶部。
+
+引擎会执行那些执行上下文位于栈顶的函数。当该函数执行结束时，执行上下文从栈中弹出，控制流程到达当前栈中的下一个上下文。
+
+```js
+let a = 'Hello World!';
+
+function first() {
+  console.log('Inside first function');
+  second();
+  console.log('Again inside first function');
+}
+
+function second() {
+  console.log('Inside second function');
+}
+
+first();
+console.log('Inside Global Execution Context');
+```
+
+![图](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/img/JavaScript-base-02.jpg?raw=true)
+
+## <a id="four"></a>四 面向对象
+### <a id="four-one"></a>4.1 原型与原型链
+
+## <a id="five"></a>五 函数
+### <a id="five-one"></a>5.1 闭包
+
+## <a id="six"></a>六 Promise与异步函数
+在基础部分只讲setTimeout  
+### <a id="six-one"></a>6.1 setTimeout 实现 setInterval
+
+> [返回目录](#one)
+
+这算另类知识点吧，本来打算归类手写源码系列的，但是想想太 `low` 了，没牌面，入基础系列吧：
+
+```js
+const say = () => {
+  // do something
+  setTimeout(say, 200);
+};
+
+setTimeout(say, 200);
+```
+
+清除这个定时器：
+
+```js
+let i = 0;
+
+const timeList = [];
+
+const say = () => {
+  // do something
+  console.log(i++);
+  timeList.push(setTimeout(say, 200));
+};
+
+setTimeout(say, 200);
+
+setTimeout(() => {
+  for (let i = 0; i < timeList.length; i++) {
+    clearTimeout(timeList[i]);
+  }
+}, 1000);
+```
+
+* [x] [用setTimeout来实现setInterval](https://blog.csdn.net/m0_37686205/article/details/93112518)  
+
+
+## <a id="seven"></a>七 BOM
+### <a id="seven-one"></a>7.1 位置
+
+> [返回目录](#one)
+
+* `clientHeight`：表示可视区域的高度，不包含 `border` 和滚动条
+* `offsetHeight`：表示可视区域的高度，包含了 `border` 和滚动条
+* `scrollHeight`：表示了所有区域的高度，包含了因为滚动被隐藏的部分
+* `clientTop`：表示边框 `border` 的厚度，在未指定的情况下一般为`0`
+* `scrollTop`：滚动后被隐藏的高度，获取对象相对于由 `offsetParent` 属性指定的父坐标（CSS 定位的元素或 `body` 元素）距离顶端的高度。
+
+## <a id="eight"></a>八 DOM
+
+> [返回目录](#one)
 
 DOM 常用 API  
+* 获取
+* 创建
+* 添加
+* 删除
+
 可以使用 `document` 或 `window` 元素的 API 来操作文档本身或获取文档的子类（Web 页面中的各种元素）。
 
 ```js
@@ -185,10 +360,10 @@ document.body.removeChild(node);
 </html>
 ```
 
-## <a id=""></a>事件
-### <a id="chapter-five"></a>事件流
+## <a id="nine"></a>九 事件
+### <a id="nine-one"></a>9.1 事件流
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 什么是事件流：事件流描述的是从页面中接收事件的顺序，`DOM 2` 级事件流包括下面几个阶段。
 
@@ -200,9 +375,9 @@ document.body.removeChild(node);
 
 在 `DOM` 标准事件模型中，是先捕获后冒泡。但是如果要实现先冒泡后捕获的效果，对于同一个事件，监听捕获和冒泡，分别对应相应的处理函数，监听到捕获事件，先暂缓执行，直到冒泡事件被捕获后再执行捕获之间。  
 
-#### <a id="chapter-five-two"></a>5.2 原理
+#### 原理
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * [x] [你真的理解 事件冒泡 和 事件捕获 吗？](https://juejin.im/post/6844903834075021326)  
 
@@ -221,9 +396,9 @@ document.body.removeChild(node);
 * **事件冒泡**：当给某个目标元素绑定了事件之后，这个事件会依次在它的父级元素中被触发（当然前提是这个父级元素也有这个同名称的事件，比如子元素和父元素都绑定了 `click` 事件就触发父元素的 `click`）。
 * **事件捕获**：和冒泡相反，会从上层传递到下层。
 
-#### <a id="chapter-five-three"></a>5.3 案例
+#### 案例
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 结合自定义事件耍个例子：
 
@@ -285,9 +460,9 @@ Chrome 输出下顺序是：`button` -> `li` -> `ul` -> `document` -> `window`
 如果是捕获的话，那么则相反。
 
 
-#### <a id="chapter-five-five"></a>5.5 阻止冒泡
+#### 阻止冒泡
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * `event.stopPropagation();`
 
@@ -300,9 +475,9 @@ btn.addEventListener('myEvent', function(e) {
 
 通过阻止冒泡，程序只会输出 `button`，而不会继续输出 `li` 等。
 
-#### <a id="chapter-five-seven"></a>5.7 科普
+#### 科普
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
   
 并不是所有的事件都有冒泡，例如：
 
@@ -311,9 +486,9 @@ btn.addEventListener('myEvent', function(e) {
 * `onmouseenter`
 * `onmouseleave`
 
-### <a id="chapter-five-one"></a>事件处理程序
+### <a id="nine-two"></a>9.2 事件处理程序
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 DOM2级事件处理程序addEventListener  
 
@@ -375,13 +550,13 @@ DOM2级事件处理程序addEventListener
 如上，这个示例简单实现了点击 `two` 切换到 `four`，点击 `four` 再切换到 `two` 的效果。
 
 
-### <a id=""></a>事件类型
+### <a id="nine-three"></a>9.3 事件类型
 
 * [x] [js的事件种类整理](https://www.jianshu.com/p/0eae14401bf2)  
 
-#### <a id="chapter-five-four"></a>点击一个 `input` 依次触发的事件
+#### 点击一个 `input` 依次触发的事件
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 点击一个 `input` 依次触发的事件
 
@@ -406,77 +581,491 @@ text.onmouseenter = function (e) {
 
 如果加上 `onmouseup`，那就是：`onmouseenter -> onmousedown -> onfocus -> onmouseup -> onclick`
 
-#### <a id="chapter-five-six"></a>onmouseover 和 onmouseenter 区别
+#### onmouseover 和 onmouseenter 区别
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ![图](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/img/JavaScript-base-01.png?raw=true)
 
 这两者都是移入的时候触发，但是 `onmouseover` 会触发多次，而 `onmouseenter` 只在进去的时候才触发。
 
+## <a id="ten"></a>十 Javascript API
+### <a id="ten-one"></a>10.1 拖拽
 
-
-## <a name="chapter-eight" id="chapter-eight"></a>八 JS 位置
-
-> [返回目录](#chapter-one)
-
-* `clientHeight`：表示可视区域的高度，不包含 `border` 和滚动条
-* `offsetHeight`：表示可视区域的高度，包含了 `border` 和滚动条
-* `scrollHeight`：表示了所有区域的高度，包含了因为滚动被隐藏的部分
-* `clientTop`：表示边框 `border` 的厚度，在未指定的情况下一般为`0`
-* `scrollTop`：滚动后被隐藏的高度，获取对象相对于由 `offsetParent` 属性指定的父坐标（CSS 定位的元素或 `body` 元素）距离顶端的高度。
-
-## <a name="chapter-night" id="chapter-night"></a>九 JS 拖拽
-
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 1. 通过 `mousedown`、`mousemove`、`mouseup` 方法实现
 2. 通过 HTML5 的 `Drag` 和 `Drop` 实现
 
 * [x] [js原生拖拽的两种方法](https://blog.csdn.net/weixin_41910848/article/details/82218243)  
 
-## <a name="chapter-ten" id="chapter-ten"></a>十 setTimeout 实现 setInterval
+## <a id="eleven"></a>十一 模块化开发
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
-这算另类知识点吧，本来打算归类手写源码系列的，但是想想太 `low` 了，没牌面，入基础系列吧：
+`CommonJS` 规范、`AMD` 规范、`CMD` 规范、`ES6 Modules` 规范这 4 者都是前端规范化的内容，那么它们之间区别是啥呢？
 
+在没有这些之前，我们通过：
+
+* 一个函数就是一个模块。`function fn() {}`
+* 一个对象就是一个模块。`let obj = new Object({ ... })`
+* 立即执行函数（IIFE）。`(function() {})()`
+
+### <a id="eleven-one"></a>11.1 CommonJS 规范
+
+> [返回目录](#one)
+
+这之后，就有了 `CommonJS` 规范，其实 `CommonJS` 我们见得不少，就是 `Node` 的那套：
+
+* 导出：`module.exports = {}`、`exports.xxx = 'xxx'`
+* 导入：`require(./index.js)`
+* 查找方式：查找当前目录是否具有文件，没有则查找当前目录的 `node_modules` 文件。再没有，冒泡查询，一直往系统中的 `npm` 目录查找。
+
+它的特点：
+
+1. 所有代码在模块作用域内运行，不会污染其他文件
+2. `require` 得到的值是值的拷贝，即你引用其他 JS 文件的变量，修改操作了也不会影响其他文件
+
+它也有自己的缺陷：
+
+1. 应用层面。在 `index.html` 中做 `var index = require('./index.js')` 操作报错，因为它最终是后台执行的，只能是 `index.js` 引用 `index2.js` 这种方式。
+2. 同步加载问题。`CommonJS` 规范中模块是同步加载的，即在 `index.js` 中加载 `index2.js`，如果 `index2.js` 卡住了，那就要等很久。
+
+### <a id="eleven-two"></a>11.2 AMD 规范
+
+> [返回目录](#one)
+
+为什么有 `AMD` 规范？
+
+答：`CommonJS` 规范不中用：
+
+1. 适用客户端
+2. 等待加载（同步加载问题）。
+
+所以它做了啥？
+
+可以采用异步方式加载模块。`AMD` 是 `Asynchronous Module Definition` 的缩写，也就是 “异步模块定义”，记住这个 `async` 就知道它是异步的了。
+
+### <a id="eleven-three"></a>11.3 CMD 规范
+
+> [返回目录](#one)
+
+CMD (Common Module Definition), 是 seajs 推崇的规范，CMD 则是依赖就近，用的时候再 `require`。
+
+AMD 和 CMD 最大的区别是对依赖模块的执行时机处理不同，注意不是加载的时机或者方式不同，二者皆为异步加载模块。
+
+### <a id="eleven-four"></a>11.4 ES6 Modules 规范
+
+> [返回目录](#one)
+
+* 导出：
+
+1. `export a`
+2. `export { a }`
+3. `export { a as jsliang }`
+4. `export default function() {}`
+
+* 导入：
+
+1. `import './index'`
+2. `import { a } from './index.js'`
+3. `import { a as jsliang } from './index.js'`
+4. `import * as index from './index.js'`
+
+特点：
+
+1. `export` 命令和 `import` 命令可以出现在模块的任何位置，只要处于模块顶层就可以。 如果处于块级作用域内，就会报错，这是因为处于条件代码块之中，就没法做静态优化了，违背了 ES6 模块的设计初衷。
+2. `import` 命令具有提升效果，会提升到整个模块的头部，首先执行。
+
+和 `CommonJS` 区别：
+
+* `CommonJS` 模块是运行时加载，`ES6 Modules` 是编译时输出接口
+* `CommonJS` 输出是值的拷贝；`ES6 Modules` 输出的是值的引用，被输出模块的内部的改变会影响引用的改变
+* `CommonJs` 导入的模块路径可以是一个表达式，因为它使用的是`require()` 方法；而 `ES6 Modules` 只能是字符串
+* `CommonJS this` 指向当前模块，`ES6 Modules` 的 `this` 指向 `undefined`
+* `ES6 Modules` 中没有这些顶层变量：`arguments`、`require`、`module`、`exports`、`__filename`、`__dirname`
+
+## <a id="twelve"></a>十二 渐进式网络应用（PWA）
+
+> [返回目录](#one)
+
+渐进式网络应用（PWA）是谷歌在 2015 年底提出的概念。基本上算是 Web 应用程序，但在外观和感觉上与原生 App 类似。支持 PWA 的网站可以提供脱机工作、推送通知和设备硬件访问等功能。
+
+### <a id="twelve-one"></a>12.1 优点
+
+> [返回目录](#one)
+
+* **更小更快**: 渐进式的 Web 应用程序比原生应用程序小得多。他们甚至不需要安装。这是他们没有浪费磁盘空间和加载速度非常快。
+* **响应式界面**: PWA 支持的网页能够自动适应各种屏幕大小。它可以是手机、平板、台式机或笔记本。
+* **无需更新**: 大多数移动应用程序需要每周定期更新。与普通网站一样，每当用户交互发生且不需要应用程序或游戏商店批准时，PWA 总是加载最新更新版本。
+* **高性价比**：原生移动应用需要分别为 Android 和 iOS 设备开发，开发成本非常高。另一方面，PWA 有着相同的功能，但只是先前价格的一小部分，开发成本低。
+* **SEO 优势**：搜索引擎可以发现 PWA，并且加载速度非常快。就像其他网站一样，它们的链接也可以共享。提供良好的用户体验和结果，在 SEO 排名提高。
+* **脱机功能**：由于 Service Worker API 的支持，可以在脱机或低internet连接中访问PWAs。
+* **安全性**：PWA 通过 HTTPS 连接传递，并在每次交互中保护用户数据。
+* **推送通知**：通过推送通知的支持，PWA 轻松地与用户进行交互，提供非常棒的用户体验。
+* **绕过应用商店**：原生 App 如果需要任何新的更新，需要应用商店几天的审批，且有被拒绝或禁止的可能性，对于这方面来说，PWA 有它独特的优势，不需要 App Store 支持。更新版本可以直接从 Web 服务器加载，无需 App Store 批准。
+* **零安装**：在浏览过程中，PWA 会在手机和平板电脑上有自己的图标，就像移动应用程序一样，但不需要经过冗长的安装过程。
+
+### <a id="twelve-two"></a>12.2 缺点
+
+> [返回目录](#one)
+
+* **对系统功能的访问权限较低**：目前 PWA 对本机系统功能的访问权限比原生 App 有限。而且，所有的浏览器都不支持它的全部功能，但可能在不久的将来，它将成为新的开发标准。
+* **多数 Android，少数 iOS**：目前更多的支持来自 Android。iOS 系统只提供了部分。
+* **没有审查标准**：PWA 不需要任何适用于应用商店中本机应用的审查，这可能会加快进程，但缺乏从应用程序商店中获取推广效益。
+
+
+
+## <a id="thirteen"></a>十三 题集
+
+> [返回目录](#one)
+
+### <a id="thirteen-one"></a>数组去重
+
+> [返回目录](#one)
+
+题型：  
 ```js
-const say = () => {
-  // do something
-  setTimeout(say, 200);
-};
-
-setTimeout(say, 200);
+const arr = [1, 1, 2, 3, 3];
+// 期望得到：[1, 2, 3]
 ```
 
-清除这个定时器：
+```js
+const arr = [1, 1, 2, 3, 3];
+// 期望得到任意一个重复的数字：1 或 3
+```
+
+[数组去重](https://github.com/XingRenEr/Front-end/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Leetcode/README.md#two-two)
+
+### <a id="thirteen-two"></a>数组空位的遍历问题
+
+> [返回目录](#one)
+
+以下代码执行后，array 的结果是？
 
 ```js
-let i = 0;
+let array = [ , 1, , 2, , 3];
+array = array.map((i) => ++i)
+```
 
-const timeList = [];
+* A：`[ , 2, , 3, , 4]`
+* B：`[NaN, 2, NaN, 3, NaN, 4]`
+* C：`[1, 2, 1, 3, 1, 4]`
+* D：`[null, 2, null, 3, null, 4]`
 
-const say = () => {
-  // do something
-  console.log(i++);
-  timeList.push(setTimeout(say, 200));
-};
+---
 
-setTimeout(say, 200);
+答案：A
 
-setTimeout(() => {
-  for (let i = 0; i < timeList.length; i++) {
-    clearTimeout(timeList[i]);
+解释：
+
+1. `forEach()`、`filter()`、`reduce()`、`every()` 和 `some()` 都会跳过空位。
+2. `map()` 会跳过空位，但会保留这个值
+3. `join()` 和 `toString()` 会将空位视为 `undefined`，而 `undefined` 和 `null` 会被处理成空字符串。
+
+### <a id="thirteen-three"></a>数字化金额
+
+> [返回目录](#one)
+
+* **方法一：暴力遍历**
+
+```js
+function myFunc(num) {
+  var str = String(num)
+  var newStr = ''
+  var strLen = str.length
+  for (var i = 0; i < strLen; i++) {
+    newStr = str[strLen - i - 1] + (i !== 0 && i % 3 === 0 ? ',' : '') + newStr
   }
-}, 1000);
+  return newStr
+}
+
+var result = myFunc(12345678900)
 ```
 
-* [x] [用setTimeout来实现setInterval](https://blog.csdn.net/m0_37686205/article/details/93112518)  
+* **方法二：API 技巧**
 
-## <a name="chapter-eleven" id="chapter-eleven"></a>十一 实现 Sleep
+```js
+console.log(
+  String(1234567890).split('').reverse().reduce((prev, next, index) => (index % 3) === 0 ? next + ',' + prev : next + prev)
+);
+```
 
-> [返回目录](#chapter-one)
+* **方法三：API技巧**
+
+```js
+console.log(
+  (1234567890).toLocaleString('en-US')
+);
+```
+
+* **方法四：正则表达式**
+
+```js
+String(1234567890).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+```
+
+### <a id="thirteen-four"></a>var/let/const
+
+> [返回目录](#one)
+
+setTimeout
+
+```js
+for (var i = 0; i < 5; i++) {
+  setTimeout(() => {
+    console.log(i);
+  }, 1000);
+}
+```
+
+以上代码执行结果？
+
+* A：5 5 5 5 5
+* B：0 0 0 0 0
+* C：0 1 2 3 4
+* D：1 2 3 4 5
+
+---
+
+答案：A
+
+解析：
+
+1. `var i` 在 `for` 中使用，会造成变量污染，从而导致全局有一个遍历 `i`，这个 `i` 运行到最后，就是 `5`
+2. `setTimeout` 是宏任务，在 `script` 这个宏任务执行完毕后才执行，所以搜集到的 `i` 是 `5`
+3. 最终输出 5 个 `5`
+
+### <a id="thirteen-five"></a>var/let/const
+
+> [返回目录](#one)
+
+requestAnimationFrame
+
+```js
+for (let i = 0; i < 5; i++) {
+  requestAnimationFrame(() => {
+    console.log(i);
+  });
+}
+```
+
+以上代码执行结果：
+
+* A：1 2 3 4 5
+* B：0 1 2 3 4
+* C：4 4 4 4 4
+* D：5 5 5 5 5
+
+---
+
+答案：B
+
+解析：
+
+1. `let i` 使 `for` 形成块级作用域。
+2. `requestAnimationFrame` 类似于 `setTimeout`，但是它可以当成一个微任务来看，是在微任务队列执行完毕后，执行 UI 渲染前，调用的一个方法。
+3. 因此，这道题并不是指 `requestAnimationFrame` 会收集 `i`，而是 `let` 形成了块级作用域的问题，如果改成 `var i`，照样输出 5 个 `5`。
+
+### <a id="thirteen-six"></a>var/let/const
+
+> [返回目录](#one)
+
+```js
+function sayHi() {
+  console.log(name);
+  console.log(age);
+  var name = "Lydia";
+  let age = 21;
+}
+
+sayHi();
+```
+
+上面代码输出结果？
+
+---
+
+答案：undefined、报错
+
+解析：
+
+这道题转变一下就看明白了：
+
+```js
+function sayHi() {
+  var name; // 变量提升 - 变量声明
+  console.log(name); // undefined
+  console.log(age); // let 存在暂时性死区，不会变量提升
+  name = "Lydia"; // 变量提升 - 变量赋值
+  let age = 21;
+}
+
+sayHi();
+```
+
+
+### <a id="thirteen-seven"></a>暂时性死区
+
+> [返回目录](#one)
+
+1、下面代码输出什么？
+
+```js
+let a = 1;
+let test = function() {
+  console.log(a);
+  a++;
+}
+test();
+```
+
+2、下面代码输出什么？
+
+```js
+let a = 1;
+let test = function() {
+  console.log(a);
+  let a = 2;
+  a++;
+}
+test();
+```
+
+---
+
+答案：
+
+第一道题输出：`1`
+
+第二道题输出：`Uncaught ReferenceError: Cannot access 'a' before initialization`
+
+解析：
+
+其原因是在同一个 `block` 中，`let` 在后面重新定义的，那么就不能在之前引用该变量。同时，也不能取嵌套外层的值。
+
+
+### <a id="thirteen-eight"></a>作用域???
+
+> [返回目录](#one)
+
+```js
+function myFunc() {
+  console.log(a);
+  console.log(func());
+
+  var a = 1;
+  function func() {
+    return 2;
+  }
+}
+
+myFunc();
+```
+
+请问输出啥？
+
+---
+
+答案：`undefined` `2`
+
+解析：不难，不解析了
+
+
+### <a id="thirteen-nine"></a>setTimeout
+
+> [返回目录](#one)
+
+```js
+let date = new Date();
+
+for (var i = 0; i < 5; i++) {
+  setTimeout(function() {
+    console.log(new Date - date, i); // 1
+  }, 1000);
+}
+
+console.log(new Date - date, i); // 2
+```
+
+请问输出啥？
+
+---
+
+答案：
+
+```
+0 5
+1001 5
+1004 5
+1005 5
+1006 5
+1007 5
+```
+
+解析：题目先走宏任务 `script`，所以定义了 `date` 之后，执行注释为 2 这行的 `console`。
+
+然后 5 个宏任务，都是定时器 `setTimeout`，所以会在之后执行，输出：`1000 5`，但是定时器也不一定准时的，所以有可能是 `1001`、`1002` 或者其他的。
+
+### <a id="thirteen-ten"></a>使 a == 1 && a == 2 成立
+
+> [返回目录](#one)
+
+尝试编码，使：`if(a == 1 && a == 2 && a == 3) {}` 这种情况成立。
+
+* **方法一**
+
+在类型转换的时候，我们知道了对象如何转换成原始数据类型。如果部署了 `[Symbol.toPrimitive]`，那么返回的就是 `Symbol.toPrimitive` 的返回值。
+
+当然，我们也可以把此函数部署在 `valueOf` 或者是 `toString` 接口上，效果相同。
+
+```js
+//利用闭包延长作用域的特性
+let a = {
+  [Symbol.toPrimitive]: (function () {
+    let i = 1;
+    return function () {
+      return i++;
+    }
+  })()
+}
+```
+
+* **方法二**
+
+利用 `Object.defineProperty` 在 `window/global` 上定义 `a` 属性，获取 `a` 属性时，会调用 `get`
+
+```js
+let val = 1;
+Object.defineProperty(window, 'a', {
+  get: function() {
+    return val++;
+  }
+});
+```
+
+* **方法三**
+
+```js
+var a = [1, 2, 3];
+a.join = a.shift;
+```
+
+数组的 `toString` 方法返回一个字符串，该字符串由数组中的每个元素的 `toString()` 返回值经调用 `join()` 方法连接（由逗号隔开）组成。
+
+因此，我们可以重新 `join` 方法。返回第一个元素，并将其删除。
+
+## <a id="fourteen"></a>More
+
+> [返回目录](#one)
+
+还有很多基础知识，或者题目
+
+* [x] [[译] 送你 43 道 JavaScript 面试题](https://juejin.im/post/6844903869378461710)【阅读建议：1h】
+
+## <a id="eleven"></a>十一 实现 Sleep(JS——异步——Promise)
+
+> [返回目录](#one)
 
 如下，实现 `1000` 毫秒后执行其他内容：
 
@@ -494,52 +1083,9 @@ sleep(1000).then((res) => {
 });
 ```
 
-## <a name="chapter-twelve" id="chapter-twelve"></a>十二 执行上下文
+## <a id="thirteen"></a>函数式编程(JS——函数式编程)
 
-> [返回目录](#chapter-one)
-
-### <a name="chapter-twelve-one" id="chapter-twelve-one"></a>12.1 执行上下文类型
-
-> [返回目录](#chapter-one)
-
-JavaScript 中有 3 种执行上下文类型：
-
-* **全局执行上下文**：这是默认或者说基础的上下文，任何不在函数内部的代码都在全局上下文中。它会执行两件事：创建一个全局的 `window` 对象（浏览器的情况下），并且设置 `this` 的值等于这个全局对象。一个程序中只会有一个全局执行上下文。
-* **函数执行上下文**：每当一个函数被调用时, 都会为该函数创建一个新的上下文。每个函数都有它自己的执行上下文，不过是在函数被调用时创建的。函数上下文可以有任意多个。每当一个新的执行上下文被创建，它会按定义的顺序执行一系列步骤。
-* **Eval 函数执行上下文**：执行在 `eval` 函数内部的代码也会有它属于自己的执行上下文，但由于 JavaScript 开发者并不经常使用 `eval`，所以在这里我不会讨论它。
-
-### <a name="chapter-twelve-two" id="chapter-twelve-two"></a>12.2 执行栈
-
-> [返回目录](#chapter-one)
-
-执行栈，也就是在其它编程语言中所说的 “调用栈”，是一种拥有 `LIFO`（后进先出）数据结构的栈，被用来存储代码运行时创建的所有执行上下文。
-
-当 JavaScript 引擎第一次遇到你的脚本时，它会创建一个全局的执行上下文并且压入当前执行栈。每当引擎遇到一个函数调用，它会为该函数创建一个新的执行上下文并压入栈的顶部。
-
-引擎会执行那些执行上下文位于栈顶的函数。当该函数执行结束时，执行上下文从栈中弹出，控制流程到达当前栈中的下一个上下文。
-
-```js
-let a = 'Hello World!';
-
-function first() {
-  console.log('Inside first function');
-  second();
-  console.log('Again inside first function');
-}
-
-function second() {
-  console.log('Inside second function');
-}
-
-first();
-console.log('Inside Global Execution Context');
-```
-
-![图](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/img/JavaScript-base-02.jpg?raw=true)
-
-## <a name="chapter-thirteen" id="chapter-thirteen"></a>十三 函数式编程
-
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 函数式编程（Functional Programming，简称 FP）。
 
@@ -608,9 +1154,9 @@ console.log(result); // [ { name: 'John Reese' }, { name: 'Harold Finch' }, { na
 
 > 到这里仿佛掌握了真理，**jsliang** 也没详细了解定义撒，希望没误导。
 
-### <a name="chapter-thirteen-one" id="chapter-thirteen-one"></a>13.1 函数式编程特点
+### <a name="thirteen-one" id="thirteen-one"></a>13.1 函数式编程特点
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 1. **函数是一等公民**。可以利用这点让它支持抽取到外部。
 2. **声明做某件时间**。函数式编程大多数声明某个函数需要做什么，而不是它怎么做的。
@@ -621,9 +1167,9 @@ console.log(result); // [ { name: 'John Reese' }, { name: 'Harold Finch' }, { na
 
 注重引用值（Object、Array）的传递，尽可能不要污染传入的数据。
 
-### <a name="chapter-thirteen-two" id="chapter-thirteen-two"></a>13.2 纯函数
+### <a name="thirteen-two" id="thirteen-two"></a>13.2 纯函数
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 纯函数的概念有 2 点：
 
@@ -637,124 +1183,11 @@ console.log(result); // [ { name: 'John Reese' }, { name: 'Harold Finch' }, { na
 * 自文档化
 * 更少 Bug
 
-## <a name="chapter-fourteen" id="chapter-fourteen"></a>十四 渐进式网络应用（PWA）
+## <a id="sixteen"></a>babel(工程化——babel)
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
-渐进式网络应用（PWA）是谷歌在 2015 年底提出的概念。基本上算是 Web 应用程序，但在外观和感觉上与原生 App 类似。支持 PWA 的网站可以提供脱机工作、推送通知和设备硬件访问等功能。
-
-### <a name="chapter-fourteen-one" id="chapter-fourteen-one"></a>14.1 优点
-
-> [返回目录](#chapter-one)
-
-* **更小更快**: 渐进式的 Web 应用程序比原生应用程序小得多。他们甚至不需要安装。这是他们没有浪费磁盘空间和加载速度非常快。
-* **响应式界面**: PWA 支持的网页能够自动适应各种屏幕大小。它可以是手机、平板、台式机或笔记本。
-* **无需更新**: 大多数移动应用程序需要每周定期更新。与普通网站一样，每当用户交互发生且不需要应用程序或游戏商店批准时，PWA 总是加载最新更新版本。
-* **高性价比**：原生移动应用需要分别为 Android 和 iOS 设备开发，开发成本非常高。另一方面，PWA 有着相同的功能，但只是先前价格的一小部分，开发成本低。
-* **SEO 优势**：搜索引擎可以发现 PWA，并且加载速度非常快。就像其他网站一样，它们的链接也可以共享。提供良好的用户体验和结果，在 SEO 排名提高。
-* **脱机功能**：由于 Service Worker API 的支持，可以在脱机或低internet连接中访问PWAs。
-* **安全性**：PWA 通过 HTTPS 连接传递，并在每次交互中保护用户数据。
-* **推送通知**：通过推送通知的支持，PWA 轻松地与用户进行交互，提供非常棒的用户体验。
-* **绕过应用商店**：原生 App 如果需要任何新的更新，需要应用商店几天的审批，且有被拒绝或禁止的可能性，对于这方面来说，PWA 有它独特的优势，不需要 App Store 支持。更新版本可以直接从 Web 服务器加载，无需 App Store 批准。
-* **零安装**：在浏览过程中，PWA 会在手机和平板电脑上有自己的图标，就像移动应用程序一样，但不需要经过冗长的安装过程。
-
-### <a name="chapter-fourteen-two" id="chapter-fourteen-two"></a>14.2 缺点
-
-> [返回目录](#chapter-one)
-
-* **对系统功能的访问权限较低**：目前 PWA 对本机系统功能的访问权限比原生 App 有限。而且，所有的浏览器都不支持它的全部功能，但可能在不久的将来，它将成为新的开发标准。
-* **多数 Android，少数 iOS**：目前更多的支持来自 Android。iOS 系统只提供了部分。
-* **没有审查标准**：PWA 不需要任何适用于应用商店中本机应用的审查，这可能会加快进程，但缺乏从应用程序商店中获取推广效益。
-
-## <a name="chapter-fifteen" id="chapter-fifteen"></a>十五 规范化
-
-> [返回目录](#chapter-one)
-
-`CommonJS` 规范、`AMD` 规范、`CMD` 规范、`ES6 Modules` 规范这 4 者都是前端规范化的内容，那么它们之间区别是啥呢？
-
-在没有这些之前，我们通过：
-
-* 一个函数就是一个模块。`function fn() {}`
-* 一个对象就是一个模块。`let obj = new Object({ ... })`
-* 立即执行函数（IIFE）。`(function() {})()`
-
-### <a name="chapter-fifteen-one" id="chapter-fifteen-one"></a>15.1 CommonJS 规范
-
-> [返回目录](#chapter-one)
-
-这之后，就有了 `CommonJS` 规范，其实 `CommonJS` 我们见得不少，就是 `Node` 的那套：
-
-* 导出：`module.exports = {}`、`exports.xxx = 'xxx'`
-* 导入：`require(./index.js)`
-* 查找方式：查找当前目录是否具有文件，没有则查找当前目录的 `node_modules` 文件。再没有，冒泡查询，一直往系统中的 `npm` 目录查找。
-
-它的特点：
-
-1. 所有代码在模块作用域内运行，不会污染其他文件
-2. `require` 得到的值是值的拷贝，即你引用其他 JS 文件的变量，修改操作了也不会影响其他文件
-
-它也有自己的缺陷：
-
-1. 应用层面。在 `index.html` 中做 `var index = require('./index.js')` 操作报错，因为它最终是后台执行的，只能是 `index.js` 引用 `index2.js` 这种方式。
-2. 同步加载问题。`CommonJS` 规范中模块是同步加载的，即在 `index.js` 中加载 `index2.js`，如果 `index2.js` 卡住了，那就要等很久。
-
-### <a name="chapter-fifteen-two" id="chapter-fifteen-two"></a>15.2 AMD 规范
-
-> [返回目录](#chapter-one)
-
-为什么有 `AMD` 规范？
-
-答：`CommonJS` 规范不中用：
-
-1. 适用客户端
-2. 等待加载（同步加载问题）。
-
-所以它做了啥？
-
-可以采用异步方式加载模块。`AMD` 是 `Asynchronous Module Definition` 的缩写，也就是 “异步模块定义”，记住这个 `async` 就知道它是异步的了。
-
-### <a name="chapter-fifteen-three" id="chapter-fifteen-three"></a>15.3 CMD 规范
-
-> [返回目录](#chapter-one)
-
-CMD (Common Module Definition), 是 seajs 推崇的规范，CMD 则是依赖就近，用的时候再 `require`。
-
-AMD 和 CMD 最大的区别是对依赖模块的执行时机处理不同，注意不是加载的时机或者方式不同，二者皆为异步加载模块。
-
-### <a name="chapter-fifteen-four" id="chapter-fifteen-four"></a>15.4 ES6 Modules 规范
-
-> [返回目录](#chapter-one)
-
-* 导出：
-
-1. `export a`
-2. `export { a }`
-3. `export { a as jsliang }`
-4. `export default function() {}`
-
-* 导入：
-
-1. `import './index'`
-2. `import { a } from './index.js'`
-3. `import { a as jsliang } from './index.js'`
-4. `import * as index from './index.js'`
-
-特点：
-
-1. `export` 命令和 `import` 命令可以出现在模块的任何位置，只要处于模块顶层就可以。 如果处于块级作用域内，就会报错，这是因为处于条件代码块之中，就没法做静态优化了，违背了 ES6 模块的设计初衷。
-2. `import` 命令具有提升效果，会提升到整个模块的头部，首先执行。
-
-和 `CommonJS` 区别：
-
-* `CommonJS` 模块是运行时加载，`ES6 Modules` 是编译时输出接口
-* `CommonJS` 输出是值的拷贝；`ES6 Modules` 输出的是值的引用，被输出模块的内部的改变会影响引用的改变
-* `CommonJs` 导入的模块路径可以是一个表达式，因为它使用的是`require()` 方法；而 `ES6 Modules` 只能是字符串
-* `CommonJS this` 指向当前模块，`ES6 Modules` 的 `this` 指向 `undefined`
-* `ES6 Modules` 中没有这些顶层变量：`arguments`、`require`、`module`、`exports`、`__filename`、`__dirname`
-
-## <a name="chapter-sixteen" id="chapter-sixteen"></a>十六 babel 编译原理
-
-> [返回目录](#chapter-one)
+babel 编译原理
 
 * `babylon` 将 `ES6/ES7` 代码解析成 `AST`
 * `babel-traverse` 对 `AST` 进行遍历转译，得到新的 `AST`
@@ -766,330 +1199,10 @@ AMD 和 CMD 最大的区别是对依赖模块的执行时机处理不同，注�
 2. 将这些零件换成彩色的（`AST` 编译得到新 `AST`）
 3. 将彩色零件拼装成新的形状（`AST` 转换为 `ES5`）
 
-## <a name="chapter-seventeen" id="chapter-seventeen"></a>十七 题集
+## 题集
+### <a id="seventeen-eleven"></a>Event Loop(V8引擎工作原理-Event Loop)
 
-> [返回目录](#chapter-one)
-
-### <a name="chapter-seventeen-one" id="chapter-seventeen-one"></a>17.1 数组常见 API
-
-> [返回目录](#chapter-one)
-
-* `push`：数组尾部添加元素
-* `unshift`：数组头部添加元素
-* `pop`：数组尾部移除元素
-* `shift`：数组头部移除元素
-* `splice`：删除数组元素
-* `slice`：截取数组元素
-* `indexOf`：查找某元素第一次出现的位置
-* `lastIndexof`：查找某元素最后一次出现的位置
-* `findIndex`：查找元素第一次出现的位置
-* `forEach`：遍历元素
-* `map`：遍历元素
-* `filter`：过滤元素
-* `some`：包含某元素
-* `every`：所有元素和某元素一致
-* `includes`：查看是否包含某元素
-* `concat`：合并元素
-* `join`：合并元素，变成字符串
-* `toString`：变成字符串
-* `sort`：元素排序
-
-![1.png](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/images/1.png)  
-
-* [x] [数组方法](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84.md)  
-
-### <a name="" id=""></a>17.1 字符串常见 API
-![2.png](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/images/2.png)  
-
-* [x] [字符串方法](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E5%AD%97%E7%AC%A6%E4%B8%B2.md)  
-
-### <a name="chapter-seventeen-two" id="chapter-seventeen-two"></a>17.2 常见 DOM API
-
-> [返回目录](#chapter-one)
-
-* 获取
-* 创建
-* 添加
-* 删除
-
-```js
-// 获取元素
-const node = document.getElementById(id); // 或者 querySelector(".class|#id|name");
-
-// 创建元素
-const heading = document.createElement(name); // name: p、div、h1...
-heading.innerHTML = '';
-
-// 添加元素
-document.body.appendChild(heading);
-
-// 删除元素
-document.body.removeChild(node);
-```
-
-### <a name="chapter-seventeen-three" id="chapter-seventeen-three"></a>17.3 数组去重
-
-> [返回目录](#chapter-one)
-
-数组去重是个经常提及的点：
-
-```js
-const arr = [1, 1, 2, 3, 3];
-// 期望得到：[1, 2, 3]
-
-// 方法一：for 配合新数组截取
-const newArr1 = [];
-for (let i = 0; i < arr.length; i++) {
-  if (!newArr1.includes(arr[i])) {
-    newArr1.push(arr[i]); 
-  }
-}
-console.log('newArr1：', newArr1);
-
-// 方法二：使用 Set
-const newArr2 = [...new Set(arr)];
-console.log('newArr2：', newArr2);
-
-// 方法三：使用 filter
-const newArr3 = arr.filter((item, index) => arr.lastIndexOf(item) === index);
-console.log('newArr3：', newArr3);
-```
-
-有一次面试碰到的有意思的提问是：不使用数组 `API` 进行去重。
-
-> 注意：不能使用 `push`、`indexOf` 等 `API`
-
-### <a name="chapter-seventeen-four" id="chapter-seventeen-four"></a>17.4 数字化金额
-
-> [返回目录](#chapter-one)
-
-* **方法一：暴力遍历**
-
-```js
-function myFunc(num) {
-  var str = String(num)
-  var newStr = ''
-  var strLen = str.length
-  for (var i = 0; i < strLen; i++) {
-    newStr = str[strLen - i - 1] + (i !== 0 && i % 3 === 0 ? ',' : '') + newStr
-  }
-  return newStr
-}
-
-var result = myFunc(12345678900)
-```
-
-* **方法二：API 技巧**
-
-```js
-console.log(
-  String(1234567890).split('').reverse().reduce((prev, next, index) => (index % 3) === 0 ? next + ',' + prev : next + prev)
-);
-```
-
-* **方法三：API技巧**
-
-```js
-console.log(
-  (1234567890).toLocaleString('en-US')
-);
-```
-
-* **方法四：正则表达式**
-
-```js
-String(1234567890).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-```
-
-### <a name="chapter-seventeen-five" id="chapter-seventeen-five"></a>17.5 遍历问题
-
-> [返回目录](#chapter-one)
-
-以下代码执行后，array 的结果是？
-
-```js
-let array = [ , 1, , 2, , 3];
-array = array.map((i) => ++i)
-```
-
-* A：`[ , 2, , 3, , 4]`
-* B：`[NaN, 2, NaN, 3, NaN, 4]`
-* C：`[1, 2, 1, 3, 1, 4]`
-* D：`[null, 2, null, 3, null, 4]`
-
----
-
-答案：A
-
-解释：
-
-1. `forEach()`、`filter()`、`reduce()`、`every()` 和 `some()` 都会跳过空位。
-2. `map()` 会跳过空位，但会保留这个值
-3. `join()` 和 `toString()` 会将空位视为 `undefined`，而 `undefined` 和 `null` 会被处理成空字符串。
-
-### <a name="chapter-seventeen-six" id="chapter-seventeen-six"></a>17.6 setTimeout
-
-> [返回目录](#chapter-one)
-
-```js
-for (var i = 0; i < 5; i++) {
-  setTimeout(() => {
-    console.log(i);
-  }, 1000);
-}
-```
-
-以上代码执行结果？
-
-* A：5 5 5 5 5
-* B：0 0 0 0 0
-* C：0 1 2 3 4
-* D：1 2 3 4 5
-
----
-
-答案：A
-
-解析：
-
-1. `var i` 在 `for` 中使用，会造成变量污染，从而导致全局有一个遍历 `i`，这个 `i` 运行到最后，就是 `5`
-2. `setTimeout` 是宏任务，在 `script` 这个宏任务执行完毕后才执行，所以搜集到的 `i` 是 `5`
-3. 最终输出 5 个 `5`
-
-### <a name="chapter-seventeen-seven" id="chapter-seventeen-seven"></a>17.7 requestAnimationFrame
-
-> [返回目录](#chapter-one)
-
-```js
-for (let i = 0; i < 5; i++) {
-  requestAnimationFrame(() => {
-    console.log(i);
-  });
-}
-```
-
-以上代码执行结果：
-
-* A：1 2 3 4 5
-* B：0 1 2 3 4
-* C：4 4 4 4 4
-* D：5 5 5 5 5
-
----
-
-答案：B
-
-解析：
-
-1. `let i` 使 `for` 形成块级作用域。
-2. `requestAnimationFrame` 类似于 `setTimeout`，但是它可以当成一个微任务来看，是在微任务队列执行完毕后，执行 UI 渲染前，调用的一个方法。
-3. 因此，这道题并不是指 `requestAnimationFrame` 会收集 `i`，而是 `let` 形成了块级作用域的问题，如果改成 `var i`，照样输出 5 个 `5`。
-
-### <a name="chapter-seventeen-eight" id="chapter-seventeen-eight"></a>17.8 暂时性死区
-
-> [返回目录](#chapter-one)
-
-1、下面代码输出什么？
-
-```js
-let a = 1;
-let test = function() {
-  console.log(a);
-  a++;
-}
-test();
-```
-
-2、下面代码输出什么？
-
-```js
-let a = 1;
-let test = function() {
-  console.log(a);
-  let a = 2;
-  a++;
-}
-test();
-```
-
----
-
-答案：
-
-第一道题输出：`1`
-
-第二道题输出：`Uncaught ReferenceError: Cannot access 'a' before initialization`
-
-解析：
-
-其原因是在同一个 `block` 中，`let` 在后面重新定义的，那么就不能在之前引用该变量。同时，也不能取嵌套外层的值。
-
-### <a name="chapter-seventeen-night" id="chapter-seventeen-night"></a>17.9 输出打印结果
-
-> [返回目录](#chapter-one)
-
-```js
-function sayHi() {
-  console.log(name);
-  console.log(age);
-  var name = "Lydia";
-  let age = 21;
-}
-
-sayHi();
-```
-
-上面代码输出结果？
-
----
-
-答案：undefined、报错
-
-解析：
-
-这道题转变一下就看明白了：
-
-```js
-function sayHi() {
-  var name; // 变量提升 - 变量声明
-  console.log(name); // undefined
-  console.log(age); // let 存在暂时性死区，不会变量提升
-  name = "Lydia"; // 变量提升 - 变量赋值
-  let age = 21;
-}
-
-sayHi();
-```
-
-### <a name="chapter-seventeen-ten" id="chapter-seventeen-ten"></a>17.10 输出打印结果
-
-> [返回目录](#chapter-one)
-
-```js
-function myFunc() {
-  console.log(a);
-  console.log(func());
-
-  var a = 1;
-  function func() {
-    return 2;
-  }
-}
-
-myFunc();
-```
-
-请问输出啥？
-
----
-
-答案：`undefined` `2`
-
-解析：不难，不解析了
-
-### <a name="chapter-seventeen-eleven" id="chapter-seventeen-eleven"></a>17.11 Event Loop
-
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 for (var i = 0; i < 3; i++) {
@@ -1110,96 +1223,3 @@ for (let i = 0; i < 3; i++) {
 第一道题目：`var` 在 `for` 中存在变量污染，同步代码 `for` 执行完毕之后，再执行宏任务 `setTimeout`，发现当前 `i` 都成为 `3` 了，所以输出 `3、3、3`
 
 第二道题目：`let` 在 `for` 中会形成块级作用域，每次迭代的时候 `i` 都是一个新值，并且每个值都存在于循环内的块级作用域，所以输出 `0、1、2`
-
-### <a name="chapter-seventeen-twelve" id="chapter-seventeen-twelve"></a>17.12 输出打印结果
-
-> [返回目录](#chapter-one)
-
-```js
-let date = new Date();
-
-for (var i = 0; i < 5; i++) {
-  setTimeout(function() {
-    console.log(new Date - date, i); // 1
-  }, 1000);
-}
-
-console.log(new Date - date, i); // 2
-```
-
-请问输出啥？
-
----
-
-答案：
-
-```
-0 5
-1001 5
-1004 5
-1005 5
-1006 5
-1007 5
-```
-
-解析：题目先走宏任务 `script`，所以定义了 `date` 之后，执行注释为 2 这行的 `console`。
-
-然后 5 个宏任务，都是定时器 `setTimeout`，所以会在之后执行，输出：`1000 5`，但是定时器也不一定准时的，所以有可能是 `1001`、`1002` 或者其他的。
-
-### <a name="chapter-seventeen-thirteen" id="chapter-seventeen-thirteen"></a>17.13 使 a == 1 && a == 2 成立
-
-> [返回目录](#chapter-one)
-
-尝试编码，使：`if(a == 1 && a == 2 && a == 3) {}` 这种情况成立。
-
-* **方法一**
-
-在类型转换的时候，我们知道了对象如何转换成原始数据类型。如果部署了 `[Symbol.toPrimitive]`，那么返回的就是 `Symbol.toPrimitive` 的返回值。
-
-当然，我们也可以把此函数部署在 `valueOf` 或者是 `toString` 接口上，效果相同。
-
-```js
-//利用闭包延长作用域的特性
-let a = {
-  [Symbol.toPrimitive]: (function () {
-    let i = 1;
-    return function () {
-      return i++;
-    }
-  })()
-}
-```
-
-* **方法二**
-
-利用 `Object.defineProperty` 在 `window/global` 上定义 `a` 属性，获取 `a` 属性时，会调用 `get`
-
-```js
-let val = 1;
-Object.defineProperty(window, 'a', {
-  get: function() {
-    return val++;
-  }
-});
-```
-
-* **方法三**
-
-```js
-var a = [1, 2, 3];
-a.join = a.shift;
-```
-
-数组的 `toString` 方法返回一个字符串，该字符串由数组中的每个元素的 `toString()` 返回值经调用 `join()` 方法连接（由逗号隔开）组成。
-
-因此，我们可以重新 `join` 方法。返回第一个元素，并将其删除。
-
-## <a name="chapter-eighteen" id="chapter-eighteen"></a>十八 More
-
-> [返回目录](#chapter-one)
-
-还有很多基础知识，或者题目，**jsliang** 没精力一一添加进来了，尽量将原文放文章中了。
-
-* [x] [[译] 送你 43 道 JavaScript 面试题](https://juejin.im/post/6844903869378461710)【阅读建议：1h】
-
-这篇文章还是挺不错的，**jsliang** 做的第一遍还是错了一些题，哈哈。
