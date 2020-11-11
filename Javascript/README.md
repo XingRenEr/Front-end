@@ -12,7 +12,7 @@
 * [x] 数字化金额：`1234567890` -> `1,234,567,890`
 * [x] JS 数据类型：`Boolean`/`Null`/`Undefined`/`Number`/`String`/`Symbol`/`BigInt`/`Object`
 * [x] [变量与作用域](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E5%8F%98%E9%87%8F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F.md)
-* [x] this
+* [x] [this](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/this.md)
 
 ## 1.3 原型和原型链
 
