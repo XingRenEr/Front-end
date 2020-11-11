@@ -11,11 +11,10 @@
 | &emsp;[2.2 数组](#two-two) |
 | &emsp;[2.3 字符串](#two-three) |
 | &emsp;[2.4 RegExp](#two-four) |
-| &emsp;[2.5 typeof 和 instanceof 的区别](#two-five) |
 | [三 变量与作用域](#three) |
-| &emsp;[3.1 变量](#three-one) |
-| &emsp;[3.2 this](#three-two) |
-| &emsp;[3.3 执行上下文](#three-three) |
+| &emsp;[3.1 this](#three-one) |
+| &emsp;[3.2 执行上下文](#three-two) |
+| &emsp;[3.3 typeof 和 instanceof 的区别](#three-three) |
 | [面向对象](#four) |
 | &emsp;[4.1 原型与原型链](#four-one) |
 | [五 函数](#five) |
@@ -154,36 +153,33 @@
 
 ### <a id="two-four"></a>2.4 RegExp
 
-### <a id="two-five"></a>2.5 typeof 和 instanceof 的区别
-
-> [返回目录](#one)
-
-* `typeof`：对某个变量类型的检测，基本类型除了 `null` 之外，都能正常地显示为对应的类型，引用类型除了函数会显示为 `function`，其他都显示为 `object`。
-* `instanceof` 主要用于检测某个构造函数的原型对象在不在某个对象的原型链上。
-
-`typeof` 会对 `null` 显示错误是个历史 Bug，`typeof null` 输出的是 `object`，因为 JavaScript 早起版本是 32 位系统，为了性能考虑使用低位存储变量的类型信息，`000` 开头代表是对象然而 `null` 表示为全零，所以它错误判断为 `object`。
-
-另外还有 `Object.prototype.toString.call()` 进行变量判断。
-
-详细可见：[JavaScript - 变量](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%8F%98%E9%87%8F.md)
 
 ## <a id="three"></a>三 变量与作用域
 > [返回目录](#one)  
 
-* [x] 
-### <a id="three-one"></a>3.1 变量
-### <a id="three-two"></a>3.2 this
+* [x] [变量与作用域](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E5%8F%98%E9%87%8F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F.md)
+
+知识点：
+
+* [x] `var`/`let`/`const`
+* [x] 变量提升和函数提升
+* [x] 暂时性死区
+* [x] 函数作用域和全局作用域（ES5）
+* [x] 块级作用域（ES6）
+* [x] 判断变量类型
+
+### <a id="three-one"></a>3.1 this
 > [返回目录](#one)
 
 一句话描述 this
 
 对于函数而言，指向最后调用函数的那个对象，是函数运行时内部自动生成的一个内部对象，只能在函数内部使用；对于全局而言，`this` 指向 `window`。
 
-### <a id="three-three"></a>3.3 执行上下文
+### <a id="three-two"></a>3.2 执行上下文
 
 > [返回目录](#one)
 
-#### <a id="twelve-one"></a>执行上下文类型
+#### 执行上下文类型
 
 > [返回目录](#one)
 
@@ -193,7 +189,7 @@ JavaScript 中有 3 种执行上下文类型：
 * **函数执行上下文**：每当一个函数被调用时, 都会为该函数创建一个新的上下文。每个函数都有它自己的执行上下文，不过是在函数被调用时创建的。函数上下文可以有任意多个。每当一个新的执行上下文被创建，它会按定义的顺序执行一系列步骤。
 * **Eval 函数执行上下文**：执行在 `eval` 函数内部的代码也会有它属于自己的执行上下文，但由于 JavaScript 开发者并不经常使用 `eval`，所以在这里我不会讨论它。
 
-#### <a id="twelve-two"></a>执行栈
+#### 执行栈
 
 > [返回目录](#one)
 
@@ -221,6 +217,19 @@ console.log('Inside Global Execution Context');
 ```
 
 ![图](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/img/JavaScript-base-02.jpg?raw=true)
+
+### <a id="three-three"></a>3.3 typeof 和 instanceof 的区别
+
+> [返回目录](#one)
+
+* `typeof`：对某个变量类型的检测，基本类型除了 `null` 之外，都能正常地显示为对应的类型，引用类型除了函数会显示为 `function`，其他都显示为 `object`。
+* `instanceof` 主要用于检测某个构造函数的原型对象在不在某个对象的原型链上。
+
+`typeof` 会对 `null` 显示错误是个历史 Bug，`typeof null` 输出的是 `object`，因为 JavaScript 早起版本是 32 位系统，为了性能考虑使用低位存储变量的类型信息，`000` 开头代表是对象然而 `null` 表示为全零，所以它错误判断为 `object`。
+
+另外还有 `Object.prototype.toString.call()` 进行变量判断。
+
+详细可见：[JavaScript - 变量](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%8F%98%E9%87%8F.md)
 
 ## <a id="four"></a>四 面向对象
 ### <a id="four-one"></a>4.1 原型与原型链
@@ -948,7 +957,7 @@ test();
 其原因是在同一个 `block` 中，`let` 在后面重新定义的，那么就不能在之前引用该变量。同时，也不能取嵌套外层的值。
 
 
-### <a id="thirteen-eight"></a>作用域???
+### <a id="thirteen-eight"></a>作用域
 
 > [返回目录](#one)
 

@@ -1,6 +1,6 @@
 这里是 JavaScript 系列文章的大纲（含链接），点击可以查看具体内容。
 
-### <a name="chapter-two-one" id="chapter-two-one"></a>1 基础
+## 1 基础
 
 文章地址：[基础](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/README.md)
 
@@ -11,21 +11,9 @@
 * [x] 数组去重的方法
 * [x] 数字化金额：`1234567890` -> `1,234,567,890`
 * [x] JS 数据类型：`Boolean`/`Null`/`Undefined`/`Number`/`String`/`Symbol`/`BigInt`/`Object`
+* [x] 变量与作用域
 
-### <a name="chapter-two-two" id="chapter-two-two"></a>1.1 变量
-
-文章地址：[变量](https://github.com/XingRenEr/Front-end/tree/master/Javascript/%E5%9F%BA%E7%A1%80)
-
-知识点：
-
-* [x] `var`/`let`/`const` [setTimeout等](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/README.md#chapter-seventeen-six)
-* [x] 变量提升和函数提升
-* [x] 暂时性死区
-* [x] 函数作用域和全局作用域（ES5）
-* [x] 块级作用域（ES6）
-* [x] 判断变量类型
-
-### <a name="chapter-two-five" id="chapter-two-five"></a>1.2 this
+## 1.2 this
 
 文章地址：[this](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/this.md)
 
@@ -42,7 +30,7 @@
 * [x] React 中 `this` 问题
 * [x] 题目
 
-### <a name="chapter-two-four" id="chapter-two-four"></a>1.3 原型和原型链
+## 1.3 原型和原型链
 
 
 
@@ -71,7 +59,7 @@
   * [x] `F.__proto__ === Function.prototype`
   * [x] `F.__proto__.__proto__ === Object.prototype`
 
-### <a name="chapter-two-three" id="chapter-two-three"></a>1.4 DOM
+## 1.4 DOM
 
 
 
@@ -82,7 +70,7 @@
 * [x] DOM 常用 API
 * [x] 虚拟 DOM：浏览器渲染过程 -> 真实 DOM 和虚拟 DOM -> Diff 算法
 
-### <a name="chapter-two-seven" id="chapter-two-seven"></a>2 异步系列
+## 2 异步系列
 
 异步系列存放地址：
 
@@ -117,7 +105,7 @@
   * [x] 大厂题
   * [x] 总结
 
-### <a name="chapter-two-six" id="chapter-two-six"></a>3 手写源码系列
+## 3 手写源码系列
 
 
 
