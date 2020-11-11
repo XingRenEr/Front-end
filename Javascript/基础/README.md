@@ -4,13 +4,11 @@
 <!-- 目录开始 -->
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
-
 | 目录 |
 | --- |
-| [一 目录](#chapter-one) |
-| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 DOM 常用 API](#chapter-three) |
-| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 null 和 undefined 的区别](#chapter-four) |
-| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 事件流](#chapter-five) |
+| [三 DOM 常用 API](#chapter-three) |
+| [四 null 和 undefined 的区别](#chapter-four) |
+| [五 事件流](#chapter-five) |
 | &emsp;[5.1 addEventListener](#chapter-five-one) |
 | &emsp;[5.2 原理](#chapter-five-two) |
 | &emsp;[5.3 案例](#chapter-five-three) |
@@ -18,28 +16,28 @@
 | &emsp;[5.5 阻止冒泡](#chapter-five-five) |
 | &emsp;[5.6 onmouseover 和 onmouseenter 区别](#chapter-five-six) |
 | &emsp;[5.7 科普](#chapter-five-seven) |
-| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 typeof 和 instanceof 的区别](#chapter-six) |
-| <a name="catalog-chapter-seven" id="catalog-chapter-seven"></a>[七 一句话描述 this](#chapter-seven) |
-| <a name="catalog-chapter-eight" id="catalog-chapter-eight"></a>[八 JS 位置](#chapter-eight) |
-| <a name="catalog-chapter-night" id="catalog-chapter-night"></a>[九 JS 拖拽](#chapter-night) |
-| <a name="catalog-chapter-ten" id="catalog-chapter-ten"></a>[十 setTimeout 实现 setInterval](#chapter-ten) |
-| <a name="catalog-chapter-eleven" id="catalog-chapter-eleven"></a>[十一 实现 Sleep](#chapter-eleven) |
-| <a name="catalog-chapter-twelve" id="catalog-chapter-twelve"></a>[十二 执行上下文](#chapter-twelve) |
+| [六 typeof 和 instanceof 的区别](#chapter-six) |
+| [七 一句话描述 this](#chapter-seven) |
+| [八 JS 位置](#chapter-eight) |
+| [九 JS 拖拽](#chapter-night) |
+| [十 setTimeout 实现 setInterval](#chapter-ten) |
+| [十一 实现 Sleep](#chapter-eleven) |
+| [十二 执行上下文](#chapter-twelve) |
 | &emsp;[12.1 执行上下文类型](#chapter-twelve-one) |
 | &emsp;[12.2 执行栈](#chapter-twelve-two) |
-| <a name="catalog-chapter-thirteen" id="catalog-chapter-thirteen"></a>[十三 函数式编程](#chapter-thirteen) |
+| [十三 函数式编程](#chapter-thirteen) |
 | &emsp;[13.1 函数式编程特点](#chapter-thirteen-one) |
 | &emsp;[13.2 纯函数](#chapter-thirteen-two) |
-| <a name="catalog-chapter-fourteen" id="catalog-chapter-fourteen"></a>[十四 渐进式网络应用（PWA）](#chapter-fourteen) |
+| [十四 渐进式网络应用（PWA）](#chapter-fourteen) |
 | &emsp;[14.1 优点](#chapter-fourteen-one) |
 | &emsp;[14.2 缺点](#chapter-fourteen-two) |
-| <a name="catalog-chapter-fifteen" id="catalog-chapter-fifteen"></a>[十五 规范化](#chapter-fifteen) |
+| [十五 规范化](#chapter-fifteen) |
 | &emsp;[15.1 CommonJS 规范](#chapter-fifteen-one) |
 | &emsp;[15.2 AMD 规范](#chapter-fifteen-two) |
 | &emsp;[15.3 CMD 规范](#chapter-fifteen-three) |
 | &emsp;[15.4 ES6 Modules 规范](#chapter-fifteen-four) |
-| <a name="catalog-chapter-sixteen" id="catalog-chapter-sixteen"></a>[十六 babel 编译原理](#chapter-sixteen) |
-| <a name="catalog-chapter-seventeen" id="catalog-chapter-seventeen"></a>[十七 题集](#chapter-seventeen) |
+| [十六 babel 编译原理](#chapter-sixteen) |
+| [十七 题集](#chapter-seventeen) |
 | &emsp;[17.1 数组常见 API](#chapter-seventeen-one) |
 | &emsp;[17.2 常见 DOM API](#chapter-seventeen-two) |
 | &emsp;[17.3 数组去重](#chapter-seventeen-three) |
@@ -53,7 +51,7 @@
 | &emsp;[17.11 Event Loop](#chapter-seventeen-eleven) |
 | &emsp;[17.12 输出打印结果](#chapter-seventeen-twelve) |
 | &emsp;[17.13 使 a == 1 && a == 2 成立](#chapter-seventeen-thirteen) |
-| <a name="catalog-chapter-eighteen" id="catalog-chapter-eighteen"></a>[十八 More](#chapter-eighteen) |
+| [十八 More](#chapter-eighteen) |
 <!-- 目录结束 -->
 
 ## <a name="chapter-three" id="chapter-three"></a>三 DOM 常用 API
