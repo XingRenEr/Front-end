@@ -124,8 +124,6 @@ var findRepeatNumber = function(nums) {
 
 ### 数组去重
 
-> [返回目录](#chapter-one)
-
 数组去重是个经常提及的点：
 
 ```JS

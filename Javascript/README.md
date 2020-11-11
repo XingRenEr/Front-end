@@ -2,8 +2,6 @@
 
 ### <a name="chapter-two-one" id="chapter-two-one"></a>1 基础
 
-
-
 文章地址：[基础](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/README.md)
 
 知识点：
@@ -15,8 +13,6 @@
 * [x] JS 数据类型：`Boolean`/`Null`/`Undefined`/`Number`/`String`/`Symbol`/`BigInt`/`Object`
 
 ### <a name="chapter-two-two" id="chapter-two-two"></a>1.1 变量
-
-
 
 文章地址：[变量](https://github.com/XingRenEr/Front-end/tree/master/Javascript/%E5%9F%BA%E7%A1%80)
 

@@ -490,7 +490,7 @@ btn.addEventListener('myEvent', function(e) {
 
 > [返回目录](#one)
 
-DOM2级事件处理程序addEventListener  
+`addEventListener`是DOM2级事件处理程序  
 
 `addEventListener` 方法将指定的监听器注册到 `EventTarget` 上，当该对象触发指定的事件时，指定的回调函数就会被执行。
 
