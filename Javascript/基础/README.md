@@ -15,7 +15,7 @@
 | &emsp;[3.1 this](#three-one) |
 | &emsp;[3.2 执行上下文](#three-two) |
 | &emsp;[3.3 typeof 和 instanceof 的区别](#three-three) |
-| [面向对象](#four) |
+| [四 面向对象](#four) |
 | &emsp;[4.1 原型与原型链](#four-one) |
 | [五 函数](#five) |
 | &emsp;[5.1 闭包](#five-one) |
@@ -170,6 +170,21 @@
 
 ### <a id="three-one"></a>3.1 this
 > [返回目录](#one)
+
+文章地址：[this]()
+
+知识点：
+
+* [x] `this` 永远指向最后调用它的那个对象
+  * [x] 普通函数中 `this` 的指向，是 `this` 执行时的上下文
+  * [x] 箭头函数中 this 的指向，是 this 定义时的上下文
+* [x] 全局执行上下文中的 `this`
+* [x] 函数执行上下文中的 `this`
+  * [x] 通过 `call/bind/apply` 改变 `this` 指向
+  * [x] 通过对象调用方法设置
+  * [x] 通过构造函数设置
+* [x] React 中 `this` 问题
+* [x] 题目
 
 一句话描述 this
 

@@ -11,28 +11,10 @@
 * [x] 数组去重的方法
 * [x] 数字化金额：`1234567890` -> `1,234,567,890`
 * [x] JS 数据类型：`Boolean`/`Null`/`Undefined`/`Number`/`String`/`Symbol`/`BigInt`/`Object`
-* [x] 变量与作用域
-
-## 1.2 this
-
-文章地址：[this](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/this.md)
-
-知识点：
-
-* [x] `this` 永远指向最后调用它的那个对象
-  * [x] 普通函数中 `this` 的指向，是 `this` 执行时的上下文
-  * [x] 箭头函数中 this 的指向，是 this 定义时的上下文
-* [x] 全局执行上下文中的 `this`
-* [x] 函数执行上下文中的 `this`
-  * [x] 通过 `call/bind/apply` 改变 `this` 指向
-  * [x] 通过对象调用方法设置
-  * [x] 通过构造函数设置
-* [x] React 中 `this` 问题
-* [x] 题目
+* [x] [变量与作用域](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E5%8F%98%E9%87%8F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F.md)
+* [x] this
 
 ## 1.3 原型和原型链
-
-
 
 文章地址：[原型和原型链](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
 
