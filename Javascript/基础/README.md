@@ -54,10 +54,65 @@
 | [十八 More](#chapter-eighteen) |
 <!-- 目录结束 -->
 
-## <a name="chapter-three" id="chapter-three"></a>三 DOM 常用 API
+## <a id=""></a>数据类型
+### <a id="chapter-four"></a>null 和 undefined 的区别
 
 > [返回目录](#chapter-one)
 
+使用场景细分如下：
+
+* `null`：
+
+1. `Number(null)` 得到 `0`。
+2. 作为函数的参数，表示该函数的参数不是对象。
+3. 作为对象原型链的终点。`Object.prototype.__proto__ === null`。
+
+* `undefined`：
+
+1. `Number(undefined)` 得到 `undefined`。
+2. 变量被声明但是没有赋值，等于 `undefined`。
+3. 调用函数时，对应的参数没有提供，也是 `undefined`。
+4. 对象没有赋值，这个属性的值为 `undefined`。
+5. 函数没有返回值，默认返回 `undefined`。
+
+### <a id=""></a>数组
+### <a id=""></a>字符串
+### <a id=""></a>RegExp
+### <a id="chapter-six"></a>typeof 和 instanceof 的区别
+
+> [返回目录](#chapter-one)
+
+* `typeof`：对某个变量类型的检测，基本类型除了 `null` 之外，都能正常地显示为对应的类型，引用类型除了函数会显示为 `function`，其他都显示为 `object`。
+* `instanceof` 主要用于检测某个构造函数的原型对象在不在某个对象的原型链上。
+
+`typeof` 会对 `null` 显示错误是个历史 Bug，`typeof null` 输出的是 `object`，因为 JavaScript 早起版本是 32 位系统，为了性能考虑使用低位存储变量的类型信息，`000` 开头代表是对象然而 `null` 表示为全零，所以它错误判断为 `object`。
+
+另外还有 `Object.prototype.toString.call()` 进行变量判断。
+
+详细可见：[JavaScript - 变量](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%8F%98%E9%87%8F.md)
+
+## <a id=""></a>变量与作用域
+### <a id=""></a>变量
+### <a name="chapter-seven" id="chapter-seven"></a>this
+一句话描述 this
+
+> [返回目录](#chapter-one)
+
+对于函数而言，指向最后调用函数的那个对象，是函数运行时内部自动生成的一个内部对象，只能在函数内部使用；对于全局而言，`this` 指向 `window`。
+
+## <a id=""></a>面对对象
+### <a id=""></a>原型与原型链
+
+## <a id=""></a>函数
+### <a id=""></a>闭包
+
+## <a id=""></a>BOM
+
+## <a id="chapter-three"></a>DOM
+
+> [返回目录](#chapter-one)
+
+DOM 常用 API  
 可以使用 `document` 或 `window` 元素的 API 来操作文档本身或获取文档的子类（Web 页面中的各种元素）。
 
 ```js
@@ -130,27 +185,8 @@ document.body.removeChild(node);
 </html>
 ```
 
-## <a name="chapter-four" id="chapter-four"></a>四 null 和 undefined 的区别
-
-> [返回目录](#chapter-one)
-
-使用场景细分如下：
-
-* `null`：
-
-1. `Number(null)` 得到 `0`。
-2. 作为函数的参数，表示该函数的参数不是对象。
-3. 作为对象原型链的终点。`Object.prototype.__proto__ === null`。
-
-* `undefined`：
-
-1. `Number(undefined)` 得到 `undefined`。
-2. 变量被声明但是没有赋值，等于 `undefined`。
-3. 调用函数时，对应的参数没有提供，也是 `undefined`。
-4. 对象没有赋值，这个属性的值为 `undefined`。
-5. 函数没有返回值，默认返回 `undefined`。
-
-## <a name="chapter-five" id="chapter-five"></a>五 事件流
+## <a id=""></a>事件
+### <a id="chapter-five"></a>事件流
 
 > [返回目录](#chapter-one)
 
@@ -164,11 +200,122 @@ document.body.removeChild(node);
 
 在 `DOM` 标准事件模型中，是先捕获后冒泡。但是如果要实现先冒泡后捕获的效果，对于同一个事件，监听捕获和冒泡，分别对应相应的处理函数，监听到捕获事件，先暂缓执行，直到冒泡事件被捕获后再执行捕获之间。  
 
-* [x] [你真的理解 事件冒泡 和 事件捕获 吗？](https://juejin.im/post/6844903834075021326)  
-
-### <a name="chapter-five-one" id="chapter-five-one"></a>5.1 addEventListener
+#### <a id="chapter-five-two"></a>5.2 原理
 
 > [返回目录](#chapter-one)
+
+* [x] [你真的理解 事件冒泡 和 事件捕获 吗？](https://juejin.im/post/6844903834075021326)  
+
+事件捕获和事件冒泡分别是 **网景**（Netscape）和 **IE** 对 `DOM` 事件产生顺序的描述。
+
+**网景** 认为 `DOM` 接收的事件应该最先是 `window`，然后到 `document`，接着一层一层往下，最后才到具体的元素接收到事件，即 **事件捕获**。
+
+**IE** 则认为 `DOM` 事件应该是具体元素先接收到，然后再一层一层往上，接着到 `document`，最后才到 `window`，即 **事件冒泡**。
+
+最后 **W3C** 对这两种方案进行了统一：将 `DOM` 事件分为两个阶段，事件捕获和事件冒泡阶段。
+
+当一个元素被点击，首先是事件捕获阶段，`window` 最先接收事件，然后一层一层往下捕获，最后由具体元素接收；之后再由具体元素再一层一层往上冒泡，到 `window` 接收事件。
+
+所以：
+
+* **事件冒泡**：当给某个目标元素绑定了事件之后，这个事件会依次在它的父级元素中被触发（当然前提是这个父级元素也有这个同名称的事件，比如子元素和父元素都绑定了 `click` 事件就触发父元素的 `click`）。
+* **事件捕获**：和冒泡相反，会从上层传递到下层。
+
+#### <a id="chapter-five-three"></a>5.3 案例
+
+> [返回目录](#chapter-one)
+
+结合自定义事件耍个例子：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>自定义事件</title>
+</head>
+<body>
+  <ul class="ul">
+    <li class="li">
+      <button class="btn">点我</button>
+    </li>
+  </ul>
+  
+  <script>
+    window.onload = function() {
+      const myEvent = document.createEvent('CustomEvent');
+      myEvent.initEvent('myEvent', true, true);
+
+      const btn = document.querySelector('.btn');
+      btn.addEventListener('myEvent', function(e) {
+        console.log('button');
+      })
+
+      const li = document.querySelector('.li');
+      li.addEventListener('myEvent', (e) => {
+        console.log('li');
+      })
+
+      const ul = document.querySelector('.ul');
+      li.addEventListener('myEvent', (e) => {
+        console.log('ul');
+      })
+
+      document.addEventListener('myEvent', (e) => {
+        console.log('document');
+      })
+
+      window.addEventListener('myEvent', (e) => {
+        console.log('window');
+      })
+
+      setTimeout(() => {
+        btn.dispatchEvent(myEvent);
+      }, 2000);
+    };
+  </script>
+</body>
+</html>
+```
+
+Chrome 输出下顺序是：`button` -> `li` -> `ul` -> `document` -> `window`
+
+如果是捕获的话，那么则相反。
+
+
+#### <a id="chapter-five-five"></a>5.5 阻止冒泡
+
+> [返回目录](#chapter-one)
+
+* `event.stopPropagation();`
+
+```js
+btn.addEventListener('myEvent', function(e) {
+  console.log('button');
+  event.stopPropagation();
+})
+```
+
+通过阻止冒泡，程序只会输出 `button`，而不会继续输出 `li` 等。
+
+#### <a id="chapter-five-seven"></a>5.7 科普
+
+> [返回目录](#chapter-one)
+  
+并不是所有的事件都有冒泡，例如：
+
+* `onblur`
+* `onfocus`
+* `onmouseenter`
+* `onmouseleave`
+
+### <a id="chapter-five-one"></a>事件处理程序
+
+> [返回目录](#chapter-one)
+
+DOM2级事件处理程序addEventListener  
 
 `addEventListener` 方法将指定的监听器注册到 `EventTarget` 上，当该对象触发指定的事件时，指定的回调函数就会被执行。
 
@@ -227,89 +374,12 @@ document.body.removeChild(node);
 
 如上，这个示例简单实现了点击 `two` 切换到 `four`，点击 `four` 再切换到 `two` 的效果。
 
-### <a name="chapter-five-two" id="chapter-five-two"></a>5.2 原理
 
-> [返回目录](#chapter-one)
+### <a id=""></a>事件类型
 
-事件捕获和事件冒泡分别是 **网景**（Netscape）和 **IE** 对 `DOM` 事件产生顺序的描述。
+* [x] [js的事件种类整理](https://www.jianshu.com/p/0eae14401bf2)  
 
-**网景** 认为 `DOM` 接收的事件应该最先是 `window`，然后到 `document`，接着一层一层往下，最后才到具体的元素接收到事件，即 **事件捕获**。
-
-**IE** 则认为 `DOM` 事件应该是具体元素先接收到，然后再一层一层往上，接着到 `document`，最后才到 `window`，即 **事件冒泡**。
-
-最后 **W3C** 对这两种方案进行了统一：将 `DOM` 事件分为两个阶段，事件捕获和事件冒泡阶段。
-
-当一个元素被点击，首先是事件捕获阶段，`window` 最先接收事件，然后一层一层往下捕获，最后由具体元素接收；之后再由具体元素再一层一层往上冒泡，到 `window` 接收事件。
-
-所以：
-
-* **事件冒泡**：当给某个目标元素绑定了事件之后，这个事件会依次在它的父级元素中被触发（当然前提是这个父级元素也有这个同名称的事件，比如子元素和父元素都绑定了 `click` 事件就触发父元素的 `click`）。
-* **事件捕获**：和冒泡相反，会从上层传递到下层。
-
-### <a name="chapter-five-three" id="chapter-five-three"></a>5.3 案例
-
-> [返回目录](#chapter-one)
-
-结合自定义事件耍个例子：
-
-```js
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>自定义事件</title>
-</head>
-<body>
-  <ul class="ul">
-    <li class="li">
-      <button class="btn">点我</button>
-    </li>
-  </ul>
-  
-  <script>
-    window.onload = function() {
-      const myEvent = document.createEvent('CustomEvent');
-      myEvent.initEvent('myEvent', true, true);
-
-      const btn = document.querySelector('.btn');
-      btn.addEventListener('myEvent', function(e) {
-        console.log('button');
-      })
-
-      const li = document.querySelector('.li');
-      li.addEventListener('myEvent', (e) => {
-        console.log('li');
-      })
-
-      const ul = document.querySelector('.ul');
-      li.addEventListener('myEvent', (e) => {
-        console.log('ul');
-      })
-
-      document.addEventListener('myEvent', (e) => {
-        console.log('document');
-      })
-
-      window.addEventListener('myEvent', (e) => {
-        console.log('window');
-      })
-
-      setTimeout(() => {
-        btn.dispatchEvent(myEvent);
-      }, 2000);
-    };
-  </script>
-</body>
-</html>
-```
-
-Chrome 输出下顺序是：`button` -> `li` -> `ul` -> `document` -> `window`
-
-如果是捕获的话，那么则相反。
-
-### <a name="chapter-five-four" id="chapter-five-four"></a>5.4 练习题
+#### <a id="chapter-five-four"></a>点击一个 `input` 依次触发的事件
 
 > [返回目录](#chapter-one)
 
@@ -336,24 +406,7 @@ text.onmouseenter = function (e) {
 
 如果加上 `onmouseup`，那就是：`onmouseenter -> onmousedown -> onfocus -> onmouseup -> onclick`
 
-* [x] [js的事件种类整理](https://www.jianshu.com/p/0eae14401bf2)  
-
-### <a name="chapter-five-five" id="chapter-five-five"></a>5.5 阻止冒泡
-
-> [返回目录](#chapter-one)
-
-* `event.stopPropagation();`
-
-```js
-btn.addEventListener('myEvent', function(e) {
-  console.log('button');
-  event.stopPropagation();
-})
-```
-
-通过阻止冒泡，程序只会输出 `button`，而不会继续输出 `li` 等。
-
-### <a name="chapter-five-six" id="chapter-five-six"></a>5.6 onmouseover 和 onmouseenter 区别
+#### <a id="chapter-five-six"></a>onmouseover 和 onmouseenter 区别
 
 > [返回目录](#chapter-one)
 
@@ -361,35 +414,7 @@ btn.addEventListener('myEvent', function(e) {
 
 这两者都是移入的时候触发，但是 `onmouseover` 会触发多次，而 `onmouseenter` 只在进去的时候才触发。
 
-### <a name="chapter-five-seven" id="chapter-five-seven"></a>5.7 科普
 
-> [返回目录](#chapter-one)
-  
-并不是所有的事件都有冒泡，例如：
-
-* `onblur`
-* `onfocus`
-* `onmouseenter`
-* `onmouseleave`
-
-## <a name="chapter-six" id="chapter-six"></a>六 typeof 和 instanceof 的区别
-
-> [返回目录](#chapter-one)
-
-* `typeof`：对某个变量类型的检测，基本类型除了 `null` 之外，都能正常地显示为对应的类型，引用类型除了函数会显示为 `function`，其他都显示为 `object`。
-* `instanceof` 主要用于检测某个构造函数的原型对象在不在某个对象的原型链上。
-
-`typeof` 会对 `null` 显示错误是个历史 Bug，`typeof null` 输出的是 `object`，因为 JavaScript 早起版本是 32 位系统，为了性能考虑使用低位存储变量的类型信息，`000` 开头代表是对象然而 `null` 表示为全零，所以它错误判断为 `object`。
-
-另外还有 `Object.prototype.toString.call()` 进行变量判断。
-
-详细可见：[JavaScript - 变量](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%8F%98%E9%87%8F.md)
-
-## <a name="chapter-seven" id="chapter-seven"></a>七 一句话描述 this
-
-> [返回目录](#chapter-one)
-
-对于函数而言，指向最后调用函数的那个对象，是函数运行时内部自动生成的一个内部对象，只能在函数内部使用；对于全局而言，`this` 指向 `window`。
 
 ## <a name="chapter-eight" id="chapter-eight"></a>八 JS 位置
 
