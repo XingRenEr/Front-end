@@ -22,7 +22,7 @@
 
 知识点：
 
-* [x] `var`/`let`/`const`
+* [x] `var`/`let`/`const` [setTimeout等](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/README.md#chapter-seventeen-six)
 * [x] 变量提升和函数提升
 * [x] 暂时性死区
 * [x] 函数作用域和全局作用域（ES5）
