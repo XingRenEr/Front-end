@@ -12,13 +12,13 @@
 | &emsp;[2.3 字符串](#two-three) |
 | &emsp;[2.4 RegExp](#two-four) |
 | [三 变量与作用域](#three) |
-| &emsp;[3.1 this](#three-one) |
-| &emsp;[3.2 执行上下文](#three-two) |
-| &emsp;[3.3 typeof 和 instanceof 的区别](#three-three) |
+| &emsp;[3.1 执行上下文](#three-one) |
+| &emsp;[3.2 typeof 和 instanceof 的区别](#three-two) |
 | [四 面向对象](#four) |
 | &emsp;[4.1 原型与原型链](#four-one) |
 | [五 函数](#five) |
-| &emsp;[5.1 闭包](#five-one) |
+| &emsp;[5.1 this](#five-one) |
+| &emsp;[5.1 闭包](#five-two) |
 | [六 Promise与异步函数](#six) |
 | &emsp;[6.1 setTimeout 实现 setInterval](#six-one) |
 | [七 BOM](#seven) |
@@ -168,29 +168,8 @@
 * [x] 块级作用域（ES6）
 * [x] 判断变量类型
 
-### <a id="three-one"></a>3.1 this
-> [返回目录](#one)
 
-文章地址：[this](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/this.md)
-
-知识点：
-
-* [x] `this` 永远指向最后调用它的那个对象
-  * [x] 普通函数中 `this` 的指向，是 `this` 执行时的上下文
-  * [x] 箭头函数中 this 的指向，是 this 定义时的上下文
-* [x] 全局执行上下文中的 `this`
-* [x] 函数执行上下文中的 `this`
-  * [x] 通过 `call/bind/apply` 改变 `this` 指向
-  * [x] 通过对象调用方法设置
-  * [x] 通过构造函数设置
-* [x] React 中 `this` 问题
-* [x] 题目
-
-一句话描述 this
-
-对于函数而言，指向最后调用函数的那个对象，是函数运行时内部自动生成的一个内部对象，只能在函数内部使用；对于全局而言，`this` 指向 `window`。
-
-### <a id="three-two"></a>3.2 执行上下文
+### <a id="three-one"></a>3.1 执行上下文
 
 > [返回目录](#one)
 
@@ -233,7 +212,7 @@ console.log('Inside Global Execution Context');
 
 ![图](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/img/JavaScript-base-02.jpg?raw=true)
 
-### <a id="three-three"></a>3.3 typeof 和 instanceof 的区别
+### <a id="three-two"></a>3.2 typeof 和 instanceof 的区别
 
 > [返回目录](#one)
 
@@ -250,7 +229,29 @@ console.log('Inside Global Execution Context');
 ### <a id="four-one"></a>4.1 原型与原型链
 
 ## <a id="five"></a>五 函数
-### <a id="five-one"></a>5.1 闭包
+### <a id="five-one"></a>5.1 this
+> [返回目录](#one)
+
+文章地址：[this](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/this.md)
+
+知识点：
+
+* [x] `this` 永远指向最后调用它的那个对象
+  * [x] 普通函数中 `this` 的指向，是 `this` 执行时的上下文
+  * [x] 箭头函数中 this 的指向，是 this 定义时的上下文
+* [x] 全局执行上下文中的 `this`
+* [x] 函数执行上下文中的 `this`
+  * [x] 通过 `call/bind/apply` 改变 `this` 指向
+  * [x] 通过对象调用方法设置
+  * [x] 通过构造函数设置
+* [x] React 中 `this` 问题
+* [x] 题目
+
+一句话描述 this
+
+对于函数而言，指向最后调用函数的那个对象，是函数运行时内部自动生成的一个内部对象，只能在函数内部使用；对于全局而言，`this` 指向 `window`。
+
+### <a id="five-two"></a>5.2 闭包
 
 ## <a id="six"></a>六 Promise与异步函数
 在基础部分只讲setTimeout  
@@ -832,11 +833,9 @@ console.log(
 String(1234567890).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 ```
 
-### <a id="thirteen-four"></a>var/let/const
+### <a id="thirteen-four"></a>var/let/const + setTimeout
 
 > [返回目录](#one)
-
-setTimeout
 
 ```js
 for (var i = 0; i < 5; i++) {
@@ -863,11 +862,9 @@ for (var i = 0; i < 5; i++) {
 2. `setTimeout` 是宏任务，在 `script` 这个宏任务执行完毕后才执行，所以搜集到的 `i` 是 `5`
 3. 最终输出 5 个 `5`
 
-### <a id="thirteen-five"></a>var/let/const
+### <a id="thirteen-five"></a>var/let/const + requestAnimationFrame
 
 > [返回目录](#one)
-
-requestAnimationFrame
 
 ```js
 for (let i = 0; i < 5; i++) {
@@ -999,7 +996,7 @@ myFunc();
 解析：不难，不解析了
 
 
-### <a id="thirteen-nine"></a>setTimeout
+### <a id="thirteen-nine"></a>var/let/const + setTimeout
 
 > [返回目录](#one)
 
