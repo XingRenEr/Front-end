@@ -43,8 +43,6 @@
 
 ## 1.4 DOM
 
-
-
 文章地址：[DOM](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/DOM.md)
 
 知识点：
@@ -88,8 +86,6 @@
   * [x] 总结
 
 ## 3 手写源码系列
-
-
 
 手写系列存放位置：
 
@@ -142,4 +138,3 @@
   * [x] 数组扁平化：手撕、`flat()`、`reduce()`
   * [x] 数组去重：手撕、`Set`、`filter()`
   * [x] 其他
-

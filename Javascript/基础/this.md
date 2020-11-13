@@ -172,11 +172,25 @@ let myObj = {
     console.log(this.myName);
   },
 };
-let foo = myObj.showThis;
+let foo = myObj.showThis; // showThis函数的执行上下文为全局上下文，即被window调用
 foo(); // 输出啥？
 ```
 
+```js
+let myObj = {
+  myName: 'jsliang',
+  showThis: function() { // 另外一种使 showThis函数的执行上下文为全局上下文 的方法
+    setTimeout(function() {
+      console.log(this.myName);
+    }, 1000)
+  },
+};
+myObj.showThis();
+```
+
 这时候它又变成 `window` 指向了，此刻 `let foo = myObj.showThis` 只是一个定义，真正执行是在 `foo()`。那么此刻 `foo()` 是咋搞的呢？`window.foo()` 啊！毋庸置疑输出 `undefined`。
+
+为了避免这个问题，使用箭头函数。调用箭头函数时，函数中的this是**定义函数的上下文**而非**执行上下文**，调用箭头函数时，不创建执行上下文。  
 
 * **案例 3**
 
@@ -229,8 +243,9 @@ foo(); // 输出啥？
 
 结论：
 
-* 在全局环境中调用一个函数，函数内部的 `this` 指向的是全局变量 `window`。
-* 通过一个对象来调用其内部的一个方法，该方法的执行上下文中的 `this` 指向对象本身。
+* 在全局环境中调用一个标准函数，函数内部的 `this` 指向的是全局变量 `window`。
+* 在全局环境中调用一个箭头函数，函数内部的 `this` 指向的是定义函数的上下文。
+* 通过一个对象来调用其内部的一个方法，该方法中的 `this` 指向对象本身。
 
 ### <a id="four-three"></a>4.3 通过构造函数中设置
 
@@ -253,10 +268,9 @@ console.log(window.name); // 输出啥？
 
 在将这个答案的缘故之前，我们看下 `new Foo()` 中，JavaScript 引擎做了什么事：
 
-* 首先创建一个空对象 `tempObj = {}`。
-* 接着调用 `Foo.apply` 方法，将 `tempObj` 作为 `apply` 方法的参数，这样当 `Foo` 的执行上下文创建时，它的 `this` 就指向 `tempObj` 对象。
-* 然后执行 `Foo` 函数，此时的 `Foo` 函数执行上下文中的 `this` 指向了 `tempObj` 对象。
-* 最后返回 `tempObj` 对象。
+* 创建一个空对象 `tempObj = {}`。
+* 调用 `Foo.apply` 方法执行 `Foo` 函数，将 `tempObj` 作为 `apply` 方法的参数，这样当 `Foo` 的执行上下文创建时，它的 `this` 就指向 `tempObj` 对象。
+* 返回 `tempObj` 对象。
 
 ```js
 function myNew(func, ...args) {
@@ -336,7 +350,7 @@ console.log(me); // Person {name: 'jsliang'}
 
 > [返回目录](#one)
 
-### <a id="five-one"></a>5.1 嵌套函数中的 this 不会从外层函数中继承
+### <a id="five-one"></a>5.1 嵌套函数中的 this 不会从外层函数中继承，直接指向 Window
 
 > [返回目录](#one)
 
@@ -916,7 +930,7 @@ obj2.foo2(); // 输出啥？
 * `foo2()`：实际上是 `window.foo2()`，指向 `window`，输出 `2`
 * `obj2.foo2()`：`obj2` 调用 `foo2()`，指向 `obj2`，输出 `3`
 
-### <a id="eight-five"></a>8.5 隐式绑定丢失问题
+### <a id="eight-five"></a>8.5 隐式绑定丢失问题???
 
 > [返回目录](#one)
 
@@ -941,7 +955,8 @@ doFoo(obj.foo); // 输出啥？
 
 ---
 
-答案：`Window {...}`、`2`
+~~答案：`Window {...}`、`2`~~  
+答案：`Window {...}`、`undefined`  
 
 解析：**隐式绑定丢失问题**。`deFoo` 传参 `obj.foo` 的时候，此刻 `foo` 还没被执行，所以在 `doFoo` 中 `fn()` 就相当于 `window.fn()`，所以指向到 `window` 啦！
 
@@ -970,7 +985,8 @@ obj2.doFoo(obj.foo); // 输出啥？
 
 ---
 
-答案：`{ a: 3, doFoo: f }`、`2`
+~~答案：`{ a: 3, doFoo: f }`、`2`~~  
+答案：`{ a: 3, doFoo: f }`、`undefined`  
 
 解析：
 
@@ -1136,14 +1152,3 @@ userInfo.updateInfo();
 > [返回目录](#one)
 
 * [x] [再来40道this面试题酸爽继续](https://juejin.im/post/6844904083707396109)【阅读建议：1h】
-* [x] [this,this,再次讨论javascript中的this,超全面](https://www.cnblogs.com/painsOnline/p/5102359.html)【阅读建议：10min】
-* [x] [JavaScript中的this](https://juejin.im/post/59748cbb6fb9a06bb21ae36d)【阅读建议：10min】
-* [x] [JavaScript深入之从ECMAScript规范解读this](https://github.com/mqyqingfeng/Blog/issues/7)【阅读建议：20min】
-* [x] [前端基础进阶（七）：全方位解读this](https://www.jianshu.com/p/d647aa6d1ae6)【阅读建议：20min】
-* [x] [JavaScript基础心法——this](https://github.com/axuebin/articles/issues/6)【阅读建议：20min】
-* [x] [11 | this：从JavaScript执行上下文的视角讲清楚this](https://time.geekbang.org/column/article/128427)【阅读建议：2hour】
-* [x] [浅谈react 中的 this 指向](https://www.jianshu.com/p/159eabf152d0)【阅读建议：10min】
-* [x] [react的性能优化](https://note.youdao.com/ynoteshare1/index.html?id=3d64b603405bcbb2c3cad3f750e5341d&type=note)【阅读建议：5min】
-* [x] [React事件处理函数必须使用bind(this)的原因](https://blog.csdn.net/qq_34829447/article/details/81705977)【阅读建议：10min】
-* [x] [由React构造函数中bind引起的this指向理解（React组件的方法为什么要用bind绑定this）](https://blog.csdn.net/AiHuanhuan110/article/details/106424812)【阅读建议：20min】
-* [x] [React中this.handleClick = this.handleClick.bind(this)中的this指向问题](https://blog.csdn.net/yiersan__/article/details/108004911)【阅读建议：10min】
