@@ -4,12 +4,12 @@
 
 示例 1：
 
-输入: s = "abcdefg", k = 2
-输出: "cdefgab"
-示例 2：
+输入: s = "abcdefg", k = 2  
+输出: "cdefgab"  
+示例 2：  
 
-输入: s = "lrloseumgh", k = 6
-输出: "umghlrlose"
+输入: s = "lrloseumgh", k = 6  
+输出: "umghlrlose"  
  
 
 限制：
@@ -28,25 +28,25 @@ var reverseLeftWords = function(s, n) {
 
 示例 1：
 
-输入: "the sky is blue"
-输出: "blue is sky the"
-示例 2：
+输入: "the sky is blue"  
+输出: "blue is sky the"  
+示例 2：  
 
-输入: "  hello world!  "
-输出: "world! hello"
-解释: 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。
-示例 3：
+输入: "  hello world!  "  
+输出: "world! hello"  
+解释: 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。  
+示例 3：  
 
-输入: "a good   example"
-输出: "example good a"
-解释: 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
+输入: "a good   example"  
+输出: "example good a"  
+解释: 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。  
  
 
 说明：
 
-无空格字符构成一个单词。
-输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。
-如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
+无空格字符构成一个单词。  
+输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。  
+如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。  
 
 ```JS
 var reverseWords = function(s) {
@@ -61,13 +61,12 @@ var reverseWords = function(s) {
 ### 剑指 Offer 03. 数组中的重复数字
 找出数组中重复的数字。
 
-
 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
 
 示例 1：
 
-输入：
-[2, 3, 1, 0, 2, 5, 3]
+输入：  
+[2, 3, 1, 0, 2, 5, 3]  
 输出：2 或 3 
  
 
@@ -75,6 +74,7 @@ var reverseWords = function(s) {
 
 2 <= n <= 100000
 
+(加分项：问时间、空间复杂度)  
 ```JS
 // 方法一：暴力 时间O(n2)，空间O(1)
 var findRepeatNumber = function(nums) {
@@ -117,9 +117,6 @@ var findRepeatNumber = function(nums) {
 		}
 	}
 };
-```
-```js
-// 方法四：二分法 如果面试官要求空间O(1)并且不能修改原数组，还得写成二分法
 ```
 
 ### 数组去重
@@ -184,12 +181,12 @@ console.log('newArr4', newArr4);
 
 示例 1:
 
-输入: nums = [5,7,7,8,8,10], target = 8
-输出: 2
-示例 2:
+输入: nums = [5,7,7,8,8,10], target = 8  
+输出: 2  
+示例 2:  
 
-输入: nums = [5,7,7,8,8,10], target = 6
-输出: 0
+输入: nums = [5,7,7,8,8,10], target = 6  
+输出: 0  
 
 限制：
 
@@ -202,7 +199,7 @@ var search = function(nums, target) {
     middle, count = 0;
 
   while (left < right) {
-    middle = Math.floor((right - left) / 2);
+    middle = Math.floor((right + left) / 2);
     if (nums[middle] >= target) {
       right = middle
     } else {
@@ -221,4 +218,103 @@ var search = function(nums, target) {
 var nums = [5, 7, 7, 8, 8, 10],
   target = 6;
 console.log(search(nums, target));
+```
+
+## 剑指 Offer 29. 顺时针打印矩阵
+输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。
+
+示例 1：
+
+输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+输出：[1,2,3,6,9,8,7,4,5]
+示例 2：
+
+输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+输出：[1,2,3,4,8,12,11,10,9,5,6,7]
+ 
+
+限制：
+
+0 <= matrix.length <= 100  
+0 <= matrix[i].length <= 100  
+
+```js
+var spiralOrder = function(matrix) {
+  var j = 0; // 用于判断是第几行/列
+  var newMatrix = [];
+
+  while (matrix.length !== 0) {
+    switch (j++ % 4) {
+      case 0:
+        newMatrix = [...newMatrix, ...matrix.shift()];
+        break;
+      case 1:
+        matrix.forEach((item) => {
+          newMatrix.push(item.pop());
+        });
+        if (matrix[0] && matrix[0].length === 0) { // 防止[[],[],[]]这种情况出现
+          matrix = [];
+        }
+        break;
+      case 2:
+        newMatrix = [...newMatrix, ...matrix.pop().reverse()];
+        break;
+      case 3:
+        for (let i = matrix.length - 1; i >= 0; i--) {
+          newMatrix.push(matrix[i].shift());
+        }
+        if (matrix[0] && matrix[0].length === 0) { // 防止[[],[],[]]这种情况出现
+          matrix = [];
+        }
+    }
+  }
+
+  return newMatrix;
+};
+
+var matrix = [
+  [7],
+  [9],
+  [6]
+];
+console.log(spiralOrder(matrix));
+```
+
+## 剑指 Offer 53 - Ⅱ. 0~n-1中缺失的数字
+一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。
+
+示例 1:
+
+输入: [0,1,3]  
+输出: 2  
+示例 2:  
+
+输入: [0,1,2,3,4,5,6,7,9]  
+输出: 8  
+
+限制：
+
+1 <= 数组长度 <= 10000
+
+```js
+var missingNumber = function(nums) {
+  var l = 0,
+    r = nums.length - 1;
+  var middle;
+  if (nums[0] > 0) {
+    return 0;
+  } else if (nums[r] === r) {
+    return r + 1;
+  } else {
+    while (r - l > 1) {
+      middle = Math.floor((l + r) / 2);
+      if (nums[middle] > middle) {
+        r = middle;
+      } else {
+        l = middle;
+      }
+    }
+    return nums[l] + 1;
+  }
+};
 ```
