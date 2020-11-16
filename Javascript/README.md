@@ -13,33 +13,7 @@
 * [x] JS 数据类型：`Boolean`/`Null`/`Undefined`/`Number`/`String`/`Symbol`/`BigInt`/`Object`
 * [x] [变量与作用域](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E5%8F%98%E9%87%8F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F.md)
 * [x] [this](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/this.md)
-
-## 1.3 原型和原型链
-
-文章地址：[原型和原型链](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
-
-知识点：
-
-* [x] 构造函数 `funciton Person() {}`
-* [x] 实例 `const person = new Person()`
-* [x] 原型 `Person.prototype`
-* [x] 隐藏属性 `constructor`
-  * [x] 等式 1：`person.constructor === Person`
-  * [x] 等式 2：`Person.prototype.constructor === Person`
-* [x] `new`
-  * [x] `new` 的原生例子
-  * [x] 手写 `new`：判断首参为函数；通过 `Object.create()` 创建新对象并且绑定原型链；通过 `call` 或者 `apply` 修正 `this` 指向和传参；通过 `typeof` 判断函数对象和普通对象；函数对象和普通对象返回构造函数的 `return` 值，否则返回新对象
-  * [x] 通过对手写 `new` 过程的了解来做题
-* [x] 查找实例对应的对象的原型 `person.__proto__ === Person.prototype`
-* [x] 函数对象指向
-  * [x] `person.__proto__ === Person.prototype`
-  * [x] `Person.__proto__ === Function.prototype`
-* [x] 普通对象指向
-  * [x] `obj.__proto__ === Object.prototype`
-* [x] 原型链
-  * [x] `foo.__proto__ === Object.prototype`
-  * [x] `F.__proto__ === Function.prototype`
-  * [x] `F.__proto__.__proto__ === Object.prototype`
+* [x] [原型与原型链](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
 
 ## 1.4 DOM
 
