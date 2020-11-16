@@ -17,7 +17,7 @@
 
 ## 2 异步系列
 
-异步系列存放地址：[JavaScript 异步](https://github.com/LiangJunrong/document-library/tree/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%BC%82%E6%AD%A5%E7%B3%BB%E5%88%97)  
+异步系列存放地址：[JavaScript 异步](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%BC%82%E6%AD%A5/README.md)  
 
 知识点：  
 
@@ -25,8 +25,8 @@
 * [x] 为什么不设计成多线程
 * [x] 为什么需要异步
 * [x] 如何实现异步
-* [x] [Event Loop](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%BC%82%E6%AD%A5%E7%B3%BB%E5%88%97/Event%20Loop.md)
-* [x] [Promise](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%BC%82%E6%AD%A5%E7%B3%BB%E5%88%97/Promise.md)
+* [x] [Event Loop](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%BC%82%E6%AD%A5/Event%20Loop.md)
+* [x] [Promise](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%BC%82%E6%AD%A5/Promise.md)
 
 ## 3 手写源码系列
 

@@ -61,7 +61,7 @@
 
 > [返回目录](#one)
 
-* [x] [Event Loop](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%BC%82%E6%AD%A5%E7%B3%BB%E5%88%97/Event%20Loop.md)
+* [x] [Event Loop](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%BC%82%E6%AD%A5/Event%20Loop.md)
   * [x] 单线程和多线程
   * [x] 浏览器 Event Loop
   * [x] Node 和浏览器 Event Loop 区别
@@ -71,7 +71,7 @@
 
 > [返回目录](#one)
 
-* [x] [Promise](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%BC%82%E6%AD%A5%E7%B3%BB%E5%88%97/Promise.md)
+* [x] [Promise](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%BC%82%E6%AD%A5/Promise.md)
   * [x] Promise 初探：是什么、为什么、怎么用
   * [x] Promise 基础：`new Promise` 和 `Promise` 状态
   * [x] 题库：基础题
