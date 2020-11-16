@@ -15,49 +15,18 @@
 * [x] [this](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/this.md)
 * [x] [原型与原型链](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
 
-## 1.4 DOM
-
-文章地址：[DOM](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/DOM.md)
-
-知识点：
-
-* [x] DOM 常用 API
-* [x] 虚拟 DOM：浏览器渲染过程 -> 真实 DOM 和虚拟 DOM -> Diff 算法
-
 ## 2 异步系列
 
-异步系列存放地址：
+异步系列存放地址：[JavaScript 异步](https://github.com/LiangJunrong/document-library/tree/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%BC%82%E6%AD%A5%E7%B3%BB%E5%88%97)  
 
-* [x] [JavaScript 异步](https://github.com/LiangJunrong/document-library/tree/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%BC%82%E6%AD%A5%E7%B3%BB%E5%88%97)
-  * [x] JavaScript 是单线程的
-  * [x] 为什么不设计成多线程
-  * [x] 为什么需要异步
-  * [x] 如何实现异步
+知识点：  
 
-各种异步知识点：
-
+* [x] JavaScript 是单线程的
+* [x] 为什么不设计成多线程
+* [x] 为什么需要异步
+* [x] 如何实现异步
 * [x] [Event Loop](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%BC%82%E6%AD%A5%E7%B3%BB%E5%88%97/Event%20Loop.md)
-  * [x] 单线程和多线程
-  * [x] 浏览器 Event Loop
-  * [x] Node 和浏览器 Event Loop 区别
-  * [x] 训练题目
 * [x] [Promise](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%BC%82%E6%AD%A5%E7%B3%BB%E5%88%97/Promise.md)
-  * [x] Promise 初探：是什么、为什么、怎么用
-  * [x] Promise 基础：`new Promise` 和 `Promise` 状态
-  * [x] 题库：基础题
-  * [x] 题库：结合 `setTimeout`
-  * [x] `.then()` 链式操作：两个参数、链式调用
-  * [x] `.catch()` 捕获问题
-  * [x] `.finally()` 强制执行
-  * [x] 题库：`.then()、.catch()、.finally()`
-  * [x] `.all()` 接力赛
-  * [x] `.race()` 个人赛
-  * [x] 题库：`.all()、.race()`
-  * [x] Promise 源码
-  * [x] 题库：结合 `async/await`
-  * [x] 综合题
-  * [x] 大厂题
-  * [x] 总结
 
 ## 3 手写源码系列
 
