@@ -24,6 +24,7 @@
 | [七 BOM](#seven) |
 | &emsp;[7.1 位置](#seven-one) |
 | [八 DOM](#eight) |
+| &emsp;[8.1 DOM 常用 API](#eight-one) |
 | [九 事件](#nine) |
 | &emsp;[9.1 事件流](#nine-one) |
 | &emsp;[9.2 事件处理程序](#nine-two) |
@@ -334,7 +335,15 @@ setTimeout(() => {
 
 > [返回目录](#one)
 
-DOM 常用 API  
+知识点：
+
+* [x] DOM 常用 API
+* [x] 虚拟 DOM：浏览器渲染过程 -> 真实 DOM 和虚拟 DOM -> Diff 算法
+
+### <a id="eight-one"></a>8.1 DOM 常用 API  
+
+> [返回目录](#one)
+
 * 获取
 * 创建
 * 添加
