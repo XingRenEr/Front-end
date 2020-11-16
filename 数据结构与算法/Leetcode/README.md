@@ -1,5 +1,5 @@
 # 字符串
-## 剑指 Offer 58 - Ⅱ. 左旋转字符串
+## (简单) 剑指 Offer 58 - Ⅱ. 左旋转字符串
 字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串"abcdefg"和数字2，该函数将返回左旋转两位得到的结果"cdefgab"。
 
 示例 1：
@@ -23,7 +23,7 @@ var reverseLeftWords = function(s, n) {
 };
 ```
 
-## 剑指 Offer 58 - Ⅰ. 翻转单词顺序
+## (简单) 剑指 Offer 58 - Ⅰ. 翻转单词顺序
 输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串"I am a student. "，则输出"student. a am I"。
 
 示例 1：
@@ -59,7 +59,7 @@ var reverseWords = function(s) {
 
 # 线性结构
 ## 数组
-### 数组去重
+### (简单) 数组去重
 #### 剑指 Offer 03. 数组中的重复数字
 找出数组中重复的数字。
 
@@ -178,7 +178,7 @@ console.log('newArr4', newArr4);
 // (2) 二分法
 ```
 
-### 剑指 Offer 53 - Ⅰ. 在排序数组中查找数字Ⅰ
+### (简单) 剑指 Offer 53 - Ⅰ. 在排序数组中查找数字Ⅰ
 统计一个数字在排序数组中出现的次数。
 
 示例 1:
@@ -222,7 +222,7 @@ var nums = [5, 7, 7, 8, 8, 10],
 console.log(search(nums, target));
 ```
 
-### 剑指 Offer 29. 顺时针打印矩阵
+### (简单) 剑指 Offer 29. 顺时针打印矩阵
 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。
 
 示例 1：
@@ -282,7 +282,7 @@ var matrix = [
 console.log(spiralOrder(matrix));
 ```
 
-### 剑指 Offer 53 - Ⅱ. 0~n-1中缺失的数字
+### (简单) 剑指 Offer 53 - Ⅱ. 0~n-1中缺失的数字
 一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。
 
 示例 1:
@@ -322,6 +322,147 @@ var missingNumber = function(nums) {
 ```
 
 ## 栈  
+### (简单) 剑指 Offer 09. 用两个栈实现队列
+用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead 操作返回 -1 )
+
+示例 1：
+
+输入：  
+["CQueue","appendTail","deleteHead","deleteHead"]  
+[[],[3],[],[]]  
+输出：[null,null,3,-1]  
+示例 2：  
+
+输入：  
+["CQueue","deleteHead","appendTail","appendTail","deleteHead","deleteHead"]  
+[[],[],[5],[2],[],[]]  
+输出：[null,-1,null,null,5,2]  
+提示：  
+
+1 <= values <= 10000  
+最多会对 appendTail、deleteHead 进行 10000 次调用  
+
+```js
+// 方法一：
+var CQueue = function() {
+    this.stack1 = [];
+    this.stack2 = [];
+};
+
+/** 
+ * @param {number} value
+ * @return {void}
+ */
+CQueue.prototype.appendTail = function(value) {
+    while(this.stack2.length !== 0) {
+        this.stack1.push(this.stack2.pop());
+    };
+    this.stack1.push(value);
+};
+
+/**
+ * @return {number}
+ */
+CQueue.prototype.deleteHead = function() {
+    while(this.stack1.length !== 0) {
+        this.stack2.push(this.stack1.pop());
+    };
+    return this.stack2.pop() || -1;
+};
+
+/**
+ * Your CQueue object will be instantiated and called as such:
+ * var obj = new CQueue()
+ * obj.appendTail(value)
+ * var param_2 = obj.deleteHead()
+ */
+```
+
+### (简单) 剑指 Offer 30. 包含min函数的栈
+定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。
+
+示例:
+
+MinStack minStack = new MinStack();  
+minStack.push(-2);  
+minStack.push(0);  
+minStack.push(-3);  
+minStack.min();   --> 返回 -3.  
+minStack.pop();  
+minStack.top();      --> 返回 0.  
+minStack.min();   --> 返回 -2.  
+ 
+提示：
+
+各函数的调用总次数不超过 20000 次
+ 
+```js
+// 方法一：数组中存储对象
+var MinStack = function() {
+    this.stack = [];
+};
+
+MinStack.prototype.push = function(x) {
+    if(this.stack.length === 0) {
+        this.stack[0] = {
+            num: x,
+            min: x
+        };
+    } else {
+        this.stack[this.stack.length] = {
+            num: x,
+            min: Math.min(this.stack[this.stack.length - 1].min, x)
+        };
+    }
+};
+
+MinStack.prototype.pop = function() {
+    this.stack.length--;
+};
+
+MinStack.prototype.top = function() {
+    return this.stack[this.stack.length - 1].num;
+};
+
+MinStack.prototype.min = function() {
+    return this.stack[this.stack.length - 1].min;
+};
+```
+
+```js
+// 方法二：两个数组，不用每一步都存储当前最小值
+var MinStack = function() {
+    this.stack = [];
+    this.minStack = [];
+};
+
+MinStack.prototype.push = function(x) {
+    if(this.stack.length === 0) {
+        this.minStack[0] = x;
+    } else {
+        if (x <= this.minStack[this.minStack.length - 1]) {
+          this.minStack[this.minStack.length] = x
+        }
+    }
+    this.stack[this.stack.length] = x;
+};
+
+MinStack.prototype.pop = function() {
+    if (this.minStack[this.minStack.length - 1] === this.stack[this.stack.length - 1]) {
+        this.minStack.length--;
+    }
+    this.stack.length--;
+};
+
+MinStack.prototype.top = function() {
+    return this.stack[this.stack.length - 1];
+};
+
+MinStack.prototype.min = function() {
+    return this.minStack[this.minStack.length - 1];
+};
+```
+
 ## 链表  
 ## 队列
 
