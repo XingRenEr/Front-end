@@ -40,7 +40,6 @@ var reverseLeftWords = function(s, n) {
 输入: "a good   example"  
 输出: "example good a"  
 解释: 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。  
- 
 
 说明：
 
@@ -464,6 +463,87 @@ MinStack.prototype.min = function() {
 ```
 
 ## 链表  
+### (简单) 剑指 Offer 22. 链表中倒数第k个节点
+输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。例如，一个链表有6个节点，从头节点开始，它们的值依次是1、2、3、4、5、6。这个链表的倒数第3个节点是值为4的节点。
+
+示例：
+
+给定一个链表: 1->2->3->4->5, 和 k = 2.
+
+返回链表 4->5.
+
+```js
+// 方法一：用数组存放所有节点的指针 时间O(n)，空间O(n)
+var getKthFromEnd = function(head, k) {
+    var p = head;
+    var pArr = [];
+    while(p != null) {
+        pArr.push(p);
+        p = p.next;
+    }
+    return pArr[pArr.length - k];
+};
+```
+
+```js
+// 方法二：快慢指针 时间O(n)，空间O(1)
+var getKthFromEnd = function(head, k) {
+    var pFront = head, pBehind = head;
+    while(k-- > 0) {
+        pFront = pFront.next;
+    }
+    while(pFront != null) {
+        pFront = pFront.next;
+        pBehind = pBehind.next;
+    }
+    return pBehind;
+};
+```
+
+### (简单) 剑指 Offer 06. 从尾到头打印链表
+输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
+
+示例 1：
+
+输入：head = [1,3,2]  
+输出：[2,3,1]  
+
+限制：
+
+0 <= 链表长度 <= 10000
+
+```js
+// 方法一 时间O(n)，空间O(n)
+var reversePrint = function(head) {
+    var p = head;
+    var pArr = [];
+    while(p != null) {
+        pArr.push(p.val);
+        p = p.next;
+    }
+    pArr.reverse();
+    return pArr;
+};
+```
+
+```js
+// 方法一 时间O(n)，空间O(n)
+// 代码简洁了，但是貌似时间更久了？
+var reversePrint = function(head) {
+    let nums = [];
+    let node = head;
+    while (node !== null) {
+        nums.unshift(node.val);
+        node = node.next;
+    }
+    return nums;
+};
+```
+
+### (简单) 剑指 Offer 06. 
+### (简单) 剑指 Offer 06. 
+### (简单) 剑指 Offer 06. 
+
 ## 队列
 
 # 哈希表(散列表)  
@@ -499,19 +579,19 @@ MinStack.prototype.min = function() {
 ## 并查集  
 
 # LeetCode其他分类
-## 位运算  
-## 数学  
-## 设计  
-## 递归  
-## 脑筋急转弯  
-## 记忆化  
-## 极小化极大  
-## 蓄水池抽样  
-## 几何  
-## Map  
-## 双指针  
-## Random  
-## Rejection Sampling  
-## Sliding Window  
-## Ordered Map  
-## Line Sweep  
+## 数学(210)  
+## 双指针(75)  
+## 设计(69)  
+## 位运算(67)  
+## Sliding Window(29)  
+## 递归(24)  
+## Ordered Map(13)  
+## 几何(12)  
+## 极小化极大(8)  
+## 脑筋急转弯(7)  
+## Random(6)  
+## Line Sweep(6)  
+## 记忆化(3)  
+## 蓄水池抽样(2)  
+## Rejection Sampling(2)  
+## Map()  
