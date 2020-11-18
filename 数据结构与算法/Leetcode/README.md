@@ -574,7 +574,7 @@ var reverseList = function(head) {
 };
 ```
 
-![1.jpg](README_files/1.jpg)  
+![1.jpg](https://github.com/XingRenEr/Front-end/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Leetcode/images/1.jpg)  
 ```js
 // 方法一：双指针(官方方法。和上面的方法几乎无差别，但是'双指针'比'三个指针'思路更清晰)
 var reverseList = function(head) {
@@ -623,7 +623,7 @@ var reverseList = function(head) {
 // 方法二：递归。递归的内部实现是使用栈
 ```
 
-![2.jpg](README_files/2.jpg)  
+![2.jpg](https://github.com/XingRenEr/Front-end/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Leetcode/images/2.jpg)  
 ```js
 // 方法三：妖魔化的双指针
 ```
