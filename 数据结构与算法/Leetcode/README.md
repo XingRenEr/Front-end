@@ -540,7 +540,94 @@ var reversePrint = function(head) {
 };
 ```
 
-### (简单) 剑指 Offer 06. 
+### (简单) 剑指 Offer 24. 反转链表
+定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
+
+示例:
+
+输入: 1->2->3->4->5->NULL  
+输出: 5->4->3->2->1->NULL  
+
+限制：
+
+0 <= 节点个数 <= 5000
+
+```js
+// (我的方法)
+// 方法一：pLeft pMiddle pRight三个指针，移动顺序为左中右
+var reverseList = function(head) {
+    if (head === null) { // 空链表
+        return null;
+    }
+    var pLeft = null, pMiddle = head, pRight = pMiddle.next;
+    if (pRight === null) { // 只有一个元素的链表
+        return pMiddle;
+    }
+    pMiddle.next = null;
+    do {
+        pLeft = pMiddle;
+        pMiddle = pRight;
+        pRight = pRight.next;
+        pMiddle.next = pLeft;
+    } while (pRight != null)
+    return pMiddle;
+};
+```
+
+![1.jpg](README_files/1.jpg)  
+```js
+// 方法一：双指针(官方方法。和上面的方法几乎无差别，但是'双指针'比'三个指针'思路更清晰)
+var reverseList = function(head) {
+    if (head === null) { // 空链表
+        return null;
+    }
+    var cur = null, pre = head;
+    if (pre.next === null) { // 只有一个元素的链表
+        return pre;
+    }
+    while (pre != null) {
+        var t = pre.next;
+        pre.next = cur;
+        cur = pre;
+        pre = t;
+    } 
+    return cur;
+};
+```
+
+```js
+// (我的方法)
+// 方法二：链表入栈 空间O(n)
+var reverseList = function(head) {
+    // 空链表 或 只有一个元素的链表
+    if (head == null || head.next == null) {
+        return head;
+    }
+
+    var arr = [];
+    while(head != null) {
+        arr.push(head); // 入栈
+        head = head.next;
+    }
+    head = arr.pop();
+    var t = head;
+    while (t.next = arr.pop()) { // 出栈
+        t = t.next;
+    }
+    t.next = null;
+    return head;
+};
+```
+
+```js
+// 方法二：递归。递归的内部实现是使用栈
+```
+
+![2.jpg](README_files/2.jpg)  
+```js
+// 方法三：妖魔化的双指针
+```
+
 ### (简单) 剑指 Offer 06. 
 ### (简单) 剑指 Offer 06. 
 
