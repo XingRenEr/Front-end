@@ -153,7 +153,7 @@
 * [x] [字符串方法](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E5%AD%97%E7%AC%A6%E4%B8%B2.md)  
 
 ### <a id="two-four"></a>2.4 RegExp
-
+![7.png](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/images/7.png)  
 
 ## <a id="three"></a>三 变量与作用域
 > [返回目录](#one)  
