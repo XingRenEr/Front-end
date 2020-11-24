@@ -628,10 +628,75 @@ var reverseList = function(head) {
 // 方法三：妖魔化的双指针
 ```
 
-### (简单) 剑指 Offer 06. 
-### (简单) 剑指 Offer 06. 
+### (简单) 剑指 Offer 52. 两个链表的第一个公共节点
+[leetcode](https://leetcode-cn.com/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/)  
+
+![3.jpg](https://github.com/XingRenEr/Front-end/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Leetcode/images/3.jpg)  
+```js
+// (我的方法)
+var getIntersectionNode = function(headA, headB) {
+    var pA = headA, pB = headB, lengthA = 0, lengthB = 0;
+    for (; pA !== null; pA = pA.next, lengthA++) {}
+    for (; pB !== null; pB = pB.next, lengthB++) {}
+    pA = headA, pB = headB;
+    if (lengthA - lengthB > 0) {
+        for (var i = lengthA - lengthB; i > 0; pA = pA.next, i--) {}
+    } else if (lengthA - lengthB < 0) {
+        for (var i = lengthB - lengthA; i > 0; pB = pB.next, i--) {}
+    }
+    for (; pA !== null; pA = pA.next, pB = pB.next) {
+        if (pA == pB) {
+            return pA;
+        } 
+    }
+    return null;
+};
+```
+
+### (简单) 剑指 Offer 18. 删除链表的节点
+[leetcode](https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/)  
+
+```js
+var deleteNode = function(head, val) {
+    if (head.val === val) {
+        return head.next;
+    }
+    var p = head;
+    for (; p.next.val !== val; p = p.next) {}
+    p.next = p.next.next;
+    return head;
+};
+```
 
 ## 队列
+### (简单) 剑指 Offer 59 - Ⅰ. 滑动窗口的最大值
+[leetcode](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/)  
+
+```js
+// (我的方法)
+// 方法一：时间O(nk)
+var maxSlidingWindow = function(nums, k) {
+    if (nums.length === 0) {
+        return [];
+    }
+    var maxNums = [];
+    for (let i = 0, len = nums.length - k; i <= len; i++) {
+        maxNums.push(Math.max(...nums.slice(i, i+k)));
+    }
+    return maxNums;
+};
+```
+
+**本题难点**： 如何在每次窗口滑动后，将 “获取窗口内最大值” 的时间复杂度从 O(k) 降低至 O(1) 。  
+
+**算法流程**：  
+1. 初始化： 双端队列 `deque` ，结果列表 `res` ，数组长度 `n` ；  
+2. 滑动窗口： 左边界范围 `i∈[1−k,n+1−k]` ，右边界范围 `j∈[0,n−1]` ；  
+若 `i>0` 且 队首元素 `deque[0]` = 被删除元素 `nums[i−1]` ：则队首元素出队；  
+删除 `deque` 内所有 < `nums[j]` 的元素，以保持 `deque` 递减；(这里的时间复杂度怎么算的???)  
+将 `nums[j]` 添加至 `deque` 尾部；  
+若已形成窗口（即 `i≥0` ）：将窗口最大值（即队首元素 `deque[0]` ）添加至列表 `res` 。  
+3. 返回值： 返回结果列表 `res` 。  
 
 # 哈希表(散列表)  
 
