@@ -1,51 +1,46 @@
 异步系列 - Event Loop
 ===
 
-> Create by **jsliang** on **2020-09-07 22:19:48**  
-> Recently revised in **2020-11-07 07:55:09**
-
 <!-- 目录开始 -->
-## <a name="chapter-one" id="chapter-one"></a>一 目录
-
-**不折腾的前端，和咸鱼有什么区别**
+## <a id="one"></a>一 目录
 
 | 目录 |
 | --- |
-| [一 目录](#chapter-one) |
-| <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
-| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 单线程和多线程](#chapter-three) |
-| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 Event Loop](#chapter-four) |
-| &emsp;[4.1 Event Loop 执行过程](#chapter-four-one) |
-| &emsp;[4.2 requestAnimationFrame](#chapter-four-two) |
-| &emsp;&emsp;[4.2.1 requestAnimationFrame 介绍](#chapter-four-two-one) |
-| &emsp;&emsp;[4.2.2 requestAnimationFrame 使用缘由](#chapter-four-two-two) |
-| &emsp;[4.3 Web Worker](#chapter-four-three) |
-| &emsp;&emsp;[4.3.1 Web Worker 使用](#chapter-four-three-one) |
-| &emsp;&emsp;[4.3.2 Web Worker 数据通讯](#chapter-four-three-two) |
-| &emsp;&emsp;[4.3.3 Web Worker 可操作 API](#chapter-four-three-three) |
-| &emsp;&emsp;[4.3.4 Web Worker 兼容性](#chapter-four-three-four) |
-| &emsp;[4.4 Node 和 浏览器](#chapter-four-four) |
-| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 两个环境 Event Loop 对比](#chapter-five) |
-| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 题目训练](#chapter-six) |
-| &emsp;[6.1 同步任务](#chapter-six-one) |
-| &emsp;[6.2 定时器](#chapter-six-two) |
-| &emsp;[6.3 定时器 + Promise](#chapter-six-three) |
-| &emsp;[6.4 综合](#chapter-six-four) |
-| <a name="catalog-chapter-seven" id="catalog-chapter-seven"></a>[七 参考文献](#chapter-seven) |
-| &emsp;[7.1 requestAnimationFrame 参考文献](#chapter-seven-one) |
-| &emsp;[7.2 Web Worker 参考文献](#chapter-seven-two) |
-| &emsp;[7.3 其他参考文献](#chapter-seven-three) |
+| [一 目录](#one) |
+| [二 前言](#two) |
+| [三 单线程和多线程](#three) |
+| [四 Event Loop](#four) |
+| &emsp;[4.1 Event Loop 执行过程](#four-one) |
+| &emsp;[4.2 requestAnimationFrame](#four-two) |
+| &emsp;&emsp;[4.2.1 requestAnimationFrame 介绍](#four-two-one) |
+| &emsp;&emsp;[4.2.2 requestAnimationFrame 使用缘由](#four-two-two) |
+| &emsp;[4.3 Web Worker](#four-three) |
+| &emsp;&emsp;[4.3.1 Web Worker 使用](#four-three-one) |
+| &emsp;&emsp;[4.3.2 Web Worker 数据通讯](#four-three-two) |
+| &emsp;&emsp;[4.3.3 Web Worker 可操作 API](#four-three-three) |
+| &emsp;&emsp;[4.3.4 Web Worker 兼容性](#four-three-four) |
+| &emsp;[4.4 Node 和 浏览器](#four-four) |
+| [五 两个环境 Event Loop 对比](#five) |
+| [六 题目训练](#six) |
+| &emsp;[6.1 同步任务](#six-one) |
+| &emsp;[6.2 定时器](#six-two) |
+| &emsp;[6.3 定时器 + Promise](#six-three) |
+| &emsp;[6.4 综合](#six-four) |
+| [七 参考文献](#seven) |
+| &emsp;[7.1 requestAnimationFrame 参考文献](#seven-one) |
+| &emsp;[7.2 Web Worker 参考文献](#seven-two) |
+| &emsp;[7.3 其他参考文献](#seven-three) |
 <!-- 目录结束 -->
 
-## <a name="chapter-two" id="chapter-two"></a>二 前言
+## <a id="two"></a>二 前言
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 `Event Loop` 即事件循环，是指浏览器或 `Node` 的一种解决 JavaScript 单线程运行时不会阻塞的一种机制，也就是我们经常使用异步的原理。
 
-## <a name="chapter-three" id="chapter-three"></a>三 单线程和多线程
+## <a id="three"></a>三 单线程和多线程
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 JavaScript 是一个单线程的语言。
 
@@ -93,9 +88,9 @@ JavaScript 是一个单线程的语言。
 
 等待接口或者图片返回过来后，就通知程序我做好了，你可以继续调用了。
 
-## <a name="chapter-four" id="chapter-four"></a>四 Event Loop
+## <a id="four"></a>四 Event Loop
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * **为什么会有 Event Loop？**
 
@@ -109,9 +104,9 @@ JavaScript 是一个单线程的语言。
 
 JavaScript 从 `script` 开始读取，然后不断循环，从 “任务队列” 中读取执行事件的过程，就是 **事件循环（Event Loop）**。
 
-### <a name="chapter-four-one" id="chapter-four-one"></a>4.1 Event Loop 执行过程
+### <a id="four-one"></a>4.1 Event Loop 执行过程
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 **Event Loop** 执行过程如下：
 
@@ -145,13 +140,13 @@ JavaScript 从 `script` 开始读取，然后不断循环，从 “任务队列�
 * V8 的垃圾回收过程
 * Node 独有的 `process.nextTick`
 
-### <a name="chapter-four-two" id="chapter-four-two"></a>4.2 requestAnimationFrame
+### <a id="four-two"></a>4.2 requestAnimationFrame
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
-#### <a name="chapter-four-two-one" id="chapter-four-two-one"></a>4.2.1 requestAnimationFrame 介绍
+#### <a id="four-two-one"></a>4.2.1 requestAnimationFrame 介绍
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 `window.requestAnimationFrame()` 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。
 
@@ -191,9 +186,9 @@ JavaScript 从 `script` 开始读取，然后不断循环，从 “任务队列�
 </body>
 ```
 
-#### <a name="chapter-four-two-two" id="chapter-four-two-two"></a>4.2.2 requestAnimationFrame 使用缘由
+#### <a id="four-two-two"></a>4.2.2 requestAnimationFrame 使用缘由
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 如果我们使用 `setTimeout` 来实现动画效果，那么我们会发现在某些低端机上出现卡顿、抖动的现象，它产生的原因是：
 
@@ -206,9 +201,9 @@ JavaScript 从 `script` 开始读取，然后不断循环，从 “任务队列�
 
 而 `requestAnimationFrame` 就在这里边执行，就不会等宏任务队列的排队，从而导致卡顿等问题了。
 
-### <a name="chapter-four-three" id="chapter-four-three"></a>4.3 Web Worker
+### <a id="four-three"></a>4.3 Web Worker
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 `Web Worker` 为 Web 内容在后台线程中运行脚本提供了一种简单的方法。
 
@@ -220,9 +215,9 @@ JavaScript 从 `script` 开始读取，然后不断循环，从 “任务队列�
 
 > 注意：JavaScript 本质上还是单线程的，`Web Worker` 只是浏览器（宿主环境）提供的一个得力 API。
 
-#### <a name="chapter-four-three-one" id="chapter-four-three-one"></a>4.3.1 Web Worker 使用
+#### <a id="four-three-one"></a>4.3.1 Web Worker 使用
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 调用 Web Worker：
 
@@ -292,9 +287,9 @@ index-setTimeout
 
 可以看出它仍符合 `Event Loop` 流程。
 
-#### <a name="chapter-four-three-two" id="chapter-four-three-two"></a>4.3.2 Web Worker 数据通讯
+#### <a id="four-three-two"></a>4.3.2 Web Worker 数据通讯
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 > index.js
 
@@ -349,9 +344,9 @@ onmessage = (res) => {
 }
 ```
 
-#### <a name="chapter-four-three-three" id="chapter-four-three-three"></a>4.3.3 Web Worker 可操作 API
+#### <a id="four-three-three"></a>4.3.3 Web Worker 可操作 API
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * `setTimeout()， clearTimeout()， setInterval()， clearInterval()`：有了这几个函数，就可以在 `Web Worker` 线程中执行定时操作了；
 * `XMLHttpRequest` 对象：意味着我们可以在 `Web Worker` 线程中执行 `Ajax` 请求；
@@ -369,9 +364,9 @@ importScripts('./index2.js', './index3.js');
 // importScripts('./index3.js');
 ```
 
-#### <a name="chapter-four-three-four" id="chapter-four-three-four"></a>4.3.4 Web Worker 兼容性
+#### <a id="four-three-four"></a>4.3.4 Web Worker 兼容性
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * IE：11 版本
 * Edge：14+ 版本
@@ -379,9 +374,9 @@ importScripts('./index2.js', './index3.js');
 * Chrome：56+ 版本
 * 其他：看 [caniuse 链接](https://caniuse.com/webworkers)
 
-### <a name="chapter-four-four" id="chapter-four-four"></a>4.4 Node 和 浏览器
+### <a id="four-four"></a>4.4 Node 和 浏览器
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 为啥会有 **浏览器 Event Loop** 和 **Node.js Event Loop**？
 
@@ -398,9 +393,9 @@ importScripts('./index2.js', './index3.js');
 
 所以，咱们得将这两个 `Event Loop` 区分开来，它们是不一样的东东哈~
 
-## <a name="chapter-five" id="chapter-five"></a>五 两个环境 Event Loop 对比
+## <a id="five"></a>五 两个环境 Event Loop 对比
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 浏览器环境下，`microtask` 的任务队列是每个 `macrotask` 执行完之后执行。
 
@@ -408,9 +403,9 @@ importScripts('./index2.js', './index3.js');
 
 这里没有讲 Node.js 的时间循环机制，第一个是因为 **jsliang** 对 Node 不熟，怕瞎写误导；第二个是因为面试官问的时候，基本上回答的都是浏览器的事件循环机制，偶尔提一嘴 `Event Loop` 分为浏览器事件循环和 Node 事件循环算是加点小分了。
 
-## <a name="chapter-six" id="chapter-six"></a>六 题目训练
+## <a id="six"></a>六 题目训练
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 在训练之前，咱们先讲下考题范围：
 
@@ -420,9 +415,9 @@ importScripts('./index2.js', './index3.js');
 
 暂时就这么点内容，想来不会考错！
 
-### <a name="chapter-six-one" id="chapter-six-one"></a>6.1 同步任务
+### <a id="six-one"></a>6.1 同步任务
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 function bar() {
@@ -443,9 +438,9 @@ foo();
 
 详情不需要解释。
 
-### <a name="chapter-six-two" id="chapter-six-two"></a>6.2 定时器
+### <a id="six-two"></a>6.2 定时器
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 console.log("1");
@@ -473,9 +468,9 @@ console.log("4");
 3
 ```
 
-### <a name="chapter-six-three" id="chapter-six-three"></a>6.3 定时器 + Promise
+### <a id="six-three"></a>6.3 定时器 + Promise
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * 题目 1：请输出下面代码打印情况
 
@@ -618,9 +613,9 @@ console.log(3);
 4
 ```
 
-### <a name="chapter-six-four" id="chapter-six-four"></a>6.4 综合
+### <a id="six-four"></a>6.4 综合
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 综合题目就不给答案解析了，请自行脑补。
 
@@ -779,9 +774,9 @@ console.log(13);
 3
 ```
 
-## <a name="chapter-seven" id="chapter-seven"></a>七 参考文献
+## <a id="seven"></a>七 参考文献
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * [x] [浏览器与Node的事件循环(Event Loop)有何区别?](https://zhuanlan.zhihu.com/p/54882306)【阅读建议：20min】
 * [x] [一次弄懂Event Loop（彻底解决此类面试问题）](https://juejin.im/post/5c3d8956e51d4511dc72c200)【阅读建议：20min】
@@ -795,27 +790,23 @@ console.log(13);
 * [x] [Tasks, microtasks, queues and schedules](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)【阅读建议：无】
 * [x] [The Node.js Event Loop, Timers, and process.nextTick()](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/)【阅读建议：无】
 
-### <a name="chapter-seven-one" id="chapter-seven-one"></a>7.1 requestAnimationFrame 参考文献
+### <a id="seven-one"></a>7.1 requestAnimationFrame 参考文献
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * [x] [再谈谈 Promise, setTimeout, rAF, rIC](https://segmentfault.com/a/1190000019154514)【阅读建议：10min】
 * [x] [window.requestAnimationFrame](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame)【阅读建议：10min】
 
-### <a name="chapter-seven-two" id="chapter-seven-two"></a>7.2 Web Worker 参考文献
+### <a id="seven-two"></a>7.2 Web Worker 参考文献
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * [x] [JavaScript 中的多线程 -- Web Worker](https://zhuanlan.zhihu.com/p/25184390)【阅读建议：30min】
 * [x] [浅谈HTML5 Web Worker](https://juejin.im/post/6844903496550989837)【阅读建议：10min】
 * [x] [JavaScript 性能利器 —— Web Worker](https://juejin.im/post/5c10e5a9f265da611c26d634)【阅读建议：10min】
 
-### <a name="chapter-seven-three" id="chapter-seven-three"></a>7.3 其他参考文献
+### <a id="seven-three"></a>7.3 其他参考文献
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * [x] [浏览器进程？线程？傻傻分不清楚！](https://imweb.io/topic/58e3bfa845e5c13468f567d5)【阅读建议：5min】
-
----
-
-> jsliang 的文档库由 [梁峻荣](https://github.com/LiangJunrong) 采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/) 进行许可。<br/>基于 [https://github.com/LiangJunrong/document-library](https://github.com/LiangJunrong/document-library) 上的作品创作。<br/>本许可协议授权之外的使用权限可以从 [https://creativecommons.org/licenses/by-nc-sa/2.5/cn/](https://creativecommons.org/licenses/by-nc-sa/2.5/cn/) 处获得。
