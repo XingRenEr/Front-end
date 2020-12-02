@@ -19,3 +19,5 @@
 
 | 完成情况 | 说明 | 知识点 |
 | - | - | - |
+|   | 进阶 | requestAnimationFrame |
+|   |      | Web Worker 在 Event Loop 中 |

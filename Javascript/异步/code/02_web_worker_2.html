@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+      const worker = new Worker('./02_web_worker_2.js');
+
+      // index.html 接收数据
+      worker.addEventListener('message', (res) => {
+        console.log('index.html 收到数据：', res);
+        // index.html 收到数据：
+        // MessageEvent {isTrusted: true, data: "开门！这里是 index.js", origin: "", lastEventId: "", source: null, …}
+      });
+
+      // index.html 发送数据
+      worker.postMessage('查房，这里是 index.html！');
+
+      //  终止 Worker
+      // worker.terminate();
+    </script>
+  </body>
+</html>

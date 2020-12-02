@@ -64,7 +64,9 @@
 * [x] [Event Loop](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%BC%82%E6%AD%A5/Event%20Loop.md)
   * [x] 单线程和多线程
   * [x] 浏览器 Event Loop
-  * [x] Node 和浏览器 Event Loop 区别
+  * [x] requestAnimationFrame
+  * [x] Web Worker
+  * [x] Node Event Loop 和浏览器 Event Loop 区别
   * [x] 训练题目
 
 ## <a id="four"></a>四 Promise

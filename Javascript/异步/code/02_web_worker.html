@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+    <script>
+      window.onload = function() {
+        console.log('本地-同步任务');
+        // 微任务之间
+        Promise.resolve().then((res) => {
+          console.log('本地-微任务 1');
+        })
+        const worker1 = new Worker('02_web_worker.js');
+        Promise.resolve().then((res) => {
+          console.log('本地-微任务 2');
+        })
+    
+        // 宏任务之间
+        setTimeout(() => {
+          console.log('本地-宏任务 1');
+        }, 1000);
+        const worker2 = new Worker('02_web_worker.js');
+        setTimeout(() => {
+          console.log('本地-宏任务 2');
+        }, 1000);
+      };
+    </script>
+	</head>
+	<body>
+	</body>
+</html>

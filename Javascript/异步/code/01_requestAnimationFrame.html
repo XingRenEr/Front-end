@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="animation">动画元素</div>
+
+    <script>
+      window.onload = function() {
+        const element = document.querySelector('.animation');
+        let start;
+
+        function step(timestamp) {
+          if (start === undefined) {
+            start = timestamp;
+          }
+          const elapsed = timestamp - start;
+
+          // 这里使用 Math.min() 确保元素刚好停在 200px 的位置。
+          element.style.transform = 'translateX(' + Math.min(0.1 * elapsed, 200) + 'px)';
+
+          // 在两秒后停止动画
+          if (elapsed < 2000) {
+            window.requestAnimationFrame(step);
+          }
+        }
+
+        window.requestAnimationFrame(step);
+      };
+    </script>
+  </body>
+</html>
