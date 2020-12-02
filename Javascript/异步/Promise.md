@@ -1,100 +1,94 @@
 异步系列 - Promise
 ===
 
-> Create by **jsliang** on **2020-09-07 22:28:53**  
-> Recently revised in **2020-11-08 09:18:03**
-
 <!-- 目录开始 -->
-## <a name="chapter-one" id="chapter-one"></a>一 目录
-
-**不折腾的前端，和咸鱼有什么区别**
+## <a id="one"></a>一 目录
 
 | 目录 |
 | --- |
-| [一 目录](#chapter-one) |
-| <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
-| &emsp;[2.1 浅思](#chapter-two-one) |
-| &emsp;[2.2 参考文献](#chapter-two-two) |
-| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 Promise 初探](#chapter-three) |
-| &emsp;[3.1 是什么](#chapter-three-one) |
-| &emsp;[3.2 为什么](#chapter-three-two) |
-| &emsp;[3.3 怎么用](#chapter-three-three) |
-| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 Promise 基础](#chapter-four) |
-| &emsp;[4.1 new Promise](#chapter-four-one) |
-| &emsp;[4.2 Promise 状态](#chapter-four-two) |
-| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 题库：基础题](#chapter-five) |
-| &emsp;[5.1 题目一](#chapter-five-one) |
-| &emsp;[5.2 题目二](#chapter-five-two) |
-| &emsp;[5.3 题目三](#chapter-five-three) |
-| &emsp;[5.4 题目四](#chapter-five-four) |
-| &emsp;[5.5 题目五](#chapter-five-five) |
-| &emsp;[5.6 题目六](#chapter-five-six) |
-| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 题库：结合 setTimeout](#chapter-six) |
-| &emsp;[6.1 题目一](#chapter-six-one) |
-| &emsp;[6.2 题目二](#chapter-six-two) |
-| &emsp;[6.3 题目三](#chapter-six-three) |
-| &emsp;[6.4 题目四](#chapter-six-four) |
-| &emsp;[6.5 题目五](#chapter-six-five) |
-| &emsp;[6.6 题目六](#chapter-six-six) |
-| &emsp;[6.7 题目七](#chapter-six-seven) |
-| <a name="catalog-chapter-seven" id="catalog-chapter-seven"></a>[七 .then() 链式操作](#chapter-seven) |
-| &emsp;[7.1 两个参数](#chapter-seven-one) |
-| &emsp;[7.2 链式调用](#chapter-seven-two) |
-| <a name="catalog-chapter-eight" id="catalog-chapter-eight"></a>[八 .catch() 捕获问题](#chapter-eight) |
-| <a name="catalog-chapter-night" id="catalog-chapter-night"></a>[九 .finally() 强制执行](#chapter-night) |
-| <a name="catalog-chapter-ten" id="catalog-chapter-ten"></a>[十 题库：.then()、.catch()、.finally()](#chapter-ten) |
-| &emsp;[10.1 题目一](#chapter-ten-one) |
-| &emsp;[10.2 题目二](#chapter-ten-two) |
-| &emsp;[10.3 题目三](#chapter-ten-three) |
-| &emsp;[10.4 题目四](#chapter-ten-four) |
-| &emsp;[10.5 题目五](#chapter-ten-five) |
-| &emsp;[10.6 题目六](#chapter-ten-six) |
-| &emsp;[10.7 题目七](#chapter-ten-seven) |
-| &emsp;[10.8 题目八](#chapter-ten-eight) |
-| &emsp;[10.9 题目九](#chapter-ten-night) |
-| &emsp;[10.10 题目十](#chapter-ten-ten) |
-| &emsp;[10.11 题目十一](#chapter-ten-eleven) |
-| &emsp;[10.12 题目十二](#chapter-ten-twelve) |
-| &emsp;[10.13 题目十三](#chapter-ten-thirteen) |
-| &emsp;[10.14 题目十四](#chapter-ten-fourteen) |
-| <a name="catalog-chapter-eleven" id="catalog-chapter-eleven"></a>[十一 .all() 接力赛](#chapter-eleven) |
-| <a name="catalog-chapter-twelve" id="catalog-chapter-twelve"></a>[十二 .race() 个人赛](#chapter-twelve) |
-| <a name="catalog-chapter-thirteen" id="catalog-chapter-thirteen"></a>[十三 题库：.all()、.race()](#chapter-thirteen) |
-| &emsp;[13.1 题目一](#chapter-thirteen-one) |
-| &emsp;[13.2 题目二](#chapter-thirteen-two) |
-| &emsp;[13.3 题目三](#chapter-thirteen-three) |
-| &emsp;[13.4 题目四](#chapter-thirteen-four) |
-| <a name="catalog-chapter-fourteen" id="catalog-chapter-fourteen"></a>[十四 Promise 源码](#chapter-fourteen) |
-| <a name="catalog-chapter-fifteen" id="catalog-chapter-fifteen"></a>[十五 题库：结合 async/await](#chapter-fifteen) |
-| &emsp;[15.1 题目一](#chapter-fifteen-one) |
-| &emsp;[15.2 题目二](#chapter-fifteen-two) |
-| &emsp;[15.3 题目三](#chapter-fifteen-three) |
-| &emsp;[15.4 题目四](#chapter-fifteen-four) |
-| &emsp;[15.5 题目五](#chapter-fifteen-five) |
-| &emsp;[15.6 题目六](#chapter-fifteen-six) |
-| &emsp;[15.7 题目七](#chapter-fifteen-seven) |
-| &emsp;[15.8 题目八](#chapter-fifteen-eight) |
-| &emsp;[15.9 题目九](#chapter-fifteen-night) |
-| &emsp;[15.10 题目十](#chapter-fifteen-ten) |
-| &emsp;[15.11 题目十一](#chapter-fifteen-eleven) |
-| <a name="catalog-chapter-sixteen" id="catalog-chapter-sixteen"></a>[十六 综合题](#chapter-sixteen) |
-| &emsp;[16.1 题目一](#chapter-sixteen-one) |
-| &emsp;[16.2 题目二](#chapter-sixteen-two) |
-| &emsp;[16.3 题目三](#chapter-sixteen-three) |
-| <a name="catalog-chapter-seventeen" id="catalog-chapter-seventeen"></a>[十七 大厂题](#chapter-seventeen) |
-| &emsp;[17.1 使用 Promise 实现每隔一秒输出 1、2、3](#chapter-seventeen-one) |
-| &emsp;[17.2 使用 Promise 实现红绿灯交替重复亮](#chapter-seventeen-two) |
-| &emsp;[17.3 实现 mergePromise 函数](#chapter-seventeen-three) |
-| &emsp;[17.4 根据 PromiseA+ 实现一个自己的 Promise](#chapter-seventeen-four) |
-| &emsp;[17.5 封装一个异步加载图片的方法](#chapter-seventeen-five) |
-| &emsp;[17.6 限制异步操作并发数并尽可能快地完成](#chapter-seventeen-six) |
-| &emsp;[17.7 JS 实现异步调度器](#chapter-seventeen-seven) |
-| <a name="catalog-chapter-eighteen" id="catalog-chapter-eighteen"></a>[十八 总结](#chapter-eighteen) |
+| [一 目录](#one) |
+| [二 前言](#two) |
+| &emsp;[2.1 浅思](#two-one) |
+| &emsp;[2.2 参考文献](#two-two) |
+| [三 Promise 初探](#three) |
+| &emsp;[3.1 是什么](#three-one) |
+| &emsp;[3.2 为什么](#three-two) |
+| &emsp;[3.3 怎么用](#three-three) |
+| [四 Promise 基础](#four) |
+| &emsp;[4.1 new Promise](#four-one) |
+| &emsp;[4.2 Promise 状态](#four-two) |
+| [五 题库：基础题](#five) |
+| &emsp;[5.1 题目一](#five-one) |
+| &emsp;[5.2 题目二](#five-two) |
+| &emsp;[5.3 题目三](#five-three) |
+| &emsp;[5.4 题目四](#five-four) |
+| &emsp;[5.5 题目五](#five-five) |
+| &emsp;[5.6 题目六](#five-six) |
+| [六 题库：结合 setTimeout](#six) |
+| &emsp;[6.1 题目一](#six-one) |
+| &emsp;[6.2 题目二](#six-two) |
+| &emsp;[6.3 题目三](#six-three) |
+| &emsp;[6.4 题目四](#six-four) |
+| &emsp;[6.5 题目五](#six-five) |
+| &emsp;[6.6 题目六](#six-six) |
+| &emsp;[6.7 题目七](#six-seven) |
+| [七 .then() 链式操作](#seven) |
+| &emsp;[7.1 两个参数](#seven-one) |
+| &emsp;[7.2 链式调用](#seven-two) |
+| [八 .catch() 捕获问题](#eight) |
+| [九 .finally() 强制执行](#night) |
+| [十 题库：.then()、.catch()、.finally()](#ten) |
+| &emsp;[10.1 题目一](#ten-one) |
+| &emsp;[10.2 题目二](#ten-two) |
+| &emsp;[10.3 题目三](#ten-three) |
+| &emsp;[10.4 题目四](#ten-four) |
+| &emsp;[10.5 题目五](#ten-five) |
+| &emsp;[10.6 题目六](#ten-six) |
+| &emsp;[10.7 题目七](#ten-seven) |
+| &emsp;[10.8 题目八](#ten-eight) |
+| &emsp;[10.9 题目九](#ten-night) |
+| &emsp;[10.10 题目十](#ten-ten) |
+| &emsp;[10.11 题目十一](#ten-eleven) |
+| &emsp;[10.12 题目十二](#ten-twelve) |
+| &emsp;[10.13 题目十三](#ten-thirteen) |
+| &emsp;[10.14 题目十四](#ten-fourteen) |
+| [十一 .all() 接力赛](#eleven) |
+| [十二 .race() 个人赛](#twelve) |
+| [十三 题库：.all()、.race()](#thirteen) |
+| &emsp;[13.1 题目一](#thirteen-one) |
+| &emsp;[13.2 题目二](#thirteen-two) |
+| &emsp;[13.3 题目三](#thirteen-three) |
+| &emsp;[13.4 题目四](#thirteen-four) |
+| [十四 Promise 源码](#fourteen) |
+| [十五 题库：结合 async/await](#fifteen) |
+| &emsp;[15.1 题目一](#fifteen-one) |
+| &emsp;[15.2 题目二](#fifteen-two) |
+| &emsp;[15.3 题目三](#fifteen-three) |
+| &emsp;[15.4 题目四](#fifteen-four) |
+| &emsp;[15.5 题目五](#fifteen-five) |
+| &emsp;[15.6 题目六](#fifteen-six) |
+| &emsp;[15.7 题目七](#fifteen-seven) |
+| &emsp;[15.8 题目八](#fifteen-eight) |
+| &emsp;[15.9 题目九](#fifteen-night) |
+| &emsp;[15.10 题目十](#fifteen-ten) |
+| &emsp;[15.11 题目十一](#fifteen-eleven) |
+| [十六 综合题](#sixteen) |
+| &emsp;[16.1 题目一](#sixteen-one) |
+| &emsp;[16.2 题目二](#sixteen-two) |
+| &emsp;[16.3 题目三](#sixteen-three) |
+| [十七 大厂题](#seventeen) |
+| &emsp;[17.1 使用 Promise 实现每隔一秒输出 1、2、3](#seventeen-one) |
+| &emsp;[17.2 使用 Promise 实现红绿灯交替重复亮](#seventeen-two) |
+| &emsp;[17.3 实现 mergePromise 函数](#seventeen-three) |
+| &emsp;[17.4 根据 PromiseA+ 实现一个自己的 Promise](#seventeen-four) |
+| &emsp;[17.5 封装一个异步加载图片的方法](#seventeen-five) |
+| &emsp;[17.6 限制异步操作并发数并尽可能快地完成](#seventeen-six) |
+| &emsp;[17.7 JS 实现异步调度器](#seventeen-seven) |
 <!-- 目录结束 -->
 
-## <a name="chapter-two" id="chapter-two"></a>二 前言
+## <a id="two"></a>二 前言
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 本文会结合 `Promise` 知识点 + 训练题的形式进行讲解。
 
@@ -105,9 +99,9 @@
 
 如不太了解这些知识点，请先点击前往观看，避免走火入魔。
 
-### <a name="chapter-two-one" id="chapter-two-one"></a>2.1 浅思
+### <a id="two-one"></a>2.1 浅思
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 JavaScript 里的异步方案的演进时，是用下面这种顺序：
 
@@ -130,9 +124,9 @@ JavaScript 里的异步方案的演进时，是用下面这种顺序：
 
 > 来源于微信公众号：工业聚
 
-### <a name="chapter-two-two" id="chapter-two-two"></a>2.2 参考文献
+### <a id="two-two"></a>2.2 参考文献
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 请理解这是一个工作 2 年多的小前端做的整理，可能会忽略一些大佬文章的精华，从而做出不恰当的排序。
 
@@ -167,13 +161,13 @@ JavaScript 里的异步方案的演进时，是用下面这种顺序：
 * [x] [Promise 必知必会（十道题）](https://juejin.im/post/6844903509934997511)【阅读建议：10min】
 * [x] [大白话讲解 Promise（一）](https://www.cnblogs.com/lvdabao/p/es6-promise-1.html)【阅读建议：30min】
 
-## <a name="chapter-three" id="chapter-three"></a>三 Promise 初探
+## <a id="three"></a>三 Promise 初探
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
-### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 是什么
+### <a id="three-one"></a>3.1 是什么
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 **什么是 `Promise`？**
 
@@ -205,9 +199,9 @@ Promise(
 
 就这么简单，别想其他杂七杂八的，好不好用才是关键。
 
-### <a name="chapter-three-two" id="chapter-three-two"></a>3.2 为什么
+### <a id="three-two"></a>3.2 为什么
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 **为什么需要 `Promise`？**
 
@@ -296,9 +290,9 @@ getData().then((res) => {
 
 这样我们就可以安心玩耍了。
 
-### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 怎么用
+### <a id="three-three"></a>3.3 怎么用
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 `Promise` 的使用，说难也不难，咱们直接上代码：
 
@@ -349,13 +343,13 @@ promise.then((res) => {
 
 如果理解了，那么恭喜你对 `Promise` 有了个简单的了解。
 
-## <a name="chapter-four" id="chapter-four"></a>四 Promise 基础
+## <a id="four"></a>四 Promise 基础
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
-### <a name="chapter-four-one" id="chapter-four-one"></a>4.1 new Promise
+### <a id="four-one"></a>4.1 new Promise
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 **首先**，我们先看看如何走一个 `new Promise`：
 
@@ -380,9 +374,9 @@ console.log(promise); // Promise { <pending> }
 
 那么下面我们再看看 `Promise` 的状态。
 
-### <a name="chapter-four-two" id="chapter-four-two"></a>4.2 Promise 状态
+### <a id="four-two"></a>4.2 Promise 状态
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 **`Promise` 有 3 种状态：`pending`、`fulfilled`、`rejected`**
 
@@ -459,9 +453,9 @@ promise.then((res) => {
 
 OK，看到这里你对 `Promise` 基础有一定了解了，咱们上题吧！
 
-## <a name="chapter-five" id="chapter-five"></a>五 题库：基础题
+## <a id="five"></a>五 题库：基础题
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 在这之前，强调一遍 `Event Loop`。
 
@@ -538,9 +532,9 @@ promise.then((res) => {
 
 就这么简单，说多无益，刷题加深印象！
 
-### <a name="chapter-five-one" id="chapter-five-one"></a>5.1 题目一
+### <a id="five-one"></a>5.1 题目一
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -560,9 +554,9 @@ console.log('1', promise);
 */
 ```
 
-### <a name="chapter-five-two" id="chapter-five-two"></a>5.2 题目二
+### <a id="five-two"></a>5.2 题目二
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -590,9 +584,9 @@ console.log(4);
 */
 ```
 
-### <a name="chapter-five-three" id="chapter-five-three"></a>5.3 题目三
+### <a id="five-three"></a>5.3 题目三
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -617,9 +611,9 @@ console.log(4);
 */
 ```
 
-### <a name="chapter-five-four" id="chapter-five-four"></a>5.4 题目四
+### <a id="five-four"></a>5.4 题目四
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const promise1 = new Promise((resolve, reject) => {
@@ -652,9 +646,9 @@ console.log('2', promise2);
 */
 ```
 
-### <a name="chapter-five-five" id="chapter-five-five"></a>5.5 题目五
+### <a id="five-five"></a>5.5 题目五
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const fn = () => (new Promise((resolve, reject) => {
@@ -683,9 +677,9 @@ console.log('start');
 */
 ```
 
-### <a name="chapter-five-six" id="chapter-five-six"></a>5.6 题目六
+### <a id="five-six"></a>5.6 题目六
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const fn = () => {
@@ -713,9 +707,9 @@ fn().then((res) => {
 */
 ```
 
-## <a name="chapter-six" id="chapter-six"></a>六 题库：结合 setTimeout
+## <a id="six"></a>六 题库：结合 setTimeout
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 关于宏任务 `setTimeout`，我们就要举例一道经典题了：
 
@@ -813,9 +807,9 @@ setTimeout(() => {
 
 OK，关于 `setTimeout` 相关知识点 **jsliang** 介绍完毕，咱们看题！
 
-### <a name="chapter-six-one" id="chapter-six-one"></a>6.1 题目一
+### <a id="six-one"></a>6.1 题目一
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 console.log('start');
@@ -849,9 +843,9 @@ console.log('end');
 */
 ```
 
-### <a name="chapter-six-two" id="chapter-six-two"></a>6.2 题目二
+### <a id="six-two"></a>6.2 题目二
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -898,9 +892,9 @@ console.log(4);
 */
 ```
 
-### <a name="chapter-six-three" id="chapter-six-three"></a>6.3 题目三
+### <a id="six-three"></a>6.3 题目三
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 setTimeout(() => {
@@ -943,9 +937,9 @@ console.log('start');
 */
 ```
 
-### <a name="chapter-six-four" id="chapter-six-four"></a>6.4 题目四
+### <a id="six-four"></a>6.4 题目四
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 setTimeout(() => {
@@ -987,9 +981,9 @@ console.log('start');
 */
 ```
 
-### <a name="chapter-six-five" id="chapter-six-five"></a>6.5 题目五
+### <a id="six-five"></a>6.5 题目五
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 Promise.resolve().then(() => {
@@ -1033,9 +1027,9 @@ console.log('start');
 */
 ```
 
-### <a name="chapter-six-six" id="chapter-six-six"></a>6.6 题目六
+### <a id="six-six"></a>6.6 题目六
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const promise1 = new Promise((resolve, reject) => {
@@ -1078,9 +1072,9 @@ setTimeout(() => {
 */
 ```
 
-### <a name="chapter-six-seven" id="chapter-six-seven"></a>6.7 题目七
+### <a id="six-seven"></a>6.7 题目七
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const promise1 = new Promise((resolve, reject) => {
@@ -1121,13 +1115,13 @@ setTimeout(() => {
 */
 ```
 
-## <a name="chapter-seven" id="chapter-seven"></a>七 .then() 链式操作
+## <a id="seven"></a>七 .then() 链式操作
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
-### <a name="chapter-seven-one" id="chapter-seven-one"></a>7.1 两个参数
+### <a id="seven-one"></a>7.1 两个参数
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 在上面的题目中，我们尽情了解了 `.then()`，但是我们并没有细讲，所以这里进行一一讲解。
 
@@ -1175,9 +1169,9 @@ err： 1
 
 但是，为了保持代码的可观，建议第二个参数改为 `.catch()`，方便理解。
 
-### <a name="chapter-seven-two" id="chapter-seven-two"></a>7.2 链式调用
+### <a id="seven-two"></a>7.2 链式调用
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 在 `Promise.then()` 方法中，`.then()` 是可以链式调用的。
 
@@ -1242,9 +1236,9 @@ red().then((res1) => {
 
 这就是 `.then()` 的门门道道。
 
-## <a name="chapter-eight" id="chapter-eight"></a>八 .catch() 捕获问题
+## <a id="eight"></a>八 .catch() 捕获问题
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 在上面我们提到过：
 
@@ -1290,9 +1284,9 @@ getRandom.then(
 
 当然，为了阅读可观，建议还是使用 `.then().catch()` 的方式，而不是通过 `.then()` 里面的第 2 个参数来表示。
 
-## <a name="chapter-night" id="chapter-night"></a>九 .finally() 强制执行
+## <a id="night"></a>九 .finally() 强制执行
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 `finally` 方法用于指定不管 `Promise` 对象最后状态如何，都会执行的操作。
 
@@ -1345,13 +1339,13 @@ promise.then((res) => {
 
 但是，不管是哪种输出，`.finally()` 是一定会走出来的。
 
-## <a name="chapter-ten" id="chapter-ten"></a>十 题库：.then()、.catch()、.finally()
+## <a id="ten"></a>十 题库：.then()、.catch()、.finally()
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
-### <a name="chapter-ten-one" id="chapter-ten-one"></a>10.1 题目一
+### <a id="ten-one"></a>10.1 题目一
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -1380,9 +1374,9 @@ promise.then((res) => {
 */
 ```
 
-### <a name="chapter-ten-two" id="chapter-ten-two"></a>10.2 题目二
+### <a id="ten-two"></a>10.2 题目二
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -1413,9 +1407,9 @@ promise.then((res) => {
 */
 ```
 
-### <a name="chapter-ten-three" id="chapter-ten-three"></a>10.3 题目三
+### <a id="ten-three"></a>10.3 题目三
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 Promise
@@ -1442,9 +1436,9 @@ Promise
 */
 ```
 
-### <a name="chapter-ten-four" id="chapter-ten-four"></a>10.4 题目四
+### <a id="ten-four"></a>10.4 题目四
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 Promise
@@ -1471,9 +1465,9 @@ Promise
 */
 ```
 
-### <a name="chapter-ten-five" id="chapter-ten-five"></a>10.5 题目五
+### <a id="ten-five"></a>10.5 题目五
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -1514,9 +1508,9 @@ promise.then((res) => {
 */
 ```
 
-### <a name="chapter-ten-six" id="chapter-ten-six"></a>10.6 题目六
+### <a id="ten-six"></a>10.6 题目六
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 Promise.resolve().then(() => {
@@ -1536,9 +1530,9 @@ Promise.resolve().then(() => {
 */
 ```
 
-### <a name="chapter-ten-seven" id="chapter-ten-seven"></a>10.7 题目七
+### <a id="ten-seven"></a>10.7 题目七
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const promise = Promise.resolve().then(() => {
@@ -1558,9 +1552,9 @@ promise.catch((err) => {
 */
 ```
 
-### <a name="chapter-ten-eight" id="chapter-ten-eight"></a>10.8 题目八
+### <a id="ten-eight"></a>10.8 题目八
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 Promise
@@ -1579,9 +1573,9 @@ Promise
 */
 ```
 
-### <a name="chapter-ten-night" id="chapter-ten-night"></a>10.9 题目九
+### <a id="ten-night"></a>10.9 题目九
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 Promise
@@ -1605,9 +1599,9 @@ Promise
 
 如果本题中的 `.then()` 中的第 2 个参数去掉了，那么就会进入 `.catch()` 函数中。
 
-### <a name="chapter-ten-ten" id="chapter-ten-ten"></a>10.10 题目十
+### <a id="ten-ten"></a>10.10 题目十
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 Promise
@@ -1630,9 +1624,9 @@ Promise
 */
 ```
 
-### <a name="chapter-ten-eleven" id="chapter-ten-eleven"></a>10.11 题目十一
+### <a id="ten-eleven"></a>10.11 题目十一
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 1. `.finally()` 方法不管 `Promise` 对象最后的状态如何都会执行。
 2. `.finally()` 方法的回调函数不接受任何的参数，也就是说你在 `.finally()` 函数中是没法知道 `Promise` 最终的状态是 `resolved` 还是 `rejected` 的。
@@ -1667,9 +1661,9 @@ Promise
 */
 ```
 
-### <a name="chapter-ten-twelve" id="chapter-ten-twelve"></a>10.12 题目十二
+### <a id="ten-twelve"></a>10.12 题目十二
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 Promise
@@ -1700,9 +1694,9 @@ Promise
 */
 ```
 
-### <a name="chapter-ten-thirteen" id="chapter-ten-thirteen"></a>10.13 题目十三
+### <a id="ten-thirteen"></a>10.13 题目十三
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 function promise1() {
@@ -1759,9 +1753,9 @@ promise2().then((res) => {
 */
 ```
 
-### <a name="chapter-ten-fourteen" id="chapter-ten-fourteen"></a>10.14 题目十四
+### <a id="ten-fourteen"></a>10.14 题目十四
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 function promise1() {
@@ -1807,9 +1801,9 @@ promise2().then((res) => {
 */
 ```
 
-## <a name="chapter-eleven" id="chapter-eleven"></a>十一 .all() 接力赛
+## <a id="eleven"></a>十一 .all() 接力赛
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 Promise 的 `all` 方法提供了并行执行异步操作的能力，并且在所有异步操作执行完后才执行回调。
 
@@ -1861,9 +1855,9 @@ Promise.all([one, two, three]).then((res) => {
 
 这是所有状态都成功的，如果这 3 个中有 1 个是失败的呢？请自行尝试。
 
-## <a name="chapter-twelve" id="chapter-twelve"></a>十二 .race() 个人赛
+## <a id="twelve"></a>十二 .race() 个人赛
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 和 `all()` 方法不同，`Promise.race()` 方法是谁先走完谁先输出。
 
@@ -1903,9 +1897,9 @@ Promise.race([one, two, three]).then((res) => {
 });
 ```
 
-## <a name="chapter-thirteen" id="chapter-thirteen"></a>十三 题库：.all()、.race()
+## <a id="thirteen"></a>十三 题库：.all()、.race()
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 `Promise.all()` 和 `Promise.race()` 用法：
 
@@ -1917,9 +1911,9 @@ Promise.race([one, two, three]).then((res) => {
 1. `Promise.all().then()` 结果中的数组的顺序和 `Promise.all()` 接收到的数组的顺序一致，并不会因为 `setTimeout` 的输出而改变。
 2. `Promise.all()` 和 `Promise.then()` 碰到会抛出异常的情况，都只会抛出最先出现问题的那个，被 `.then()` 的第二个参数或者 `.catch()` 捕获，但是不会影响数组中其他的异步任务的执行。
 
-### <a name="chapter-thirteen-one" id="chapter-thirteen-one"></a>13.1 题目一
+### <a id="thirteen-one"></a>13.1 题目一
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 在这之前我们先做下 `setTimeout` 知识点的复习：
 
@@ -2000,9 +1994,9 @@ Promise.all([
 */
 ```
 
-### <a name="chapter-thirteen-two" id="chapter-thirteen-two"></a>13.2 题目二
+### <a id="thirteen-two"></a>13.2 题目二
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 function runAsync (x) {
@@ -2060,9 +2054,9 @@ Promise.all([
 */
 ```
 
-### <a name="chapter-thirteen-three" id="chapter-thirteen-three"></a>13.3 题目三
+### <a id="thirteen-three"></a>13.3 题目三
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 function runAsync(x) {
@@ -2112,9 +2106,9 @@ Promise.race([
 */
 ```
 
-### <a name="chapter-thirteen-four" id="chapter-thirteen-four"></a>13.4 题目四
+### <a id="thirteen-four"></a>13.4 题目四
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 function runAsync (x) {
@@ -2172,26 +2166,26 @@ Promise.race([
 */
 ```
 
-## <a name="chapter-fourteen" id="chapter-fourteen"></a>十四 Promise 源码
+## <a id="fourteen"></a>十四 Promise 源码
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 在 **jsliang** 手写源码系列中有详细分析。
 
 * [jsliang 手写源码系列：Promise](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97/Promise.md)
 
-## <a name="chapter-fifteen" id="chapter-fifteen"></a>十五 题库：结合 async/await
+## <a id="fifteen"></a>十五 题库：结合 async/await
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 总结：
 
 1. 在 `function()` 里面碰到 `await` 直接走里面内容。
 2. 如果 `function()` 里的 `await` 后面还有其他代码，将其当做 `Promise.then()` 一样，视为微任务。
 
-### <a name="chapter-fifteen-one" id="chapter-fifteen-one"></a>15.1 题目一
+### <a id="fifteen-one"></a>15.1 题目一
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 async function async1() {
@@ -2226,9 +2220,9 @@ console.log(4);
 */
 ```
 
-### <a name="chapter-fifteen-two" id="chapter-fifteen-two"></a>15.2 题目二
+### <a id="fifteen-two"></a>15.2 题目二
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 async function async1() {
@@ -2264,9 +2258,9 @@ console.log('start');
 */
 ```
 
-### <a name="chapter-fifteen-three" id="chapter-fifteen-three"></a>15.3 题目三
+### <a id="fifteen-three"></a>15.3 题目三
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 async function async1() {
@@ -2332,9 +2326,9 @@ console.log('start');
 */
 ```
 
-### <a name="chapter-fifteen-four" id="chapter-fifteen-four"></a>15.4 题目四
+### <a id="fifteen-four"></a>15.4 题目四
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 async function async1() {
@@ -2376,9 +2370,9 @@ console.log('start');
 */
 ```
 
-### <a name="chapter-fifteen-five" id="chapter-fifteen-five"></a>15.5 题目五
+### <a id="fifteen-five"></a>15.5 题目五
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 async function fn() {
@@ -2399,9 +2393,9 @@ fn().then((res) => {
 */
 ```
 
-### <a name="chapter-fifteen-six" id="chapter-fifteen-six"></a>15.6 题目六
+### <a id="fifteen-six"></a>15.6 题目六
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 async function async1() {
@@ -2437,9 +2431,9 @@ console.log('script end');
 */
 ```
 
-### <a name="chapter-fifteen-seven" id="chapter-fifteen-seven"></a>15.7 题目七
+### <a id="fifteen-seven"></a>15.7 题目七
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 async function async1() {
@@ -2495,9 +2489,9 @@ new Promise((resolve) => {
 */
 ```
 
-### <a name="chapter-fifteen-eight" id="chapter-fifteen-eight"></a>15.8 题目八
+### <a id="fifteen-eight"></a>15.8 题目八
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 async function async1() {
@@ -2543,9 +2537,9 @@ console.log('script end');
 */
 ```
 
-### <a name="chapter-fifteen-night" id="chapter-fifteen-night"></a>15.9 题目九
+### <a id="fifteen-night"></a>15.9 题目九
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 async function async1() {
@@ -2593,9 +2587,9 @@ console.log('script end');
 */
 ```
 
-### <a name="chapter-fifteen-ten" id="chapter-fifteen-ten"></a>15.10 题目十
+### <a id="fifteen-ten"></a>15.10 题目十
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 async function testSomething() {
@@ -2652,9 +2646,9 @@ console.log('test end');
 */
 ```
 
-### <a name="chapter-fifteen-eleven" id="chapter-fifteen-eleven"></a>15.11 题目十一
+### <a id="fifteen-eleven"></a>15.11 题目十一
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 开始做 `async` 处理错误的题。
 
@@ -2686,13 +2680,13 @@ async1().then((res) => {
 */
 ```
 
-## <a name="chapter-sixteen" id="chapter-sixteen"></a>十六 综合题
+## <a id="sixteen"></a>十六 综合题
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
-### <a name="chapter-sixteen-one" id="chapter-sixteen-one"></a>16.1 题目一
+### <a id="sixteen-one"></a>16.1 题目一
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const first = () => (new Promise((resolve1, reject1) => {
@@ -2735,9 +2729,9 @@ console.log(4);
 */
 ```
 
-### <a name="chapter-sixteen-two" id="chapter-sixteen-two"></a>16.2 题目二
+### <a id="sixteen-two"></a>16.2 题目二
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const async1 = async() => {
@@ -2788,9 +2782,9 @@ setTimeout(() => {
 */
 ```
 
-### <a name="chapter-sixteen-three" id="chapter-sixteen-three"></a>16.3 题目三
+### <a id="sixteen-three"></a>16.3 题目三
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const p1 = new Promise((resolve) => {
@@ -2818,13 +2812,13 @@ const p1 = new Promise((resolve) => {
 */
 ```
 
-## <a name="chapter-seventeen" id="chapter-seventeen"></a>十七 大厂题
+## <a id="seventeen"></a>十七 大厂题
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
-### <a name="chapter-seventeen-one" id="chapter-seventeen-one"></a>17.1 使用 Promise 实现每隔一秒输出 1、2、3
+### <a id="seventeen-one"></a>17.1 使用 Promise 实现每隔一秒输出 1、2、3
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 const oneToThree = () => {
@@ -2900,9 +2894,9 @@ liangEach(arr, (n) => {
 });
 ```
 
-### <a name="chapter-seventeen-two" id="chapter-seventeen-two"></a>17.2 使用 Promise 实现红绿灯交替重复亮
+### <a id="seventeen-two"></a>17.2 使用 Promise 实现红绿灯交替重复亮
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 红灯 3 秒亮一次，黄灯 2 秒亮一次，绿灯 1 秒亮一次，用 Promise 实现 3 个灯交替重复亮。
 
@@ -2957,9 +2951,9 @@ const step = () => {
 step();
 ```
 
-### <a name="chapter-seventeen-three" id="chapter-seventeen-three"></a>17.3 实现 mergePromise 函数
+### <a id="seventeen-three"></a>17.3 实现 mergePromise 函数
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 实现 `mergePromise` 函数，将传进去的数组按先后顺序执行，并且把返回的值先后放在数组 `data` 中。
 
@@ -3055,17 +3049,17 @@ mergePromise([ajax1, ajax2, ajax3]).then(data => {
 // [1, 2, 3]
 ```
 
-### <a name="chapter-seventeen-four" id="chapter-seventeen-four"></a>17.4 根据 PromiseA+ 实现一个自己的 Promise
+### <a id="seventeen-four"></a>17.4 根据 PromiseA+ 实现一个自己的 Promise
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 在 **jsliang** 手写源码系列中有详细分析。
 
 * [jsliang 手写源码系列：Promise](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97/Promise.md)
 
-### <a name="chapter-seventeen-five" id="chapter-seventeen-five"></a>17.5 封装一个异步加载图片的方法
+### <a id="seventeen-five"></a>17.5 封装一个异步加载图片的方法
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```js
 function loadImg(url) {
@@ -3091,9 +3085,9 @@ function loadImg(url) {
 }
 ```
 
-### <a name="chapter-seventeen-six" id="chapter-seventeen-six"></a>17.6 限制异步操作并发数并尽可能快地完成
+### <a id="seventeen-six"></a>17.6 限制异步操作并发数并尽可能快地完成
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 已知图片列表：
 
@@ -3201,9 +3195,9 @@ limitLoad(urls, loadImg, 3)
   });
 ```
 
-### <a name="chapter-seventeen-seven" id="chapter-seventeen-seven"></a>17.7 JS 实现异步调度器
+### <a id="seventeen-seven"></a>17.7 JS 实现异步调度器
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 审题并完成下面代码：
 
@@ -3319,29 +3313,3 @@ addTack(400, '4');
 // 1200ms 时，完成 4，输出 4，没有下一个进队的
 // 进队完成，输出 2 3 1 4
 ```
-
-## <a name="chapter-eighteen" id="chapter-eighteen"></a>十八 总结
-
-> [返回目录](#chapter-one)
-
-写到这里，终于扯完了所有要扯的内容。
-
-**首先**，这篇文章的大部分题目，取自 [LinDaiDai_霖呆呆](https://juejin.im/user/360295513463912) 的文章，非常感激他的文章，我花了 8 小时以上，把这些题目结合浏览器和 `Node` 的打印敲了一遍，终于大略搞通这块相关内容。
-
-同时，无业游民期间，感激呆呆的鼓励，对求职之路坚定信心。
-
-**然后**，这篇文章大概是 `Promise` 的劝退文吧！
-
-因为根据我编写和整理后的预估，它需要一周左右的时间进行阅读和大体掌控！
-
-但是，如果你真的看完了，那么恭喜你：`Promise` 这块任督二脉你已经打通了。
-
-**最后**，如果小伙伴觉得文章不错，欢迎各种鼓励（点赞、Star……），联系方式可以看个人 Github 首页，有问题也请尽量私聊，毕竟有时候真的感觉时间不够折腾：
-
-* [jsliang 的文档库](https://github.com/LiangJunrong/document-library)
-
-那么，江湖有缘再见！
-
----
-
-> jsliang 的文档库由 [梁峻荣](https://github.com/LiangJunrong) 采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/) 进行许可。<br/>基于 [https://github.com/LiangJunrong/document-library](https://github.com/LiangJunrong/document-library) 上的作品创作。<br/>本许可协议授权之外的使用权限可以从 [https://creativecommons.org/licenses/by-nc-sa/2.5/cn/](https://creativecommons.org/licenses/by-nc-sa/2.5/cn/) 处获得。
