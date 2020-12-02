@@ -1,4 +1,57 @@
-# 字符串
+# <a id="zero"></a>目录
+
+| 目录 |
+| ---- |
+| [一 字符串](#one) |
+| [二 线性结构](#two) |
+| &emsp;[2.1 数组](#two-one) |
+| &emsp;[2.2 栈](#two-two) |
+| &emsp;[2.3 链表](#two-three) |
+| &emsp;[2.4 队列](#two-four) |
+| [三 哈希表(散列表)](#three) |
+| [四 树形结构](#four) |
+| &emsp;[4.1 树](#four-one) |
+| &emsp;[4.2 二叉搜索树](#four-two) |
+| &emsp;[4.3 字典树](#four-three) |
+| &emsp;[4.4 树状数组](#four-four) |
+| &emsp;[4.5 线段树](#four-five) |
+| [五 堆](#five) |
+| [六 图](#six) |
+| &emsp;[6.1 拓扑排序](#six-one) |
+| [七 基本算法思想](#seven) |
+| &emsp;[7.1 动态规划](#seven-one) |
+| &emsp;[7.2 贪心算法](#seven-two) |
+| &emsp;[7.3 回溯算法](#seven-three) |
+| &emsp;[7.4 分治算法](#seven-four) |
+| [八 搜索](#eight) |
+| &emsp;[8.1 深度优先搜索](#eight-one) |
+| &emsp;[8.2 广度优先搜索](#eight-two) |
+| [九 查找](#nine) |
+| &emsp;[9.1 二分查找](#nine-one) |
+| [十 排序](#ten) |
+| [十一 其他](#eleven) |
+| &emsp;[11.1 并查集](#eleven-one) |
+| [十二 LeetCode其他分类](#twelve) |
+| &emsp;[12.1 数学(210)](#twelve-one) |
+| &emsp;[12.2 双指针(75)](#twelve-two) |
+| &emsp;[12.3 设计(69)](#twelve-three) |
+| &emsp;[12.4 位运算(67)](#twelve-four) |
+| &emsp;[12.5 Sliding Window(29)](#twelve-five) |
+| &emsp;[12.6 递归(24)](#twelve-six) |
+| &emsp;[12.7 Ordered Map(13)](#twelve-seven) |
+| &emsp;[12.8 几何(12)](#twelve-eight) |
+| &emsp;[12.9 极小化极大(8)](#twelve-nine) |
+| &emsp;[12.10 脑筋急转弯(7)](#twelve-ten) |
+| &emsp;[12.11 Random(6)](#twelve-eleven) |
+| &emsp;[12.12 Line Sweep(6)](#twelve-twelve) |
+| &emsp;[12.13 记忆化(3)](#twelve-thirteen) |
+| &emsp;[12.14 蓄水池抽样(2)](#twelve-fourteen) |
+| &emsp;[12.15 Rejection Sampling(2)](#twelve-fifteen) |
+| &emsp;[12.16 Map()](#twelve-sixteen) |
+
+# <a id="one"></a>一 字符串
+> [返回目录](#zero)  
+
 ## (简单) 剑指 Offer 58 - Ⅱ. 左旋转字符串
 字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串"abcdefg"和数字2，该函数将返回左旋转两位得到的结果"cdefgab"。
 
@@ -56,10 +109,13 @@ var reverseWords = function(s) {
 ```
 
 
-# 线性结构
-## 数组
-### (简单) 数组去重
-#### 剑指 Offer 03. 数组中的重复数字
+# <a id="two"></a>二 线性结构
+> [返回目录](#zero)  
+
+## <a id="two-one"></a>2.1 数组
+> [返回目录](#zero)  
+
+### (简单) 剑指 Offer 03. 数组中的重复数字
 找出数组中重复的数字。
 
 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
@@ -120,7 +176,7 @@ var findRepeatNumber = function(nums) {
 };
 ```
 
-#### 数组去重
+### (相关) 数组去重
 
 数组去重是个经常提及的点：
 
@@ -320,7 +376,9 @@ var missingNumber = function(nums) {
 };
 ```
 
-## 栈  
+## <a id="two-two"></a>2.2 栈  
+> [返回目录](#zero)  
+
 ### (简单) 剑指 Offer 09. 用两个栈实现队列
 用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead 操作返回 -1 )
 
@@ -462,7 +520,9 @@ MinStack.prototype.min = function() {
 };
 ```
 
-## 链表  
+## <a id="two-three"></a>2.3 链表  
+> [返回目录](#zero)  
+
 ### (简单) 剑指 Offer 22. 链表中倒数第k个节点
 输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。例如，一个链表有6个节点，从头节点开始，它们的值依次是1、2、3、4、5、6。这个链表的倒数第3个节点是值为4的节点。
 
@@ -668,7 +728,9 @@ var deleteNode = function(head, val) {
 };
 ```
 
-## 队列
+## <a id="two-four"></a>2.4 队列
+> [返回目录](#zero)  
+
 ### (简单) 剑指 Offer 59 - Ⅰ. 滑动窗口的最大值
 [leetcode](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/)  
 
@@ -687,63 +749,140 @@ var maxSlidingWindow = function(nums, k) {
 };
 ```
 
+### (困难) 239. 滑动窗口最大值
+[leetcode](https://leetcode-cn.com/problems/sliding-window-maximum/) 要求线性时间复杂度  
+
 **本题难点**： 如何在每次窗口滑动后，将 “获取窗口内最大值” 的时间复杂度从 O(k) 降低至 O(1) 。  
 
 **算法流程**：  
 1. 初始化： 双端队列 `deque` ，结果列表 `res` ，数组长度 `n` ；  
 2. 滑动窗口： 左边界范围 `i∈[1−k,n+1−k]` ，右边界范围 `j∈[0,n−1]` ；  
 若 `i>0` 且 队首元素 `deque[0]` = 被删除元素 `nums[i−1]` ：则队首元素出队；  
-删除 `deque` 内所有 < `nums[j]` 的元素，以保持 `deque` 递减；(这里的时间复杂度怎么算的???)  
+删除 `deque` 内所有 < `nums[j]` 的元素，以保持 `deque` 递减；(这里的时间复杂度怎么算的???为什么是O(1))  
 将 `nums[j]` 添加至 `deque` 尾部；  
 若已形成窗口（即 `i≥0` ）：将窗口最大值（即队首元素 `deque[0]` ）添加至列表 `res` 。  
 3. 返回值： 返回结果列表 `res` 。  
 
-# 哈希表(散列表)  
+# <a id="three"></a>三 哈希表(散列表)  
+> [返回目录](#zero)  
 
-# 树形结构
-## 树  
-## 二叉搜索树  
-## 字典树  
-## 树状数组  
-## 线段树
+# <a id="four"></a>四 树形结构
+> [返回目录](#zero)  
 
-# 堆  
+## <a id="four-one"></a>4.1 树  
+> [返回目录](#zero)  
 
-# 图  
-## 拓扑排序  
+## <a id="four-two"></a>4.2 二叉搜索树  
+> [返回目录](#zero)  
 
-# 基本算法思想
-## 动态规划  
-## 贪心算法  
-## 回溯算法  
-## 分治算法  
+## <a id="four-three"></a>4.3 字典树  
+> [返回目录](#zero)  
 
-# 搜索
-## 深度优先搜索  
-## 广度优先搜索  
+## <a id="four-four"></a>4.4 树状数组  
+> [返回目录](#zero)  
 
-# 查找
-## 二分查找  
+## <a id="four-five"></a>4.5 线段树
+> [返回目录](#zero)  
 
-# 排序  
+# <a id="five"></a>五 堆  
+> [返回目录](#zero)  
 
-# 其他
-## 并查集  
+# <a id="six"></a>六 图  
+> [返回目录](#zero)  
 
-# LeetCode其他分类
-## 数学(210)  
-## 双指针(75)  
-## 设计(69)  
-## 位运算(67)  
-## Sliding Window(29)  
-## 递归(24)  
-## Ordered Map(13)  
-## 几何(12)  
-## 极小化极大(8)  
-## 脑筋急转弯(7)  
-## Random(6)  
-## Line Sweep(6)  
-## 记忆化(3)  
-## 蓄水池抽样(2)  
-## Rejection Sampling(2)  
-## Map()  
+## <a id="six-one"></a>6.1 拓扑排序  
+> [返回目录](#zero)  
+
+# <a id="seven"></a>七 基本算法思想
+> [返回目录](#zero)  
+
+## <a id="seven-one"></a>7.1 动态规划  
+> [返回目录](#zero)  
+
+## <a id="seven-two"></a>7.2 贪心算法  
+> [返回目录](#zero)  
+
+## <a id="seven-three"></a>7.3 回溯算法  
+> [返回目录](#zero)  
+
+## <a id="seven-four"></a>7.4 分治算法  
+> [返回目录](#zero)  
+
+# <a id="eight"></a>八 搜索  
+> [返回目录](#zero)  
+
+## <a id="eight-one"></a>8.1 深度优先搜索  
+> [返回目录](#zero)  
+
+## <a id="eight-two"></a>8.2 广度优先搜索  
+> [返回目录](#zero)  
+
+# <a id="nine"></a>九 查找
+> [返回目录](#zero)  
+
+## <a id="nine-one"></a>9.1 二分查找  
+> [返回目录](#zero)  
+
+
+# <a id="ten"></a>十 排序  
+> [返回目录](#zero)  
+
+
+# <a id="eleven"></a>十一 其他
+> [返回目录](#zero)  
+
+## <a id="eleven-one"></a>11.1 并查集  
+> [返回目录](#zero)  
+
+
+# <a id="twelve"></a>十二 LeetCode其他分类
+> [返回目录](#zero)  
+
+## <a id="twelve-one"></a>12.1 数学(210)  
+> [返回目录](#zero)  
+
+## <a id="twelve-two"></a>12.2 双指针(75)  
+> [返回目录](#zero)  
+
+## <a id="twelve-three"></a>12.3 设计(69)  
+> [返回目录](#zero)  
+
+## <a id="twelve-four"></a>12.4 位运算(67)  
+> [返回目录](#zero)  
+
+## <a id="twelve-five"></a>12.5 Sliding Window(29)  
+> [返回目录](#zero)  
+
+## <a id="twelve-six"></a>12.6 递归(24)  
+> [返回目录](#zero)  
+
+## <a id="twelve-seven"></a>12.7 Ordered Map(13)  
+> [返回目录](#zero)  
+
+## <a id="twelve-eight"></a>12.8 几何(12)  
+> [返回目录](#zero)  
+
+## <a id="twelve-nine"></a>12.9 极小化极大(8)  
+> [返回目录](#zero)  
+
+## <a id="twelve-ten"></a>12.10 脑筋急转弯(7)  
+> [返回目录](#zero)  
+
+## <a id="twelve-eleven"></a>12.11 Random(6)  
+> [返回目录](#zero)  
+
+## <a id="twelve-twelve"></a>12.12 Line Sweep(6)  
+> [返回目录](#zero)  
+
+## <a id="twelve-thirteen"></a>12.13 记忆化(3)  
+> [返回目录](#zero)  
+
+## <a id="twelve-fourteen"></a>12.14 蓄水池抽样(2)  
+> [返回目录](#zero)  
+
+## <a id="twelve-fifteen"></a>12.15 Rejection Sampling(2)  
+> [返回目录](#zero)  
+
+## <a id="twelve-sixteen"></a>12.16 Map()  
+> [返回目录](#zero)  
+
