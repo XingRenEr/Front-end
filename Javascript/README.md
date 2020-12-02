@@ -18,7 +18,7 @@
 
 ## 2 异步系列
 
-异步系列存放地址：[JavaScript 异步](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%BC%82%E6%AD%A5/README.md)  
+文章地址：[JavaScript 异步](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%BC%82%E6%AD%A5/README.md)  
 
 知识点：  
 
@@ -31,9 +31,7 @@
 
 ## 3 手写源码系列
 
-手写系列存放位置：
-
-* [x] [手写系列](https://github.com/LiangJunrong/document-library/tree/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97)
+文章地址：[手写系列](https://github.com/LiangJunrong/document-library/tree/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97)
 
 各个手写具体实现：
 
