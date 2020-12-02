@@ -2170,9 +2170,7 @@ Promise.race([
 
 > [返回目录](#one)
 
-在 **jsliang** 手写源码系列中有详细分析。
-
-* [jsliang 手写源码系列：Promise](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97/Promise.md)
+* [手写源码系列：Promise](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/Promise.md)
 
 ## <a id="fifteen"></a>十五 题库：结合 async/await
 

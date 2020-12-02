@@ -85,7 +85,7 @@
   * [x] `.all()` 接力赛
   * [x] `.race()` 个人赛
   * [x] 题库：`.all()、.race()`
-  * [x] Promise 源码
+  * [x] [Promise 源码](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/Promise.md)
   * [x] 题库：结合 `async/await`
   * [x] 综合题
   * [x] 大厂题
