@@ -277,6 +277,9 @@ console.log('Inside Global Execution Context');
 对于函数而言，指向最后调用函数的那个对象，是函数运行时内部自动生成的一个内部对象，只能在函数内部使用；对于全局而言，`this` 指向 `window`。
 
 ### <a id="five-two"></a>5.2 闭包
+> [返回目录](#one)
+
+文章地址：[闭包](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E9%97%AD%E5%8C%85.md)  
 
 ## <a id="six"></a>六 Promise与异步函数
 在基础部分只讲setTimeout  
