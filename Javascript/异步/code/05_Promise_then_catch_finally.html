@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+    <script type="text/javascript">
+      const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log('timer');
+          resolve('success');
+        }, 0);
+      });
+      
+      const start = Date.now();
+      
+      promise.then((res) => {
+        console.log(res, Date.now() - start);
+      });
+      
+      promise.then((res) => {
+        console.log(res, Date.now() - start);
+      });
+    </script>
+	</body>
+</html>

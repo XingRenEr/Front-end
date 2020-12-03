@@ -3,21 +3,18 @@
 
 | 完成情况 | 说明 | 知识点 |
 | - | - | - |
-| √ | 红宝书    | null undefined |
-|   | 先看闭包√ | 用setTimeout来实现setInterval |
-|   | 进阶      | 函数式编程 |
-|   | 进阶      | 渐进式网络应用 |
-|   | 进阶      | 模块化开发 |
-|   | 红宝书√   | 正则表达式 |
-|   | 进阶      | 垃圾回收 |
-| √ | 红宝书    | 数据类型(新增后基本数据类型是否改变？) |
-| √ | 红宝书    | 面向对象 |
-|   | 进阶      | 手写new |
-|   | Github    | 闭包 |
+|   | 闭包√ | JS_基础_用setTimeout来实现setInterval |
+|   | 基础  | JS_基础_闭包 |
+|   |       | JS_基础_正则表达式 |
+|   |       | JS_基础_原型与原型链_手写new |
+|   |       | 模块化开发 |
+|   |       | 函数式编程 |
+|   |       | 渐进式网络应用 |
+|   |       | 垃圾回收 |
 
 ## 异步
 
 | 完成情况 | 说明 | 知识点 |
 | - | - | - |
-|   | 进阶 | requestAnimationFrame |
-|   |      | Web Worker 在 Event Loop 中 |
+|   |     | JS_异步_EventLoop_requestAnimationFrame |
+|   |     | JS_异步_Promise_Promise源码+大厂题 |

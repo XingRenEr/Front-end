@@ -21,7 +21,7 @@
 | &emsp;[5.1 题目一](#five-one) |
 | &emsp;[5.2 题目二](#five-two) |
 | &emsp;[5.3 题目三](#five-three) |
-| &emsp;[5.4 题目四](#five-four) |
+| &emsp;[5.4 题目四*](#five-four) |
 | &emsp;[5.5 题目五](#five-five) |
 | &emsp;[5.6 题目六](#five-six) |
 | [六 题库：结合 setTimeout](#six) |
@@ -30,7 +30,7 @@
 | &emsp;[6.3 题目三](#six-three) |
 | &emsp;[6.4 题目四](#six-four) |
 | &emsp;[6.5 题目五](#six-five) |
-| &emsp;[6.6 题目六](#six-six) |
+| &emsp;[6.6 题目六*](#six-six) |
 | &emsp;[6.7 题目七](#six-seven) |
 | [七 .then() 链式操作](#seven) |
 | &emsp;[7.1 两个参数](#seven-one) |
@@ -38,17 +38,17 @@
 | [八 .catch() 捕获问题](#eight) |
 | [九 .finally() 强制执行](#night) |
 | [十 题库：.then()、.catch()、.finally()](#ten) |
-| &emsp;[10.1 题目一](#ten-one) |
+| &emsp;[10.1 题目一*](#ten-one) |
 | &emsp;[10.2 题目二](#ten-two) |
 | &emsp;[10.3 题目三](#ten-three) |
 | &emsp;[10.4 题目四](#ten-four) |
-| &emsp;[10.5 题目五](#ten-five) |
-| &emsp;[10.6 题目六](#ten-six) |
-| &emsp;[10.7 题目七](#ten-seven) |
+| &emsp;[10.5 题目五*](#ten-five) |
+| &emsp;[10.6 题目六*](#ten-six) |
+| &emsp;[10.7 题目七*](#ten-seven) |
 | &emsp;[10.8 题目八](#ten-eight) |
 | &emsp;[10.9 题目九](#ten-night) |
 | &emsp;[10.10 题目十](#ten-ten) |
-| &emsp;[10.11 题目十一](#ten-eleven) |
+| &emsp;[10.11 题目十一*](#ten-eleven) |
 | &emsp;[10.12 题目十二](#ten-twelve) |
 | &emsp;[10.13 题目十三](#ten-thirteen) |
 | &emsp;[10.14 题目十四](#ten-fourteen) |
@@ -56,7 +56,7 @@
 | [十二 .race() 个人赛](#twelve) |
 | [十三 题库：.all()、.race()](#thirteen) |
 | &emsp;[13.1 题目一](#thirteen-one) |
-| &emsp;[13.2 题目二](#thirteen-two) |
+| &emsp;[13.2 题目二*](#thirteen-two) |
 | &emsp;[13.3 题目三](#thirteen-three) |
 | &emsp;[13.4 题目四](#thirteen-four) |
 | [十四 Promise 源码](#fourteen) |
@@ -94,8 +94,8 @@
 
 前置知识点：
 
-* [JavaScript 异步](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%BC%82%E6%AD%A5%E7%B3%BB%E5%88%97/README.md)
-* [Event Loop](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E5%BC%82%E6%AD%A5%E7%B3%BB%E5%88%97/Event%20Loop.md)
+* [JavaScript 异步](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%BC%82%E6%AD%A5/README.md)  
+* [Event Loop](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%BC%82%E6%AD%A5/Event%20Loop.md)
 
 如不太了解这些知识点，请先点击前往观看，避免走火入魔。
 
@@ -241,7 +241,7 @@ doSomething1();
     请求3(function(请求结果3){
       请求4(function(请求结果4){
         请求5(function(请求结果5){
-          请求6(function(请求结果3){
+          请求6(function(请求结果6){
             ...
           })
         })
@@ -463,7 +463,8 @@ OK，看到这里你对 `Promise` 基础有一定了解了，咱们上题吧！
 
 1. 一开始整个脚本 `script` 作为一个宏任务执行
 2. 执行过程中，**同步代码** 直接执行，**宏任务** 进入宏任务队列，**微任务** 进入微任务队列。
-3. 当前宏任务执行完出队，检查微任务列表，有则依次执行，直到全部执行完毕。
+3. 当前宏任务执行完出队，检查微任务列表，有则依次执行，直到全部执行完毕。  
+(如：在script宏任务中，先执行其中的微任务，再执行其中的宏任务)
 4. 执行浏览器 UI 线程的渲染工作。
 5. 检查是否有 `Web Worker` 任务，有则执行。
 6. 执行完本轮的宏任务，回到步骤 2，依次循环，直到宏任务和微任务队列为空。
@@ -511,10 +512,10 @@ promise.then((res) => {
 1. 先走 `script`。
 2. 碰到 `promise = new Promise`，直接走里面。
 3. 打印出 1。
-4. 碰到 `resolve()`，将 `Promise` 状态改为 `resolved`，将 `Promise.then()` 丢进 `script` 这个宏任务下的微任务队列中。
-5. 此时 `script` 宏任务下的微任务队列有：`promise.then()`。
-6. 碰到 `setTimeout()`，将其丢进宏任务队列中。
-7. 此时宏任务队列有：`script`、`setTimeout`。
+4. 碰到 `resolve()`，将 `Promise` 状态改为 `resolved`，将 `Promise.then()` 丢进 `script` 这个宏任务下的微任务队列中。  
+此时 `script` 宏任务下的微任务队列有：`promise.then()`。
+6. 碰到 `setTimeout()`，将其丢进宏任务队列中。  
+此时宏任务队列有：`script`、`setTimeout`。
 8. 同步任务执行完毕。
 9. 检查当前宏任务 `script` 下的微任务，并循环出队。
 10. 输出 `2`。
@@ -631,18 +632,45 @@ console.log('2', promise2);
 /**
   输出顺序及分析：
   输出：
-    * promise1
-    * 1 Promise { <resolve>: 'resolve1' }
-    * 2 Promise { <pending> }
-    * resolve1
+    promise1
+    1 Promise {<fulfilled>: "resolve1"}
+    2 Promise {<pending>}
+    resolve1
   分析：
     1. 碰到 new Promise，输出 promise1
     2. 碰到 resolve，改变 Promise 状态，并保存结果
     3. 碰到 promise1.then，放进微任务队列
     4. promise2 是一个新的状态为 pending 的 Promise
     5. 输出 1 和 promise1，当前 promise1 的状态为 resolve，并且存在 'resolve1'
-    6. 输出 2 和 promise2，当前 promise2 的状态为 peding
+    6. 输出 2 和 promise2，当前 promise2 的状态为 pending
     7. 宏任务走完，执行微任务，输出 resolve1
+*/
+```
+
+变体：
+```js
+const promise1 = new Promise((resolve, reject) => {
+  console.log('promise1');
+  resolve('resolve1');
+})
+
+const promise2 = promise1.then((res) => {
+  console.log(res);
+});
+
+console.log('1', promise1);
+setTimeout(console.log, 0, '2', promise2);
+
+/**
+  输出顺序及分析：
+  输出：
+    promise1
+    1 Promise {<fulfilled>: "resolve1"}
+    resolve1
+    2 Promise {<fulfilled>: undefined}
+  分析：
+    输出 2 和 promise2，当前 promise2 的状态为 resolved，并且存在 'undefined'
+    红宝书 P330 如果没有显式的返回语句，则 Promise.resolve() 会包装默认的返回值 undefined
 */
 ```
 
@@ -669,7 +697,7 @@ console.log('start');
     * 'start'
     * 'success'
   解析：
-    1. fn 是一个立即执行函数，所以会先执行 new Promise，所以输出 1
+    1. 调用 fn ，所以会先执行 new Promise，所以输出 1
     2. 碰到 resolve，将 Promise 状态改变
     3. 碰到 .then()，因为前面改变了状态，所以会将其放进微任务
     4. 输出 'start'
@@ -681,6 +709,8 @@ console.log('start');
 
 > [返回目录](#one)
 
+~上一道题是立即执行函数~，这道题不是  
+和上一道题有区别嘛???  
 ```js
 const fn = () => {
   return new Promise((resolve, reject) => {
@@ -702,8 +732,7 @@ fn().then((res) => {
     * 1
     * 'success'
   解析：
-    上一道题是立即执行函数，这道题不是
-    所以会在 fn() 调用的时候，才会执行 new Promise
+    调用 fn() ，执行 new Promise
 */
 ```
 
@@ -804,8 +833,6 @@ setTimeout(() => {
 所以这里输出的顺序是：`1 -> 3 -> 2`。
 
 > 你不需要理解 **优先队列** 是啥，你想着尊老爱幼，`timer` 越小越在前面即可。
-
-OK，关于 `setTimeout` 相关知识点 **jsliang** 介绍完毕，咱们看题！
 
 ### <a id="six-one"></a>6.1 题目一
 
@@ -1232,7 +1259,7 @@ red().then((res1) => {
 
 接着，我们将 `green()` 执行了，并将它的返回 `return` 给了下一个 `.then()`。
 
-所以，我们会在 2s 后输出 `绿 -> 绿灯走完了`。
+所以，我们会在 2s 后输出 `绿 -> res2： 绿灯走完了`。
 
 这就是 `.then()` 的门门道道。
 
@@ -1343,6 +1370,38 @@ promise.then((res) => {
 
 > [返回目录](#one)
 
+**`then()/catch()` 返回值** (红宝书 P330)  
+1. 有显式的 `return` 语句。后台调用 `Promise.resolve()` 包装作为返回值。  
+- 若 `return` 值为非 `Promise` 对象。返回值状态为 `resolved`。  
+> `Error` 对象对应的返回值状态为 `resolved`。  
+- 若 `return` 值为 `Promise` 对象 `promise`。返回值状态可能为 `resolved/rejected/pending`。  
+> `Promise.resolve(promise) = promise`  
+> 返回状态为 `rejected` 的 `Promise` 对象看作**抛出异常**。  
+2. 无显式的 `return` 语句，但是有显式**抛出异常**。返回值状态为 `rejected`。
+3. 无显式的 `return` 语句。返回值状态为 `resolved`，值为 `undefined`。
+4. 无处理程序。返回值为父 `Promise` 对象。  
+5. 返回值不能是 `promise.then()` 的 `promise`。否则会进入死循环。
+
+**`finally()` 返回值**  
+1. 有显式的 `return` 语句。  
+- 若 `return` 值为非 `Promise` 对象。返回值为父 `Promise` 对象。  
+- 若 `return` 值为 `Promise` 对象 `promise`。  
+ - `promise` 状态为 `resolved`。返回值为父 `Promise` 对象。  
+ - `promise` 状态为 `rejected`。返回值为相应的 `Promise` 对象。
+ - `promise` 状态为 `pending`。返回值为相应的 `Promise` 对象。
+ > 返回值状态为 `pending` 是暂时的，`promise` 状态变为 `resolved`，则返回值改变。返回值为父 `Promise` 对象。  
+2. 无显式的 `return` 语句，但是有显式**抛出异常**。返回值为相应的 `Promise` 对象。
+3. 无显式的 `return` 语句。返回值为父 `Promise` 对象。  
+4. 无处理程序。返回值为父 `Promise` 对象。  
+
+**归纳：状态为 `rejected` 的 `Promise` 对象的产生**
+1. `executor` 中抛出错误
+- 显示抛出。`throw Error('foo')` 或 `throw 'foo'`
+- `reject()`
+2. 处理程序 (`onResolved/onRejected/onFinally`) 中抛出错误
+- 显示抛出。
+- `return Promise.reject()`
+
 ### <a id="ten-one"></a>10.1 题目一
 
 > [返回目录](#one)
@@ -1402,7 +1461,7 @@ promise.then((res) => {
   分析：
     1. 碰到 new Promise()，将 reject('error') 执行，改变 Promise 的状态
     2. 碰到 .catch()，将其推进微任务
-    3. 执行 .catch() 里面内容，输出 'catch: error'，然后 return Promise {<pending>}
+    3. 执行 .catch() 里面内容，输出 'catch: error'，然后 return Promise {<fulfilled>: undefined}
     4. 执行下一个微任务 .then()，输出 then3: undefined
 */
 ```
@@ -1506,6 +1565,12 @@ promise.then((res) => {
     9. 输出 success 4
     10. 如果执行比较慢，那么这两个输出的值会不一致。例如 3、4
 */
+/* 
+  实际执行结果：Chrome
+    timer
+    success 2
+    success 2
+ */
 ```
 
 ### <a id="ten-six"></a>10.6 题目六
@@ -1680,17 +1745,39 @@ Promise
 /**
   执行顺序和分析：
   顺序：
-    * 'finally1'
-    * 捕获错误:  Error: 我是 finally1 中抛出的异常
+    finally1
+    finally 后面的 then 函数:  1
+  分析：
+    1. 碰到 resolve('1')，将 Promise 的状态改为 resolve
+    2. 碰到 .finally()，丢进微任务，后面 .then() 和 .catch() 需要等 .finally() 执行完毕
+    3. 执行 .finally()，输出 'finally1'，然后 return 非 Promise 对象，父 Promise 对象穿透，它会走 .then()
+    4. 输出：finally 后面的 then 函数: 1
+*/
+```
+
+变体1：
+```js
+Promise
+.resolve('1')
+.finally(() => {
+  console.log('finally1');
+  throw new Error('我是 finally1 中抛出的异常');
+}).then((res) => {
+  console.log('finally 后面的 then 函数: ', res);
+}).catch((err) => {
+  console.log('捕获错误: ', err);
+})
+
+/**
+  执行顺序和分析：
+  顺序：
+    'finally1'
+    捕获错误:  Error: 我是 finally1 中抛出的异常
   分析：
     1. 碰到 resolve('1')，将 Promise 的状态改为 resolve
     2. 碰到 .finally()，丢进微任务，后面 .then() 和 .catch() 需要等 .finally() 执行完毕
     3. 执行 .finally()，输出 'finally1'，然后执行 throw new Error，这里会将这种情况交由到 .catch()
     4. 输出 捕获错误:  Error: 我是 finally1 中抛出的异常
-  补充：
-    这里如果是 return throw new Error('') 会发生什么情况呢？
-    它会走 .then()，因为它是 return 的形式，从而输出：finally 后面的 then 函数: 1
-    注意这里的 return new Error('') 并没有返回函数，所以 1 穿透了
 */
 ```
 
@@ -1824,36 +1911,70 @@ const p = Promise.all([p1, p2, p3]);
 const one = new Promise((resolve) => {
   setTimeout(() => {
     console.log('one');
-    resolve('one');
+    resolve('one resolve');
   }, 1000);
 }) 
 const two = new Promise((resolve) => {
   setTimeout(() => {
     console.log('two');
-    resolve('two');
+    resolve('two resolve');
   }, 3000);
 }) 
 const three = new Promise((resolve) => {
   setTimeout(() => {
     console.log('three');
-    resolve('three');
+    resolve('three resolve');
   }, 2000);
 }) 
 
+Promise.all([one, two, three]).then((res) => {
+  console.log(res);
+}, (err) => {
+  console.log(err);
+});
+
 /*
- 先输出：
  * one
  * three
  * two
- 
- 再输出 res：[ 'one', 'two', 'three' ]
-*/
-Promise.all([one, two, three]).then((res) => {
-  console.log(res); // [ 'one', 'two', 'three' ]
-});
+ * ["one resolve", "two resolve", "three resolve"]
+ */
 ```
 
 这是所有状态都成功的，如果这 3 个中有 1 个是失败的呢？请自行尝试。
+```js
+const one = new Promise((resolve) => {
+  setTimeout(() => {
+    console.log('one');
+    resolve('one');
+  }, 1000);
+}) 
+const two = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    console.log('two');
+    reject('two reject');
+  }, 3000);
+}) 
+const three = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    console.log('three');
+    reject('three reject');
+  }, 2000);
+}) 
+
+Promise.all([one, two, three]).then((res) => {
+  console.log(res);
+}, (err) => {
+  console.log(err);
+});
+
+/* 
+ * one
+ * three
+ * three reject
+ * two 
+ */
+```
 
 ## <a id="twelve"></a>十二 .race() 个人赛
 
@@ -1885,16 +2006,51 @@ const three = new Promise((resolve) => {
   }, 2000);
 }) 
 
-/*
- 先输出 one
- 再输出：one resolve
- 最后依序输出：
- * three
- * two
-*/
 Promise.race([one, two, three]).then((res) => {
-  console.log(res); // 'one'
+  console.log(res);
 });
+
+/* 
+ * one
+ * one resolve
+ * three
+ * two 
+ */
+```
+
+这是最快的那个状态是成功的，如果最快的那个状态是失败的呢？请自行尝试。  
+```js
+const one = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    console.log('one');
+    reject('one reject');
+  }, 1000);
+})
+const two = new Promise((resolve) => {
+  setTimeout(() => {
+    console.log('two');
+    resolve('two resolve');
+  }, 3000);
+})
+const three = new Promise((resolve) => {
+  setTimeout(() => {
+    console.log('three');
+    resolve('three resolve');
+  }, 2000);
+})
+
+Promise.race([one, two, three]).then((res) => {
+  console.log(res);
+}, (err) => {
+  console.log(err);
+});
+
+/* 
+ * one
+ * one reject
+ * three
+ * two 
+ */
 ```
 
 ## <a id="thirteen"></a>十三 题库：.all()、.race()
@@ -1909,7 +2065,9 @@ Promise.race([one, two, three]).then((res) => {
 小总结：
 
 1. `Promise.all().then()` 结果中的数组的顺序和 `Promise.all()` 接收到的数组的顺序一致，并不会因为 `setTimeout` 的输出而改变。
-2. `Promise.all()` 和 `Promise.then()` 碰到会抛出异常的情况，都只会抛出最先出现问题的那个，被 `.then()` 的第二个参数或者 `.catch()` 捕获，但是不会影响数组中其他的异步任务的执行。
+2. 抛出的异常被 `.then()` 的第二个参数或者 `.catch()` 捕获，不会影响数组中其他的异步任务的执行。
+- `Promise.all()` 只会抛出最先出现问题的那个，
+- 出现问题的那个若不是最快的异步任务，`Promise.race()` 不会抛出异常。
 
 ### <a id="thirteen-one"></a>13.1 题目一
 
@@ -1994,6 +2152,23 @@ Promise.all([
 */
 ```
 
+解释一下代码中的前两个 `return`，与下面这种 `if else` 的形式是等价的
+```js
+const p = new Promise((resolved, reject) => {
+  if (x % 2 === 0) {
+    setTimeout(() => {
+      console.log(x);
+      resolved(x);
+    }, 2000);
+  } else {
+    setTimeout(() => {
+      console.log(x);
+      resolved(x);
+    }, 1000);
+  }
+});
+```
+
 ### <a id="thirteen-two"></a>13.2 题目二
 
 > [返回目录](#one)
@@ -2052,6 +2227,19 @@ Promise.all([
     6. 所以，先执行 3 的时候，会依次输出 3 -> err: 3
     7. 后面的 2 和 4 的异常不再抛出，依次输出 1 -> 2 -> 4
 */
+```
+
+注：以下两段代码是等价的
+```js
+setTimeout(() => {
+  rej(x, console.log(x));
+}, 500);
+```
+```js
+setTimeout(() => {
+  rej(x);
+  console.log(x);
+}, 500);
 ```
 
 ### <a id="thirteen-three"></a>13.3 题目三
@@ -2170,7 +2358,7 @@ Promise.race([
 
 > [返回目录](#one)
 
-* [手写源码系列：Promise](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/Promise.md)
+* [x] [手写源码系列：Promise](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/Promise.md)
 
 ## <a id="fifteen"></a>十五 题库：结合 async/await
 
