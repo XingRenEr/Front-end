@@ -66,12 +66,11 @@
 | &emsp;[15.3 题目三](#fifteen-three) |
 | &emsp;[15.4 题目四](#fifteen-four) |
 | &emsp;[15.5 题目五](#fifteen-five) |
-| &emsp;[15.6 题目六](#fifteen-six) |
+| &emsp;[15.6 题目六*](#fifteen-six) |
 | &emsp;[15.7 题目七](#fifteen-seven) |
 | &emsp;[15.8 题目八](#fifteen-eight) |
-| &emsp;[15.9 题目九](#fifteen-night) |
+| &emsp;[15.9 题目九*](#fifteen-nine) |
 | &emsp;[15.10 题目十](#fifteen-ten) |
-| &emsp;[15.11 题目十一](#fifteen-eleven) |
 | [十六 综合题](#sixteen) |
 | &emsp;[16.1 题目一](#sixteen-one) |
 | &emsp;[16.2 题目二](#sixteen-two) |
@@ -472,7 +471,7 @@ OK，看到这里你对 `Promise` 基础有一定了解了，咱们上题吧！
 **微任务** 包括：
 
 * `MutationObserver`
-* `Promise.then()/catch()`
+* `promise.then()/catch()`
 * 以 `Promise` 为基础开发的其他技术，例如 `fetch API`
 * V8 的垃圾回收过程
 * Node 独有的 `process.nextTick`
@@ -512,7 +511,7 @@ promise.then((res) => {
 1. 先走 `script`。
 2. 碰到 `promise = new Promise`，直接走里面。
 3. 打印出 1。
-4. 碰到 `resolve()`，将 `Promise` 状态改为 `resolved`，将 `Promise.then()` 丢进 `script` 这个宏任务下的微任务队列中。  
+4. 碰到 `resolve()`，将 `Promise` 状态改为 `resolved`，将 `promise.then()` 丢进 `script` 这个宏任务下的微任务队列中。  
 此时 `script` 宏任务下的微任务队列有：`promise.then()`。
 6. 碰到 `setTimeout()`，将其丢进宏任务队列中。  
 此时宏任务队列有：`script`、`setTimeout`。
@@ -914,7 +913,7 @@ console.log(4);
     9. 输出 'timerStart'
     10. Promise 碰到 resolve，改变状态，表明 .then() 可以放进微任务了
     11. 输出 'timerEnd'
-    12. 执行宏任务 setTimeout 下的微任务，即 Promise.then()
+    12. 执行宏任务 setTimeout 下的微任务，即 promise.then()
     13. 输出 'success'
 */
 ```
@@ -1000,7 +999,7 @@ console.log('start');
     7. 查看微任务，并没有微任务，所以执行下一个宏任务
     8. 查看宏任务队列，有 2 个，分别是输出 time1 和 timer2 的
     9. 先将第一个 setTimeout 出队列，输出 'timer1'
-    10. 碰到 Promise.then()，将它丢进此时的微任务队列
+    10. 碰到 promise.then()，将它丢进此时的微任务队列
     11. 步骤 10 存放了第一个 setTimeout 的一个微任务，执行并输出 'promise'
     12. 第二个 setTimeout 出队列，输出 'timer2'
     13. 此时它也没用微任务，所以本次宏任务再次执行完毕
@@ -1040,15 +1039,15 @@ console.log('start');
   分析：
     1. 记住 script 和 setTimeout 是宏任务
     2. 首先执行 script 这个宏任务
-    3. 碰到 Promise.then()，将其推进微任务队列，注意不会执行里面内容
+    3. 碰到 promise.then()，将其推进微任务队列，注意不会执行里面内容
     4. 碰到 timer1，将其推进宏任务队列
     5. 输出 'start'
-    6. 查看 script 中的宏任务队列，发现 Promise.then()，将其推出执行
+    6. 查看 script 中的宏任务队列，发现 promise.then()，将其推出执行
     7. 输出 'promise1'
     8. 碰到 timer2，将其推进宏任务队列
     9. script 没有剩余的微任务，所以继续遍历宏任务
     10. 发现队列 [timer1, timer2]，根据队列先进先出原则，推出 timer1
-    11. 输出 'timer1'，发现微任务 Promise.then()，将其推进 timer1 的微任务队列
+    11. 输出 'timer1'，发现微任务 promise.then()，将其推进 timer1 的微任务队列
     12. 输出 `promise2`
     13. 继续执行宏任务队列，出队 timer2，输出 'timer2'
 */
@@ -1200,7 +1199,7 @@ err： 1
 
 > [返回目录](#one)
 
-在 `Promise.then()` 方法中，`.then()` 是可以链式调用的。
+在 `promise.then()` 方法中，`.then()` 是可以链式调用的。
 
 ```js
 Promise.resolve(1).then((res1) => {
@@ -1398,6 +1397,7 @@ promise.then((res) => {
 1. `executor` 中抛出错误
 - 显示抛出。`throw Error('foo')` 或 `throw 'foo'`
 - `reject()`
+- `resolve(Promise.reject())` (应该不会有人这样用)
 2. 处理程序 (`onResolved/onRejected/onFinally`) 中抛出错误
 - 显示抛出。
 - `return Promise.reject()`
@@ -2366,8 +2366,11 @@ Promise.race([
 
 总结：
 
-1. 在 `function()` 里面碰到 `await` 直接走里面内容。
-2. 如果 `function()` 里的 `await` 后面还有其他代码，将其当做 `Promise.then()` 一样，视为微任务。
+`await` 后的代码直接执行。
+1. 若 `await` 后是状态为 `pending` 的 `Promise` 对象。`await` 会一直等待。
+2. 若不卡在 `await`。
+- 使用 `await` 的返回值。如 `console.log(await 3);`，当作 `resolve(3)` `.then((res) => {console.log(res);})`，视为微任务。
+- `await` 语句后面的其他代码，当做 `promise.then()` 一样，视为微任务。
 
 ### <a id="fifteen-one"></a>15.1 题目一
 
@@ -2573,9 +2576,6 @@ fn().then((res) => {
   执行顺序和分析：
   顺序：
     * 123
-  分析：
-    正常情况下， async 中的 await 命令是一个 Promise 对象，返回该对象的结果
-    但如果不是 Promise 对象的话，就会直接返回对应的值，相当于 Promise.resolve();
 */
 ```
 
@@ -2715,54 +2715,6 @@ console.log('script end');
     * 'async2'
     * 'promise1'
     * 'script end'
-    * 'promise2'
-    * 'async1 end'
-    * 'settimeout'
-  分析：
-    到了这里就不需要解释了，跟上面题目类似
-*/
-```
-
-### <a id="fifteen-night"></a>15.9 题目九
-
-> [返回目录](#one)
-
-```js
-async function async1() {
-  console.log('async1 start');
-  await async2();
-  console.log('async1 end');
-}
-
-async function async2() {
-  console.log('async2');
-}
-
-console.log('script start');
-
-setTimeout(() => {
-  console.log('settimeout');
-}, 0);
-
-async1();
-
-new Promise((resolve) => {
-  console.log('promise1');
-  resolve();
-}).then((res) => {
-  console.log('promise2');
-})
-
-console.log('script end');
-
-/**
-  执行顺序和分析：
-  顺序：
-    * 'script start'
-    * 'async1 start'
-    * 'async2'
-    * 'promise1'
-    * 'script end'
     * 'async1 end'
     * 'promise2'
     * 'settimeout'
@@ -2773,7 +2725,7 @@ console.log('script end');
 */
 ```
 
-### <a id="fifteen-ten"></a>15.10 题目十
+### <a id="fifteen-nine"></a>15.9 题目九
 
 > [返回目录](#one)
 
@@ -2832,7 +2784,7 @@ console.log('test end');
 */
 ```
 
-### <a id="fifteen-eleven"></a>15.11 题目十一
+### <a id="fifteen-ten"></a>15.10 题目十
 
 > [返回目录](#one)
 
@@ -2860,9 +2812,36 @@ async1().then((res) => {
   执行顺序和分析：
   顺序：
     * 'async2'
-    * Promise {<rejected>: "error"}
+    * Uncaught (in promise) error
   分析：
-    如果在 async 函数中抛出了错误，则终止错误结果，不会继续向下执行。throw new Error 也是如此。
+    如果在 async 函数中 await 抛出了错误，则终止错误结果，不会继续向下执行。throw new Error 也是如此。
+*/
+```
+
+变体：
+```js
+async function async1() {
+  await async2();
+  console.log('async1');
+  return 'async1 success';
+}
+
+async function async2() {
+  return new Promise((resolve, reject) => {
+    console.log('async2');
+    reject('error');
+  })
+}
+
+async1().catch((err) => {
+  console.log('err: ', err);
+})
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 'async2'
+    * err:  error
 */
 ```
 
