@@ -5,8 +5,8 @@
 | [一 字符串](#one) |
 | [二 线性结构](#two) |
 | &emsp;[2.1 数组](#two-one) |
-| &emsp;[2.2 栈](#two-two) |
-| &emsp;[2.3 链表](#two-three) |
+| &emsp;[2.2 链表](#two-two) |
+| &emsp;[2.3 栈](#two-three) |
 | &emsp;[2.4 队列](#two-four) |
 | [三 哈希表(散列表)](#three) |
 | [四 树形结构](#four) |
@@ -375,152 +375,7 @@ var missingNumber = function(nums) {
   }
 };
 ```
-
-## <a id="two-two"></a>2.2 栈  
-> [返回目录](#zero)  
-
-### (简单) 剑指 Offer 09. 用两个栈实现队列
-用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead 操作返回 -1 )
-
-示例 1：
-
-输入：  
-["CQueue","appendTail","deleteHead","deleteHead"]  
-[[],[3],[],[]]  
-输出：[null,null,3,-1]  
-示例 2：  
-
-输入：  
-["CQueue","deleteHead","appendTail","appendTail","deleteHead","deleteHead"]  
-[[],[],[5],[2],[],[]]  
-输出：[null,-1,null,null,5,2]  
-提示：  
-
-1 <= values <= 10000  
-最多会对 appendTail、deleteHead 进行 10000 次调用  
-
-```js
-// 方法一：
-var CQueue = function() {
-    this.stack1 = [];
-    this.stack2 = [];
-};
-
-/** 
- * @param {number} value
- * @return {void}
- */
-CQueue.prototype.appendTail = function(value) {
-    while(this.stack2.length !== 0) {
-        this.stack1.push(this.stack2.pop());
-    };
-    this.stack1.push(value);
-};
-
-/**
- * @return {number}
- */
-CQueue.prototype.deleteHead = function() {
-    while(this.stack1.length !== 0) {
-        this.stack2.push(this.stack1.pop());
-    };
-    return this.stack2.pop() || -1;
-};
-
-/**
- * Your CQueue object will be instantiated and called as such:
- * var obj = new CQueue()
- * obj.appendTail(value)
- * var param_2 = obj.deleteHead()
- */
-```
-
-### (简单) 剑指 Offer 30. 包含min函数的栈
-定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。
-
-示例:
-
-MinStack minStack = new MinStack();  
-minStack.push(-2);  
-minStack.push(0);  
-minStack.push(-3);  
-minStack.min();   --> 返回 -3.  
-minStack.pop();  
-minStack.top();      --> 返回 0.  
-minStack.min();   --> 返回 -2.  
- 
-提示：
-
-各函数的调用总次数不超过 20000 次
- 
-```js
-// 方法一：数组中存储对象
-var MinStack = function() {
-    this.stack = [];
-};
-
-MinStack.prototype.push = function(x) {
-    if(this.stack.length === 0) {
-        this.stack[0] = {
-            num: x,
-            min: x
-        };
-    } else {
-        this.stack[this.stack.length] = {
-            num: x,
-            min: Math.min(this.stack[this.stack.length - 1].min, x)
-        };
-    }
-};
-
-MinStack.prototype.pop = function() {
-    this.stack.length--;
-};
-
-MinStack.prototype.top = function() {
-    return this.stack[this.stack.length - 1].num;
-};
-
-MinStack.prototype.min = function() {
-    return this.stack[this.stack.length - 1].min;
-};
-```
-
-```js
-// 方法二：两个数组，不用每一步都存储当前最小值
-var MinStack = function() {
-    this.stack = [];
-    this.minStack = [];
-};
-
-MinStack.prototype.push = function(x) {
-    if(this.stack.length === 0) {
-        this.minStack[0] = x;
-    } else {
-        if (x <= this.minStack[this.minStack.length - 1]) {
-          this.minStack[this.minStack.length] = x
-        }
-    }
-    this.stack[this.stack.length] = x;
-};
-
-MinStack.prototype.pop = function() {
-    if (this.minStack[this.minStack.length - 1] === this.stack[this.stack.length - 1]) {
-        this.minStack.length--;
-    }
-    this.stack.length--;
-};
-
-MinStack.prototype.top = function() {
-    return this.stack[this.stack.length - 1];
-};
-
-MinStack.prototype.min = function() {
-    return this.minStack[this.minStack.length - 1];
-};
-```
-
-## <a id="two-three"></a>2.3 链表  
+## <a id="two-two"></a>2.2 链表  
 > [返回目录](#zero)  
 
 ### (简单) 剑指 Offer 22. 链表中倒数第k个节点
@@ -727,6 +582,151 @@ var deleteNode = function(head, val) {
     return head;
 };
 ```
+
+## <a id="two-three"></a>2.3 栈  
+> [返回目录](#zero)  
+
+### (简单) 剑指 Offer 09. 用两个栈实现队列
+用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead 操作返回 -1 )
+
+示例 1：
+
+输入：  
+["CQueue","appendTail","deleteHead","deleteHead"]  
+[[],[3],[],[]]  
+输出：[null,null,3,-1]  
+示例 2：  
+
+输入：  
+["CQueue","deleteHead","appendTail","appendTail","deleteHead","deleteHead"]  
+[[],[],[5],[2],[],[]]  
+输出：[null,-1,null,null,5,2]  
+提示：  
+
+1 <= values <= 10000  
+最多会对 appendTail、deleteHead 进行 10000 次调用  
+
+```js
+// 方法一：
+var CQueue = function() {
+    this.stack1 = [];
+    this.stack2 = [];
+};
+
+/** 
+ * @param {number} value
+ * @return {void}
+ */
+CQueue.prototype.appendTail = function(value) {
+    while(this.stack2.length !== 0) {
+        this.stack1.push(this.stack2.pop());
+    };
+    this.stack1.push(value);
+};
+
+/**
+ * @return {number}
+ */
+CQueue.prototype.deleteHead = function() {
+    while(this.stack1.length !== 0) {
+        this.stack2.push(this.stack1.pop());
+    };
+    return this.stack2.pop() || -1;
+};
+
+/**
+ * Your CQueue object will be instantiated and called as such:
+ * var obj = new CQueue()
+ * obj.appendTail(value)
+ * var param_2 = obj.deleteHead()
+ */
+```
+
+### (简单) 剑指 Offer 30. 包含min函数的栈
+定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。
+
+示例:
+
+MinStack minStack = new MinStack();  
+minStack.push(-2);  
+minStack.push(0);  
+minStack.push(-3);  
+minStack.min();   --> 返回 -3.  
+minStack.pop();  
+minStack.top();      --> 返回 0.  
+minStack.min();   --> 返回 -2.  
+ 
+提示：
+
+各函数的调用总次数不超过 20000 次
+ 
+```js
+// 方法一：数组中存储对象
+var MinStack = function() {
+    this.stack = [];
+};
+
+MinStack.prototype.push = function(x) {
+    if(this.stack.length === 0) {
+        this.stack[0] = {
+            num: x,
+            min: x
+        };
+    } else {
+        this.stack[this.stack.length] = {
+            num: x,
+            min: Math.min(this.stack[this.stack.length - 1].min, x)
+        };
+    }
+};
+
+MinStack.prototype.pop = function() {
+    this.stack.length--;
+};
+
+MinStack.prototype.top = function() {
+    return this.stack[this.stack.length - 1].num;
+};
+
+MinStack.prototype.min = function() {
+    return this.stack[this.stack.length - 1].min;
+};
+```
+
+```js
+// 方法二：两个数组，不用每一步都存储当前最小值
+var MinStack = function() {
+    this.stack = [];
+    this.minStack = [];
+};
+
+MinStack.prototype.push = function(x) {
+    if(this.stack.length === 0) {
+        this.minStack[0] = x;
+    } else {
+        if (x <= this.minStack[this.minStack.length - 1]) {
+          this.minStack[this.minStack.length] = x
+        }
+    }
+    this.stack[this.stack.length] = x;
+};
+
+MinStack.prototype.pop = function() {
+    if (this.minStack[this.minStack.length - 1] === this.stack[this.stack.length - 1]) {
+        this.minStack.length--;
+    }
+    this.stack.length--;
+};
+
+MinStack.prototype.top = function() {
+    return this.stack[this.stack.length - 1];
+};
+
+MinStack.prototype.min = function() {
+    return this.minStack[this.minStack.length - 1];
+};
+```
+
 
 ## <a id="two-four"></a>2.4 队列
 > [返回目录](#zero)  
