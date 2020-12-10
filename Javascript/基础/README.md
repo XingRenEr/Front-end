@@ -298,7 +298,8 @@ const say = () => {
 setTimeout(say, 200);
 ```
 
-清除这个定时器：
+清除这个定时器：  
+> (红宝书P368) 在指定时间到达之前调用 `clearTimeout()`，可取消超时任务。在任务执行后再调用，没有效果。
 
 ```js
 let i = 0;
@@ -319,9 +320,6 @@ setTimeout(() => {
   }
 }, 1000);
 ```
-
-* [x] [用setTimeout来实现setInterval](https://blog.csdn.net/m0_37686205/article/details/93112518)  
-
 
 ## <a id="seven"></a>七 BOM
 ### <a id="seven-one"></a>7.1 位置
