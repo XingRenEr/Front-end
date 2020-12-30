@@ -1,36 +1,62 @@
 手写源码系列
 ===
 
-> Create by **jsliang** on **2020-09-21 15:06:41**  
-> Recently revised in **2020-11-14 17:49:11**
-
 <!-- 目录开始 -->
-## <a name="chapter-one" id="chapter-one"></a>一 目录
-
-**不折腾的前端，和咸鱼有什么区别**
+## <a id="one"></a>一 目录
 
 | 目录 |
 | --- |
-| [一 目录](#chapter-one) |
-| <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 jsliang 整理](#chapter-two) |
-| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 参考文献](#chapter-three) |
-| &emsp;[3.1 手写系列文章](#chapter-three-one) |
-| &emsp;[3.2 手写 call/bind/apply](#chapter-three-two) |
-| &emsp;[3.3 手写深拷贝和浅拷贝](#chapter-three-three) |
-| &emsp;[3.4 手写 Promise](#chapter-three-four) |
+| [二 文章导航](#two) |
+| [三 参考文献](#three) |
+| &emsp;[3.1 手写系列文章](#three-one) |
+| &emsp;[3.2 手写 call/bind/apply](#three-two) |
+| &emsp;[3.3 手写深拷贝和浅拷贝](#three-three) |
+| &emsp;[3.4 手写 Promise](#three-four) |
 <!-- 目录结束 -->
 
-## <a name="chapter-two" id="chapter-two"></a>二 jsliang 整理
+## <a id="two"></a>二 文章导航
+> [返回目录](#one)
 
-> [返回目录](#chapter-one)
+* [x] 集合引用类型
+  * [x] ★ 数组去重
+  * [x] ★ 数组扁平化
+  * [x] 数组最值
+  * [x] 数组乱序-洗牌算法
+  * [x] 数组 API 实现：filter、map、forEach、reduce
+  * [x] ★ 对象扁平化
+* [x] 迭代器与生成器
+  * [x] 迭代器
+* [x] 对象、类与面向对象编程
+  * [x] ★ [手写new](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/new.md)
+  * [x] ★ ES5继承
+  * [x] ★ 实现instanceof
+  * [x] Object.create()
+* [x] 函数
+  * [x] ★ [call、apply、bind](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/Promise.md)
+  * [x] ★ 函数柯里化
+* [x] Promise与异步函数
+  * [x] ★ [Promise](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/Promise.md)
+  * [x] 异步串行|异步并行
+  * [x] 异步并发数限制
+* [x] 事件
+  * [x] [自定义事件]()
+* [x] 动画与Canvas图形
+  * [x] ★ [防抖、节流](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81.md)
+* [x] JSON
+  * [x] JSON.parse()、JSON.stringify()
+* [x] 网络请求与远程资源
+  * [x] Ajax
+  * [x] ★ [JSONP](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/JSONP.md)
+* [x] 其他
+  * [x] ★ [浅拷贝和深拷贝](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D.md)
+  * [x] ★ 发布订阅模式(EventHub/EventEmitter): Node 回调函数、Vue event bus
+  * [x] 图片懒加载
+  * [x] 滚动加载
+  * [x] 大数据渲染（渲染几万条数据不卡页面）
 
-本系列有 7 篇文章，19 个手写方法，大纲 32 个知识点。
+## <a id=""></a>二 文章导航（旧的）
 
-手写系列存放位置：
-
-* [x] [手写系列](https://github.com/LiangJunrong/document-library/tree/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97)
-
-各个手写具体实现：
+> [返回目录](#one)
 
 * [x] [Promise](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97/Promise.md)
   * [x] **简写版 `Promise`（不支持异步）**
@@ -74,15 +100,15 @@
   * [x] **数组去重**：手撕、`Set`、`filter()`
   * [x] **其他**
 
-## <a name="chapter-three" id="chapter-three"></a>三 参考文献
+## <a id="three"></a>三 参考文献
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 本系列有 46 篇参考文献。
 
-### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 手写系列文章
+### <a id="three-one"></a>3.1 手写系列文章
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * [x] [前端面试常见的手写功能](https://juejin.im/post/6873513007037546510)【阅读建议：30min】
 * [x] [32个手写JS，巩固你的JS基础（面试高频）](https://juejin.im/post/6875152247714480136)【阅读建议：30min】
@@ -104,9 +130,9 @@
 * [x] [如何在 JavaScript 中更好地使用数组](https://juejin.im/post/6844903671646715911)【阅读建议：10min】
 * [x] [7种方法实现数组去重](https://juejin.im/post/6844903602197102605)【阅读建议：20min】
 
-### <a name="chapter-three-two" id="chapter-three-two"></a>3.2 手写 call/bind/apply
+### <a id="three-two"></a>3.2 手写 call/bind/apply
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * [x] [MDN - Arguments](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/arguments)【阅读建议：5min】
 * [x] [MDN - call](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call)【阅读建议：5min】
@@ -119,9 +145,9 @@
 * [x] [JavaScript基础心法—— call apply bind](https://github.com/axuebin/articles/issues/7)【阅读建议：20min】
 * [x] [回味JS基础:call apply 与 bind](https://juejin.im/post/57dc97f35bbb50005e5b39bd)【阅读建议：10min】
 
-### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 手写深拷贝和浅拷贝
+### <a id="three-three"></a>3.3 手写深拷贝和浅拷贝
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * [x] [如何写出一个惊艳面试官的深拷贝?](https://juejin.im/post/6844903929705136141)【阅读建议：2h】
 * [x] [深拷贝的终极探索（90%的人都不知道）](https://juejin.im/post/5bc1ae9be51d450e8b140b0c)【阅读建议：1h】
@@ -133,9 +159,9 @@
 * [x] [面试题之如何实现一个深拷贝](https://github.com/yygmind/blog/issues/29)【阅读建议：30min】
 * [x] [面试官:请你实现一个深克隆](https://juejin.im/post/6844903584023183368)【阅读建议：10min】
 
-### <a name="chapter-three-four" id="chapter-three-four"></a>3.4 手写 Promise
+### <a id="three-four"></a>3.4 手写 Promise
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * [x] [100 行代码实现 Promises/A+ 规范](https://mp.weixin.qq.com/s/qdJ0Xd8zTgtetFdlJL3P1g)【阅读建议：30min】
 * [x] [最简实现 Promise，支持异步链式调用（20行）](https://juejin.im/post/5e6f4579f265da576429a907)【建议阅读：20min】
@@ -145,7 +171,3 @@
 * [x] [剖析Promise内部结构，一步一步实现一个完整的、能通过所有Test case的Promise类](https://github.com/xieranmaya/blog/issues/3)【建议阅读：写得比较细，没前面剖析的清晰】
 * [x] [小邵教你玩转promise源码](https://juejin.im/post/6844903655418626061)【建议阅读：写得比较细，没前面剖析的清晰】
 * [x] [Promise不会？？看这里！！！史上最通俗易懂的Promise！！！](https://juejin.im/post/6844903607968481287)【建议阅读：写得比较细，没前面剖析的清晰】
-
----
-
-> jsliang 的文档库由 [梁峻荣](https://github.com/LiangJunrong) 采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/) 进行许可。<br/>基于 [https://github.com/LiangJunrong/document-library](https://github.com/LiangJunrong/document-library) 上的作品创作。<br/>本许可协议授权之外的使用权限可以从 [https://creativecommons.org/licenses/by-nc-sa/2.5/cn/](https://creativecommons.org/licenses/by-nc-sa/2.5/cn/) 处获得。
