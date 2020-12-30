@@ -18,93 +18,89 @@
 > [返回目录](#one)
 
 * [x] 集合引用类型
-  * [x] ★ 数组去重
-  * [x] ★ 数组扁平化
+  * [x] ★ [数组去重](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#eleven)
+  * [x] ★ [数组扁平化](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#night)
   * [x] 数组最值
   * [x] 数组乱序-洗牌算法
   * [x] 数组 API 实现：filter、map、forEach、reduce
-  * [x] ★ 对象扁平化
+  * [x] ★ [对象扁平化](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#ten)
 * [x] 迭代器与生成器
-  * [x] 迭代器
+  * [x] [迭代器](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#seven)
 * [x] 对象、类与面向对象编程
-  * [x] ★ [手写new](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/new.md)
-  * [x] ★ ES5继承
-  * [x] ★ 实现instanceof
-  * [x] Object.create()
+  * [x] ★★ [手写new](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/new.md)
+    * [x] **3 行代码手写 `new`**
+    * [x] **手写 `new` 的 5 个特点**
+    * [x] **完整版手写 `new`**
+  * [x] ★ [ES5继承](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#four)
+  * [x] ★ [实现instanceof](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#five)
+  * [x] [Object.create()](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#three)
 * [x] 函数
-  * [x] ★ [call、apply、bind](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/Promise.md)
-  * [x] ★ 函数柯里化
+  * [x] ★★ [call、apply、bind](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/Promise.md)
+    * [x] **原生 `call` 和手写 `call`**
+    * [x] **原生 `bind` 和手写 `bind`**
+    * [x] **原生 `apply` 和手写 `apply`**
+  * [x] ★ [函数柯里化](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#six)
 * [x] Promise与异步函数
-  * [x] ★ [Promise](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/Promise.md)
+  * [x] ★★ [Promise](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/Promise.md)
+    * [x] **简写版 `Promise`（不支持异步）**
+    * [x] **手写 `Promise`（`resolve`、`reject`、`then`）**
+    * [x] **实现 `Promise.all()`**
+    * [x] **实现 `Promise.race()`**
+    * [x] **实现 `Promise` 异步调度器**
   * [x] 异步串行|异步并行
   * [x] 异步并发数限制
 * [x] 事件
-  * [x] [自定义事件]()
+  * [x] [自定义事件](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#two)
 * [x] 动画与Canvas图形
-  * [x] ★ [防抖、节流](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81.md)
+  * [x] ★★ [防抖、节流](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81.md)
+    * [x] **防抖**
+    * [x] **节流**
+    * [x] **防抖 + 节流（必定能触发的防抖）**
 * [x] JSON
   * [x] JSON.parse()、JSON.stringify()
 * [x] 网络请求与远程资源
-  * [x] Ajax
-  * [x] ★ [JSONP](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/JSONP.md)
+  * [x] [Ajax](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#eight)
+  * [x] ★★ [JSONP](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/JSONP.md)
+    * [x] **基本原理**：利用 `script` 标签的 `src` 没有跨域限制来完成实现
+    * [x] **优缺点**：只能 `GET`；兼容性好
+    * [x] **简单实现**：通过 `url, params, callbackKey, callback` 来定义 `JSONP()` 方法的参数
+    * [x] **考虑多次调用**：基于简单实现，添加数组保存 `callback` 的返回
 * [x] 其他
-  * [x] ★ [浅拷贝和深拷贝](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D.md)
+  * [x] ★★ [浅拷贝和深拷贝](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D.md)
+    * [x] **手写浅拷贝**
+    * [x] **`Object.assign`**
+    * [x] **浅拷贝其他方法**：`concat()`、`slice()`、`[...arr]`
+    * [x] **手写深拷贝**
+    * [x] **`JSON.parse(JSON.stringify())`**
+    * [x] **Lodash 的 `_.cloneDeep()`**
+    * [x] **JQuery 的 `$.extend()`**
   * [x] ★ 发布订阅模式(EventHub/EventEmitter): Node 回调函数、Vue event bus
   * [x] 图片懒加载
   * [x] 滚动加载
   * [x] 大数据渲染（渲染几万条数据不卡页面）
 
-## <a id=""></a>二 文章导航（旧的）
-
-> [返回目录](#one)
-
-* [x] [Promise](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97/Promise.md)
-  * [x] **简写版 `Promise`（不支持异步）**
-  * [x] **手写 `Promise`（`resolve`、`reject`、`then`）**
-  * [x] **实现 `Promise.all()`**
-  * [x] **实现 `Promise.race()`**
-  * [x] **实现 `Promise` 异步调度器**
-* [x] [防抖和节流](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81.md)
-  * [x] **防抖**
-  * [x] **节流**
-  * [x] **防抖 + 节流（必定能触发的防抖）**
-* [x] [浅拷贝和深拷贝](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D.md)
-  * [x] **手写浅拷贝**
-  * [x] **`Object.assign`**
-  * [x] **浅拷贝其他方法**：`concat()`、`slice()`、`[...arr]`
-  * [x] **手写深拷贝**
-  * [x] **`JSON.parse(JSON.stringify())`**
-  * [x] **Lodash 的 `_.cloneDeep()`**
-  * [x] **JQuery 的 `$.extend()`**
-* [x] [call+bind+apply](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97/call%2Bbind%2Bapply.md)
-  * [x] **原生 `call` 和手写 `call`**
-  * [x] **原生 `bind` 和手写 `bind`**
-  * [x] **原生 `apply` 和手写 `apply`**
-* [x] [JSONP](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97/JSONP.md)
-  * [x] **基本原理**：利用 `script` 标签的 `src` 没有跨域限制来完成实现
-  * [x] **优缺点**：只能 `GET`；兼容性好
-  * [x] **简单实现**：通过 `url, params, callbackKey, callback` 来定义 `JSONP()` 方法的参数
-  * [x] **考虑多次调用**：基于简单实现，添加数组保存 `callback` 的返回
-* [x] [new](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97/new.md)
-  * [x] **3 行代码手写 `new`**
-  * [x] **手写 `new` 的 5 个特点**
-  * [x] **完整版手写 `new`**
-* [x] [其他](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97/%E5%85%B6%E4%BB%96.md)
-  * [x] **`Object.create()`**
-  * [x] **ES5 实现类继承**
-  * [x] **`instanceof`**
-  * [x] **柯里化**：求 `add(1)(2)(3)`
-  * [x] **迭代器**
-  * [x] **Ajax**
-  * [x] **数组扁平化**：手撕、`flat()`、`reduce()`
-  * [x] **数组去重**：手撕、`Set`、`filter()`
-  * [x] **其他**
-
 ## <a id="three"></a>三 参考文献
 
 > [返回目录](#one)
 
-本系列有 46 篇参考文献。
+* [x] [四大手写](https://zhuanlan.zhihu.com/p/160315811)
+  * [x] 手写 bind
+  * [x] 手写深拷贝
+  * [x] 手写 EventHub（发布-订阅）
+  * [x] 手写 Promise
+* [x] [前端编码能力](https://zhuanlan.zhihu.com/p/78891173)
+  * [x] 手动实现call、apply、bind
+  * [x] EventEmitter
+  * [x] 防抖
+  * [x] 节流
+  * [x] 浅拷贝和深拷贝
+  * [x] 数组去重、扁平、最值
+  * [x] 数组乱序-洗牌算法
+  * [x] 函数柯里化
+  * [x] 手动实现JSONP
+  * [x] 模拟实现promise
+  * [x] 手动实现ES5继承
+  * [x] 手动实现instanceof
 
 ### <a id="three-one"></a>3.1 手写系列文章
 
