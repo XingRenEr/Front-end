@@ -50,7 +50,7 @@
   * [x] 异步串行|异步并行
   * [x] 异步并发数限制
 * [x] 事件
-  * [x] [自定义事件](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#two)
+  * [x] ★ [自定义事件](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#two)
 * [x] 动画与Canvas图形
   * [x] ★★ [防抖、节流](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81.md)
     * [x] **防抖**
