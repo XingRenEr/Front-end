@@ -1,13 +1,8 @@
 手写源码系列 - new
 ===
 
-> Create by **jsliang** on **2020-10-06 17:48:21**  
-> Recently revised in **2020-11-12 15:40:10**
-
 <!-- 目录开始 -->
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
-
-**不折腾的前端，和咸鱼有什么区别**
 
 | 目录 |
 | --- |
@@ -24,8 +19,6 @@
 > [返回目录](#chapter-one)
 
 面试官：来手写一个 `new`。
-
-看到这道题，不要急不要慌，**jsliang** 逐步深入带你搞一个。
 
 我们先看一个案例：
 
@@ -68,11 +61,11 @@ function Person( name, age){
   // return 'hello world';                // 返回 this
   // return 2;                            // 返回 this
   
-  // return [];                           // 返回 新建的 [], person.name = undefined
-  // return function(){};                 // 返回 新建的 function，抛弃 this, person.name = undefined
-  // return new Boolean(false);           // 返回 新建的 boolean，抛弃 this, person.name = undefined
-  // return new String('hello world');    // 返回 新建的 string，抛弃 this, person.name = undefined
-  // return new Number(32);               // 返回 新的 number，抛弃 this, person.name = undefined
+  // return [];                           // 抛弃 this, person.name = undefined, 返回 新建的 []
+  // return function(){};                 // 抛弃 this, person.name = undefined, 返回 新建的 function
+  // return new Boolean(false);           // 抛弃 this, person.name = undefined, 返回 新建的 boolean
+  // return new String('hello world');    // 抛弃 this, person.name = undefined, 返回 新建的 string
+  // return new Number(32);               // 抛弃 this, person.name = undefined, 返回 新建的 number
 }
 
 var person = new Person("jsliang", 25);
@@ -148,19 +141,19 @@ function myNew(func, ...args) {
 
   // 3. 这个对象的 __proto__ 指向 func 这个类的原型对象
   // 即实例可以访问构造函数原型（constructor.prototype）所在原型链上的属性
-  obj.__proto__ = Object.create(func.prototype);
+  obj.__proto__ = func.prototype;
 
   // 为了兼容 IE 可以让步骤 2 和 步骤 3 合并
   // const obj = Object.create(func.prototype);
 
   // 4. 通过 apply 绑定 this 执行并且获取运行后的结果
-  let result = func.apply(obj, args);
+  const funcObj = func.apply(obj, args);
   
   // 5. 如果构造函数返回的结果是引用数据类型，则返回运行后的结果
   // 否则返回新创建的 obj
-  const isObject = typeof result === 'object' && result !== null;
-  const isFunction = typeof result === 'function';
-  return isObject || isFunction ? result : obj;
+  const isObject = typeof funcObj === 'object' && funcObj !== null;
+  const isFunction = typeof funcObj === 'function';
+  return isObject || isFunction ? funcObj : obj;
 }
 
 // 测试
@@ -183,7 +176,3 @@ console.log(me); // Person {name: 'jsliang'}
 ```
 
 这样，我们就了解 `new` 是啥东东，碰到手写 `new` 的时候就不慌啦！
-
----
-
-> jsliang 的文档库由 [梁峻荣](https://github.com/LiangJunrong) 采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/) 进行许可。<br/>基于 [https://github.com/LiangJunrong/document-library](https://github.com/LiangJunrong/document-library) 上的作品创作。<br/>本许可协议授权之外的使用权限可以从 [https://creativecommons.org/licenses/by-nc-sa/2.5/cn/](https://creativecommons.org/licenses/by-nc-sa/2.5/cn/) 处获得。

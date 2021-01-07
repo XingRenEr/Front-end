@@ -5,7 +5,6 @@
 | - | - | - |
 |   | 基础  | JS_基础_闭包 |
 |   | 基础  | JS_基础_正则表达式 |
-|   | 进阶  | JS_基础_原型与原型链_手写new |
 |   | 进阶  | 模块化开发 |
 |   | 进阶  | 函数式编程 |
 |   | 进阶  | 渐进式网络应用 |
@@ -40,7 +39,7 @@
 
 | 完成情况 | 知识点 |
 | - | - |
-|   | ★★ [手写new](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/new.md) |
+| √ | ★★ [手写new](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/new.md) |
 |   | ★ [ES5继承](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#four) |
 |   | ★ [实现instanceof](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#five) |
 |   | [Object.create()](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#three) |
