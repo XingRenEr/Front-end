@@ -61,6 +61,8 @@ console.log(food.name); // 'cheese'
 
 > [返回目录](#chapter-one)
 
+其实都不用记，用脑子去推就好了：核心点是为传进来的对象context添加fn这个函数属性，也就是改变了fn的this指向，然后context就可以执行fn这个函数
+
 下面我们列一下今天的实现目标：
 
 1. 手写 `call`
@@ -72,18 +74,20 @@ console.log(food.name); // 'cheese'
 > [返回目录](#chapter-one)
 
 ```js
-Function.prototype.myCall = function(context = globalThis) {
-  // 设置 fn 为调用 myCall 的方法
+Function.prototype.myCall = function(context, ...args) {
+  // 默认为全局的 this (这里为 window 对象)
+  context = context || globalThis;
+  
+  // 为对象添加 fn 方法 —— 内容为将要调用的函数 (即调用 myCall 的函数)
   context.fn = this;
 
-  // 获取剩余参数
-  const otherArg = Array.from(arguments).slice(1);
-
-  // 调用这个方法，将剩余参数传递进去
-  context.fn(otherArg);
-
-  // 将这个方法的执行结果传给 result
-  let result = context.fn();
+  // fn 必须为函数
+  if (typeof fn !== "function") {
+    throw new Error("Must accept function");
+  }
+  
+  // 传入参数调用方法，并将执行结果传给 result
+  let result = context.fn(args);
 
   // 删除这个变量
   delete context.fn;
@@ -91,15 +95,6 @@ Function.prototype.myCall = function(context = globalThis) {
   // 返回 result 结果
   return result;
 };
-
-this.a = 1;
-
-const fn = function() {
-  this.a = 2;
-  console.log(this.a);
-}
-
-fn.myCall(fn);
 ```
 
 ### <a name="chapter-three-two" id="chapter-three-two"></a>3.2 手写 apply
@@ -107,16 +102,23 @@ fn.myCall(fn);
 > [返回目录](#chapter-one)
 
 ```js
-Function.prototype.myApply = function(context = globalThis, arr) {
-  // 设置 fn 为调用 myCall 的方法
+Function.prototype.myApply = function(context, arr) {
+  // 默认为全局的 this (这里为 window 对象)
+  context = context || globalThis;
+  
+  // 为对象添加 fn 方法 —— 内容为将要调用的函数 (即调用 myCall 的函数)
   context.fn = this;
 
+  // fn 必须为函数
+  if (typeof fn !== "function") {
+    throw new Error("Must accept function");
+  }
+  
   let result;
 
-  // 如果存在参数，则传递进去
   // 将结果返回给 result
-  if (arr) {
-    result = context.fn(arr);
+  if (arr) { // 如果存在参数，则传进去
+    result = context.fn(...arr);
   } else { // 否则不传
     result = context.fn();
   }
@@ -127,15 +129,6 @@ Function.prototype.myApply = function(context = globalThis, arr) {
   // 返回 result 结果
   return result;
 };
-
-this.a = 1;
-
-const fn = function() {
-  this.a = 2;
-  console.log(this.a);
-}
-
-fn.myApply(fn);
 ```
 
 ### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 手写 bind
@@ -144,7 +137,7 @@ fn.myApply(fn);
 
 ```js
 Function.prototype.myBind = function(context = globalThis) {
-  // 设置 fn 为调用 myCall 的方法
+  // 设置 fn 为调用 myBind 的方法
   const fn = this;
 
   // 获取该方法剩余参数
@@ -257,28 +250,37 @@ console.log(food.name); // 'cheese'
 
 首先我们得搞明白 `call` 的特性：
 
-1. 如果 `obj.call(null)`，那么 `this` 应该指向 `window`
+1. 如果 `obj.call(null/undefined)`，那么 `this` 应该指向 `window`
 2. 如果 `obj1.call(obj2)`，那么谁调用它，`this` 指向谁（这里就是 `obj2` 了）
 3. `call` 可以传入多个参数，所以可以利用 `arguments` 这个字段来获取所有参数。将 `arguments` 转换数组后，获取除第一个参数外的其他参数
-4. 设置一个变量，用完可以删掉它
+4. 设置一个变量，用完删掉它
+> 【为什么要 `delete` 属性的方法？】  
+> 其实在这里我 jio 得是避免低版本浏览器所采用的**引用计数垃圾收集**方式带来的问题。若使用现代浏览器，采用**标记-清除算法**，不手动 `delete` 也没问题。  
+> [MDN - delete 操作符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/delete)  
+> `delete` **操作符**用于删除对象的某个属性 (本质是断开引用)；`delete` 操作符与直接释放内存无关。内存管理 通过断开引用来间接完成的  
+> [MDN - 内存管理](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management)  
+> 相关概念 —— 垃圾回收。JavaScript在不使用变量时“自动”释放。 释放的过程称为**垃圾回收**。“自动”使得 JavaScript（和其他高级语言）开发者错误的感觉他们可以不关心内存管理。  
+> 解除变量与对象之间的引用 (有时需要**手动**)，才会**“自动”**垃圾回收。
 
 综上：
 
 > 手写 call 的 JS 代码：
 
 ```js
-Function.prototype.myCall = function(context = globalThis) {
-  // 设置 fn 为调用 myCall 的方法
+Function.prototype.myCall = function(context, ...args) {
+  // 默认为全局的 this (这里为 window 对象)
+  context = context || globalThis;
+  
+  // 为对象添加 fn 方法 —— 内容为将要调用的函数 (即调用 myCall 的函数)
   context.fn = this;
 
-  // 获取剩余参数
-  const otherArg = Array.from(arguments).slice(1);
-
-  // 调用这个方法，将剩余参数传递进去
-  context.fn(otherArg);
-
-  // 将这个方法的执行结果传给 result
-  let result = context.fn();
+  // fn 必须为函数
+  if (typeof fn !== "function") {
+    throw new Error("Must accept function");
+  }
+  
+  // 传入参数调用方法，并将执行结果传给 result
+  let result = context.fn(args);
 
   // 删除这个变量
   delete context.fn;
@@ -287,14 +289,30 @@ Function.prototype.myCall = function(context = globalThis) {
   return result;
 };
 
-this.a = 1;
-
 const fn = function() {
   this.a = 2;
   console.log(this.a);
 }
 
+this.a = 1;
+```
+```JS
+// 如果这样调用：
 fn.myCall(fn);
+/* > fn.a
+ * < 2
+ * > window.a
+ * < 1 
+ */
+```
+```JS
+// 如果这样调用：
+fn();
+/* > fn.a
+ * < undefined
+ * > window.a
+ * < 2
+ */
 ```
 
 小伙伴稍稍理解下，搞清楚它内部的流程，然后咱们实践一下：
@@ -383,33 +401,40 @@ console.log(min); // 2
 下面我们开始尝试手写 `apply`，记住这个方法和 `call` 类似，理解起来也不难：
 
 ```js
-Function.prototype.myApply = function(context = globalThis, arr) {
-  // 设置 fn 为调用 myCall 的方法
+Function.prototype.myApply = function(context, arr) {
+  // 默认为全局的 this (这里为 window 对象)
+  context = context || globalThis;
+  
+  // 为对象添加 fn 方法 —— 内容为将要调用的函数 (即调用 myCall 的函数)
   context.fn = this;
 
+  // fn 必须为函数
+  if (typeof fn !== "function") {
+    throw new Error("Must accept function");
+  }
+  
   let result;
 
-  // 如果存在参数，则传递进去
   // 将结果返回给 result
-  if (arr) {
-    result = context.fn(arr);
+  if (arr) { // 如果存在参数，则传进去
+    result = context.fn(...arr);
   } else { // 否则不传
     result = context.fn();
   }
 
   // 删除这个变量
-  delete fcontext.fnn;
+  delete context.fn;
 
   // 返回 result 结果
   return result;
 };
 
-this.a = 1;
-
 const fn = function() {
   this.a = 2;
   console.log(this.a);
 }
+
+this.a = 1;
 
 fn.myApply(fn);
 ```
@@ -479,7 +504,7 @@ fn.myApply(fn);
 
 * [MDN - bind](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 
-`bind()` 方法创建一个新的函数，在 `bind()` 被调用时，这个新函数的 `this` 被指定为 `bind()` 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。
+在 `bind()` 方法被调用时，创建一个新的函数，这个新函数的 `this` 被指定为 `bind()` 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。
 
 * 语法：`function.bind(thisArg, arg1, arg2, ...)`
   * `thisArg`：调用绑定函数时作为 `this` 参数传递给目标函数的值。
@@ -498,7 +523,7 @@ const unboundGetX = module.getX;
 console.log(unboundGetX()); // undefined
 // 谁调用指向谁，这里 unboundGetX = module.getX
 // 让 getX 里面的 this 指向了 window
-// 而 window 里面并没有 x 方法
+// 而 window 里面并没有 x 变量
 // 当然，在前面加上 window.x = 43 就有了
 
 const boundGetX = unboundGetX.bind(module);
@@ -513,34 +538,39 @@ console.log(boundGetX()); // 42
 手写 `bind` 稍微有点小复杂，但是小伙伴们别慌，多读几遍可以摸清套路：
 
 ```js
-Function.prototype.myBind = function(context = globalThis) {
-  // 设置 fn 为调用 myCall 的方法
+/* ES6写法 —— 扩展运算符，写法简洁，但兼容性稍差；
+ * instanceof 判断对象是否是构造函数的实例的一种方式；
+ */
+Function.prototype.myBind = function(context, ...args) {
+  // 默认为全局的 this (这里为 window 对象)
+  context = context || globalThis;
+  
+  // 为对象添加 fn 方法 —— 内容为将要调用的函数 (即调用 myBind 的函数)
   const fn = this;
-
-  // 获取该方法剩余参数
-  const otherArg = [...arguments].slice(1);
-
+  
+  // fn 必须为函数
+  if (typeof fn !== "function") {
+    throw new Error("Must accept function");
+  }
+  
   // 设置返回的一个新方法
-  const result = function() {
-
-    // 获取返回方法体的参数
-    const resultArg = [...arguments];
-
-    // 如果是通过 new 调用的，绑定 this 为实例对象
-    if (this instanceof result) {
-      fn.apply(this, otherArg.concat(resultArg));
-    } else { // 否则普通函数形式绑定 context
-      fn.apply(context, otherArg.concat(resultArg));
-    }
+  function resultFn (...args2) {
+    // 区分是通过 new 还是普通函数调用的
+    return fn.apply(
+      this instanceof resultFn ? this : context,
+      [...args, ...args2]
+    );
   }
 
   // 绑定原型链
-  result.prototype = Object.create(fn.prototype);
+  resultFn.prototype = fn.prototype;
 
   // 返回结果
-  return result;
+  return resultFn;
 };
-
+```
+```js
+/* 使用 */
 this.a = 1;
 
 const fn = function() {
@@ -552,6 +582,56 @@ fn.myBind(fn);
 fn();
 ```
 
+```js
+/* ES5写法 —— Array.prototype.slice，兼容性好；
+ * .prototype.isPrototypeOf() 判断对象是否是构造函数的实例的另一种方式；
+ */
+Function.prototype.myBind = function(context) {
+  // 默认为全局的 this (这里为 window 对象)
+  context = context || globalThis;
+  
+  // 为对象添加 fn 方法 —— 内容为将要调用的函数 (即调用 myBind 的函数)
+  const fn = this;
+  
+  // fn 必须为函数
+  if (typeof fn !== "function") {
+    throw new Error("Must accept function");
+  }
+  
+  // 获取该方法剩余参数
+  var slice = Array.prototype.slice;
+  var args1 = slice.call(arguments, 1);
+  
+  // 设置返回的一个新方法
+  function resultFn() {
+    var args2 = slice.call(arguments, 0);
+    // 区分是通过 new 还是普通函数调用的
+    return fn.apply(
+      resultFn.prototype.isPrototypeOf(this) ? this : context,
+      args1.concat(args2)
+    );
+  }
+  
+  // 绑定原型链
+  resultFn.prototype = fn.prototype;
+  
+  // 返回结果
+  return resultFn;
+}
+```
+```js
+/* 使用 */
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  return;
+}
+
+/* 
+ * > new (Person.myBind(null, 'joanna'))(18)
+ * < resultFn {name: 'joanna', age: 18} 
+ */
+```
 ## <a name="chapter-eight" id="chapter-eight"></a>八 题目
 
 > [返回目录](#chapter-one)
@@ -615,7 +695,7 @@ myObject.func();
 
 1. 第一个 `this.foo` 输出 `bar`，因为当前 `this` 指向对象 `myObject`。
 2. 第二个 `self.foo` 输出 `bar`，因为 `self` 是 `this` 的副本，同指向 `myObject` 对象。
-3. 第三个 `this.foo` 输出 `undefined`，因为这个 IIFE（立即执行函数表达式）中的 `this` 指向 `window`。
+3. 第三个 `this.foo` 输出 `undefined`，因为这个 IIFE（立即执行函数表达式）中的 `this` 指向 `window`。(函数内部的函数，this 不向下传)
 4.第四个 `self.foo` 输出 `bar`，因为这个匿名函数所处的上下文中没有 `self`，所以通过作用域链向上查找，从包含它的父函数中找到了指向 `myObject` 对象的 `self`。
 
 ## <a name="chapter-night" id="chapter-night"></a>九 参考文献

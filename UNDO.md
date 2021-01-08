@@ -48,7 +48,7 @@
 
 | 完成情况 | 知识点 |
 | - | - |
-|   | ★★ [call、apply、bind](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/Promise.md) |
+| ×结合防抖 | ★★ [call、apply、bind](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/Promise.md) |
 |   | ★ [函数柯里化](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#six) |
 
 ### Promise与异步函数

@@ -35,7 +35,7 @@
   * [x] ★ [实现instanceof](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#five)
   * [x] [Object.create()](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/%E5%85%B6%E4%BB%96.md#three)
 * [x] 函数
-  * [x] ★★ [call、apply、bind](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/Promise.md)
+  * [x] ★★ [call、apply、bind](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/call%2Bbind%2Bapply.md)
     * [x] **原生 `call` 和手写 `call`**
     * [x] **原生 `bind` 和手写 `bind`**
     * [x] **原生 `apply` 和手写 `apply`**
