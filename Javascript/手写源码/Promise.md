@@ -1,15 +1,10 @@
 手写源码系列 - Promise
 ===
 
-> Create by **jsliang** on **2020-09-17 18:14:12**  
-> Recently revised in **2020-11-09 09:49:43**
-
 面试官：手写一个 `Promise`，要求实现 `resolve()/reject()/then()`……
 
 <!-- 目录开始 -->
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
-
-**不折腾的前端，和咸鱼有什么区别**
 
 | 目录 |
 | --- |
@@ -587,6 +582,8 @@ addTack(400, '4');
 ```
 
 ## <a name="chapter-eight" id="chapter-eight"></a>八 参考文献
+* [x] [一次搞定前端“四大手写”](https://zhuanlan.zhihu.com/p/160315811)  
+* [x] [前端该如何准备数据结构和算法？](http://www.conardli.top/docs/JavaScript/%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0promise.html#%E5%9F%BA%E7%A1%80%E7%89%88%E6%9C%AC)
 
 > [返回目录](#chapter-one)
 
@@ -598,7 +595,3 @@ addTack(400, '4');
 * [x] [剖析Promise内部结构，一步一步实现一个完整的、能通过所有Test case的Promise类](https://github.com/xieranmaya/blog/issues/3)【建议阅读：写得比较细，没前面剖析的清晰】
 * [x] [小邵教你玩转promise源码](https://juejin.im/post/6844903655418626061)【建议阅读：写得比较细，没前面剖析的清晰】
 * [x] [Promise不会？？看这里！！！史上最通俗易懂的Promise！！！](https://juejin.im/post/6844903607968481287)【建议阅读：写得比较细，没前面剖析的清晰】
-
----
-
-> jsliang 的文档库由 [梁峻荣](https://github.com/LiangJunrong) 采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/) 进行许可。<br/>基于 [https://github.com/LiangJunrong/document-library](https://github.com/LiangJunrong/document-library) 上的作品创作。<br/>本许可协议授权之外的使用权限可以从 [https://creativecommons.org/licenses/by-nc-sa/2.5/cn/](https://creativecommons.org/licenses/by-nc-sa/2.5/cn/) 处获得。
