@@ -129,8 +129,8 @@ JavaScript 从 `script` 开始读取，然后不断循环，从 “任务队列�
 * `setTimeout`
 * `setInterval`
 * `I/O`
-* `UI` 交互事件
-* `setImmediate` (仅 Node.js 环境)
+* `UI Rendering`
+* `setImmediate` (仅 Node.js 环境，浏览器环境仅 IE10 支持)
 * `requestAnimationFrame` (仅浏览器环境)
 * `postMessage`???
 * `MessageChannel`???
@@ -141,8 +141,8 @@ JavaScript 从 `script` 开始读取，然后不断循环，从 “任务队列�
 * `Promise.then()/catch()`
 * `fetch API` (以 `Promise` 为基础开发的其他技术)
 * `process.nextTick` (仅 Node.js 环境)
+* `Object.observe` (废弃)
 * V8 的垃圾回收过程???
-* Object.observe???
 
 ### <a id="four-two"></a>4.2 requestAnimationFrame
 
