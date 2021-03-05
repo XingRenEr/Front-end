@@ -39,7 +39,7 @@
 
 > [返回目录](#one)
 
-JavaScript 是一个单线程的语言。
+* **JavaScript 是一个单线程的语言。**
 
 单线程在程序执行时，所走的程序路径按照连续顺序排下来，前面的必须处理好，后面的才会执行。
 
@@ -69,7 +69,7 @@ JavaScript 是一个单线程的语言。
 
 所以干脆设计成一个单线程，安全稳妥不出事。
 
-哪怕后期 HTML5 出了个 `Web Worker` 也是不允许操作 `DOM` 结构的，可以完成一些分布式的计算。
+为了利用多核 CPU 的计算能力，HTML5 提出 `Web Worker` 标准，允许 JavaScript 脚本创建多个线程，但是子线程完全受主线程控制，且不得操作 `DOM`。所以，这个新标准并没有改变 JavaScript 单线程的本质。
 
 > `Web Worker` 在本文中有讲解
 
@@ -81,7 +81,7 @@ JavaScript 是一个单线程的语言。
 
 所以这时候异步来了：
 
-在涉及某些需要等待的操作的时候，我们就选择让程序继续运行。
+在涉及某些需要等待的操作的时候，我们就选择让后面的程序继续运行。
 
 等待接口或者图片返回过来后，就通知程序我做好了，你可以继续调用了。
 
@@ -108,13 +108,14 @@ JavaScript 从 `script` 开始读取，然后不断循环，从 “任务队列�
 
 **Event Loop** 执行过程如下：
 
-1. 一开始整个脚本 `script` 作为一个宏任务执行
-2. 执行过程中，**同步代码** 直接执行，**宏任务** 进入宏任务队列，**微任务** 进入微任务队列。
-3. 当前宏任务执行完出队，检查微任务列表，有则依次执行，直到全部执行完毕。  
-(如：在script宏任务中，先执行其中的微任务，再执行其中的宏任务)
-4. 执行浏览器 UI 线程的渲染工作。
+1. 执行一个宏任务（从事件队列中获取；起初 `script` 作为一个宏任务执行）
+2. 执行过程中，**同步代码** 直接进入主线程执行栈执行，**宏任务** 进入宏任务队列，**微任务** 进入微任务队列。
+3. 宏任务执行完毕后，检查微任务列表，有则进入执行栈依次执行，直到全部执行完毕。  
+4. 检查渲染，然后浏览器 GUI 线程接管渲染工作。
 5. 检查是否有 `Web Worker` 任务，有则执行。
-6. 执行完本轮的宏任务，回到步骤 2，依次循环，直到宏任务和微任务队列为空。
+6. JS 线程继续接管，回到步骤 1 开始下一个宏任务，依次循环，直到宏任务和微任务队列为空。
+
+![](Event Loop_files/1.jpg)
 
 事件循环中的异步队列有两种：宏任务队列（`MacroTask`）和 微任务队列（`MicroTask`）。
 
@@ -124,20 +125,24 @@ JavaScript 从 `script` 开始读取，然后不断循环，从 “任务队列�
 
 **宏任务** 包括：
 
-* `script`
+* `script` (整体代码)
 * `setTimeout`
 * `setInterval`
-* `setImmediate`
 * `I/O`
-* `UI rendering`
+* `UI` 交互事件
+* `setImmediate` (仅 Node.js 环境)
+* `requestAnimationFrame` (仅浏览器环境)
+* `postMessage`???
+* `MessageChannel`???
 
 **微任务** 包括：
 
-* `MutationObserver`
+* `MutationObserver` (仅浏览器环境)
 * `Promise.then()/catch()`
-* 以 `Promise` 为基础开发的其他技术，例如 `fetch API`
-* V8 的垃圾回收过程
-* Node 独有的 `process.nextTick`
+* `fetch API` (以 `Promise` 为基础开发的其他技术)
+* `process.nextTick` (仅 Node.js 环境)
+* V8 的垃圾回收过程???
+* Object.observe???
 
 ### <a id="four-two"></a>4.2 requestAnimationFrame
 
