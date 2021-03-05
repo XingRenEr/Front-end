@@ -195,6 +195,15 @@ for (let i = 0; i < arr.length; i++) {
   }
 }
 console.log('newArr1：', newArr1);
+
+// indexOf，与上述方法几乎完全一样，但是语义不如includes好
+const newArr1 = [];
+for (let i = 0; i < arr.length; i++) {
+  if (newArr1.indexOf(arr[i]) == -1) {
+    newArr1.push(arr[i]); 
+  }
+}
+console.log('newArr1：', newArr1);
 ```
 
 ```JS
