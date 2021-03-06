@@ -52,7 +52,7 @@
 # <a id="one"></a>一 字符串
 > [返回目录](#zero)  
 
-## (简单) 剑指 Offer 58 - Ⅱ. 左旋转字符串
+## 1.1 (简单) 剑指 Offer 58 - Ⅱ. 左旋转字符串
 字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串"abcdefg"和数字2，该函数将返回左旋转两位得到的结果"cdefgab"。
 
 示例 1：
@@ -76,7 +76,7 @@ var reverseLeftWords = function(s, n) {
 };
 ```
 
-## (简单) 剑指 Offer 58 - Ⅰ. 翻转单词顺序
+## 1.2 (简单) 剑指 Offer 58 - Ⅰ. 翻转单词顺序
 输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串"I am a student. "，则输出"student. a am I"。
 
 示例 1：
@@ -115,19 +115,20 @@ var reverseWords = function(s) {
 ## <a id="two-one"></a>2.1 数组
 > [返回目录](#zero)  
 
-### (简单) 剑指 Offer 03. 数组中的重复数字
+### <a id="two-one-one">2.1.1 (简单) 剑指 Offer 03. 数组中的重复数字
 找出数组中重复的数字。
 
 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
 
-示例 1：
+**示例 1：**
 
+```
 输入：  
 [2, 3, 1, 0, 2, 5, 3]  
 输出：2 或 3 
- 
+```
 
-限制：
+**限制：**
 
 2 <= n <= 100000
 
@@ -242,7 +243,7 @@ console.log('newArr4', newArr4);
 // (2) 二分法
 ```
 
-### (简单) 剑指 Offer 53 - Ⅰ. 在排序数组中查找数字Ⅰ
+### 2.1.2 (简单) 剑指 Offer 53 - Ⅰ. 在排序数组中查找数字Ⅰ
 统计一个数字在排序数组中出现的次数。
 
 示例 1:
@@ -286,7 +287,7 @@ var nums = [5, 7, 7, 8, 8, 10],
 console.log(search(nums, target));
 ```
 
-### (简单) 剑指 Offer 29. 顺时针打印矩阵
+### 2.1.3 (简单) 剑指 Offer 29. 顺时针打印矩阵
 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。
 
 示例 1：
@@ -346,7 +347,7 @@ var matrix = [
 console.log(spiralOrder(matrix));
 ```
 
-### (简单) 剑指 Offer 53 - Ⅱ. 0~n-1中缺失的数字
+### 2.1.4 (简单) 剑指 Offer 53 - Ⅱ. 0~n-1中缺失的数字
 一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。
 
 示例 1:
@@ -387,7 +388,7 @@ var missingNumber = function(nums) {
 ## <a id="two-two"></a>2.2 链表  
 > [返回目录](#zero)  
 
-### (简单) 剑指 Offer 22. 链表中倒数第k个节点
+### 2.2.1 (简单) 剑指 Offer 22. 链表中倒数第k个节点
 输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。例如，一个链表有6个节点，从头节点开始，它们的值依次是1、2、3、4、5、6。这个链表的倒数第3个节点是值为4的节点。
 
 示例：
@@ -424,7 +425,7 @@ var getKthFromEnd = function(head, k) {
 };
 ```
 
-### (简单) 剑指 Offer 06. 从尾到头打印链表
+### 2.2.2 (简单) 剑指 Offer 06. 从尾到头打印链表
 输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
 
 示例 1：
@@ -464,7 +465,7 @@ var reversePrint = function(head) {
 };
 ```
 
-### (简单) 剑指 Offer 24. 反转链表
+### 2.2.3 (简单) 剑指 Offer 24. 反转链表
 定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
 
 示例:
@@ -552,7 +553,7 @@ var reverseList = function(head) {
 // 方法三：妖魔化的双指针
 ```
 
-### (简单) 剑指 Offer 52. 两个链表的第一个公共节点
+### 2.2.4 (简单) 剑指 Offer 52. 两个链表的第一个公共节点
 [leetcode](https://leetcode-cn.com/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/)  
 
 ![3.jpg](https://github.com/XingRenEr/Front-end/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Leetcode/images/3.jpg)  
@@ -577,7 +578,7 @@ var getIntersectionNode = function(headA, headB) {
 };
 ```
 
-### (简单) 剑指 Offer 18. 删除链表的节点
+### 2.2.5 (简单) 剑指 Offer 18. 删除链表的节点
 [leetcode](https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/)  
 
 ```js
@@ -595,7 +596,7 @@ var deleteNode = function(head, val) {
 ## <a id="two-three"></a>2.3 栈  
 > [返回目录](#zero)  
 
-### (简单) 剑指 Offer 09. 用两个栈实现队列
+### 2.3.1 (简单) 剑指 Offer 09. 用两个栈实现队列
 用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead 操作返回 -1 )
 
 示例 1：
@@ -651,7 +652,7 @@ CQueue.prototype.deleteHead = function() {
  */
 ```
 
-### (简单) 剑指 Offer 30. 包含min函数的栈
+### 2.3.2 (简单) 剑指 Offer 30. 包含min函数的栈
 定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。
 
 示例:
@@ -740,8 +741,32 @@ MinStack.prototype.min = function() {
 ## <a id="two-four"></a>2.4 队列
 > [返回目录](#zero)  
 
-### (简单) 剑指 Offer 59 - Ⅰ. 滑动窗口的最大值
-[leetcode](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/)  
+### 2.4.1 (简单) 剑指 Offer 59 - Ⅰ. 滑动窗口的最大值
+给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。
+
+**示例:**
+
+```
+输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
+输出: [3,3,5,5,6,7] 
+解释: 
+
+  滑动窗口的位置                最大值
+---------------               -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7
+```
+ 
+
+**提示：**
+
+你可以假设 k 总是有效的，在输入数组不为空的情况下，1 ≤ k ≤ 输入数组的大小。
+
+注意：本题与主站 239 题相同：https://leetcode-cn.com/problems/sliding-window-maximum/
 
 ```js
 // (我的方法)
@@ -758,8 +783,57 @@ var maxSlidingWindow = function(nums, k) {
 };
 ```
 
-### (困难) 239. 滑动窗口最大值
-[leetcode](https://leetcode-cn.com/problems/sliding-window-maximum/) 要求线性时间复杂度  
+### (困难) 239. 滑动窗口最大值 (要求线性时间复杂度)
+给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+
+返回滑动窗口中的最大值。
+
+**示例 1：**
+
+```
+输入：nums = [1,3,-1,-3,5,3,6,7], k = 3
+输出：[3,3,5,5,6,7]
+解释：
+滑动窗口的位置                最大值
+---------------               -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7
+ ```
+**示例 2：**
+
+```
+输入：nums = [1], k = 1
+输出：[1]
+```
+**示例 3：**
+
+```
+输入：nums = [1,-1], k = 1
+输出：[1,-1]
+```
+**示例 4：**
+
+```
+输入：nums = [9,11], k = 2
+输出：[11]
+```
+示例 5：
+
+```
+输入：nums = [4,-2], k = 2
+输出：[4]
+```
+
+提示：
+
+- 1 <= nums.length <= 10^5
+- -10^4 <= nums[i] <= 10^4
+- 1 <= k <= nums.length
+
 
 **本题难点**： 如何在每次窗口滑动后，将 “获取窗口内最大值” 的时间复杂度从 O(k) 降低至 O(1) 。  
 
@@ -775,12 +849,119 @@ var maxSlidingWindow = function(nums, k) {
 # <a id="three"></a>三 哈希表(散列表)  
 > [返回目录](#zero)  
 
+## 3.1 [(简单) 剑指 Offer 03. 数组中的重复数字](#two-one-one)  
+## 3.2 (简单) 剑指 Offer 50. 第一个只出现一次的字符
+在字符串 s 中找出第一个只出现一次的字符。如果没有，返回一个单空格。 s 只包含小写字母。
+
+**示例:**
+
+```
+s = "abaccdeff"
+返回 "b"
+
+s = "" 
+返回 " "
+```
+
+**限制：**
+
+0 <= s 的长度 <= 50000
+
+```js
+// 方法一：哈希表
+var firstUniqChar = function(s) {
+  var countObj = {};
+  for (let i = 0; i < s.length; i++) {
+      countObj[s[i]] = countObj[s[i]] >= 0 ? countObj[s[i]] + 1 : 1;
+  }
+  for (let prop in countObj) {
+      if (countObj[prop] == 1) {
+          return prop;
+      }
+  }
+  return " ";
+};
+```
+```js
+// 方法二：代码更简单，空间占用更小
+var firstUniqChar = function(s) {
+  for (let x of s) {
+    if (s.indexOf(x) === s.lastIndexOf(x)) return x;
+  }
+  return ' ';
+};
+```
+
 # <a id="four"></a>四 树形结构
 > [返回目录](#zero)  
 
 ## <a id="four-one"></a>4.1 树  
 > [返回目录](#zero)  
+### 4.1.1 (简单) 剑指 Offer 27. 二叉树的镜像
+请完成一个函数，输入一个二叉树，该函数输出它的镜像。
 
+例如输入：
+
+```
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+```
+镜像输出：
+
+```
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+```
+
+**示例 1：**
+
+输入：root = [4,2,7,1,3,6,9]
+输出：[4,7,2,9,6,3,1]
+
+**限制：**
+
+0 <= 节点个数 <= 1000
+
+注意：本题与主站 226 题相同：https://leetcode-cn.com/problems/invert-binary-tree/
+
+```js
+// 方法一：递归
+var mirrorTree = function(root) {
+  swapChildren(root);
+  return root;
+};
+
+function swapChildren(root) {
+  if (!root || (!root.left && !root.right)) {
+    return;
+  } else {
+    var temp = root.left;
+    root.left = root.right;
+    root.right = temp;
+    swapChildren(root.left);
+    swapChildren(root.right);
+  }
+}
+
+/* 二叉树构造函数 */
+function TreeNode(val) {
+  this.val = val;
+  this.left = this.right = null;
+}
+/* 二叉树的创建 */
+var arr = [4, 2, 7, 1, 3, 6, 9];
+var objArr = arr.map((item) => new TreeNode(item));
+var [A, B, C, D, E, F, G] = objArr;
+[A.left, A.right] = [B, C];
+[B.left, B.right] = [D, E];
+[C.left, C.right] = [F, G];
+```
 ## <a id="four-two"></a>4.2 二叉搜索树  
 > [返回目录](#zero)  
 
