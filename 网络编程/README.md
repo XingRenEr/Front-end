@@ -11,7 +11,7 @@
 * [x] 回调地狱及 `Ajax` 的依赖调用，`Promise`
 
 ## 2 Fetch
-文章地址：
+文章地址：[Fetch](https://github.com/XingRenEr/Front-end/blob/master/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Fetch.md)
 
 ## 3 WebSocket
 见 计算机网络——WebSocket  
