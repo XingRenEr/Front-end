@@ -36,7 +36,7 @@
   * [x] **缓存实例**：频繁变动的缓存、不常变化的资源
 
 ## 4 回流和重绘
-文章地址：[回流和重绘](https://github.com/XingRenEr/Front-end/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8/%E9%87%8D%E6%8E%92%E5%92%8C%E9%87%8D%E7%BB%98.md)
+文章地址：[回流和重绘](https://github.com/XingRenEr/Front-end/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8/%E5%9B%9E%E6%B5%81%E5%92%8C%E9%87%8D%E7%BB%98.md)
 
 知识点：
 

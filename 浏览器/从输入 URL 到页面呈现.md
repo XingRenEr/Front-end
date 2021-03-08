@@ -147,7 +147,7 @@
 
 详细可看：
 
-* [浏览器 - 回流和重绘](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/%E6%B5%8F%E8%A7%88%E5%99%A8/%E9%87%8D%E6%8E%92%E5%92%8C%E9%87%8D%E7%BB%98.md)
+* [浏览器 - 回流和重绘](https://github.com/XingRenEr/Front-end/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8/%E5%9B%9E%E6%B5%81%E5%92%8C%E9%87%8D%E7%BB%98.md)
 
 后续跟进文章学习也是可以的，这里先贴链接。
 
