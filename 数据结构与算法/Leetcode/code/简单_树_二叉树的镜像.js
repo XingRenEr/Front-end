@@ -9,22 +9,15 @@
  * @param {TreeNode} root
  * @return {TreeNode}
  */
-var mirrorTree = function(root) {
-  swapChildren(root);
-  return root;
+var mirrorTree = function (root) {
+    if (!root) {
+        return null;
+    }
+    [root.left, root.right] = [root.right, root.left]
+    mirrorTree(root.left)
+    mirrorTree(root.right)
+    return root
 };
-
-function swapChildren(root) {
-  if (!root || (!root.left && !root.right)) {
-    return;
-  } else {
-    var temp = root.left;
-    root.left = root.right;
-    root.right = temp;
-    swapChildren(root.left);
-    swapChildren(root.right);
-  }
-}
 
 /* 二叉树构造函数 */
 function TreeNode(val) {

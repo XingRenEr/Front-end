@@ -499,7 +499,7 @@ var reverseList = function(head) {
 };
 ```
 
-![1.jpg](https://github.com/XingRenEr/Front-end/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Leetcode/images/1.jpg)  
+![1.jpg](./images/1.jpg)  
 ```js
 // 方法一：双指针(官方方法。和上面的方法几乎无差别，但是'双指针'比'三个指针'思路更清晰)
 var reverseList = function(head) {
@@ -548,7 +548,7 @@ var reverseList = function(head) {
 // 方法二：递归。递归的内部实现是使用栈
 ```
 
-![2.jpg](https://github.com/XingRenEr/Front-end/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Leetcode/images/2.jpg)  
+![2.jpg](./images/2.jpg)  
 ```js
 // 方法三：妖魔化的双指针
 ```
@@ -556,7 +556,7 @@ var reverseList = function(head) {
 ### 2.2.4 (简单) 剑指 Offer 52. 两个链表的第一个公共节点
 [leetcode](https://leetcode-cn.com/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/)  
 
-![3.jpg](https://github.com/XingRenEr/Front-end/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Leetcode/images/3.jpg)  
+![3.jpg](./images/3.jpg)  
 ```js
 // (我的方法)
 var getIntersectionNode = function(headA, headB) {
@@ -932,22 +932,15 @@ var firstUniqChar = function(s) {
 
 ```js
 // 方法一：递归
-var mirrorTree = function(root) {
-  swapChildren(root);
-  return root;
+var mirrorTree = function (root) {
+    if (!root) {
+        return null;
+    }
+    [root.left, root.right] = [root.right, root.left]
+    mirrorTree(root.left)
+    mirrorTree(root.right)
+    return root
 };
-
-function swapChildren(root) {
-  if (!root || (!root.left && !root.right)) {
-    return;
-  } else {
-    var temp = root.left;
-    root.left = root.right;
-    root.right = temp;
-    swapChildren(root.left);
-    swapChildren(root.right);
-  }
-}
 
 /* 二叉树构造函数 */
 function TreeNode(val) {
@@ -962,6 +955,85 @@ var [A, B, C, D, E, F, G] = objArr;
 [B.left, B.right] = [D, E];
 [C.left, C.right] = [F, G];
 ```
+
+```
+// 方法二：栈
+```
+
+### 4.1.2 (简单) 剑指 Offer 55 - I. 二叉树的深度
+
+输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。
+
+例如：
+
+给定二叉树 [3,9,20,null,null,15,7]，
+
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+返回它的最大深度 3 。
+
+ 
+
+**提示：**
+
+节点总数 <= 10000
+注意：本题与主站 104 题相同：https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
+
+```js
+// 方法一：后序遍历（DFS）
+// 树的后序遍历 / 深度优先搜索往往利用 递归 或 栈 实现，本文使用递归实现。
+var maxDepth = function(root) {
+    if (!root) {
+        return 0;
+    }
+    return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+};
+```
+![图](./images/tree-1.png)  
+
+```
+// 方法二：层序遍历（BFS）
+// 树的层序遍历 / 广度优先搜索往往利用 队列 实现。
+```
+
+### 4.1.3 (简单) 剑指 Offer 54. 二叉搜索树的第k大节点
+给定一棵二叉搜索树，请找出其中第k大的节点。
+
+**示例 1:**
+
+```
+输入: root = [3,1,4,null,2], k = 1
+   3
+  / \
+ 1   4
+  \
+   2
+输出: 4
+```
+**示例 2:**
+
+```
+输入: root = [5,3,6,2,4,null,null,1], k = 3
+       5
+      / \
+     3   6
+    / \
+   2   4
+  /
+ 1
+输出: 4
+```
+
+**限制：**
+
+1 ≤ k ≤ 二叉搜索树元素个数
+
+
 ## <a id="four-two"></a>4.2 二叉搜索树  
 > [返回目录](#zero)  
 
