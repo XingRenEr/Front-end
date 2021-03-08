@@ -344,10 +344,14 @@ setTimeout(() => {
 
 > [返回目录](#one)
 
-* 获取
-* 创建
-* 添加
-* 删除
+* 创建  
+* 修改  
+* 添加  
+
+
+* 获取  
+* 删除  
+* 替换  
 
 可以使用 `document` 或 `window` 元素的 API 来操作文档本身或获取文档的子类（Web 页面中的各种元素）。
 
@@ -357,6 +361,7 @@ const node = document.getElementById(id); // 或者 querySelector(".class|#id|na
 
 // 创建元素
 const heading = document.createElement(name); // name: p、div、h1...
+// 修改元素
 heading.innerHTML = '';
 
 // 添加元素
