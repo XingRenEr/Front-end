@@ -115,7 +115,7 @@ JavaScript 从 `script` 开始读取，然后不断循环，从 “任务队列�
 5. 检查是否有 `Web Worker` 任务，有则执行。
 6. JS 线程继续接管，回到步骤 1 开始下一个宏任务，依次循环，直到宏任务和微任务队列为空。
 
-![](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%BC%82%E6%AD%A5/images/1.jpg)
+![图](./images/1.jpg)
 
 事件循环中的异步队列有两种：宏任务队列（`MacroTask`）和 微任务队列（`MicroTask`）。
 

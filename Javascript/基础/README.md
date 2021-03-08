@@ -101,7 +101,7 @@
 - `includes()`:  方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的includes方法类似。ES2016 引入了该方法。
 - 数组的空位: 数组的某一个位置没有任何值。比如，Array构造函数返回的数组都是空位。
 
-![1.png](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/images/1.png)  
+![1.png](./images/1.png)  
 
 * [x] [数组方法](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84.md)  
 
@@ -148,12 +148,12 @@
 - `sub()`  
 - `sup()`  
 
-![2.png](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/images/2.png)  
+![2.png](./images/2.png)  
 
 * [x] [字符串方法](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E5%AD%97%E7%AC%A6%E4%B8%B2.md)  
 
 ### <a id="two-four"></a>2.4 RegExp
-![7.png](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/images/7.png)  
+![7.png](./7.png)  
 
 ## <a id="three"></a>三 变量与作用域
 > [返回目录](#one)  
@@ -211,8 +211,7 @@ first();
 console.log('Inside Global Execution Context');
 ```
 
-![图](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/img/JavaScript-base-02.jpg?raw=true)
-
+![图](./images/JavaScript-base-02.jpg)
 ### <a id="three-two"></a>3.2 typeof 和 instanceof 的区别
 
 > [返回目录](#one)
@@ -647,8 +646,8 @@ text.onmouseenter = function (e) {
 
 > [返回目录](#one)
 
-![图](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/JavaScript/img/JavaScript-base-01.png?raw=true)
 
+![图](./images/JavaScript-base-01.png)
 这两者都是移入的时候触发，但是 `onmouseover` 会触发多次，而 `onmouseenter` 只在进去的时候才触发。
 
 ## <a id="ten"></a>十 Javascript API
