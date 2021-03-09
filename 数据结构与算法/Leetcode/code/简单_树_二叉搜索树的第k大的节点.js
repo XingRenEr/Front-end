@@ -1,18 +1,18 @@
 // 反着的中序遍历
 var kthLargest = function(root, k) {
-  var count = 0;
+  var max = 0;
   var inorderTraversal = function(root) {
-    if (!root) {
-      return;
-    }
+    if (!root) return;
     inorderTraversal(root.right);
-    count++;
-    if (count == k) {
-      return root.val;
+    if (!k) return; // 若 k 为零，已找到，不需要继续遍历，提前返回
+    if (!--k) {
+      max = root.val;
+      return;
     }
     inorderTraversal(root.left);
   }
-  return inorderTraversal(root);
+  inorderTraversal(root);
+  return max;
 };
 
 /* 二叉树构造函数 */
