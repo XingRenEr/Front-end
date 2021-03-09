@@ -1,39 +1,34 @@
 WebSocket
 ===
 
-> Create by **jsliang** on **2020-10-27 15:49:50**  
-> Recently revised in **2020-11-29 14:43:42**
-
 <!-- 目录开始 -->
-## <a name="chapter-one" id="chapter-one"></a>一 目录
-
-**不折腾的前端，和咸鱼有什么区别**
+## <a id="one"></a>一 目录
 
 | 目录 |
 | --- |
-| [一 目录](#chapter-one) |
-| <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
-| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 WebSocket 和 HTTP](#chapter-three) |
-| &emsp;[3.1 （短）轮询（Polling）](#chapter-three-one) |
-| &emsp;[3.2 长轮询](#chapter-three-two) |
-| &emsp;[3.3 WebSocket](#chapter-three-three) |
-| &emsp;[3.4 两者比对](#chapter-three-four) |
-| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 Socket.io](#chapter-four) |
-| &emsp;[4.1 服务端代码](#chapter-four-one) |
-| &emsp;[4.2 客户端代码](#chapter-four-two) |
-| &emsp;[4.3 小结](#chapter-four-three) |
-| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 参考文献](#chapter-five) |
+| [一 目录](#one) |
+| [二 前言](#two) |
+| [三 WebSocket 和 HTTP](#three) |
+| &emsp;[3.1 （短）轮询（Polling）](#three-one) |
+| &emsp;[3.2 长轮询](#three-two) |
+| &emsp;[3.3 WebSocket](#three-three) |
+| &emsp;[3.4 两者比对](#three-four) |
+| [四 Socket.io](#four) |
+| &emsp;[4.1 服务端代码](#four-one) |
+| &emsp;[4.2 客户端代码](#four-two) |
+| &emsp;[4.3 小结](#four-three) |
+| [五 参考文献](#five) |
 <!-- 目录结束 -->
 
-## <a name="chapter-two" id="chapter-two"></a>二 前言
+## <a id="two"></a>二 前言
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 `WebSocket` 是 `HTML5` 新增的一种全双工通信协议，客户端和服务器基于 TCP 握手连接成功后，两者之间就可以建立持久性的连接，实现双向数据传输。
 
-## <a name="chapter-three" id="chapter-three"></a>三 WebSocket 和 HTTP
+## <a id="three"></a>三 WebSocket 和 HTTP
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 我们知道 `HTTP` 协议是一种单向的网络协议，在建立连接后，它允许客户端向服务器发送请求资源后，服务器才会返回相应的数据，而服务器不能主动推送数据给客户端。
 
@@ -43,9 +38,9 @@ WebSocket
 
 下面介绍几种常见的方式。
 
-### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 （短）轮询（Polling）
+### <a id="three-one"></a>3.1 （短）轮询（Polling）
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 短轮询模式下，客户端每隔一段时间向服务器发送 `HTTP` 请求。
 
@@ -55,9 +50,9 @@ WebSocket
 
 这就导致了网络带宽的浪费。
 
-### <a name="chapter-three-two" id="chapter-three-two"></a>3.2 长轮询
+### <a id="three-two"></a>3.2 长轮询
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 长轮询模式下，客户端向服务器发出请求，服务器并不一定会立即回应客户端，而是查看数据是否有更新。
 
@@ -69,9 +64,9 @@ WebSocket
 
 如果服务器更新频率较快，那么就会出现问题。
 
-### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 WebSocket
+### <a id="three-three"></a>3.3 WebSocket
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 基于前面的情况，为了彻底解决服务器主动向客户端发送数据的问题。
 
@@ -79,9 +74,9 @@ WebSocket
 
 `WebSocket` 基于 `TCP` 协议，是一种全新的、独立的协议，与 `HTTP` 协议兼容却不会融入 `HTTP` 协议，仅仅作为 `HTML5` 的一部分。
 
-### <a name="chapter-three-four" id="chapter-three-four"></a>3.4 两者比对
+### <a id="three-four"></a>3.4 两者比对
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 基于上面，小伙伴们大概了解了 `WebSocket` 的缘由了，这里再总结对比一下 `HTTP` 和 `WebSocket`。
 
@@ -95,9 +90,9 @@ WebSocket
 1. `HTTP` 是单向数据流，客户端向服务器发送请求，服务器响应并返回数据；`WebSocket` 连接后可以实现客户端和服务器双向数据传递，除非某一端断开连接。
 2. `HTTP` 的 `url` 使用 `http//` 或者 `https//` 开头，而 `WebSocket` 的 `url` 使用 `ws//` 开头
 
-## <a name="chapter-four" id="chapter-four"></a>四 Socket.io
+## <a id="four"></a>四 Socket.io
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 我们先来看 `WebSocket` 的一个使用方式：
 
@@ -135,9 +130,9 @@ ws.onerror = (ev) =>{
 
 下面我们讲解下如何实现一个简单的聊天。
 
-### <a name="chapter-four-one" id="chapter-four-one"></a>4.1 服务端代码
+### <a id="four-one"></a>4.1 服务端代码
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 > package.json
 
@@ -195,9 +190,9 @@ server.listen(3000, () => {
 npm i express socket.io express -D
 ```
 
-### <a name="chapter-four-two" id="chapter-four-two"></a>4.2 客户端代码
+### <a id="four-two"></a>4.2 客户端代码
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 ```html
 <!DOCTYPE html>
@@ -213,9 +208,9 @@ npm i express socket.io express -D
 
 <body>
 
-  <input type="text" id="input">
-  <button id="btn">send</button>
-  <div id="content-wrap"></div>
+  <inputid="input">
+  <buttoid="btn">send</button>
+  <div d="content-wrap"></div>
 
   <script>
     window.onload = function () {
@@ -257,9 +252,9 @@ npm i express socket.io express -D
 </html>
 ```
 
-### <a name="chapter-four-three" id="chapter-four-three"></a>4.3 小结
+### <a id="four-three"></a>4.3 小结
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 `Socket.io` 不仅支持 `WebSocket`，还支持许多种轮询机制以及其他实时通信方式，并封装了通用的接口。
 
@@ -269,9 +264,9 @@ npm i express socket.io express -D
 
 这样，我们就对 `WebSocket` 有一定的了解，面试的时候就不慌了。
 
-## <a name="chapter-five" id="chapter-five"></a>五 参考文献
+## <a id="five"></a>五 参考文献
 
-> [返回目录](#chapter-one)
+> [返回目录](#one)
 
 * [x] [websocket 与Socket.IO介绍](https://www.cnblogs.com/mazg/p/5467960.html)【阅读建议：10min】
 * [x] [WebSocket 与 Socket.IO](https://zhuanlan.zhihu.com/p/23467317)【阅读建议：10min】

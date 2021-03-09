@@ -1052,7 +1052,7 @@ var kthLargest = function(root, k) {
 };
 ```
 
-### 4.1.4 (简单) 剑指 Offer 68 - II. 二叉树的最近公共祖先
+### 4.1.4 (中等) 剑指 Offer 68 - II. 二叉树的最近公共祖先 (未完成)
 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
 
 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（**一个节点也可以是它自己的祖先**）。”
@@ -1083,6 +1083,120 @@ var kthLargest = function(root, k) {
 - p、q 为不同节点且均存在于给定的二叉树中。
 注意：本题与主站 236 题相同：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/
 
+```
+// 层序遍历（没通过 LeetCode 上的测试，超出内存）
+var lowestCommonAncestor = function(root, p, q) {
+  var queue = [],
+    index = 0,
+    pIndex = -1,
+    qIndex = -1;
+    queue.push(root);
+  while (true) { // 层序遍历
+    if (root && root.val == p) {
+      pIndex = index;
+      if (qIndex >= 0) break; // 若 p q 在(数组形式存储的)树中的序号都已找到，则终止循环
+    }
+    if (root && root.val == q) {
+      qIndex = index;
+      if (pIndex >= 0) break;
+    }
+    queue.push(root ? root.left : null);
+    queue.push(root ? root.right : null);
+    root = queue[++index];
+  }
+  while (pIndex != qIndex) {
+    if (pIndex > qIndex) {
+      pIndex = Math.floor((pIndex - 1) / 2);
+    } else {
+      qIndex = Math.floor((qIndex - 1) / 2);
+    }
+  }
+  return queue[pIndex];
+};
+```
+
+### 4.1.5 (简单) 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先 (未完成)给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
+
+百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（**一个节点也可以是它自己的祖先**）。”
+
+例如，给定如下二叉搜索树:  root = [6,2,8,0,4,7,9,null,null,3,5]
+
+![图](images/binarysearchtree_improved.png)
+
+**示例 1:**
+
+```
+输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
+输出: 6 
+解释: 节点 2 和节点 8 的最近公共祖先是 6。
+```
+**示例 2:**
+
+```
+输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4
+输出: 2
+解释: 节点 2 和节点 4 的最近公共祖先是 2, 因为根据定义最近公共祖先节点可以为节点本身。
+```
+
+**说明:**
+
+- 所有节点的值都是唯一的。
+- p、q 为不同节点且均存在于给定的二叉搜索树中。
+
+注意：本题与主站 235 题相同：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+
+### 4.1.6 (中等) 剑指 Offer 32 - II. 从上到下打印二叉树 II从上到下按层打印二叉树，同一层的节点按从左到右的顺序打印，每一层打印到一行。
+
+例如:
+给定二叉树: [3,9,20,null,null,15,7],
+
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+返回其层次遍历结果：
+
+```
+[
+  [3],
+  [9,20],
+  [15,7]
+]
+```
+
+**提示：**
+
+节点总数 <= 1000
+注意：本题与主站 102 题相同：https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
+
+```js
+// 方法一：超市结账处分隔板的思路（我的方法）
+var levelOrder = function(root) {
+  if (!root) {
+    return []
+  }
+  var queue = [],
+    node, arr = [];
+  queue.push(false);
+  queue.push(root);
+  while (queue.length > 0) {
+    node = queue.shift();
+    if (!node) {
+      if (queue.length == 0) break;
+      arr[arr.length] = [];
+      queue.push(false);
+      continue;
+    }
+    if (node.val != null) arr[arr.length - 1].push(node.val);
+    if (node.left) queue.push(node.left);
+    if (node.right) queue.push(node.right);
+  }
+  return arr;
+};
+```
 
 ## <a id="four-two"></a>4.2 二叉搜索树  
 > [返回目录](#zero)  
