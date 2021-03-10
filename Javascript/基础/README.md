@@ -44,6 +44,8 @@
 <!-- 目录结束 -->
 
 ## <a id="two"></a>二 数据类型
+![图](images/数据类型.png)  
+
 ### <a id="two-one"></a>2.1 null 和 undefined 的区别
 
 > [返回目录](#one)
@@ -153,7 +155,7 @@
 * [x] [字符串方法](https://github.com/XingRenEr/Front-end/blob/master/Javascript/%E5%9F%BA%E7%A1%80/%E5%AD%97%E7%AC%A6%E4%B8%B2.md)  
 
 ### <a id="two-four"></a>2.4 RegExp
-![7.png](./7.png)  
+![7.png](./images/7.png)  
 
 ## <a id="three"></a>三 变量与作用域
 > [返回目录](#one)  
@@ -211,7 +213,7 @@ first();
 console.log('Inside Global Execution Context');
 ```
 
-![图](./images/JavaScript-base-02.jpg)
+![图](./images/JavaScript-base-02.png)
 ### <a id="three-two"></a>3.2 typeof 和 instanceof 的区别
 
 > [返回目录](#one)
