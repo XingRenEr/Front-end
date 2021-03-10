@@ -783,7 +783,7 @@ var maxSlidingWindow = function(nums, k) {
 };
 ```
 
-### (困难) 239. 滑动窗口最大值 (要求线性时间复杂度)
+### 2.4.2 (困难) 239. 滑动窗口最大值 (要求线性时间复杂度) (未完成)
 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
 
 返回滑动窗口中的最大值。
@@ -1083,8 +1083,10 @@ var kthLargest = function(root, k) {
 - p、q 为不同节点且均存在于给定的二叉树中。
 注意：本题与主站 236 题相同：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/
 
-```
-// 层序遍历（没通过 LeetCode 上的测试，超出内存）
+```js
+// 层序遍历
+// 不好：不能把 TreeNode 类型的节点全部保留在 queue 中
+//（没通过 LeetCode 上的测试，超出内存）
 var lowestCommonAncestor = function(root, p, q) {
   var queue = [],
     index = 0,
@@ -1104,6 +1106,40 @@ var lowestCommonAncestor = function(root, p, q) {
     queue.push(root ? root.right : null);
     root = queue[++index];
   }
+  while (pIndex != qIndex) { // 查找公共父节点序号
+    if (pIndex > qIndex) {
+      pIndex = Math.floor((pIndex - 1) / 2);
+    } else {
+      qIndex = Math.floor((qIndex - 1) / 2);
+    }
+  }
+  return queue[pIndex]; // 通过下标取得数组中的父节点
+};
+```
+```js
+// 层序遍历 2 次
+// 不好：超出时间限制
+var lowestCommonAncestor = function(root, p, q) {
+  var queue = [root],
+    node,
+    index = 0,
+    pIndex = -1,
+    qIndex = -1;
+  while (true) { // 层序遍历
+    node = queue.shift();
+    if (node && node.val == p) {
+      pIndex = index;
+      if (qIndex >= 0) break; // 若 p q 在(数组形式存储的)树中的序号都已找到，则终止循环
+    }
+    if (node && node.val == q) {
+      qIndex = index;
+      if (pIndex >= 0) break;
+    }
+    queue.push(node ? node.left : null);
+    queue.push(node ? node.right : null);
+    ++index;
+  }
+  queue = [root];
   while (pIndex != qIndex) {
     if (pIndex > qIndex) {
       pIndex = Math.floor((pIndex - 1) / 2);
@@ -1111,10 +1147,14 @@ var lowestCommonAncestor = function(root, p, q) {
       qIndex = Math.floor((qIndex - 1) / 2);
     }
   }
-  return queue[pIndex];
+  while (qIndex-- >= 0) { // 层序遍历
+    node = queue.shift();
+    queue.push(node ? node.left : null);
+    queue.push(node ? node.right : null);
+  }
+  return node;
 };
 ```
-
 ### 4.1.5 (简单) 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先 (未完成)给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
 
 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（**一个节点也可以是它自己的祖先**）。”
@@ -1175,19 +1215,16 @@ var lowestCommonAncestor = function(root, p, q) {
 ```js
 // 方法一：超市结账处分隔板的思路（我的方法）
 var levelOrder = function(root) {
-  if (!root) {
-    return []
-  }
-  var queue = [],
-    node, arr = [];
-  queue.push(false);
+  if (!root) return []; // 特例处理
+  var queue = [], arr = [], node;
+  queue.push(false); // 隔板
   queue.push(root);
-  while (queue.length > 0) {
+  while (queue.length) {
     node = queue.shift();
     if (!node) {
-      if (queue.length == 0) break;
-      arr[arr.length] = [];
-      queue.push(false);
+      if (!queue.length) break; // 如果是队列中的最后一个隔板，则不再给 arr 增加行
+      arr[arr.length] = []; // 给 arr 增加行
+      queue.push(false); // 从队列中取出一个隔板，则新增一个隔板
       continue;
     }
     if (node.val != null) arr[arr.length - 1].push(node.val);
@@ -1198,6 +1235,156 @@ var levelOrder = function(root) {
 };
 ```
 
+```js
+// 方法二：循环嵌套。内层循环次数为当前层节点数（即队列 queue 长度），用临时数组暂存当前层节点的值
+// 代码更容易理解
+var levelOrder = function(root) {
+  if (!root) return []; // 特例处理
+  var queue = [], arr = [], node;
+  queue.push(root);
+  while (queue.length) {
+    var tmp = [], qLength = queue.length; // 用一个临时数组暂存一层的节点的值
+    for (let i = 0; i < qLength; i++) {
+      node = queue.shift();
+      if (node.val != null) tmp.push(node.val);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    arr.push(tmp);
+  }
+  return arr;
+};
+```
+
+### 4.1.7 (简单) 剑指 Offer 55 - II. 平衡二叉树输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。
+
+**示例 1:**
+
+给定二叉树 [3,9,20,null,null,15,7]
+
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+返回 true 。
+
+**示例 2:**
+
+给定二叉树 [1,2,2,3,3,null,null,4,4]
+
+```
+       1
+      / \
+     2   2
+    / \
+   3   3
+  / \
+ 4   4
+```
+返回 false 。
+
+限制：
+
+0 <= 树的结点个数 <= 10000
+注意：本题与主站 110 题相同：https://leetcode-cn.com/problems/balanced-binary-tree/
+
+```js
+// 方法一：后序遍历 + 提前返回（我的方法）
+var isBalanced = function(root) {
+  var balanceFlag = true;
+  var dfs = function(root) {
+    if (!balanceFlag) return; // 若不平衡，提前返回（即类似方法二中的剪枝操作）
+    if (!root || root.val == null) return 0; // 递归的初始值
+    var lson = dfs(root.left),
+      rson = dfs(root.right);
+    if (Math.abs(lson - rson) > 1) {
+      balanceFlag = false;
+      return;
+    }
+    return Math.max(lson, rson) + 1;
+  }
+  dfs(root);
+  return balanceFlag;
+};
+```
+```js
+// 方法二：后序遍历 + 剪枝（从底至顶）
+// 巧用 return -1
+var isBalanced = function(root) {
+  var dfs = function(root) {
+    if (!root || root.val == null) return 0; // 递归的初始值
+    var lson = dfs(root.left), rson = dfs(root.right);
+    if (lson == -1 || rson == -1) return -1;
+    return Math.abs(lson - rson) <= 1 ? Math.max(lson, rson) + 1 : -1;
+  }
+  return dfs(root) != -1;
+};
+```
+### 4.1.8 (简单) 剑指 Offer 28. 对称的二叉树请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。
+
+例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
+
+```
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+```
+但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:
+
+```
+    1
+   / \
+  2   2
+   \   \
+   3    3
+```
+ 
+**示例 1：**
+
+```
+输入：root = [1,2,2,3,4,4,3]
+输出：true
+```
+**示例 2：**
+
+```
+输入：root = [1,2,2,null,3,null,3]
+输出：false
+```
+
+**限制：**
+
+0 <= 节点个数 <= 1000
+
+注意：本题与主站 101 题相同：https://leetcode-cn.com/problems/symmetric-tree/
+
+```js
+// 方法一：左右子树同时先序遍历，其中一个中左右，另一个中右左（我的方法）
+// 巧用 return -1
+var isSymmetric = function(root) {
+  var dfs = function(root1, root2) {
+    // 返回 -1 (即不对称的情况) ：
+    // 1. 左右子树根节点一个存在另一个不存在
+    // 2. 左右子树根节点都存在，但是不相等
+    if ((!root1 || root1.val == null) && (!root2 || root2.val == null)) {
+      return;
+    } else if ((!root1 || root1.val == null) && root2 && root2.val != null) {
+      return -1;
+    } else if ((!root2 || root2.val == null) && root1 && root1.val != null) {
+      return -1;
+    } else if (root1.val != root2.val) return -1;
+    var res1 = dfs(root1.left, root2.right);
+    var res2 = dfs(root1.right, root2.left);
+    if (res1 == -1 || res2 == -1) return -1;
+  }
+  return root ? dfs(root.left, root.right) != -1 : true;
+};
+```
 ## <a id="four-two"></a>4.2 二叉搜索树  
 > [返回目录](#zero)  
 
