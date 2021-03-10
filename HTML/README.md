@@ -34,3 +34,7 @@ window > document > html > body
 * `window` 是 `BOM` 的核心对象，它一方面用来获取和设置浏览器的属性和行为，另一方面作为一个全局对象。
 * `document` 对象是一个跟文档相关的对象，拥有一些操作文档内容的功能，但是地位没有 `window` 高。
 * `html` 元素对象跟 `document` 元素对象是属于 `html` 文档的 `DOM` 对象，可以认为就是 `html` 源代码中那些标签化成的对象，它们跟 `div`、`select` 这些对象没有什么根本区别。
+
+---
+
+> jsliang 的文档库由 [梁峻荣](https://github.com/LiangJunrong) 采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/) 进行许可。<br/>基于 [https://github.com/LiangJunrong/document-library](https://github.com/LiangJunrong/document-library) 上的作品创作。<br/>本许可协议授权之外的使用权限可以从 [https://creativecommons.org/licenses/by-nc-sa/2.5/cn/](https://creativecommons.org/licenses/by-nc-sa/2.5/cn/) 处获得。
