@@ -1,3 +1,5 @@
+// await‘›Õ£∫Õª÷∏¥÷¥––
+
 /* example 1 */
 
 async function foo() {

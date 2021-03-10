@@ -1,3 +1,5 @@
+// 15.10题目十
+
 async function async1() {
   await async2();
   console.log('async1');
