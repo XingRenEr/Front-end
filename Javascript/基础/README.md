@@ -22,9 +22,9 @@
 | [六 Promise与异步函数](#six) |
 | &emsp;[6.1 setTimeout 实现 setInterval](#six-one) |
 | [七 BOM](#seven) |
-| &emsp;[7.1 位置](#seven-one) |
 | [八 DOM](#eight) |
 | &emsp;[8.1 DOM 常用 API](#eight-one) |
+| &emsp;[8.2 元素尺寸](#eight-two) |
 | [九 事件](#nine) |
 | &emsp;[9.1 事件流](#nine-one) |
 | &emsp;[9.2 事件处理程序](#nine-two) |
@@ -323,15 +323,6 @@ setTimeout(() => {
 ```
 
 ## <a id="seven"></a>七 BOM
-### <a id="seven-one"></a>7.1 位置
-
-> [返回目录](#one)
-
-* `clientHeight`：表示可视区域的高度，不包含 `border` 和滚动条
-* `offsetHeight`：表示可视区域的高度，包含了 `border` 和滚动条
-* `scrollHeight`：表示了所有区域的高度，包含了因为滚动被隐藏的部分
-* `clientTop`：表示边框 `border` 的厚度，在未指定的情况下一般为`0`
-* `scrollTop`：滚动后被隐藏的高度，获取对象相对于由 `offsetParent` 属性指定的父坐标（CSS 定位的元素或 `body` 元素）距离顶端的高度。
 
 ## <a id="eight"></a>八 DOM
 
@@ -430,6 +421,29 @@ document.body.removeChild(node);
 </body>
 </html>
 ```
+
+### <a id="eight-two"></a>8.2 元素尺寸
+
+> [返回目录](#one)
+
+![picture](images/offsetWidth.png)  
+![picture](images/clientWidth.png)  
+![picture](images/scrollWidth.png)  
+
+* `clientHeight`：表示元素可视区域的高度，不包含 `border` 和滚动条
+* `offsetHeight`：表示元素可视区域的高度，包含了 `border` 和滚动条
+* `scrollHeight`：表示了元素所有区域的高度，包含了因为滚动被隐藏的部分
+* `clientTop`：表示边框 `border` 的厚度，在未指定的情况下一般为`0`（应该用的不多，在红宝书里没有）
+* `offsetTop`：元素上边框外侧距离包含元素（`offsetParent` 为由 CSS 定位的元素或 `body` 元素）上边框内侧的像素数
+* `scrollTop`：滚动后内容区顶部隐藏的像素数（可写）
+
+在 BOM 中有关于视口大小的属性  
+* `innerWidth`
+
+确定浏览器视口大小的方法有三种：  
+* `window.innerWidth`
+* `document.documentElement.clientWidth`
+* `document.body.clientWidth`
 
 ## <a id="nine"></a>九 事件
 ### <a id="nine-one"></a>9.1 事件流
