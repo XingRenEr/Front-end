@@ -323,6 +323,8 @@ setTimeout(() => {
 ```
 
 ## <a id="seven"></a>七 BOM
+![pic](images/BOM.png)  
+![pic](images/BOM-location.png)  
 
 ## <a id="eight"></a>八 DOM
 
