@@ -29,31 +29,28 @@
         var source = document.getElementById('source')
         var target = document.getElementById('target')
         source.ondragstart = function(event) {
-          var e = event || window.event
-          console.log('开始拖拽');
+          console.log('ondragstart');
         }
         source.ondrag = function() {
-          console.log('拖拽中');
+          console.log('ondrag');
         }
         source.ondragend = function() {
-          console.log('拖拽结束')
+          console.log('ondragend')
         }
 
         target.ondragenter = function() {
-          console.log('进入目标元素')
+          console.log('ondragenter')
         }
         target.ondragover = function(event) {
           var event = event || window.event;
-          console.log('在目标元素中拖拽');
+          console.log('ondragover');
           event.preventDefault()
         }
         target.ondragleave = function() {
-          console.log('拖放离开目标元素')
+          console.log('ondragleave')
         }
         target.ondrop = function(event) {
-          console.log('拖放');
-          var e = event || window.event;
-
+          console.log('ondrop');
         }
       }
     </script>
