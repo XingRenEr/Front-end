@@ -55,23 +55,26 @@
 ## 1.1 (简单) 剑指 Offer 58 - Ⅱ. 左旋转字符串
 字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串"abcdefg"和数字2，该函数将返回左旋转两位得到的结果"cdefgab"。
 
-示例 1：
+**示例 1：**
 
+```
 输入: s = "abcdefg", k = 2  
 输出: "cdefgab"  
-示例 2：  
+```
+**示例 2：**  
 
+```
 输入: s = "lrloseumgh", k = 6  
 输出: "umghlrlose"  
- 
+```
 
 限制：
 
 1 <= k < s.length <= 10000
 
+### 方法一：slice
 ```JS
 var reverseLeftWords = function(s, n) {
-	// 方法一：slice
 	return s.slice(n) + s.slice(0, n)
 };
 ```
@@ -79,27 +82,33 @@ var reverseLeftWords = function(s, n) {
 ## 1.2 (简单) 剑指 Offer 58 - Ⅰ. 翻转单词顺序
 输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串"I am a student. "，则输出"student. a am I"。
 
-示例 1：
+**示例 1：**
 
+```
 输入: "the sky is blue"  
 输出: "blue is sky the"  
-示例 2：  
+```
+**示例 2：**
 
 输入: "  hello world!  "  
+```
 输出: "world! hello"  
 解释: 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。  
-示例 3：  
+```
+**示例 3：**
 
 输入: "a good   example"  
+```
 输出: "example good a"  
 解释: 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。  
-
+```
 说明：
 
 无空格字符构成一个单词。  
 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。  
 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。  
 
+### 方法一
 ```JS
 var reverseWords = function(s) {
 	s = s.trim();
@@ -133,8 +142,10 @@ var reverseWords = function(s) {
 2 <= n <= 100000
 
 (加分项：问时间、空间复杂度)  
+
+#### 方法一：暴力  
+时间O(n2)，空间O(1)
 ```JS
-// 方法一：暴力 时间O(n2)，空间O(1)
 var findRepeatNumber = function(nums) {
 	const numLength = nums.length
 	for (var i = 0; i < numLength; i++) {
@@ -146,8 +157,9 @@ var findRepeatNumber = function(nums) {
 	}
 };
 ```
+#### 方法二：数组模拟Java中的哈希表  
+时间O(n)，空间O(n)
 ```JS
-// 方法二：数组模拟Java中的哈希表 时间O(n)，空间O(n)
 var findRepeatNumber = function(nums) {
 	var newNums = new Array(nums.length)
 	newNums.fill(-1)
@@ -159,8 +171,9 @@ var findRepeatNumber = function(nums) {
 	}
 };
 ```
+#### 方法三：利用原地排序的思路
+时间O(n)，空间O(1)
 ```JS
-// 方法三：利用原地排序的思路 时间O(n)，空间O(1)
 var findRepeatNumber = function(nums) {
 	for (var i in nums) {
 		var temp
@@ -187,8 +200,8 @@ const arr = [1, 1, 2, 3, 3];
 ```
 
 解答：  
+#### 方法一：includes
 ```JS
-// 方法一：includes
 const newArr1 = [];
 for (let i = 0; i < arr.length; i++) {
   if (!newArr1.includes(arr[i])) {
@@ -196,8 +209,10 @@ for (let i = 0; i < arr.length; i++) {
   }
 }
 console.log('newArr1：', newArr1);
-
-// indexOf，与上述方法几乎完全一样，但是语义不如includes好
+```
+#### indexOf  
+与上述方法几乎完全一样，但是语义不如includes好
+```
 const newArr1 = [];
 for (let i = 0; i < arr.length; i++) {
   if (newArr1.indexOf(arr[i]) == -1) {
@@ -207,14 +222,14 @@ for (let i = 0; i < arr.length; i++) {
 console.log('newArr1：', newArr1);
 ```
 
+#### 方法二： Set
 ```JS
-// 方法二： Set
 const newArr2 = [...new Set(arr)];
 console.log('newArr2：', newArr2);
 ```
 
+#### 方法三： filter
 ```JS
-// 方法三： filter
 const newArr3 = arr.filter((item, index) => arr.lastIndexOf(item) === index);
 console.log('newArr3：', newArr3);
 ```
@@ -223,9 +238,9 @@ console.log('newArr3：', newArr3);
 
 > 注意：不能使用 `push`、`indexOf` 等 `API`
 
+#### 方法四：不使用数组API  
+暴力遍历
 ```JS
-// 方法四：不使用数组API
-// (1) 暴力遍历
 var newArr4 = [arr[0]];
 for (var i = 1; i < arr.length; i++) {
   var repeatflag = false;
@@ -240,25 +255,28 @@ for (var i = 1; i < arr.length; i++) {
   }
 }
 console.log('newArr4', newArr4);
-// (2) 二分法
 ```
 
-### 2.1.2 (简单) 剑指 Offer 53 - Ⅰ. 在排序数组中查找数字Ⅰ
+### <a id="two-one-two">2.1.2 (简单) 剑指 Offer 53 - Ⅰ. 在排序数组中查找数字Ⅰ
 统计一个数字在排序数组中出现的次数。
 
-示例 1:
+**示例 1:**
 
+```
 输入: nums = [5,7,7,8,8,10], target = 8  
 输出: 2  
-示例 2:  
+```
+**示例 2:**
 
+```
 输入: nums = [5,7,7,8,8,10], target = 6  
 输出: 0  
-
+```
 限制：
 
 0 <= 数组长度 <= 50000
 
+#### 方法一
 ```JS
 var search = function(nums, target) {
   var left = 0,
@@ -290,21 +308,25 @@ console.log(search(nums, target));
 ### 2.1.3 (简单) 剑指 Offer 29. 顺时针打印矩阵
 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。
 
-示例 1：
+**示例 1：**
 
+```
 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
 输出：[1,2,3,6,9,8,7,4,5]
-示例 2：
+```
+**示例 2：**
 
+```
 输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
 输出：[1,2,3,4,8,12,11,10,9,5,6,7]
- 
+```
 
 限制：
 
 0 <= matrix.length <= 100  
 0 <= matrix[i].length <= 100  
 
+#### 方法一
 ```js
 var spiralOrder = function(matrix) {
   var j = 0; // 用于判断是第几行/列
@@ -347,22 +369,27 @@ var matrix = [
 console.log(spiralOrder(matrix));
 ```
 
-### 2.1.4 (简单) 剑指 Offer 53 - Ⅱ. 0~n-1中缺失的数字
+### <a id="two-one-four">2.1.4 (简单) 剑指 Offer 53 - II. 0～n-1中缺失的数字
 一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。
 
-示例 1:
+**示例 1:**
 
+```
 输入: [0,1,3]  
 输出: 2  
-示例 2:  
+```
 
+**示例 2:**
+
+```
 输入: [0,1,2,3,4,5,6,7,9]  
 输出: 8  
-
+```
 限制：
 
 1 <= 数组长度 <= 10000
 
+#### 方法一
 ```js
 var missingNumber = function(nums) {
   var l = 0,
@@ -385,20 +412,41 @@ var missingNumber = function(nums) {
   }
 };
 ```
+
+为了和[(简单) 剑指 Offer 53 - Ⅰ. 在排序数组中查找数字Ⅰ](#two-one-two)写法相同：  
+```js
+var missingNumber = function(nums) {
+  var l = 0,
+    r = nums.length - 1;
+  var middle;
+  if (nums[r] == r) return r + 1;
+  while (l < r) {
+    middle = Math.floor((l + r) / 2);
+    if (nums[middle] > middle) {
+      r = middle;
+    } else {
+      l = middle + 1;
+    }
+  }
+  return nums[l] - 1;
+};
+```
 ## <a id="two-two"></a>2.2 链表  
 > [返回目录](#zero)  
 
 ### 2.2.1 (简单) 剑指 Offer 22. 链表中倒数第k个节点
 输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。例如，一个链表有6个节点，从头节点开始，它们的值依次是1、2、3、4、5、6。这个链表的倒数第3个节点是值为4的节点。
 
-示例：
+**示例：**
 
+```
 给定一个链表: 1->2->3->4->5, 和 k = 2.
-
 返回链表 4->5.
+```
 
+#### 方法一：用数组存放所有节点的指针  
+时间O(n)，空间O(n)
 ```js
-// 方法一：用数组存放所有节点的指针 时间O(n)，空间O(n)
 var getKthFromEnd = function(head, k) {
     var p = head;
     var pArr = [];
@@ -410,8 +458,9 @@ var getKthFromEnd = function(head, k) {
 };
 ```
 
+#### 方法二：快慢指针  
+时间O(n)，空间O(1)
 ```js
-// 方法二：快慢指针 时间O(n)，空间O(1)
 var getKthFromEnd = function(head, k) {
     var pFront = head, pBehind = head;
     while(k-- > 0) {
@@ -428,17 +477,19 @@ var getKthFromEnd = function(head, k) {
 ### 2.2.2 (简单) 剑指 Offer 06. 从尾到头打印链表
 输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
 
-示例 1：
+**示例 1：**
 
+```
 输入：head = [1,3,2]  
 输出：[2,3,1]  
-
+```
 限制：
 
 0 <= 链表长度 <= 10000
 
+#### 方法一  
+时间O(n)，空间O(n)
 ```js
-// 方法一 时间O(n)，空间O(n)
 var reversePrint = function(head) {
     var p = head;
     var pArr = [];
@@ -451,9 +502,10 @@ var reversePrint = function(head) {
 };
 ```
 
+#### 方法二  
+时间O(n)，空间O(n)  
+代码简洁了，但是貌似时间更久了？
 ```js
-// 方法一 时间O(n)，空间O(n)
-// 代码简洁了，但是貌似时间更久了？
 var reversePrint = function(head) {
     let nums = [];
     let node = head;
@@ -468,18 +520,19 @@ var reversePrint = function(head) {
 ### 2.2.3 (简单) 剑指 Offer 24. 反转链表
 定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
 
-示例:
+**示例:**
 
+```
 输入: 1->2->3->4->5->NULL  
 输出: 5->4->3->2->1->NULL  
-
+```
 限制：
 
 0 <= 节点个数 <= 5000
 
+#### 方法一(我的方法)  
+pLeft pMiddle pRight三个指针，移动顺序为左中右
 ```js
-// (我的方法)
-// 方法一：pLeft pMiddle pRight三个指针，移动顺序为左中右
 var reverseList = function(head) {
     if (head === null) { // 空链表
         return null;
@@ -499,9 +552,10 @@ var reverseList = function(head) {
 };
 ```
 
+#### 方法一：双指针(官方方法)  
+和上面的方法几乎无差别，但是'双指针'比'三个指针'思路更清晰
 ![1.jpg](./images/1.jpg)  
 ```js
-// 方法一：双指针(官方方法。和上面的方法几乎无差别，但是'双指针'比'三个指针'思路更清晰)
 var reverseList = function(head) {
     if (head === null) { // 空链表
         return null;
@@ -520,9 +574,9 @@ var reverseList = function(head) {
 };
 ```
 
+#### 方法二：链表入栈(我的方法)  
+空间O(n)
 ```js
-// (我的方法)
-// 方法二：链表入栈 空间O(n)
 var reverseList = function(head) {
     // 空链表 或 只有一个元素的链表
     if (head == null || head.next == null) {
@@ -544,21 +598,22 @@ var reverseList = function(head) {
 };
 ```
 
+#### 方法二：递归  
+递归的内部实现是使用栈
 ```js
-// 方法二：递归。递归的内部实现是使用栈
 ```
 
+#### 方法三：妖魔化的双指针  
 ![2.jpg](./images/2.jpg)  
 ```js
-// 方法三：妖魔化的双指针
 ```
 
 ### 2.2.4 (简单) 剑指 Offer 52. 两个链表的第一个公共节点
 [leetcode](https://leetcode-cn.com/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/)  
 
+#### 方法一(我的方法)  
 ![3.jpg](./images/3.jpg)  
 ```js
-// (我的方法)
 var getIntersectionNode = function(headA, headB) {
     var pA = headA, pB = headB, lengthA = 0, lengthB = 0;
     for (; pA !== null; pA = pA.next, lengthA++) {}
@@ -579,8 +634,34 @@ var getIntersectionNode = function(headA, headB) {
 ```
 
 ### 2.2.5 (简单) 剑指 Offer 18. 删除链表的节点
-[leetcode](https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/)  
+给定单向链表的头指针和一个要删除的节点的值，定义一个函数删除该节点。
 
+返回删除后的链表的头节点。
+
+注意：此题对比原题有改动
+
+**示例 1:**
+
+```
+输入: head = [4,5,1,9], val = 5
+输出: [4,1,9]
+解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -> 1 -> 9.
+```
+
+**示例 2:**
+
+```
+输入: head = [4,5,1,9], val = 1
+输出: [4,5,9]
+解释: 给定你链表中值为 1 的第三个节点，那么在调用了你的函数之后，该链表应变为 4 -> 5 -> 9.
+```
+
+说明：
+
+题目保证链表中节点的值互不相同
+若使用 C 或 C++ 语言，你不需要 free 或 delete 被删除的节点
+
+#### 方法一
 ```js
 var deleteNode = function(head, val) {
     if (head.val === val) {
@@ -599,25 +680,31 @@ var deleteNode = function(head, val) {
 ### 2.3.1 (简单) 剑指 Offer 09. 用两个栈实现队列
 用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead 操作返回 -1 )
 
-示例 1：
+**示例 1：**
 
+```
 输入：  
 ["CQueue","appendTail","deleteHead","deleteHead"]  
 [[],[3],[],[]]  
 输出：[null,null,3,-1]  
-示例 2：  
+```
 
+**示例 2：**
+
+```
 输入：  
 ["CQueue","deleteHead","appendTail","appendTail","deleteHead","deleteHead"]  
 [[],[],[5],[2],[],[]]  
 输出：[null,-1,null,null,5,2]  
+```
+
 提示：  
 
 1 <= values <= 10000  
 最多会对 appendTail、deleteHead 进行 10000 次调用  
 
+#### 方法一
 ```js
-// 方法一：
 var CQueue = function() {
     this.stack1 = [];
     this.stack2 = [];
@@ -655,8 +742,9 @@ CQueue.prototype.deleteHead = function() {
 ### 2.3.2 (简单) 剑指 Offer 30. 包含min函数的栈
 定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。
 
-示例:
+**示例:**
 
+```
 MinStack minStack = new MinStack();  
 minStack.push(-2);  
 minStack.push(0);  
@@ -665,13 +753,15 @@ minStack.min();   --> 返回 -3.
 minStack.pop();  
 minStack.top();      --> 返回 0.  
 minStack.min();   --> 返回 -2.  
- 
+```
+
 提示：
 
 各函数的调用总次数不超过 20000 次
  
+#### 方法一  
+数组中存储对象
 ```js
-// 方法一：数组中存储对象
 var MinStack = function() {
     this.stack = [];
 };
@@ -703,8 +793,9 @@ MinStack.prototype.min = function() {
 };
 ```
 
+#### 方法二  
+两个数组，不用每一步都存储当前最小值
 ```js
-// 方法二：两个数组，不用每一步都存储当前最小值
 var MinStack = function() {
     this.stack = [];
     this.minStack = [];
@@ -768,9 +859,9 @@ MinStack.prototype.min = function() {
 
 注意：本题与主站 239 题相同：https://leetcode-cn.com/problems/sliding-window-maximum/
 
+#### 方法一(我的方法)  
+时间O(nk)
 ```js
-// (我的方法)
-// 方法一：时间O(nk)
 var maxSlidingWindow = function(nums, k) {
     if (nums.length === 0) {
         return [];
@@ -867,8 +958,8 @@ s = ""
 
 0 <= s 的长度 <= 50000
 
+#### 方法一：哈希表
 ```js
-// 方法一：哈希表
 var firstUniqChar = function(s) {
   var countObj = {};
   for (let i = 0; i < s.length; i++) {
@@ -882,8 +973,9 @@ var firstUniqChar = function(s) {
   return " ";
 };
 ```
+#### 方法二  
+代码更简单，空间占用更小
 ```js
-// 方法二：代码更简单，空间占用更小
 var firstUniqChar = function(s) {
   for (let x of s) {
     if (s.indexOf(x) === s.lastIndexOf(x)) return x;
@@ -930,8 +1022,8 @@ var firstUniqChar = function(s) {
 
 注意：本题与主站 226 题相同：https://leetcode-cn.com/problems/invert-binary-tree/
 
+#### 方法一：递归
 ```js
-// 方法一：递归
 var mirrorTree = function (root) {
     if (!root) {
         return null;
@@ -956,11 +1048,11 @@ var [A, B, C, D, E, F, G] = objArr;
 [C.left, C.right] = [F, G];
 ```
 
+#### 方法二：栈
 ```
-// 方法二：栈
 ```
 
-### 4.1.2 (简单) 剑指 Offer 55 - I. 二叉树的深度
+### <a id="four-one-two"></a>4.1.2 (简单) 剑指 Offer 55 - I. 二叉树的深度
 
 输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。
 
@@ -977,16 +1069,14 @@ var [A, B, C, D, E, F, G] = objArr;
 ```
 返回它的最大深度 3 。
 
- 
-
 **提示：**
 
 节点总数 <= 10000
 注意：本题与主站 104 题相同：https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
 
+#### 方法一：后序遍历（DFS）
+树的后序遍历 / 深度优先搜索往往利用 递归 或 栈 实现，本文使用递归实现。
 ```js
-// 方法一：后序遍历（DFS）
-// 树的后序遍历 / 深度优先搜索往往利用 递归 或 栈 实现，本文使用递归实现。
 var maxDepth = function(root) {
     if (!root) {
         return 0;
@@ -996,9 +1086,9 @@ var maxDepth = function(root) {
 ```
 ![图](./images/tree-1.png)  
 
+#### 方法二：层序遍历（BFS）  
+树的层序遍历 / 广度优先搜索往往利用 队列 实现。
 ```
-// 方法二：层序遍历（BFS）
-// 树的层序遍历 / 广度优先搜索往往利用 队列 实现。
 ```
 
 ### 4.1.3 (简单) 剑指 Offer 54. 二叉搜索树的第k大节点
@@ -1033,8 +1123,9 @@ var maxDepth = function(root) {
 
 1 ≤ k ≤ 二叉搜索树元素个数
 
+#### 方法一  
+反着的中序遍历
 ```js
-// 反着的中序遍历
 var kthLargest = function(root, k) {
   var max = 0;
   var inorderTraversal = function(root) {
@@ -1061,7 +1152,6 @@ var kthLargest = function(root, k) {
 
 ![图](images/tree-2.png)
 
- 
 **示例 1:**
 
 ```
@@ -1083,10 +1173,11 @@ var kthLargest = function(root, k) {
 - p、q 为不同节点且均存在于给定的二叉树中。
 注意：本题与主站 236 题相同：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/
 
+#### 失败方法  
+层序遍历  
+不好：不能把 TreeNode 类型的节点全部保留在 queue 中  
+（没通过 LeetCode 上的测试，超出内存）  
 ```js
-// 层序遍历
-// 不好：不能把 TreeNode 类型的节点全部保留在 queue 中
-//（没通过 LeetCode 上的测试，超出内存）
 var lowestCommonAncestor = function(root, p, q) {
   var queue = [],
     index = 0,
@@ -1116,9 +1207,10 @@ var lowestCommonAncestor = function(root, p, q) {
   return queue[pIndex]; // 通过下标取得数组中的父节点
 };
 ```
+#### 失败方法  
+层序遍历 2 次  
+不好：超出时间限制
 ```js
-// 层序遍历 2 次
-// 不好：超出时间限制
 var lowestCommonAncestor = function(root, p, q) {
   var queue = [root],
     node,
@@ -1185,7 +1277,7 @@ var lowestCommonAncestor = function(root, p, q) {
 
 注意：本题与主站 235 题相同：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 
-### 4.1.6 (中等) 剑指 Offer 32 - II. 从上到下打印二叉树 II从上到下按层打印二叉树，同一层的节点按从左到右的顺序打印，每一层打印到一行。
+### <a id="four-one-six"></a>4.1.6 (中等) 剑指 Offer 32 - II. 从上到下打印二叉树 II从上到下按层打印二叉树，同一层的节点按从左到右的顺序打印，每一层打印到一行。
 
 例如:
 给定二叉树: [3,9,20,null,null,15,7],
@@ -1212,8 +1304,9 @@ var lowestCommonAncestor = function(root, p, q) {
 节点总数 <= 1000
 注意：本题与主站 102 题相同：https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
 
+#### 方法一：超市结账处分隔板的思路（我的方法）
+层序遍历——广度优先搜索
 ```js
-// 方法一：超市结账处分隔板的思路（我的方法）
 var levelOrder = function(root) {
   if (!root) return []; // 特例处理
   var queue = [], arr = [], node;
@@ -1235,9 +1328,10 @@ var levelOrder = function(root) {
 };
 ```
 
+#### 方法二：循环嵌套  
+内层循环次数为当前层节点数（即队列 queue 长度），用临时数组暂存当前层节点的值  
+代码更容易理解
 ```js
-// 方法二：循环嵌套。内层循环次数为当前层节点数（即队列 queue 长度），用临时数组暂存当前层节点的值
-// 代码更容易理解
 var levelOrder = function(root) {
   if (!root) return []; // 特例处理
   var queue = [], arr = [], node;
@@ -1256,7 +1350,7 @@ var levelOrder = function(root) {
 };
 ```
 
-### 4.1.7 (简单) 剑指 Offer 55 - II. 平衡二叉树输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。
+### <a id="four-one-seven"></a>4.1.7 (简单) 剑指 Offer 55 - II. 平衡二叉树输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。
 
 **示例 1:**
 
@@ -1291,8 +1385,8 @@ var levelOrder = function(root) {
 0 <= 树的结点个数 <= 10000
 注意：本题与主站 110 题相同：https://leetcode-cn.com/problems/balanced-binary-tree/
 
+#### 方法一：后序遍历 + 提前返回（我的方法）
 ```js
-// 方法一：后序遍历 + 提前返回（我的方法）
 var isBalanced = function(root) {
   var balanceFlag = true;
   var dfs = function(root) {
@@ -1310,9 +1404,9 @@ var isBalanced = function(root) {
   return balanceFlag;
 };
 ```
+#### 方法二：后序遍历 + 剪枝（从底至顶）  
+巧用 return -1
 ```js
-// 方法二：后序遍历 + 剪枝（从底至顶）
-// 巧用 return -1
 var isBalanced = function(root) {
   var dfs = function(root) {
     if (!root || root.val == null) return 0; // 递归的初始值
@@ -1363,9 +1457,9 @@ var isBalanced = function(root) {
 
 注意：本题与主站 101 题相同：https://leetcode-cn.com/problems/symmetric-tree/
 
+#### 方法一：左右子树同时先序遍历，其中一个中左右，另一个中右左（我的方法）  
+巧用 return -1
 ```js
-// 方法一：左右子树同时先序遍历，其中一个中左右，另一个中右左（我的方法）
-// 巧用 return -1
 var isSymmetric = function(root) {
   var dfs = function(root1, root2) {
     // 返回 -1 (即不对称的情况) ：
@@ -1400,6 +1494,197 @@ var isSymmetric = function(root) {
 # <a id="five"></a>五 堆  
 > [返回目录](#zero)  
 
+输入整数数组 arr ，找出其中最小的 k 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。
+
+**示例 1：**
+
+```
+输入：arr = [3,2,1], k = 2
+输出：[1,2] 或者 [2,1]
+```
+**示例 2：**
+
+```
+输入：arr = [0,1,2,1], k = 1
+输出：[0]
+```
+限制：
+
+0 <= k <= arr.length <= 10000
+0 <= arr[i] <= 10000
+
+#### 方法一：调用内置的排序函数  
+底层代码是快排，时间复杂度O(NlogN)，空间复杂度O(logN)。  
+```js
+var getLeastNumbers = function(arr, k) {
+    arr.sort((a, b) => a - b);
+    return arr.slice(0, k);
+};
+```
+
+#### 方法二：最大堆
+堆是一种非常常用的数据结构。最大堆的性质是：节点值大于子节点的值，堆顶元素是最大元素。利用这个性质，整体的算法流程如下：
+
+创建大小为 k 的最大堆  
+将数组的前 k 个元素放入堆中  
+从下标 k 继续开始依次遍历数组的剩余元素：  
+如果元素小于堆顶元素，那么取出堆顶元素，将当前元素入堆  
+如果元素大于/等于堆顶元素，不做操作  
+由于堆的大小是 K，空间复杂度是O(K)O(K)，时间复杂度是O(NlogK)O(NlogK)。  
+
+由于 JavaScript 中没有堆，所以需要手动实现。
+
+```js
+function swap(arr, i, j) {
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+}
+
+class MaxHeap {
+    constructor(arr = []) {
+        this.container = [];
+        if (Array.isArray(arr)) {
+            arr.forEach(this.insert.bind(this));
+        }
+    }
+
+    insert(data) {
+        const { container } = this;
+
+        container.push(data);
+        let index = container.length - 1;
+        while (index) {
+            let parent = Math.floor((index - 1) / 2);
+            if (container[index] <= container[parent]) {
+                break;
+            }
+            swap(container, index, parent);
+            index = parent;
+        }
+    }
+
+    extract() {
+        const { container } = this;
+        if (!container.length) {
+            return null;
+        }
+
+        swap(container, 0, container.length - 1);
+        const res = container.pop();
+        const length = container.length;
+        let index = 0,
+            exchange = index * 2 + 1;
+
+        while (exchange < length) {
+            // 如果有右节点，并且右节点的值大于左节点的值
+            let right = index * 2 + 2;
+            if (right < length && container[right] > container[exchange]) {
+                exchange = right;
+            }
+            if (container[exchange] <= container[index]) {
+                break;
+            }
+            swap(container, exchange, index);
+            index = exchange;
+            exchange = index * 2 + 1;
+        }
+
+        return res;
+    }
+
+    top() {
+        if (this.container.length) return this.container[0];
+        return null;
+    }
+}
+
+/**
+ * @param {number[]} arr
+ * @param {number} k
+ * @return {number[]}
+ */
+var getLeastNumbers = function(arr, k) {
+    const length = arr.length;
+    if (k >= length) {
+        return arr;
+    }
+
+    const heap = new MaxHeap(arr.slice(0, k));
+    for (let i = k; i < length; ++i) {
+        if (heap.top() > arr[i]) {
+            heap.extract();
+            heap.insert(arr[i]);
+        }
+    }
+    return heap.container;
+};
+```
+
+#### 方法三：基于快速排序的 partition
+解法 1 中使用了快速排序，但其实并需要对全部元素进行排序，题目只需要前 k 个元素。
+
+回顾快速排序中的 partition 操作，可以将元素arr[0]放入排序后的正确位置，并且返回这个位置index。利用 partition 的特点，算法流程如下：
+
+如果index = k，说明第 k 个元素已经放入正确位置，返回前 k 个元素  
+如果k < index，前 k 个元素在[left, index - 1]之间，缩小查找范围，继续查找  
+如果index < k，前 k 个元素在[index + 1, right] 之间，缩小查找范围，继续查找  
+为了方便理解，可以使用2, 8, 1, 1, 0, 11, -1, 0这个例子在纸上画一下过程。  
+
+```js
+// ac地址：https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/
+// 原文地址：https://xxoo521.com/2020-02-21-least-nums/
+
+/**
+ *
+ * @param {number[]} arr
+ * @param {number} start
+ * @param {number} end
+ * @return {number}
+ */
+function partition(arr, start, end) {
+    const k = arr[start];
+    let left = start + 1,
+        right = end;
+    while (1) {
+        while (left <= end && arr[left] <= k) ++left;
+        while (right >= start + 1 && arr[right] >= k) --right;
+
+        if (left >= right) {
+            break;
+        }
+
+        [arr[left], arr[right]] = [arr[right], arr[left]];
+        ++left;
+        --right;
+    }
+    [arr[right], arr[start]] = [arr[start], arr[right]];
+    return right;
+}
+
+/**
+ * @param {number[]} arr
+ * @param {number} k
+ * @return {number[]}
+ */
+var getLeastNumbers = function(arr, k) {
+    const length = arr.length;
+    if (k >= length) return arr;
+    let left = 0,
+        right = length - 1;
+    let index = partition(arr, left, right);
+    while (index !== k) {
+        if (index < k) {
+            left = index + 1;
+            index = partition(arr, left, right);
+        } else if (index > k) {
+            right = index - 1;
+            index = partition(arr, left, right);
+        }
+    }
+
+    return arr.slice(0, k);
+};
+```
+
 # <a id="six"></a>六 图  
 > [返回目录](#zero)  
 
@@ -1427,8 +1712,13 @@ var isSymmetric = function(root) {
 ## <a id="eight-one"></a>8.1 深度优先搜索  
 > [返回目录](#zero)  
 
+### 8.1.1 [(简单) 剑指 Offer 55 - I. 二叉树的深度](#four-one-two)  
+### 8.1.2 [(简单) 剑指 Offer 55 - II. 平衡二叉树](#four-one-seven)  
+
 ## <a id="eight-two"></a>8.2 广度优先搜索  
 > [返回目录](#zero)  
+
+### 8.2.1 [(中等) 剑指 Offer 32 - II. 从上到下打印二叉树 II](#four-one-two)  
 
 # <a id="nine"></a>九 查找
 > [返回目录](#zero)  
@@ -1436,6 +1726,45 @@ var isSymmetric = function(root) {
 ## <a id="nine-one"></a>9.1 二分查找  
 > [返回目录](#zero)  
 
+### 9.1.1 [(简单) 剑指 Offer 53 - Ⅰ. 在排序数组中查找数字Ⅰ](#two-one-two)
+### 9.1.2 [(简单) 剑指 Offer 53 - II. 0～n-1中缺失的数字](#two-one-four)
+### 9.1.3 (简单) 剑指 Offer 11. 旋转数组的最小数字
+把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一个旋转，该数组的最小值为1。  
+
+**示例 1：**
+
+```
+输入：[3,4,5,1,2]
+输出：1
+```
+
+**示例 2：**
+
+```
+输入：[2,2,2,0,1]
+输出：0
+```
+
+注意：本题与主站 154 题相同：https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/
+
+```js
+var minArray = function(numbers) {
+    var l = 0, r = numbers.length - 1, middle;
+    while(numbers[r] === numbers[l]) r--; // 处理特殊情况：首尾相等
+    while(l < r) {
+        middle = Math.floor((l + r) / 2);
+        if (numbers[r] >= numbers[middle]) {
+            r = middle;
+        } else {
+            l = middle + 1;
+        }
+    }
+    return numbers[l];
+};
+```
+
+【思考】为什么官方的二分法的题解很多都是写的low + (high - low) // 2 而不是 (high + low) // 2  
+【回答】因为low+high在low和high特别大的时候可能会造成溢出，使用减法避免了溢出发生  
 
 # <a id="ten"></a>十 排序  
 > [返回目录](#zero)  
