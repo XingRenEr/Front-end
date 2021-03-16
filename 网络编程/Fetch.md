@@ -27,6 +27,12 @@ fetch("./json/test.json").then(res => res.json()).then(res => {
 ```
 ![](./img/56.jpg)  
 
+> `fetch` 为什么发送2次请求：  
+> 若使用带预检(Preflighted)的跨域请求，会发送2次请求：一个类型为`OPTIONS`的预检请求、真实请求。  
+> 预检请求会检测服务器是否支持我们的真实请求所需要的跨域资源，唯有资源满足条件才会发送真实请求。  
+> 【栗子】  
+> 服务器响应头中`Access-Control-Allow-Headers`的值中包含`authorization`，那么我们在请求头部增加`authorization`项时，`OPTIONS`预检成功，才会发送真实请求。  
+
 【运用在Vue项目中】  
 ```HTML
 <div id="box">
