@@ -320,9 +320,9 @@ window.onload = function() {
 
   // index.html 接收数据
   worker.addEventListener('message', (res) => {
-  console.log('index.html 收到数据：', res);
-  // index.html 收到数据：
-  // MessageEvent {isTrusted: true, data: "开门！这里是 index.js", origin: "", lastEventId: "", source: null, …}
+    console.log('index.html 收到数据：', res);
+    // index.html 收到数据：
+    // MessageEvent {isTrusted: true, data: "开门！这里是 index.js", origin: "", lastEventId: "", source: null, …}
   });
 
   // index.html 发送数据
@@ -334,17 +334,18 @@ window.onload = function() {
 </script>
 ```
 
+![图](images/Web-Worker.jpg)
+
 在 `index.html` 中，通过：
 
-* `worker.addEventListener('message', callback)`。接收 Web Worker 传递的数据。
+* `worker.addEventListener('message', (res) => {})`。接收 Web Worker 传递的数据。
 * `worker.postMessage('xxx')`。发送数据给 Web Worker。
 * `worker.terminate()`。终止通讯
 
 在 `index.js` 中，通过：
 
 ```js
-onmessage = (res) => {
-  console.log(res); // 在 onmessage 方法接受数据
+onmessage = (res) => { // 在 onmessage 方法接受数据
   postMessage('xxx'); // 通过 postMessage 发送数据
 }
 ```
