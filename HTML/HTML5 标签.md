@@ -30,6 +30,8 @@ HTML5 标签
 ### <a name="chapter-two-one" id="chapter-two-one"></a>2.1 常见 H5 标签
 
 > [返回目录](#chapter-one)
+
+![图](img/1.jpg)  
   
 * `<section>` - 章节
 * `<nav>` - 导航
