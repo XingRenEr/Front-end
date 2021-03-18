@@ -44,11 +44,14 @@
 2. `TCP` 连接
 3. 发送 `HTTP` 请求
 4. 服务器响应
-5. 浏览器解析渲染页面
+5. 浏览器解析渲染页面  
+
+在所有这些请求中，还需要关注的就是[**浏览器缓存——缓存机制**](https://github.com/XingRenEr/Front-end/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98.md#chapter-five)  
+> 可缓存的内容有：`DNS` 解析返回的 `IP` 地址；服务器响应返回的 `html` `css` 等资源；浏览器解析渲染页面请求的 `js` 文件、图片等资源
 
 当然，这是整体过程，实际面试过程中会进一步详细问，后面会逐步完善，让小伙伴们对这个系列的问题不在纠结。
 
-## <a id="four"></a>四 DNS 解析
+## <a id="four"></a>四 [DNS](https://github.com/XingRenEr/Front-end/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/DNS.md) 解析
 
 > [返回目录](#one)
 
@@ -62,32 +65,20 @@
 
 1. 查询 `www.baidu.com`
 2. 访问客户端 DNS 缓存：**浏览器缓存** -> **系统缓存（host）** -> **路由器缓存**
-3. 访问 **ISP DNS 服务器**（ISP，互联网服务提供商，有联通电信移动等。如果你是电信网络，则进入电信的 DNS 缓存服务器，以下简称本地），如果本地服务器有，则直接返回；如果没有，让本地 DNS 服务器去咨询查找。
-4. 本地去咨询 **DNS 根服务器**，DNS 根服务器发现是 `.com 区域` 管理的，告诉本地去咨询它。
-5. 本地去咨询 **.com 顶级域名服务器**，.com 顶级域名服务器不太清楚，告诉本地去咨询 `baidu.com 主区域` 的服务器。
-6. 本地去咨询 **baidu.com 主域名服务器**，baidu.com 域服务器查找到对应的 IP 地址，返回给本地。
+3. 访问 **ISP DNS 缓存**（ISP，互联网服务提供商，有联通电信移动等。如果你是电信网络，则进入电信的 DNS 缓存服务器，以下简称本地），如果本地服务器有，则直接返回；如果没有，让本地 DNS 服务器去咨询查找。
+4. 本地去咨询 **根域名服务器**，DNS 根服务器发现是 `.com 区域` 管理的，告诉本地去咨询它。
+5. 本地去咨询 **顶级域名服务器**，.com 顶级域名服务器不太清楚，告诉本地去咨询 `baidu.com 主区域` 的服务器。
+6. 本地去咨询 **主域名服务器**，baidu.com 域名服务器查找到对应的 IP 地址，返回给本地。
 7. 本地服务器通知用户，`baidu.com` 对应的 IP 地址，同时缓存这个 IP 地址，下次就直接访问了。
 
-这个过程可以看看，详细的就不一一讲解了，不懂的去看 **jsliang** 的文章：
 
-* [浏览器 - 浏览器缓存](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98.md)
-* [计算机网络 - DNS](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/DNS.md)
-
-当然，这两篇文章后续也会发布，可以先忽略。
-
-## <a id="five"></a>五 TCP 连接
+## <a id="five"></a>五 [TCP](https://github.com/XingRenEr/Front-end/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP.md) 连接
 
 > [返回目录](#one)
 
-* 建立连接阶段：3 次握手。建立客户端和服务器之间的连接。
-* 传输数据阶段
-* 断开连接阶段：4 次挥手。断开客户端和服务器之间的连接。
-
-如果 3 次握手和 4 次挥手你不懂过程，详细可以看 **jsliang** 的文章：
-
-* [计算机网络 - TCP](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP.md)
-
-这里也可以先忽略，后续进一步跟进理解。
+1. 建立连接阶段：3 次握手。建立客户端和服务器之间的连接。
+2. 传输数据阶段
+3. 断开连接阶段：4 次挥手。断开客户端和服务器之间的连接。
 
 ## <a id="six"></a>六 发送 HTTP 请求
 
@@ -95,15 +86,13 @@
 
 发送 `HTTP` 请求的过程就是构建 `HTTP` 请求报文，并通过 `TCP` 协议发送到服务器指定端口（`HTTP` 协议默认端口 `80/8080`，`HTTPS` 协议默认端口 `443`）。
 
-`HTTP` 请求报文由 3 部分组成：**请求行**、**请求报文** 和 **请求正文**。
+`HTTP` 请求报文由 3 部分组成：**请求行**、**请求报头** 和 **请求正文**。
 
-* **请求行**：常用方法有：GET、POST、PUT、DELETE、OPTIONS、HEAD。
-* **请求报头**：允许客户端向服务器传递请求的附加信息和客户端自身的信息。
+* [**请求方法**](https://github.com/XingRenEr/Front-end/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP.md#four-one)：常用方法有：GET、POST、PUT、DELETE、OPTIONS、HEAD。
+* [**请求报头**](https://itbilu.com/other/relate/EJ3fKUwUx.html#http-request-headers)：允许客户端向服务器传递请求的附加信息和客户端自身的信息。
 * **请求正文**：通过 POST、PUT 等方法时，通常需要客户端向服务器传递数据，这些数据就储存在请求正文中。
 
-当然，`HTTP` 请求需要注意是否跨域，如何解决跨域问题：
-
-* [浏览器 - 跨域](https://github.com/LiangJunrong/document-library/blob/master/other-library/interview/%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86/%E6%B5%8F%E8%A7%88%E5%99%A8/%E8%B7%A8%E5%9F%9F.md)
+当然，`HTTP` 请求需要注意是否[跨域](https://github.com/XingRenEr/Front-end/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8/%E8%B7%A8%E5%9F%9F.md)，如何解决跨域问题：
 
 ## <a id="seven"></a>七 服务器响应
 
@@ -113,11 +102,11 @@
 
 `HTTP` 响应报文也是由 3 部分组成：**状态码**、**响应报头** 和 **响应报文**。
 
-* **状态码**：`1xx` 指示信息-表示请求已接收；`2xx` 请求成功-表示请求成功接收并解析；`3xx` 重定向-表示要完成请求需要更进一步操作；`4xx` 客户端错误-请求有语法错误或者请求无法实现；`5xx`：服务端错误-服务端未能实现合法的请求。**常见状态码**：200（成功）、304（请求内容有缓存，不需要更新）、404（网页或者文件找不到）、500（服务器-后端处理错误）。
-* **响应报头**：常见的响应报头字段 `Server`、`Connection` 等。
+* [**状态码**](https://github.com/XingRenEr/Front-end/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP.md#five)：`1xx` 指示信息-表示请求已接收；`2xx` 请求成功-表示请求成功接收并解析；`3xx` 重定向-表示要完成请求需要更进一步操作；`4xx` 客户端错误-请求有语法错误或者请求无法实现；`5xx`：服务端错误-服务端未能实现合法的请求。**常见状态码**：200（成功）、304（请求内容有缓存，不需要更新）、400、401、403、404（网页或者文件找不到）、500（服务器-后端处理错误）。
+* [**响应报头**](https://itbilu.com/other/relate/EJ3fKUwUx.html#http-response-headers)：常见的响应报头字段 `Server`、`Connection` 等。
 * **响应报文**：服务器返回给浏览器的文本信息，通常 HTML、CSS、JS、图片等文件就放在这一部分。
 
-综上，`URL` 解析过程的步骤 3 和步骤 4 是 `HTTP` 请求和服务器响应，所以这一块会问到 `HTTP` 状态码、`HTTPS` 等知识点，后续我们会进一步跟进学习，这里先做概念性理解。
+综上，`URL` 解析过程的步骤 3 和步骤 4 是 `HTTP` 请求和服务器响应，所以这一块会问到 `HTTP` 状态码、[`HTTPS`](https://github.com/XingRenEr/Front-end/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP.md#seven) 等知识点。
 
 ## <a id="eight"></a>八 浏览器解析渲染页面
 
@@ -125,31 +114,37 @@
 
 ![图](./img/other-page-parse.png)
 
-如上图，浏览器的渲染过程为：
+如上图，浏览器的**渲染过程**为：
 
-1. 解析 HTML，生成 `DOM` 树
-2. 解析 CSS，生成 `CSS 规则树（CSS Rule Tree）`
-3. 将 `DOM Tree` 和 `CSS Rule Tree` 相结合，生成 **渲染树**（`Render Tree`）
-4. 从根节点开始，计算每一个元素的大小、位置，给出每个节点所应该出现在屏幕上的精确坐标，基于渲染树得到 **布局渲染树**（`Layout of the render tree`）。
-5. 遍历渲染树，将每个节点用 UI 渲染引擎来绘制，从而将整棵树绘制到页面上，这个步骤叫 **绘制渲染树**（`Painting the render tree`）
+1. 解析 HTML —> 生成 `DOM` 树
+> 在 `DOM` 树的构建过程中如果遇到 `JS` 脚本和外部 `JS` 链接，则会停止构建 `DOM` 树来执行和下载相应的代码，这会造成阻塞，这就是为什么推荐 `JS` 代码应该放在 `html` 代码的后面  
+2. 加载 `CSS` —> 解析 `CSS` —> 生成 `CSS 规则树（CSS Rule Tree）`  
+> `CSS` 包括外部样式，内部样式，内联样式  
+3. 加载 `javascript` —> 执行 `javascript` 代码  
+4. 将 `DOM Tree` 和 `CSS Rule Tree` 相结合，生成 **渲染树**（`Render Tree`）  
+> 这里的主要目的是排除非视觉节点，比如 `script`，`meta` 标签和排除 `display: none` 的节点  
+5. 从根节点开始，计算每一个元素的位置、尺寸，得到 **布局渲染树**（`Layout of the render tree`）
+6. 遍历渲染树，由 UI 渲染引擎绘制，此步骤叫 **绘制渲染树**（`Painting the render tree`）  
+
+在解析 `DOM` 的过程中，因为 `html` 文件中会含有图片，视频，音频等资源，遇到这些都会进行并行下载，浏览器对每个域的并行下载数量有一定的限制，一般是 4-6 个。**加载时机**为：  
+1. 解析 HTML【遇到<img>标签**加载**图片】 —> 生成 **`DOM` 树**
+2. 加载 `CSS` —> 解析 `CSS`【遇到背景图片链接**不加载**】 —> 生成 **`CSS` 规则树**  
+3. 加载 `javascript` —> 执行 `javascript` 代码  
+4. 将 `DOM` 树和 `CSS` 规则树相结合，生成 **渲染树**【遍历DOM树时**加载**对应样式规则上的背景图片】  
+5. 得到 **布局渲染树**
+6. **绘制**【开始**渲染**图片】
 
 > 这个渲染过程需要重点记忆，出场概率非常大
 
-在解析渲染过程中，可能会产生 **回流** 和 **重绘**：
+在解析渲染过程中，可能会产生 [**回流** 和 **重绘**](https://github.com/XingRenEr/Front-end/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8/%E5%9B%9E%E6%B5%81%E5%92%8C%E9%87%8D%E7%BB%98.md)：
 
 * **重绘(repaint)**：当元素样式的改变不影响布局时，浏览器将使用重绘对元素进行更新，此时由于只需要 UI 层面的重新像素绘制，因此**损耗较少**。
 * **回流(reflow)**：又叫重排（`layout`）。当元素的尺寸、结构或者触发某些属性时，浏览器会重新渲染页面，称为回流。此时，浏览器需要重新经过计算，计算后还需要重新页面布局，因此是较重的操作。
 
-那么：
+在回流和重绘中，问题有：
 
 1. 什么操作会重绘和回流？
 2. 如何优化？
-
-详细可看：
-
-* [浏览器 - 回流和重绘](https://github.com/XingRenEr/Front-end/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8/%E5%9B%9E%E6%B5%81%E5%92%8C%E9%87%8D%E7%BB%98.md)
-
-后续跟进文章学习也是可以的，这里先贴链接。
 
 ## <a id="night"></a>九 其他问题及优化
 
@@ -164,9 +159,7 @@
 
 如果你过程都了解了，那么优化基本不是问题。
 
-当然，为了加深印象，可以看 **jsliang** 整理的文章：
-
-* [浏览器 - 性能优化](https://github.com/LiangJunrong/document-library/blob/master/%E7%B3%BB%E5%88%97-%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md)
+* [x] [浏览器 - 性能优化](https://github.com/XingRenEr/Front-end/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md)
 
 ### <a id="night-one"></a>9.1 渲染过程碰到 JS 文件怎么处理？
 
@@ -185,6 +178,8 @@ JavaScript 的加载、解析和执行会阻塞 DOM 的构建。
 1. 涉及 JS 引擎和渲染引擎两个线程间的通信，损耗性能。
 2. 操作 DOM 可能会重复回流，加剧性能损耗。
 
+## <a id="ten"></a>十 参考文献
+* [x] [Web图片资源的加载与渲染时机](https://segmentfault.com/a/1190000010032501)
 ---
 
 > jsliang 的文档库由 [梁峻荣](https://github.com/LiangJunrong) 采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/) 进行许可。<br/>基于 [https://github.com/LiangJunrong/document-library](https://github.com/LiangJunrong/document-library) 上的作品创作。<br/>本许可协议授权之外的使用权限可以从 [https://creativecommons.org/licenses/by-nc-sa/2.5/cn/](https://creativecommons.org/licenses/by-nc-sa/2.5/cn/) 处获得。
