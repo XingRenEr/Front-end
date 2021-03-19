@@ -20,8 +20,9 @@ HTTP
 | &emsp;[4.3 GET 和 POST 的区别](#four-three) |
 | &emsp;&emsp;[4.3.1 【误】GET 请求传参长度有限制](#four-three-one) |
 | &emsp;&emsp;[4.3.2 【误】POST 方法比 GET 方法安全](#four-three-two) |
-| &emsp;[4.4 keep-alive](#four-four) |
-| &emsp;[4.5 HTTP 和 TCP 区别](#four-five) |
+| &emsp;[4.4 常见的 HTTP 头部](#four-four) |
+| &emsp;[4.5 keep-alive](#four-five) |
+| &emsp;[4.6 HTTP 和 TCP 区别](#four-six) |
 | [五 HTTP 状态码](#five) |
 | &emsp;[5.1 1XX](#five-one) |
 | &emsp;[5.2 2XX](#five-two) |
@@ -43,6 +44,7 @@ HTTP
 | &emsp;[8.1 头部压缩](#eight-one) |
 | &emsp;[8.2 多路复用](#eight-two) |
 | [九 题外话：MD5](#night) |
+| [十 参考文献](#ten) |
 <!-- 目录结束 -->
 
 ## <a id="two"></a>二 前言
@@ -175,6 +177,8 @@ Web 使用一种名为 `HTTP`（`HyperText Transfer Protocol`，超文本传输�
 
 * `GET` 获取资源；`POST` 提交/上传 数据。
 * `GET` 请求长度在浏览器中有限制，而 `POST` 并没有。
+> 这里的长度限制，指的是整个URI长度，而不是 `GET` 请求传参长度；HTTP协议从未规定GET/POST的请求长度限制是多少。传统IE中URL的最大可用长度为2048字符，其他浏览器对URL长度限制实现上有所不同  
+
 * `GET` 请求会被浏览器主动保留下来（历史记录），而 `POST` 默认不会。
 
 #### <a id="four-three-one"></a>4.3.1 【误】GET 请求传参长度有限制
@@ -199,7 +203,17 @@ Web 使用一种名为 `HTTP`（`HyperText Transfer Protocol`，超文本传输�
 
 如果想安全，那就用 `HTTPS` 吧。
 
-### <a id="four-four"></a>4.4 keep-alive
+### <a id="four-four"></a>4.4 常见的 HTTP 头部
+`HTTP` 首部分为通用首部，请求首部，响应首部，实体首部  
+ 
+ | 首部类型 | 描述 | 举例 |
+ | - | - | - |
+ | 通用首部 | 表示一些通用信息 | date(报文创建时间) |
+ | 请求首部 | 请求报文中独有的 | cookie，if-Modified-Since(和缓存相关) |
+ | 响应首部 | 响应报文中独有的 | set-cookie，location(重定向相关) |
+ | 实体首部 | 用来描述实体部分 | allow(描述可执行的请求方法)，content-type(描述主体类型)，content-Encoding(描述主体的编码方式) |
+
+### <a id="four-five"></a>4.5 keep-alive
 
 > [返回目录](#one)
 
@@ -229,7 +243,7 @@ Keep-Alive: timeout=5, max=100
 
 这个就表示这个 `TCP` 通道可以保持 `5` 秒，`max=100` 表示这个长连接最多接收 `100` 次请求就断开。
 
-### <a id="four-five"></a>4.5 HTTP 和 TCP 区别
+### <a id="four-six"></a>4.6 HTTP 和 TCP 区别
 
 > [返回目录](#one)
 
@@ -477,7 +491,7 @@ HTTP 状态码为 3 位数，被归为 5 类：
 当然还有一些颠覆性的功能实现:
 
 * **服务器推送**：服务端能够主动把资源推送给客户端
-* **请求优先级**设置
+* **请求优先级**设置：允许客户端告诉服务器哪些请求是更优先的，可以优先传输
 
 ### <a id="eight-one"></a>8.1 头部压缩
 
@@ -496,6 +510,7 @@ HTTP 状态码为 3 位数，被归为 5 类：
 
 ![图](img/Multiplexing.jpg)  
 ![图](img/binary-framing.jpg)  
+![图](img/Multiplexing.png)  
 
 `HTTP` 队头阻塞的问题，其根本原因在于 `HTTP` 基于请求-响应的模型，在同一个 `TCP` 长连接中，前面的请求没有得到响应，后面的请求就会被阻塞。
 
@@ -551,12 +566,15 @@ HTTP 状态码为 3 位数，被归为 5 类：
 那么这个题外话就讲到这里啦，只是看到对称加密、非对称加密，突然话痨想唠嗑下而已。
 
 ## <a id="ten"></a>十 参考文献*
+
+> [返回目录](#one)
+
 * [x] [谈谈HTTP协议的流程——知乎](https://zhuanlan.zhihu.com/p/29875810)
 * [x] [HTTP详解——知乎](https://zhuanlan.zhihu.com/p/29907174)
 * [x] [HTTP与HTTPS的联系与区别——知乎](https://zhuanlan.zhihu.com/p/29878510)
-* [x] [HTTP1.0和HTTP2.0的区别，以及HTTP和HTTPS的区别](https://blog.csdn.net/striveb/article/details/84230923)
-* [x] [HTTP消息头（HTTP headers）－常用的HTTP请求头与响应头](https://itbilu.com/other/relate/EJ3fKUwUx.html)
-* [x] [HTTP头部](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers)
+* [x] [HTTP1.0和HTTP2.0的区别，以及HTTP和HTTPS的区别——CSDN](https://blog.csdn.net/striveb/article/details/84230923)
+* [x] [HTTP常用的请求头与响应头——IT笔录](https://itbilu.com/other/relate/EJ3fKUwUx.html)
+* [x] [HTTP头部——MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers)
 ---
 
 > jsliang 的文档库由 [梁峻荣](https://github.com/LiangJunrong) 采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/) 进行许可。<br/>基于 [https://github.com/LiangJunrong/document-library](https://github.com/LiangJunrong/document-library) 上的作品创作。<br/>本许可协议授权之外的使用权限可以从 [https://creativecommons.org/licenses/by-nc-sa/2.5/cn/](https://creativecommons.org/licenses/by-nc-sa/2.5/cn/) 处获得。
