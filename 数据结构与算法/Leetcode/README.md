@@ -1494,6 +1494,7 @@ var isSymmetric = function(root) {
 # <a id="five"></a>五 堆  
 > [返回目录](#zero)  
 
+## (简单) 剑指 Offer 40. 最小的k个数
 输入整数数组 arr ，找出其中最小的 k 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。
 
 **示例 1：**
@@ -1705,6 +1706,49 @@ var getLeastNumbers = function(arr, k) {
 
 ## <a id="seven-four"></a>7.4 分治算法  
 > [返回目录](#zero)  
+
+### (简单) 剑指 Offer 25. 合并两个排序的链表
+输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。
+
+**示例1：**
+
+```
+输入：1->2->4, 1->3->4
+输出：1->1->2->3->4->4
+```
+
+**限制：**
+
+0 <= 链表长度 <= 1000
+
+注意：本题与主站 21 题相同：https://leetcode-cn.com/problems/merge-two-sorted-lists/
+
+#### 方法一
+![图](images/merge-list.png)  
+
+```js
+var mergeTwoLists = function(l1, l2) {
+    if(!l1) {
+        return l2;
+    } else if (!l2) {
+        return l1;
+    } else {
+        let head = temp = new ListNode(); // 引入伪头节点
+        while(l1 && l2) {
+            if(l1.val <= l2.val) {
+                temp.next = l1;
+                l1 = l1.next;
+            } else {
+                temp.next = l2;
+                l2 = l2.next;
+            }
+            temp = temp.next;
+        }
+        temp.next = l1 ? l1 : l2;
+        return head.next;
+    }
+};
+```
 
 # <a id="eight"></a>八 搜索  
 > [返回目录](#zero)  
