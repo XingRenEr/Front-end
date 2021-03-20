@@ -48,6 +48,7 @@
 | &emsp;[12.14 蓄水池抽样(2)](#twelve-fourteen) |
 | &emsp;[12.15 Rejection Sampling(2)](#twelve-fifteen) |
 | &emsp;[12.16 Map()](#twelve-sixteen) |
+| &emsp;[12.17 无分类](#twelve-seventeen) |
 
 # <a id="one"></a>一 字符串
 > [返回目录](#zero)  
@@ -984,6 +985,60 @@ var firstUniqChar = function(s) {
 };
 ```
 
+
+## 3.3 (简单) 剑指 Offer 39. 数组中出现次数超过一半的数字
+数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
+
+你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+
+**示例 1:**
+
+```
+输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]
+输出: 2
+```
+
+**限制：**
+
+1 <= 数组长度 <= 50000
+
+注意：本题与主站 169 题相同：https://leetcode-cn.com/problems/majority-element/
+
+### 方法一：哈希表统计法
+遍历数组 nums ，用 HashMap 统计各数字的数量，即可找出 “众数” 。此方法时间和空间复杂度均为 O(N) 。
+```js
+var majorityElement = function(nums) {
+    var numsObj = {}, len = nums.length;
+    for(let i = 0; i < len; i++) {
+        if (nums[i] in numsObj) {
+            numsObj[nums[i]]++;
+            
+        } else {
+            numsObj[nums[i]] = 1;
+        }
+        if (numsObj[nums[i]] > len/2) return nums[i];
+    }
+};
+```
+
+### 方法二：数组排序法
+将数组 nums 排序，数组中点的元素 一定为“众数”。
+
+### 方法三：摩尔投票法
+核心理念为 票数正负抵消 。此方法时间和空间复杂度分别为 O(N) 和 O(1) ，为本题的最佳解法。  
+![图](images/moore-vote.png)  
+投票法简单来说就是不同则抵消，占半数以上的数字必然留到最后。  
+```js
+var majorityElement = function(nums) {
+    var votes = 0, x;
+    for(let num of nums) {
+        if (votes == 0) x = num;
+        num ==x ? votes++ : votes--;
+    }
+    return x;
+};
+```
+
 # <a id="four"></a>四 树形结构
 > [返回目录](#zero)  
 
@@ -1829,6 +1884,57 @@ var minArray = function(numbers) {
 
 ## <a id="twelve-two"></a>12.2 双指针(75)  
 > [返回目录](#zero)  
+### (简单) 剑指 Offer 57. 和为s的两个数字
+输入一个递增排序的数组和一个数字s，在数组中查找两个数，使得它们的和正好是s。如果有多对数字的和等于s，则输出任意一对即可。
+
+**示例 1：**
+
+```
+输入：nums = [2,7,11,15], target = 9
+输出：[2,7] 或者 [7,2]
+```
+
+**示例 2：**
+
+```
+输入：nums = [10,26,30,31,47,60], target = 40
+输出：[10,30] 或者 [30,10]
+```
+
+**限制：**
+
+1 <= nums.length <= 10^5
+1 <= nums[i] <= 10^6
+
+#### 方法一：二分法+双指针(我的方法)
+排序数组想到双指针  
+二分法确定指针范围，把范围定为整个数组的话太大了  
+```js
+var twoSum = function(nums, target) {
+  var l = 0,
+    r = nums.length - 1,
+    middle, sum;
+  while (l < r) {
+    middle = Math.floor((l + r) / 2);
+    if (nums[middle] >= target) {
+      r = middle;
+    } else {
+      l = middle + 1;
+    }
+  }
+  l = 0, r--;
+  while (1) {
+    sum = nums[l] + nums[r];
+    if (sum == target) {
+      return [nums[l], nums[r]];
+    } else if (sum > target) {
+      r--;
+    } else {
+      l++;
+    }
+  }
+};
+```
 
 ## <a id="twelve-three"></a>12.3 设计(69)  
 > [返回目录](#zero)  
@@ -1881,6 +1987,68 @@ var hammingWeight = function(n) {
 ## <a id="twelve-five"></a>12.5 Sliding Window(29)  
 > [返回目录](#zero)  
 ### 12.5.1 [(简单) 剑指 Offer 59 - Ⅰ. 滑动窗口的最大值](#two-four-one)
+### 12.5.2 (简单) 剑指 Offer 57 - II. 和为s的连续正数序列
+输入一个正整数 target ，输出所有和为 target 的连续正整数序列（至少含有两个数）。
+
+序列内的数字由小到大排列，不同序列按照首个数字从小到大排列。
+
+**示例 1：**
+
+```
+输入：target = 9
+输出：[[2,3,4],[4,5]]
+```
+
+**示例 2：**
+
+```
+输入：target = 15
+输出：[[1,2,3,4,5],[4,5,6],[7,8]]
+```
+
+**限制：**
+
+1 <= target <= 10^5
+
+#### 方法一：方法一：枚举 + 暴力  
+复杂度分析  
+- 时间复杂度：O(target(target)^1/2)  
+- 空间复杂度：O(1)  
+
+#### 方法二：枚举 + 数学优化
+利用求根公式 ```y^2+y−x^2+x−2×target=0```  
+
+复杂度分析  
+- 时间复杂度：O(target)  
+- 空间复杂度：O(1)  
+
+#### 方法三：双指针/滑动窗口(我的方法)
+复杂度分析  
+- 时间复杂度：O(target)  
+- 空间复杂度：O(1)  
+
+```js
+var findContinuousSequence = function(target) {
+    var r = Math.ceil(target / 2), l = r - 1, sum = l + r, arr = [], arrTemp = [];
+    while(l > 0) {
+        if (sum == target) {
+            for(let i = l; i <= r; i++) {
+                arrTemp[arrTemp.length] = i;
+            }
+            arr.unshift(arrTemp);
+            sum -= r--; // 指针移动的同时求出新的和
+            sum += --l;
+            arrTemp = []
+        } else if (sum > target) {
+            sum -= r--;
+        } else {
+            sum += --l;
+        }
+    }
+    return arr;
+};
+```
+
 
 ## <a id="twelve-six"></a>12.6 递归(24)  
 > [返回目录](#zero)  
@@ -1914,5 +2082,8 @@ var hammingWeight = function(n) {
 > [返回目录](#zero)  
 
 ## <a id="twelve-sixteen"></a>12.16 Map()  
+> [返回目录](#zero)  
+
+## <a id="twelve-seventeen"></a>12.17 无分类  
 > [返回目录](#zero)  
 
