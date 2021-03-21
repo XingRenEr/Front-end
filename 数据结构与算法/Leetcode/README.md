@@ -1884,7 +1884,7 @@ var minArray = function(numbers) {
 
 ## <a id="twelve-two"></a>12.2 双指针(75)  
 > [返回目录](#zero)  
-### (简单) 剑指 Offer 57. 和为s的两个数字
+### 12.2.1 (简单) 剑指 Offer 57. 和为s的两个数字
 输入一个递增排序的数组和一个数字s，在数组中查找两个数，使得它们的和正好是s。如果有多对数字的和等于s，则输出任意一对即可。
 
 **示例 1：**
@@ -1936,6 +1936,47 @@ var twoSum = function(nums, target) {
 };
 ```
 
+### 12.2.2 (简单) 剑指 Offer 21. 调整数组顺序使奇数位于偶数前面
+
+输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数位于数组的前半部分，所有偶数位于数组的后半部分。
+
+**示例：**
+
+```
+输入：nums = [1,2,3,4]
+输出：[1,3,2,4] 
+```
+
+注：[3,1,2,4] 也是正确的答案之一。
+
+**提示：**
+
+0 <= nums.length <= 50000  
+1 <= nums[i] <= 10000
+
+#### 方法一：首尾双指针
+```js
+var exchange = function(nums) {
+    var l = 0, r = nums.length-1;
+    while(l<r) {
+        if ((nums[l] & 1) == 0 && (nums[r] & 1) == 1){ // 判断奇偶的更好方法
+            let temp = nums[l];
+            nums[l] = nums[r];
+            nums[r] = temp;
+            l++,r--;
+        } else {
+            if ((nums[l] & 1) != 0) {
+                l++;
+            }
+            if ((nums[r] & 1) != 1){
+                r--;
+            }
+        }
+    }
+    return nums;
+};
+```
+
 ## <a id="twelve-three"></a>12.3 设计(69)  
 > [返回目录](#zero)  
 
@@ -1981,6 +2022,35 @@ var hammingWeight = function(n) {
   }
 
   return count;
+};
+```
+
+### 12.4.2 (简单) 剑指 Offer 65. 不用加减乘除做加法
+写一个函数，求两个整数之和，要求在函数体内不得使用 “+”、“-”、“*”、“/” 四则运算符号。
+
+**示例:**
+
+```
+输入: a = 1, b = 1
+输出: 2
+```
+
+**提示：**
+
+a, b 均可能是负数或 0  
+结果不会溢出 32 位整数
+
+#### 方法一
+[面试题65. 不用加减乘除做加法（位运算，清晰图解）](https://leetcode-cn.com/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/solution/mian-shi-ti-65-bu-yong-jia-jian-cheng-chu-zuo-ji-7/)  
+
+```js
+var add = function(a, b) {
+    while(b != 0) { // 当进位为 0 时跳出
+        var c = (a & b) << 1;  // c = 进位
+        a ^= b; // a = 非进位和
+        b = c; // b = 进位
+    }
+    return a;
 };
 ```
 
@@ -2087,3 +2157,172 @@ var findContinuousSequence = function(target) {
 ## <a id="twelve-seventeen"></a>12.17 无分类  
 > [返回目录](#zero)  
 
+### 12.17.1 (简单) 剑指 Offer 62. 圆圈中最后剩下的数字
+0,1,···,n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字（删除后从下一个数字开始计数）。求出这个圆圈里剩下的最后一个数字。
+
+例如，0、1、2、3、4这5个数字组成一个圆圈，从数字0开始每次删除第3个数字，则删除的前4个数字依次是2、0、4、1，因此最后剩下的数字是3。
+
+**示例 1：**
+
+```
+输入: n = 5, m = 3
+输出: 3
+```
+
+**示例 2：**
+
+```
+输入: n = 10, m = 17
+输出: 2
+```
+
+**限制：**
+
+1 <= n <= 10^5
+1 <= m <= 10^6
+
+#### 方法一：暴力遍历
+时间复杂度：O(nm)  
+关于运行时间的预估，经验是如果 n<10^5，那么 O(n^2) 的解法耗时大概是几秒左右；本题由于 1 <= m <= 10^6，所以 O(nm) 肯定是超时的。  
+```js
+var lastRemaining = function(n, m) {
+  var index = (m - 1) % n,
+    flagArr = new Array(n).fill(true);
+  flagArr[index] = false;
+
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < m; j++) {
+      index = (index + 1) % n;
+      while (!flagArr[index]) index = (index + 1) % n;
+    }
+    flagArr[index] = false;
+  }
+  return index;
+};
+```
+但实际上我们可以直接找到下一个要删除的位置的！  
+#### 方法二：不那么暴力的遍历
+时间复杂度：O(n^2)  
+假设当前删除的位置是 `idx`，下一个删除的数字的位置是 `idx + m - 1`。取模即 `(idx + m - 1)(mod n)`。可以在 O(1) 时间复杂度内找到下一个要删除的元素，而删除需要的时间复杂度如下：  
+JS 中的数组方法 splice() 时间复杂度最坏的情况应该是 O(n) (将所有n-1元素复制到新数组)。  
+(Java使用此方法勉强通过，JS时间超时)  
+```js
+// 代码丢失
+```
+
+#### 方法三：数学
+时间复杂度：O(n)  
+空间复杂度：O(1)  
+这是著名的约瑟夫环问题，有数学解法  
+因为数据是放在数组里，所以我在数组后面加上了数组的复制，以体现是环状的。我们先忽略图片里的箭头：  
+![图](images/joseph-ring.png)  
+每次删除的第 m 个数字，都标红了。  
+
+|轮次|起始数字|数组|删除|
+| - | - | - | - |
+|第一轮| 0 | [0, 1, 2, 3, 4] 数组的多个复制 | 2 |
+|第二轮| 3 | [3, 4, 0, 1] 数组的多个复制 | 0 |
+|第三轮| 1 | [1, 3, 4] 数组的多个复制 | 4 |
+|第四轮| 1 | [1, 3] 数组的多个复制 | 1 |
+
+最后剩下的数字是 3。
+
+图中的绿色的线指的是新的一轮的开头是怎么指定的，每次都是固定地向前移位 m 个位置。  
+
+然后我们从最后剩下的 3 倒着看，我们可以反向推出这个数字在之前每个轮次的位置。  
+最后剩下的 3 的下标是 0。  
+
+|反推第 x 轮|补上 m 个位置，然后模上当时的数组大小 x (x=2\~n) |位置|
+| - | - | - |
+|第四轮| 2 |(0 + 3) % 2 = 1|
+|第三轮| 3 |(1 + 3) % 3 = 1|
+|第二轮| 4 |(1 + 3) % 4 = 0|
+|第一轮| 5 |(0 + 3) % 5 = 3|
+
+所以最终剩下的数字的下标就是3。因为数组是从0开始的，所以最终的答案就是3。  
+
+```js
+var lastRemaining = function(n, m) {
+    var ans = 0;
+    // 最后一轮剩下2个人，所以从2开始反推
+    for (let i = 2; i <= n; i++) {
+        ans = (ans + m) % i;
+    }
+    return ans;
+};
+```
+
+#### 方法四： 动态规划
+与方法三解法相同，但是是用动态规划的思想去理解这个约瑟夫环的数学问题的  
+[动态规划/数学](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/jian-zhi-offer-62-yuan-quan-zhong-zui-ho-dcow/)  
+(没看懂)  
+
+### 12.17.2 (简单) 剑指 Offer 61. 扑克牌中的顺子
+从扑克牌中随机抽5张牌，判断是不是一个顺子，即这5张牌是不是连续的。2～10为数字本身，A为1，J为11，Q为12，K为13，而大、小王为 0 ，可以看成任意数字。A 不能视为 14。
+
+**示例 1:**
+
+```
+输入: [1,2,3,4,5]
+输出: True
+```
+
+**示例 2:**
+
+```
+输入: [0,0,1,2,5]
+输出: True
+```
+
+**限制：**
+
+数组长度为 5 
+
+数组的数取值为 [0, 13] .
+
+**解题思路：**
+[面试题61. 扑克牌中的顺子（集合 Set / 排序，清晰图解）](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/solution/mian-shi-ti-61-bu-ke-pai-zhong-de-shun-zi-ji-he-se/)  
+
+此 5 张牌是顺子的 充要条件 如下：
+
+- 除大小王外，所有牌 无重复 ；
+- 设此 5 张牌中最大的牌为 max ，最小的牌为 min （大小王除外），则需满足：max - min < 5
+
+![图](images/straight.jpg)  
+#### 方法一：Set+遍历
+复杂度分析  
+- 时间复杂度：O(N) = O(5) = O(1)
+- 空间复杂度：O(N) = O(5) = O(1)
+```js
+var isStraight = function(nums) {
+    var repeat = new Set();
+    var mi = 14, ma = 0;
+    for (let num of nums) {
+        if (num == 0) continue;
+        mi = num < mi ? num : mi;
+        ma = num > ma ? num : ma;
+        if (repeat.has(num)) return false;
+        repeat.add(num);
+    }
+    return ma - mi < 5;
+};
+```
+
+#### 方法二：排序+遍历
+复杂度分析  
+- 时间复杂度：O(NlogN) = O(5log5) = O(1)
+- 空间复杂度：O(1)
+```js
+var isStraight = function(nums) {
+    nums.sort((a, b) => a - b);
+    var joker = 0;
+    for (let i = 0; i < nums.length - 1; i++) {
+        if (nums[i] == 0) {
+            joker++;
+            continue;
+        }
+        if (nums[i] == nums[i+1]) return false;
+    }
+    return nums[nums.length - 1] - nums[joker] < 5;
+};
+```
