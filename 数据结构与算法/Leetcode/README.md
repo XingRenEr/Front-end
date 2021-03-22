@@ -1198,7 +1198,7 @@ var kthLargest = function(root, k) {
 };
 ```
 
-### 4.1.4 (中等) 剑指 Offer 68 - II. 二叉树的最近公共祖先 (未完成)
+### <a id="four-one-four"></a>4.1.4 (中等) 剑指 Offer 68 - II. 二叉树的最近公共祖先
 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
 
 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（**一个节点也可以是它自己的祖先**）。”
@@ -1224,12 +1224,12 @@ var kthLargest = function(root, k) {
 
 **说明:**
 
-- 所有节点的值都是唯一的。
-- p、q 为不同节点且均存在于给定的二叉树中。
+- 所有节点的值都是唯一的。  
+- p、q 为不同节点且均存在于给定的二叉树中。  
+
 注意：本题与主站 236 题相同：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/
 
-#### 失败方法  
-层序遍历  
+#### 失败方法：层序遍历  
 不好：不能把 TreeNode 类型的节点全部保留在 queue 中  
 （没通过 LeetCode 上的测试，超出内存）  
 ```js
@@ -1262,7 +1262,7 @@ var lowestCommonAncestor = function(root, p, q) {
   return queue[pIndex]; // 通过下标取得数组中的父节点
 };
 ```
-#### 失败方法  
+#### 失败方法：层序遍历  
 层序遍历 2 次  
 不好：超出时间限制
 ```js
@@ -1302,7 +1302,31 @@ var lowestCommonAncestor = function(root, p, q) {
   return node;
 };
 ```
-### 4.1.5 (简单) 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先 (未完成)给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
+
+#### 方法三： 后序遍历
+**复杂度分析**  
+- 时间复杂度：O(N)  
+- 空间复杂度：O(N)  
+```js
+var lowestCommonAncestor = function(root, p, q) {
+    var result = null;
+    var dfs = function(root) {
+        if (result != null) return; // 找到最近公共祖先后，提前返回
+        if (root == null || root.val == null) return 0; // 初始条件
+        let l = dfs(root.left), r = dfs(root.right); // 递归求左右子树是否包含 p q 之一
+        let ro = (root.val == p.val || root.val == q.val) & 1; // 求根节点是否为 p q 之一
+        if (l + r + ro == 2) {
+            result = root;
+            return;
+        }
+        return l + r + ro;
+    }
+    dfs(root);
+    return result;
+};
+```
+
+### 4.1.5 (简单) 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
 
 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（**一个节点也可以是它自己的祖先**）。”
 
@@ -1331,6 +1355,56 @@ var lowestCommonAncestor = function(root, p, q) {
 - p、q 为不同节点且均存在于给定的二叉搜索树中。
 
 注意：本题与主站 235 题相同：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+
+**解题思路：**  
+看起来和[4.1.4 (中等) 剑指 Offer 68 - II. 二叉树的最近公共祖先](#four-one-four)很像，但是此题可用二叉搜索树的性质来解  
+
+|常见解法|时间复杂度|空间复杂度|
+| - | - | - |
+|迭代|O(N) |O(1)|
+|递归|O(N) |O(N)|
+
+#### 方法一：迭代
+[面试题68 - I. 二叉搜索树的最近公共祖先（迭代 / 递归，清晰图解）](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/mian-shi-ti-68-i-er-cha-sou-suo-shu-de-zui-jin-g-7/)  
+```js
+var lowestCommonAncestor = function(root, p, q) {
+    while (root) {
+        if (root.val < p.val && root.val < q.val) // p,q 都在 root 的右子树中
+            root = root.right; // 遍历至右子节点
+        else if (root.val > p.val && root.val > q.val) // p,q 都在 root 的左子树中
+            root = root.left; // 遍历至左子节点
+        else break;
+    }
+
+    return root;
+};
+```
+优化：若可保证 p.val < q.valp.val<q.val ，则在循环中可减少判断条件。  
+```js
+var lowestCommonAncestor = function(root, p, q) {
+    if (p.val > q.val) [p, q] = [q, p]; // 保证 p.val < q.val
+    while (root) {
+        if (root.val < p.val) // p,q 都在 root 的右子树中
+            root = root.right; // 遍历至右子节点
+        else if (root.val > q.val) // p,q 都在 root 的左子树中
+            root = root.left; // 遍历至左子节点
+        else break;
+    }
+
+    return root;
+};
+```
+#### 方法二：递归
+方法一中的迭代可以写成递归的形式  
+```js
+var lowestCommonAncestor = function(root, p, q) {
+    if (root.val < p.val && root.val < q.val)
+        return lowestCommonAncestor(root.right, p, q);
+    if (root.val > p.val && root.val > q.val)
+        return lowestCommonAncestor(root.left, p, q);
+    return root;
+};
+```
 
 ### <a id="four-one-six"></a>4.1.6 (中等) 剑指 Offer 32 - II. 从上到下打印二叉树 II从上到下按层打印二叉树，同一层的节点按从左到右的顺序打印，每一层打印到一行。
 
@@ -1569,7 +1643,7 @@ var isSymmetric = function(root) {
 0 <= k <= arr.length <= 10000
 0 <= arr[i] <= 10000
 
-#### 方法一：调用内置的排序函数  
+### 方法一：调用内置的排序函数  
 底层代码是快排，时间复杂度O(NlogN)，空间复杂度O(logN)。  
 ```js
 var getLeastNumbers = function(arr, k) {
@@ -1578,7 +1652,7 @@ var getLeastNumbers = function(arr, k) {
 };
 ```
 
-#### 方法二：最大堆
+### 方法二：最大堆
 堆是一种非常常用的数据结构。最大堆的性质是：节点值大于子节点的值，堆顶元素是最大元素。利用这个性质，整体的算法流程如下：
 
 创建大小为 k 的最大堆  
@@ -1675,7 +1749,7 @@ var getLeastNumbers = function(arr, k) {
 };
 ```
 
-#### 方法三：基于快速排序的 partition
+### 方法三：基于快速排序的 partition
 解法 1 中使用了快速排序，但其实并需要对全部元素进行排序，题目只需要前 k 个元素。
 
 回顾快速排序中的 partition 操作，可以将元素arr[0]放入排序后的正确位置，并且返回这个位置index。利用 partition 的特点，算法流程如下：
@@ -1753,6 +1827,177 @@ var getLeastNumbers = function(arr, k) {
 ## <a id="seven-one"></a>7.1 动态规划  
 > [返回目录](#zero)  
 
+### <a id="seven-one-one"></a>7.1.1 (简单) 剑指 Offer 10- I. 斐波那契数列
+写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项（即 F(N)）。斐波那契数列的定义如下：
+
+```
+F(0) = 0,   F(1) = 1
+F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
+```
+
+斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。
+
+答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。
+
+**示例 1：**
+
+```
+输入：n = 2
+输出：1
+```
+
+**示例 2：**
+
+```
+输入：n = 5
+输出：5
+```
+
+**提示：**
+
+0 <= n <= 100
+
+#### 方法一：递归法
+复杂度分析  
+- 时间复杂度：O(2^N)  
+- 空间复杂度：O(N)  
+![图](images/fibonacci-sequence.png)  
+
+```js
+// 超出时间限制
+var fib = function(n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    return fib(n - 1) + fib(n - 2);
+};
+```
+
+#### 方法二：动态规划
+复杂度分析  
+- 时间复杂度：O(N)  
+- 空间复杂度：O(N)  
+```js
+var fib = function(n) {
+    var f = new Array(n);
+    f[0] = 0, f[1] = 1;
+    for (let i = 2; i <= n; i++) {
+        f[i] = f[i - 1] + f[i - 2];
+        f[i] %= 1000000007
+    }
+    return f[n];
+};
+```
+
+#### 方法三：动态规划+空间复杂度优化
+[面试题10- I. 斐波那契数列（动态规划，清晰图解）](https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/mian-shi-ti-10-i-fei-bo-na-qi-shu-lie-dong-tai-gui/)  
+复杂度分析  
+- 时间复杂度：O(N)  
+- 空间复杂度：O(1)  
+```js
+var fib = function(n) {
+    var a = 0, b = 1, sum;
+    if (n == 0) return a;
+    if (n == 1) return b;
+    for (let i = 2; i <= n; i++) {
+        sum = (a + b) % 1000000007;
+        a = b, b = sum;
+    }
+    return sum;
+};
+```
+
+### 7.1.2 (简单) 剑指 Offer 10- II. 青蛙跳台阶问题
+一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
+
+答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。
+
+**示例 1：**
+
+```
+输入：n = 2
+输出：2
+```
+
+**示例 2：**
+
+```
+输入：n = 7
+输出：21
+```
+
+**示例 3：**
+
+```
+输入：n = 0
+输出：1
+```
+
+**提示：**
+
+0 <= n <= 100
+
+#### 方法一：动态规划+空间复杂度优化
+与[7.1.1 (简单) 剑指 Offer 10- I. 斐波那契数列](#seven-one-one)几乎完全相同  
+本题的重点在于找到状态转移方程  
+
+![图](images/fibonacci-sequence-2.png)  
+ 
+ ```f(n) = f(n - 1) + f(n - 2)```
+
+```js
+var numWays = function(n) {
+    var a = 1, b = 1, sum;
+    if (n == 0) return a;
+    if (n == 1) return b;
+    for (let i = 2; i <= n; i++) {
+        sum = (a + b) % 1000000007;
+        a = b, b = sum;
+    }
+    return sum;
+};
+```
+
+### 7.1.3 (简单) 剑指 Offer 42. 连续子数组的最大和
+输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。
+
+要求时间复杂度为O(n)。
+
+**示例1:**
+
+```输入: nums = [-2,1,-3,4,-1,2,1,-5,4]
+输出: 6
+解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
+```
+
+**提示：**
+
+1 <= arr.length <= 10^5  
+-100 <= arr[i] <= 100  
+注意：本题与主站 53 题相同：https://leetcode-cn.com/problems/maximum-subarray/
+
+**解题思路：**  
+
+|常见解法|时间复杂度|空间复杂度|
+| - | - | - |
+|暴力搜索|O(N^2) ) |O(1)|
+|分治思想|O(NlogN) |O(logN)|
+|动态规划|O(N)     |O(1)|
+
+#### 方法一：动态规划
+**关键点：**  
+**状态**定义： 设动态规划列表 dp ，dp[i] 代表**以元素 nums[i] 为结尾的连续子数组**最大和。  
+> 为何定义最大和 dp[i] 中必须包含元素 nums[i] ：保证 dp[i] 递推到 dp[i+1] 的正确性；如果不包含 nums[i] ，递推时则不满足题目的 **连续子数组** 要求。  
+
+解题的完整思路见[面试题42. 连续子数组的最大和（动态规划，清晰图解）](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/solution/mian-shi-ti-42-lian-xu-zi-shu-zu-de-zui-da-he-do-2/)  
+
+```js
+var maxSubArray = function(nums) {
+    for (let i = 1; i < nums.length; i++) {
+        nums[i] += Math.max(nums[i - 1], 0);
+    }
+    return Math.max.apply(null, nums);
+};
+```
 ## <a id="seven-two"></a>7.2 贪心算法  
 > [返回目录](#zero)  
 
@@ -2255,7 +2500,6 @@ var lastRemaining = function(n, m) {
 #### 方法四： 动态规划
 与方法三解法相同，但是是用动态规划的思想去理解这个约瑟夫环的数学问题的  
 [动态规划/数学](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/jian-zhi-offer-62-yuan-quan-zhong-zui-ho-dcow/)  
-(没看懂)  
 
 ### 12.17.2 (简单) 剑指 Offer 61. 扑克牌中的顺子
 从扑克牌中随机抽5张牌，判断是不是一个顺子，即这5张牌是不是连续的。2～10为数字本身，A为1，J为11，Q为12，K为13，而大、小王为 0 ，可以看成任意数字。A 不能视为 14。

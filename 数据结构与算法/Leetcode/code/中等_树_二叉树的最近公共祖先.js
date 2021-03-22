@@ -1,4 +1,4 @@
-var lowestCommonAncestor = function(root, p, q) {
+/* var lowestCommonAncestor = function(root, p, q) {
   var queue = [root],
     node,
     index = 0,
@@ -32,8 +32,24 @@ var lowestCommonAncestor = function(root, p, q) {
     queue.push(node ? node.right : null);
   }
   return node;
-};
+}; */
 
+var lowestCommonAncestor = function(root, p, q) {
+    var result = null;
+    var dfs = function(root) {
+        if (result != null) return;
+        if (root == null || root.val == null) return 0;
+        let l = dfs(root.left), r = dfs(root.right);
+        let ro = Number(root.val == p || root.val == q);
+        if (l + r + ro == 2) {
+            result = root;
+            return;
+        }
+        return l + r + ro;
+    }
+    dfs(root);
+    return result;
+};
 
 /* 二叉树构造函数 */
 function TreeNode(val) {
@@ -41,7 +57,7 @@ function TreeNode(val) {
   this.left = this.right = null;
 }
 /* 二叉树的创建 */
-var root = [3,5,1,6,2,0,8,null,null,7,4],
+var root = [3, 5, 1, 6, 2, 0, 8, null, null, 7, 4],
   p = 5,
   q = 1;
 var objArr = root.map((item) => new TreeNode(item));
