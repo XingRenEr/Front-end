@@ -432,6 +432,72 @@ var missingNumber = function(nums) {
   return nums[l] - 1;
 };
 ```
+
+### 2.1.5 (中等) 剑指 Offer 04. 二维数组中的查找
+在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+
+**示例:**
+
+现有矩阵 matrix 如下：
+
+```
+[
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+]
+```
+
+给定 target = 5，返回 true。
+
+给定 target = 20，返回 false。
+
+**限制：**
+
+0 <= n <= 1000
+
+0 <= m <= 1000
+ 
+**注意：**本题与主站 240 题相同：https://leetcode-cn.com/problems/search-a-2d-matrix-ii/
+
+**解题思路：**  
+[面试题04. 二维数组中的查找（标志数，清晰图解）](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/)  
+![图](images/2d-array.png)  
+逆时针旋转90°后类似二叉搜索树  
+#### 方法一：二叉搜索树
+**复杂度分析：**  
+- 时间复杂度 O(M+N)  
+- 空间复杂度 O(1)  
+
+在例图中，以右上角的7或左下角的3(更好，代码更简洁)为顶点，都可以构成二叉搜索树  
+以右上角为顶点构成二叉搜索树：  
+```js
+var findNumberIn2DArray = function(matrix, target) {
+    if (matrix.length == 0) return false;
+    var i = 0, j = matrix[0].length - 1; // 初始化j之前需要判断matrix.length
+    while(i < matrix.length && j >= 0) {
+        if (matrix[i][j] > target) j--;
+        else if (matrix[i][j] < target) i++;
+        else return true;
+    }
+    return false;
+};
+```
+以左下角为顶点构成二叉搜索树：  
+```js
+var findNumberIn2DArray = function(matrix, target) {
+    var i = matrix.length - 1, j = 0;
+    while(i >= 0 && j < matrix[0].length) {
+        if (matrix[i][j] > target) i--;
+        else if (matrix[i][j] < target) j++;
+        else return true;
+    }
+    return false;
+};
+```
+
 ## <a id="two-two"></a>2.2 链表  
 > [返回目录](#zero)  
 
@@ -2052,12 +2118,136 @@ var mergeTwoLists = function(l1, l2) {
 
 # <a id="eight"></a>八 搜索  
 > [返回目录](#zero)  
+## <a id="eight-zero"></a>8.0 综合
+### 8.0.1 (中等) 剑指 Offer 13. 机器人的运动范围
+地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？
+
+**示例 1：**
+
+```
+输入：m = 2, n = 3, k = 1
+输出：3
+```
+
+**示例 2：**
+
+```
+输入：m = 3, n = 1, k = 0
+输出：1
+```
+
+**提示：**
+
+- 1 <= n,m <= 100
+- 0 <= k <= 20
+
+**解题思路**  
+[剑指 Offer 13. 机器人的运动范围（ 回溯算法，DFS / BFS ，清晰图解）](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/solution/mian-shi-ti-13-ji-qi-ren-de-yun-dong-fan-wei-dfs-b/)  
+
+#### 方法一：DFS
+**复杂度分析：**  
+- 时间复杂度 O(MN) ： 最差情况下，机器人遍历矩阵所有单元格，此时时间复杂度为 O(MN) 。  
+- 空间复杂度 O(MN) ： 使用辅助矩阵 visited，不管是否为最坏情况，都要使用 O(MN) 的额外空间。  
+
+```js
+var movingCount = function(m, n, k) {
+    var dfs = function(i, j, si, sj) { // (i, j) 为当前坐标，si, sj 分别为当前列坐标的数位之和以及行坐标的数位之和
+        if (i >= m || j >= n || visited[i][j] || si + sj > k) return 0; // 终止条件： 当 ① 行列索引越界 或 ③ 当前元素已访问过 或 ② 数位和超出目标值 k 时，返回 0 ，代表不计入可达解。
+        visited[i][j] = true;
+        return 1 + dfs(i + 1, j, (i + 1) % 10 ? si + 1 : si - 8, sj) + dfs(i, j + 1, si, (j + 1) % 10 ? sj + 1 : sj - 8);
+    }
+    var visited = new Array(m); // 辅助矩阵
+    for (let i = 0; i < m; i++) {
+        visited[i] = new Array(n);
+    }
+    return dfs(0, 0, 0, 0);
+};
+```
+
+#### 方法二：BFS
+**复杂度分析：**  
+- 时间复杂度 O(MN)  
+- 空间复杂度 O(MN)  
+
+```js
+var movingCount = function(m, n, k) {
+    var visited = new Array(m); // 辅助矩阵
+    for (let i = 0; i < m; i++) {
+        visited[i] = new Array(n);
+    }
+    var res = 0; // 计数
+    var queue = [[0, 0, 0, 0]]; // 队列
+    while(queue.length != 0) {
+        var [i, j, si, sj] = queue.shift();
+        if (i >= m || j >= n || visited[i][j] || si + sj > k) continue;
+        visited[i][j] = true;
+        res++;
+        queue.push([i + 1, j, (i + 1) % 10 ? si + 1 : si - 8, sj]);
+        queue.push([i, j + 1, si, (j + 1) % 10 ? sj + 1 : sj - 8]);
+    }
+    return res;
+};
+```
 
 ## <a id="eight-one"></a>8.1 深度优先搜索  
 > [返回目录](#zero)  
 
 ### 8.1.1 [(简单) 剑指 Offer 55 - I. 二叉树的深度](#four-one-two)  
 ### 8.1.2 [(简单) 剑指 Offer 55 - II. 平衡二叉树](#four-one-seven)  
+### 8.1.3 (中等) 剑指 Offer 12. 矩阵中的路径
+请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
+
+[["a","**b**","c","e"],  
+["s","**f**","**c**","s"],  
+["a","d","**e**","e"]]  
+
+但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。
+
+**示例 1：**
+
+```
+输入：board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
+输出：true
+```
+
+**示例 2：**
+
+```
+输入：board = [["a","b"],["c","d"]], word = "abcd"
+输出：false
+```
+
+**提示：**
+
+1 <= board.length <= 200  
+1 <= board[i].length <= 200  
+注意：本题与主站 79 题相同：https://leetcode-cn.com/problems/word-search/  
+
+**解题思路**  
+[面试题12. 矩阵中的路径（ DFS + 剪枝 ，清晰图解）](https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/solution/mian-shi-ti-12-ju-zhen-zhong-de-lu-jing-shen-du-yo/)  
+所谓"剪枝"，就是满足某些条件时，直接返回，不继续递归  
+
+#### 方法一：DFS
+```js
+var exist = function(board, word) {
+    var dfs = function(i, j, k) { // (i, j) 代表当前元素坐标，k 代表搜索到第 k 个字母 (k 从 0 开始，前面的都找到了)
+        if(!(i >= 0 && i < board.length) || !(j >= 0 && j < board[0].length) || board[i][j] != word[k]) return false;
+        if (k == word.length - 1) return true;
+        board[i][j] = ""; // 题目中给出矩阵，则不需要辅助矩阵(题8.0.1)，直接在原矩阵中做手脚，再恢复即可
+        var res = dfs(i + 1, j, k + 1) || dfs(i - 1, j, k + 1) || dfs(i, j + 1, k + 1) || dfs(i, j - 1, k + 1);
+        board[i][j] = word[k]; // 恢复原矩阵
+        return res;
+    }
+
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[0].length; j++) {
+            if (dfs(i, j, 0)) return true;
+        }
+    }
+
+    return false;
+};
+```
 
 ## <a id="eight-two"></a>8.2 广度优先搜索  
 > [返回目录](#zero)  
