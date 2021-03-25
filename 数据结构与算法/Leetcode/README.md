@@ -1457,13 +1457,10 @@ var isSymmetric = function(root) {
     // 返回 -1 (即不对称的情况) ：
     // 1. 左右子树根节点一个存在另一个不存在
     // 2. 左右子树根节点都存在，但是不相等
-    if ((!root1 || root1.val == null) && (!root2 || root2.val == null)) {
-      return;
-    } else if ((!root1 || root1.val == null) && root2 && root2.val != null) {
-      return -1;
-    } else if ((!root2 || root2.val == null) && root1 && root1.val != null) {
-      return -1;
-    } else if (root1.val != root2.val) return -1;
+    if ((!root1 || root1.val == null) && (!root2 || root2.val == null)) return;
+    if ((!root1 || root1.val == null) && root2 && root2.val != null) return -1;
+    if ((!root2 || root2.val == null) && root1 && root1.val != null) return -1;
+    if (root1.val != root2.val) return -1;
     var res1 = dfs(root1.left, root2.right);
     var res2 = dfs(root1.right, root2.left);
     if (res1 == -1 || res2 == -1) return -1;
@@ -1680,6 +1677,141 @@ var pathSum = function(root, target) {
     }
     dfs(root, 0);
     return arr;
+};
+```
+
+### <a id="four-one-ten"></a>4.1.10 (中等) 剑指 Offer 07. 重建二叉树
+输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+
+例如，给出
+
+```
+前序遍历 preorder = [3,9,20,15,7]
+中序遍历 inorder = [9,3,15,20,7]
+```
+
+返回如下的二叉树：
+
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+**限制：**
+
+0 <= 节点个数 <= 5000
+
+注意：本题与主站 105 题重复：https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+
+![](README_files/1.jpg)
+#### 方法一：递归+传入数组(空间复杂度大)
+```js
+var buildTree = function(preorder, inorder) {
+    var dfs = function(preorder, inorder) {
+        if (preorder.length == 0) return null;
+        if (preorder.length == 1) return new TreeNode(preorder[0]);
+        var node = new TreeNode(preorder[0]);
+        var leftLen = inorder.indexOf(preorder[0]);
+        node.left = dfs(preorder.slice(1, leftLen + 1), inorder.slice(0, leftLen));
+        node.right = leftLen + 1 == preorder.length ? null : dfs(preorder.slice(leftLen + 1), inorder.slice(leftLen + 1));
+        return node;
+    }
+    return dfs(preorder, inorder);
+};
+```
+#### 方法二：递归+传入指针
+```js
+var buildTree = function(preorder, inorder) {
+    var dfs = function(preL, preR, inL, inR) {
+        if (preL > preR) return null;
+        if (preL == preR) return new TreeNode(preorder[preL]);
+        var node = new TreeNode(preorder[preL]);
+        var leftLen = inorder.indexOf(preorder[preL]) - inL;
+        node.left = dfs(preL + 1, preL + leftLen, inL, inL + leftLen - 1);
+        node.right = leftLen + 1 == preorder.length ? null : dfs(preL + leftLen + 1, preR, inL + leftLen + 1, inR);
+        return node;
+    }
+    return dfs(0, preorder.length - 1, 0, inorder.length - 1);
+};
+```
+优化利用 `indexOf()` 查找索引的时间复杂度：  
+```js
+var buildTree = function(preorder, inorder) {
+    var dfs = function(preL, preR, inL, inR) {
+        if (preL > preR) return null;
+        if (preL == preR) return new TreeNode(preorder[preL]);
+        var node = new TreeNode(preorder[preL]);
+        var leftLen = dic[preorder[preL]] - inL; // 查找索引的时间复杂度为O(1)
+        node.left = dfs(preL + 1, preL + leftLen, inL, inL + leftLen - 1);
+        node.right = leftLen + 1 == preorder.length ? null : dfs(preL + leftLen + 1, preR, inL + leftLen + 1, inR);
+        return node;
+    }
+    var dic = {}; // 创建一个哈希表用来存放索引
+    for (let i = 0; i < inorder.length; i++) {
+        dic[inorder[i]] = i;
+    }
+    return dfs(0, preorder.length - 1, 0, inorder.length - 1);
+};
+```
+
+### <a id="four-one-eleven"></a>4.1.11 (中等) 剑指 Offer 26. 树的子结构
+输入两棵二叉树A和B，判断B是不是A的子结构。(约定空树不是任意一个树的子结构)
+
+B是A的子结构， 即 A中有出现和B相同的结构和节点值。
+
+**例如:**  
+给定的树 A:
+
+```
+     3
+    / \
+   4   5
+  / \
+ 1   2
+```
+
+给定的树 B：
+
+```
+   4 
+  /
+ 1
+```
+
+返回 true，因为 B 与 A 的一个子树拥有相同的结构和节点值。
+
+**示例 1：**
+
+```
+输入：A = [1,2,3], B = [3,1]
+输出：false
+```
+
+**示例 2：**
+
+```
+输入：A = [3,4,5,1,2], B = [4,1]
+输出：true
+```
+
+**限制：**
+
+0 <= 节点个数 <= 10000
+
+#### 方法一：先序遍历 嵌套 先序遍历
+[面试题26. 树的子结构（先序遍历 + 包含判断，清晰图解）](https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/)  
+
+```js
+var isSubStructure = function(A, B) {
+    var recur = function(A, B) {
+        if (!B) return true;
+        if (!A || A.val != B.val) return false;
+        return recur(A.left, B.left) && recur(A.right, B.right); // A 和 B 同时先序遍历
+    }
+    return A != null && B != null && (recur(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B)); // 对 A 进行先序遍历
 };
 ```
 
@@ -2749,6 +2881,58 @@ var findContinuousSequence = function(target) {
 ## <a id="twelve-six"></a>12.6 递归(24)  
 > [返回目录](#zero)  
 
+### 12.6.1 [(中等) 剑指 Offer 07. 重建二叉树](#four-one-ten)
+### 12.6.2 (中等) 剑指 Offer 64. 求1+2+…+n
+求 1+2+...+n ，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
+
+示例 1：
+
+```
+输入: n = 3
+输出: 6
+```
+
+示例 2：
+
+```
+输入: n = 9
+输出: 45
+```
+
+限制：
+
+1 <= n <= 10000
+
+**解题思路**  
+1. 平均计算  
+此计算必须使用 乘除法 ，因此本方法不可取，直接排除。  
+2. 迭代  
+循环必须使用 while 或 for ，因此本方法不可取，直接排除。  
+3. 递归  
+终止条件需要使用 if ，因此本方法不可取。  
+[面试题64. 求 1 + 2 + … + n（逻辑符短路，清晰图解）](https://leetcode-cn.com/problems/qiu-12n-lcof/solution/mian-shi-ti-64-qiu-1-2-nluo-ji-fu-duan-lu-qing-xi-/)  
+#### 方法一：递归(不能使用if来设置递归终点)
+**思考**： 除了 if 和 switch 等判断语句外，是否有其他方法可用来终止递归？  
+使用 *逻辑运算符的短路效应* 来替代 if 判断语句的效果  
+
+```js
+var sumNums = function(n) {
+    var sum = 0;
+    var calSum = function(n) {
+        n > 1 && calSum(n - 1);
+        sum += n;
+    }
+    calSum(n);
+    return sum;
+};
+```
+
+#### 方法二：数学解法
+```js
+var sumNums = function(n) {
+    return (n**2+n) >> 1;
+};
+```
 
 ## <a id="twelve-seven"></a>12.7 Ordered Map(13)  
 > [返回目录](#zero)  
