@@ -1212,59 +1212,8 @@ var maxDepth = function(root) {
 ```
 ```
 
-### 4.1.3 (简单) 剑指 Offer 54. 二叉搜索树的第k大节点
-给定一棵二叉搜索树，请找出其中第k大的节点。
 
-**示例 1:**
-
-```
-输入: root = [3,1,4,null,2], k = 1
-   3
-  / \
- 1   4
-  \
-   2
-输出: 4
-```
-**示例 2:**
-
-```
-输入: root = [5,3,6,2,4,null,null,1], k = 3
-       5
-      / \
-     3   6
-    / \
-   2   4
-  /
- 1
-输出: 4
-```
-
-**限制：**
-
-1 ≤ k ≤ 二叉搜索树元素个数
-
-#### 方法一  
-反着的中序遍历
-```js
-var kthLargest = function(root, k) {
-  var max = 0;
-  var inorderTraversal = function(root) {
-    if (!root) return;
-    inorderTraversal(root.right);
-    if (!k) return; // 若 k 为零，已找到，不需要继续遍历，提前返回
-    if (!--k) {
-      max = root.val;
-      return;
-    }
-    inorderTraversal(root.left);
-  }
-  inorderTraversal(root);
-  return max;
-};
-```
-
-### <a id="four-one-four"></a>4.1.4 (中等) 剑指 Offer 68 - II. 二叉树的最近公共祖先
+### <a id="four-one-three"></a>4.1.3 (中等) 剑指 Offer 68 - II. 二叉树的最近公共祖先
 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
 
 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（**一个节点也可以是它自己的祖先**）。”
@@ -1392,160 +1341,8 @@ var lowestCommonAncestor = function(root, p, q) {
 };
 ```
 
-### 4.1.5 (简单) 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
 
-百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（**一个节点也可以是它自己的祖先**）。”
-
-例如，给定如下二叉搜索树:  root = [6,2,8,0,4,7,9,null,null,3,5]
-
-![图](images/binarysearchtree_improved.png)
-
-**示例 1:**
-
-```
-输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
-输出: 6 
-解释: 节点 2 和节点 8 的最近公共祖先是 6。
-```
-**示例 2:**
-
-```
-输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4
-输出: 2
-解释: 节点 2 和节点 4 的最近公共祖先是 2, 因为根据定义最近公共祖先节点可以为节点本身。
-```
-
-**说明:**
-
-- 所有节点的值都是唯一的。
-- p、q 为不同节点且均存在于给定的二叉搜索树中。
-
-注意：本题与主站 235 题相同：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
-
-**解题思路：**  
-看起来和[4.1.4 (中等) 剑指 Offer 68 - II. 二叉树的最近公共祖先](#four-one-four)很像，但是此题可用二叉搜索树的性质来解  
-
-|常见解法|时间复杂度|空间复杂度|
-| - | - | - |
-|迭代|O(N) |O(1)|
-|递归|O(N) |O(N)|
-
-#### 方法一：迭代
-[面试题68 - I. 二叉搜索树的最近公共祖先（迭代 / 递归，清晰图解）](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/mian-shi-ti-68-i-er-cha-sou-suo-shu-de-zui-jin-g-7/)  
-```js
-var lowestCommonAncestor = function(root, p, q) {
-    while (root) {
-        if (root.val < p.val && root.val < q.val) // p,q 都在 root 的右子树中
-            root = root.right; // 遍历至右子节点
-        else if (root.val > p.val && root.val > q.val) // p,q 都在 root 的左子树中
-            root = root.left; // 遍历至左子节点
-        else break;
-    }
-
-    return root;
-};
-```
-优化：若可保证 p.val < q.valp.val<q.val ，则在循环中可减少判断条件。  
-```js
-var lowestCommonAncestor = function(root, p, q) {
-    if (p.val > q.val) [p, q] = [q, p]; // 保证 p.val < q.val
-    while (root) {
-        if (root.val < p.val) // p,q 都在 root 的右子树中
-            root = root.right; // 遍历至右子节点
-        else if (root.val > q.val) // p,q 都在 root 的左子树中
-            root = root.left; // 遍历至左子节点
-        else break;
-    }
-
-    return root;
-};
-```
-#### 方法二：递归
-方法一中的迭代可以写成递归的形式  
-```js
-var lowestCommonAncestor = function(root, p, q) {
-    if (root.val < p.val && root.val < q.val)
-        return lowestCommonAncestor(root.right, p, q);
-    if (root.val > p.val && root.val > q.val)
-        return lowestCommonAncestor(root.left, p, q);
-    return root;
-};
-```
-
-### <a id="four-one-six"></a>4.1.6 (中等) 剑指 Offer 32 - II. 从上到下打印二叉树 II从上到下按层打印二叉树，同一层的节点按从左到右的顺序打印，每一层打印到一行。
-
-例如:
-给定二叉树: [3,9,20,null,null,15,7],
-
-```
-    3
-   / \
-  9  20
-    /  \
-   15   7
-```
-返回其层次遍历结果：
-
-```
-[
-  [3],
-  [9,20],
-  [15,7]
-]
-```
-
-**提示：**
-
-节点总数 <= 1000
-注意：本题与主站 102 题相同：https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
-
-#### 方法一：超市结账处分隔板的思路（我的方法）
-层序遍历——广度优先搜索
-```js
-var levelOrder = function(root) {
-  if (!root) return []; // 特例处理
-  var queue = [], arr = [], node;
-  queue.push(false); // 隔板
-  queue.push(root);
-  while (queue.length) {
-    node = queue.shift();
-    if (!node) {
-      if (!queue.length) break; // 如果是队列中的最后一个隔板，则不再给 arr 增加行
-      arr[arr.length] = []; // 给 arr 增加行
-      queue.push(false); // 从队列中取出一个隔板，则新增一个隔板
-      continue;
-    }
-    if (node.val != null) arr[arr.length - 1].push(node.val);
-    if (node.left) queue.push(node.left);
-    if (node.right) queue.push(node.right);
-  }
-  return arr;
-};
-```
-
-#### 方法二：循环嵌套  
-内层循环次数为当前层节点数（即队列 queue 长度），用临时数组暂存当前层节点的值  
-代码更容易理解
-```js
-var levelOrder = function(root) {
-  if (!root) return []; // 特例处理
-  var queue = [], arr = [], node;
-  queue.push(root);
-  while (queue.length) {
-    var tmp = [], qLength = queue.length; // 用一个临时数组暂存一层的节点的值
-    for (let i = 0; i < qLength; i++) {
-      node = queue.shift();
-      if (node.val != null) tmp.push(node.val);
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
-    }
-    arr.push(tmp);
-  }
-  return arr;
-};
-```
-
-### <a id="four-one-seven"></a>4.1.7 (简单) 剑指 Offer 55 - II. 平衡二叉树输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。
+### <a id="four-one-four"></a>4.1.4 (简单) 剑指 Offer 55 - II. 平衡二叉树输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。
 
 **示例 1:**
 
@@ -1612,7 +1409,7 @@ var isBalanced = function(root) {
   return dfs(root) != -1;
 };
 ```
-### 4.1.8 (简单) 剑指 Offer 28. 对称的二叉树请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。
+### <a id="four-one-five"></a>4.1.5 (简单) 剑指 Offer 28. 对称的二叉树请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。
 
 例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
 
@@ -1674,8 +1471,352 @@ var isSymmetric = function(root) {
   return root ? dfs(root.left, root.right) != -1 : true;
 };
 ```
+
+### <a id="four-one-six"></a>4.1.6 (中等) 剑指 Offer 32 - I. 从上到下打印二叉树从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。
+
+**例如:**  
+给定二叉树: `[3,9,20,null,null,15,7]`,
+
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+**返回：**  
+
+```
+[3,9,20,15,7]
+```
+
+**提示：**  
+
+节点总数 <= 1000
+
+#### 方法一：BFS
+层序遍历——广度优先搜索
+```js
+var levelOrder = function(root) {
+    if (!root) return [];
+    var queue = [root], arr = [];
+    while (queue.length) {
+        let node = queue.shift();
+        arr.push(node.val);
+        if (node.left != null && node.left.val != null) queue.push(node.left);
+        if (node.right != null && node.right.val != null) queue.push(node.right);
+    }
+    return arr;
+};
+```
+
+
+### <a id="four-one-seven"></a>4.1.7 (中等) 剑指 Offer 32 - II. 从上到下打印二叉树 II从上到下按层打印二叉树，同一层的节点按从左到右的顺序打印，每一层打印到一行。
+
+例如:
+给定二叉树: [3,9,20,null,null,15,7],
+
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+返回其层次遍历结果：
+
+```
+[
+  [3],
+  [9,20],
+  [15,7]
+]
+```
+
+**提示：**
+
+节点总数 <= 1000
+注意：本题与主站 102 题相同：https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
+
+#### 方法一：超市结账处分隔板的思路（我的方法）
+层序遍历——广度优先搜索
+```js
+var levelOrder = function(root) {
+  if (!root) return []; // 特例处理
+  var queue = [], arr = [], node;
+  queue.push(false); // 隔板
+  queue.push(root);
+  while (queue.length) {
+    node = queue.shift();
+    if (!node) {
+      if (!queue.length) break; // 如果是队列中的最后一个隔板，则不再给 arr 增加行
+      arr[arr.length] = []; // 给 arr 增加行
+      queue.push(false); // 从队列中取出一个隔板，则新增一个隔板
+      continue;
+    }
+    if (node.val != null) arr[arr.length - 1].push(node.val);
+    if (node.left) queue.push(node.left);
+    if (node.right) queue.push(node.right);
+  }
+  return arr;
+};
+```
+
+#### 方法二：循环嵌套  
+内层循环次数为当前层节点数（即队列 queue 长度），用临时数组暂存当前层节点的值  
+代码更容易理解
+```js
+var levelOrder = function(root) {
+  if (!root) return []; // 特例处理
+  var queue = [], arr = [];
+  queue.push(root);
+  while (queue.length) {
+    var tmp = [], qLength = queue.length; // 用一个临时数组暂存一层的节点的值
+    for (let i = 0; i < qLength; i++) {
+      let node = queue.shift();
+      if (node.val != null) tmp.push(node.val);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    arr.push(tmp);
+  }
+  return arr;
+};
+```
+
+### <a id="four-one-eight"></a>4.1.8 (中等) 剑指 Offer 32 - III. 从上到下打印二叉树 III
+请实现一个函数按照之字形顺序打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推。
+
+**例如:**  
+给定二叉树: `[3,9,20,null,null,15,7]`,
+
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+返回其层次遍历结果：
+
+```
+[
+  [3],
+  [20,9],
+  [15,7]
+]
+```
+
+**提示：**
+
+节点总数 <= 1000
+
+#### 方法一：BFS+标志位
+```js
+var levelOrder = function(root) {
+    if (!root) return [];
+    var queue = [root], arr = [], isOdd = true;
+    while (queue.length) {
+        let qLength = queue.length, temp = [];
+        for (let i = 0; i < qLength; i++) {
+            let node = queue.shift();
+            isOdd ? temp.push(node.val) : temp.unshift(node.val);
+            if (node.left != null && node.left.val != null) queue.push(node.left);
+            if (node.right != null && node.right.val != null) queue.push(node.right);
+        }
+        arr.push(temp);
+        isOdd = !isOdd;
+    }
+    return arr;
+};
+```
+
+### <a id="four-one-nine"></a>4.1.9 (中等) 面试题34. 二叉树中和为某一值的路径
+输入一棵二叉树和一个整数，打印出二叉树中节点值的和为输入整数的所有路径。从树的根节点开始往下一直到叶节点所经过的节点形成一条路径。
+
+**示例:**  
+给定如下二叉树，以及目标和 target = 22，
+
+```
+              5
+             / \
+            4   8
+           /   / \
+          11  13  4
+         /  \    / \
+        7    2  5   1
+```
+
+**返回:**  
+
+```
+[
+   [5,4,11,2],
+   [5,8,4,5]
+]
+```
+
+**提示：**  
+
+节点总数 <= 10000  
+注意：本题与主站 113 题相同：https://leetcode-cn.com/problems/path-sum-ii/  
+
+#### 方法一：DFS
+```js
+var pathSum = function(root, target) {
+    var arr = [], temp = [];
+    var dfs = function(root, sum) {
+        if (!root) return; // 递归终点
+        sum += root.val;
+        temp.push(root.val);
+        if (sum == target && !root.left && !root.right) {
+            arr.push(Array.from(temp));
+        }
+        if(root.left) dfs(root.left, sum);
+        if(root.right) dfs(root.right, sum);
+        temp.pop(); // 回溯之前，弄乱的引用类型数据(数组)要复原
+    }
+    dfs(root, 0);
+    return arr;
+};
+```
+
 ## <a id="four-two"></a>4.2 二叉搜索树  
 > [返回目录](#zero)  
+### 4.2.1 (简单) 剑指 Offer 54. 二叉搜索树的第k大节点
+给定一棵二叉搜索树，请找出其中第k大的节点。
+
+**示例 1:**
+
+```
+输入: root = [3,1,4,null,2], k = 1
+   3
+  / \
+ 1   4
+  \
+   2
+输出: 4
+```
+**示例 2:**
+
+```
+输入: root = [5,3,6,2,4,null,null,1], k = 3
+       5
+      / \
+     3   6
+    / \
+   2   4
+  /
+ 1
+输出: 4
+```
+
+**限制：**
+
+1 ≤ k ≤ 二叉搜索树元素个数
+
+#### 方法一  
+反着的中序遍历
+```js
+var kthLargest = function(root, k) {
+  var max = 0;
+  var inorderTraversal = function(root) {
+    if (!root) return;
+    inorderTraversal(root.right);
+    if (!k) return; // 若 k 为零，已找到，不需要继续遍历，提前返回
+    if (!--k) {
+      max = root.val;
+      return;
+    }
+    inorderTraversal(root.left);
+  }
+  inorderTraversal(root);
+  return max;
+};
+```
+
+### 4.2.2 (简单) 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
+
+百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（**一个节点也可以是它自己的祖先**）。”
+
+例如，给定如下二叉搜索树:  root = [6,2,8,0,4,7,9,null,null,3,5]
+
+![图](images/binarysearchtree_improved.png)
+
+**示例 1:**
+
+```
+输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
+输出: 6 
+解释: 节点 2 和节点 8 的最近公共祖先是 6。
+```
+**示例 2:**
+
+```
+输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4
+输出: 2
+解释: 节点 2 和节点 4 的最近公共祖先是 2, 因为根据定义最近公共祖先节点可以为节点本身。
+```
+
+**说明:**
+
+- 所有节点的值都是唯一的。
+- p、q 为不同节点且均存在于给定的二叉搜索树中。
+
+注意：本题与主站 235 题相同：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+
+**解题思路：**  
+看起来和[4.1.4 (中等) 剑指 Offer 68 - II. 二叉树的最近公共祖先](#four-one-three)很像，但是此题可用二叉搜索树的性质来解  
+
+|常见解法|时间复杂度|空间复杂度|
+| - | - | - |
+|迭代|O(N) |O(1)|
+|递归|O(N) |O(N)|
+
+#### 方法一：迭代
+[面试题68 - I. 二叉搜索树的最近公共祖先（迭代 / 递归，清晰图解）](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/mian-shi-ti-68-i-er-cha-sou-suo-shu-de-zui-jin-g-7/)  
+```js
+var lowestCommonAncestor = function(root, p, q) {
+    while (root) {
+        if (root.val < p.val && root.val < q.val) // p,q 都在 root 的右子树中
+            root = root.right; // 遍历至右子节点
+        else if (root.val > p.val && root.val > q.val) // p,q 都在 root 的左子树中
+            root = root.left; // 遍历至左子节点
+        else break;
+    }
+
+    return root;
+};
+```
+优化：若可保证 p.val < q.valp.val<q.val ，则在循环中可减少判断条件。  
+```js
+var lowestCommonAncestor = function(root, p, q) {
+    if (p.val > q.val) [p, q] = [q, p]; // 保证 p.val < q.val
+    while (root) {
+        if (root.val < p.val) // p,q 都在 root 的右子树中
+            root = root.right; // 遍历至右子节点
+        else if (root.val > q.val) // p,q 都在 root 的左子树中
+            root = root.left; // 遍历至左子节点
+        else break;
+    }
+
+    return root;
+};
+```
+#### 方法二：递归
+方法一中的迭代可以写成递归的形式  
+```js
+var lowestCommonAncestor = function(root, p, q) {
+    if (root.val < p.val && root.val < q.val)
+        return lowestCommonAncestor(root.right, p, q);
+    if (root.val > p.val && root.val > q.val)
+        return lowestCommonAncestor(root.left, p, q);
+    return root;
+};
+```
+
 
 ## <a id="four-three"></a>4.3 字典树  
 > [返回目录](#zero)  
@@ -2119,7 +2260,8 @@ var mergeTwoLists = function(l1, l2) {
 # <a id="eight"></a>八 搜索  
 > [返回目录](#zero)  
 ## <a id="eight-zero"></a>8.0 综合
-### 8.0.1 (中等) 剑指 Offer 13. 机器人的运动范围
+### 8.0.1 [(简单) 剑指 Offer 55 - I. 二叉树的深度](#four-one-two)  
+### 8.0.2 (中等) 剑指 Offer 13. 机器人的运动范围
 地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？
 
 **示例 1：**
@@ -2192,8 +2334,10 @@ var movingCount = function(m, n, k) {
 ## <a id="eight-one"></a>8.1 深度优先搜索  
 > [返回目录](#zero)  
 
-### 8.1.1 [(简单) 剑指 Offer 55 - I. 二叉树的深度](#four-one-two)  
-### 8.1.2 [(简单) 剑指 Offer 55 - II. 平衡二叉树](#four-one-seven)  
+![图](images/DFS.png)  
+
+### 8.1.1 [(简单) 剑指 Offer 55 - II. 平衡二叉树](#four-one-four)  
+### 8.1.2 [(简单) 剑指 Offer 28. 对称的二叉树](#four-one-five)  
 ### 8.1.3 (中等) 剑指 Offer 12. 矩阵中的路径
 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
 
@@ -2249,10 +2393,55 @@ var exist = function(board, word) {
 };
 ```
 
+### 8.1.4 [(中等) 面试题34. 二叉树中和为某一值的路径](#four-one-nine)
+
+### 8.1.5 (中等) 剑指 Offer 38. 字符串的排列
+输入一个字符串，打印出该字符串中字符的所有排列。
+
+你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。
+
+**示例:**
+
+```
+输入：s = "abc"
+输出：["abc","acb","bac","bca","cab","cba"]
+```
+
+**限制：**
+
+1 <= s 的长度 <= 8
+
+**解题思路**  
+[剑指 Offer 38. 字符串的排列（回溯法，清晰图解）](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/)  
+#### 方法一：DFS+回溯
+```js
+var permutation = function(s) {
+    var c = s.split(""), res = [];
+    var dfs = function (x) {
+        if (x == c.length) {
+            res.push(c.join(""));
+            return;
+        }
+        let dic = new Set();
+        for (let i = x; i < c.length; i++) {
+            if (dic.has(c[i])) continue;
+            dic.add(c[i]);
+            [c[i], c[x]] = [c[x], c[i]];
+            dfs(x + 1);
+            [c[i], c[x]] = [c[x], c[i]];
+        }
+    }
+    dfs(0);
+    return res;
+};
+```
+
 ## <a id="eight-two"></a>8.2 广度优先搜索  
 > [返回目录](#zero)  
 
-### 8.2.1 [(中等) 剑指 Offer 32 - II. 从上到下打印二叉树 II](#four-one-two)  
+### 8.2.1 [(中等) 剑指 Offer 32 - I. 从上到下打印二叉树](#four-one-six)  
+### 8.2.2 [(中等) 剑指 Offer 32 - II. 从上到下打印二叉树 II](#four-one-seven)  
+### 8.2.3 [(中等) 剑指 Offer 32 - III. 从上到下打印二叉树 III](#four-one-eight)  
 
 # <a id="nine"></a>九 查找
 > [返回目录](#zero)  
@@ -2300,6 +2489,8 @@ var minArray = function(numbers) {
 【思考】为什么官方的二分法的题解很多都是写的low + (high - low) // 2 而不是 (high + low) // 2  
 【回答】因为low+high在low和high特别大的时候可能会造成溢出，使用减法避免了溢出发生  
 
+### 9.1.4 [(简单) 剑指 Offer 57. 和为s的两个数字](#twelve-two-one)
+
 # <a id="ten"></a>十 排序  
 > [返回目录](#zero)  
 
@@ -2319,7 +2510,7 @@ var minArray = function(numbers) {
 
 ## <a id="twelve-two"></a>12.2 双指针(75)  
 > [返回目录](#zero)  
-### 12.2.1 (简单) 剑指 Offer 57. 和为s的两个数字
+### <a id="twelve-two-one"></a>12.2.1 (简单) 剑指 Offer 57. 和为s的两个数字
 输入一个递增排序的数组和一个数字s，在数组中查找两个数，使得它们的和正好是s。如果有多对数字的和等于s，则输出任意一对即可。
 
 **示例 1：**
