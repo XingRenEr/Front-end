@@ -770,7 +770,12 @@ var deleteNode = function(head, val) {
 1 <= values <= 10000  
 最多会对 appendTail、deleteHead 进行 10000 次调用  
 
-#### 方法一
+#### 方法一：双栈
+[用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/solution/mian-shi-ti-09-yong-liang-ge-zhan-shi-xian-dui-l-3/)  
+**复杂度分析**  
+- 时间复杂度：对于插入和删除操作，时间复杂度均为 O(1)。插入不多说，对于删除操作，虽然看起来是 O(n) 的时间复杂度，但是仔细考虑下每个元素只会*至多被插入和弹出 stack2 一次*，因此均摊下来每个元素被删除的时间复杂度仍为 O(1)。  
+- 空间复杂度：O(n)  
+
 ```js
 var CQueue = function() {
     this.stack1 = [];
@@ -782,9 +787,6 @@ var CQueue = function() {
  * @return {void}
  */
 CQueue.prototype.appendTail = function(value) {
-    while(this.stack2.length !== 0) {
-        this.stack1.push(this.stack2.pop());
-    };
     this.stack1.push(value);
 };
 
@@ -792,9 +794,11 @@ CQueue.prototype.appendTail = function(value) {
  * @return {number}
  */
 CQueue.prototype.deleteHead = function() {
-    while(this.stack1.length !== 0) {
-        this.stack2.push(this.stack1.pop());
-    };
+    if (!this.stack2.length) {
+        while (this.stack1.length) {
+            this.stack2.push(this.stack1.pop());
+        }
+    }
     return this.stack2.pop() || -1;
 };
 
@@ -826,7 +830,7 @@ minStack.min();   --> 返回 -2.
 
 各函数的调用总次数不超过 20000 次
  
-#### 方法一  
+#### 方法一：(我的方法)  
 数组中存储对象
 ```js
 var MinStack = function() {
@@ -860,8 +864,9 @@ MinStack.prototype.min = function() {
 };
 ```
 
-#### 方法二  
-两个数组，不用每一步都存储当前最小值
+#### 方法二：辅助栈  
+[面试题30. 包含 min 函数的栈（辅助栈，清晰图解）](https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/solution/mian-shi-ti-30-bao-han-minhan-shu-de-zhan-fu-zhu-z/)  
+两个栈，不用每一步都存储当前最小值  
 ```js
 var MinStack = function() {
     this.stack = [];
@@ -869,21 +874,16 @@ var MinStack = function() {
 };
 
 MinStack.prototype.push = function(x) {
-    if(this.stack.length === 0) {
-        this.minStack[0] = x;
-    } else {
-        if (x <= this.minStack[this.minStack.length - 1]) {
-          this.minStack[this.minStack.length] = x
-        }
+    this.stack.push(x);
+    if (this.minStack.length === 0 || x <= this.minStack[this.minStack.length - 1]) {
+        this.minStack.push(x);
     }
-    this.stack[this.stack.length] = x;
 };
 
 MinStack.prototype.pop = function() {
-    if (this.minStack[this.minStack.length - 1] === this.stack[this.stack.length - 1]) {
-        this.minStack.length--;
+    if (this.minStack[this.minStack.length - 1] === this.stack.pop()) {
+        this.minStack.pop();
     }
-    this.stack.length--;
 };
 
 MinStack.prototype.top = function() {
@@ -894,6 +894,7 @@ MinStack.prototype.min = function() {
     return this.minStack[this.minStack.length - 1];
 };
 ```
+
 
 
 ## <a id="two-four"></a>2.4 队列
@@ -2427,6 +2428,9 @@ var translateNum = function(num) {
 注意：本题与主站 343 题相同：https://leetcode-cn.com/problems/integer-break/
 
 #### 方法一：动态规划
+[剑指 Offer 14- I. 剪绳子，还是动态规划好理解，但是贪心真的快](https://leetcode-cn.com/problems/jian-sheng-zi-lcof/solution/jian-zhi-offer-14-i-jian-sheng-zi-huan-s-xopj/)  
+> 贪心算法的解法没看懂
+
 **复杂度分析**  
 - 时间复杂度：O(n ^ 2)
 - 空间复杂度：O(n)
