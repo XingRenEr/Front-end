@@ -2318,7 +2318,7 @@ var numWays = function(n) {
 
 |常见解法|时间复杂度|空间复杂度|
 | - | - | - |
-|暴力搜索|O(N^2) ) |O(1)|
+|暴力搜索|O(N^2) |O(1)|
 |分治思想|O(NlogN) |O(logN)|
 |动态规划|O(N)     |O(1)|
 
@@ -2337,6 +2337,113 @@ var maxSubArray = function(nums) {
     return Math.max.apply(null, nums);
 };
 ```
+
+### 7.1.4 (中等) 剑指 Offer 46. 把数字翻译成字符串
+给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。一个数字可能有多个翻译。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。
+
+**示例 1:**
+
+```
+输入: 12258
+输出: 5
+解释: 12258有5种不同的翻译，分别是"bccfi", "bwfi", "bczi", "mcfi"和"mzi"
+```
+
+**提示：**
+
+0 <= num < 2^31
+
+#### 方法一：动态规划+字符串遍历
+**解题思路**  
+很像青蛙跳台阶那道题嘛！  
+
+**复杂度分析**  
+- 时间复杂度：O(N)
+- 空间复杂度：O(N)。节省了 dp 列表的空间占用，但字符串 s 仍使用了 O(N) 大小的额外空间。
+
+```js
+var translateNum = function(num) {
+    var numStr = num + '';
+    var a, b;
+    a = 1;
+    if (numStr.length == 1) return a;
+    var numTemp = Number(numStr.substr(0, 2));
+    b = (numTemp <= 25 && numTemp >= 10) ? 2 : 1;
+    if (numStr.length == 2) return b;
+    for (let i = 3; i <= numStr.length; i++) {
+        let numTemp = Number(numStr.substr(i - 2, 2));
+        let c = ((numTemp <= 25 && numTemp >= 10) ? a : 0) + b;
+        a = b;
+        b = c;
+    }
+    return b;
+};
+```
+
+```js
+// 省去 1 2 的判断
+var translateNum = function(num) {
+    var numStr = num + '';
+    var a = 1, b = 1;
+    for (let i = 2; i <= numStr.length; i++) {
+        let numTemp = Number(numStr.substr(i - 2, 2));
+        let c = ((numTemp <= 25 && numTemp >= 10) ? a : 0) + b;
+        a = b;
+        b = c;
+    }
+    return b;
+};
+```
+
+#### 方法二：动态规划+数字求余
+[面试题46. 把数字翻译成字符串（动态规划，清晰图解）](https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/mian-shi-ti-46-ba-shu-zi-fan-yi-cheng-zi-fu-chua-6/)  
+此题的动态规划计算是 对称的 ，即 从左向右 遍历（从第 dp[2] 计算至 dp[n] ）和 从右向左 遍历（从第 dp[n−2] 计算至 dp[0] ）所得方案数一致。  
+可通过 求余 和 求整 运算实现 从右向左 的遍历计算。  
+利用求余运算 `num % 10` 和求整运算 `num / 10` ，可获取数字 `num` 的各位数字（获取顺序为个位、十位、百位…）。  
+
+### 7.1.5 (中等) 剑指 Offer 14- I. 剪绳子
+给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n>1并且m>1），每段绳子的长度记为 k[0],k[1]...k[m-1] 。请问 k[0]*k[1]*...*k[m-1] 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。
+
+**示例 1：**
+
+```
+输入: 2
+输出: 1
+解释: 2 = 1 + 1, 1 × 1 = 1
+```
+
+**示例 2:**
+
+```
+输入: 10
+输出: 36
+解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36
+```
+
+**提示：**
+
+- 2 <= n <= 58  
+
+注意：本题与主站 343 题相同：https://leetcode-cn.com/problems/integer-break/
+
+#### 方法一：动态规划
+**复杂度分析**  
+- 时间复杂度：O(n ^ 2)
+- 空间复杂度：O(n)
+
+```js
+var cuttingRope = function(n) {
+    var dp = new Array(n + 1).fill(0);
+    dp[1] = dp[2] = 1;
+    for(let i = 3; i <= n; i++) {
+        for(let j = 2; j < i / 2 + 1; j++) { // j <= i / 2即可，j < i / 2 + 1 是为了解决输入为 3 的问题
+            dp[i] = Math.max(dp[i], Math.max(j * (i - j), j * dp[i - j]));
+        }
+    }
+    return dp[n];
+};
+```
+
 ## <a id="seven-two"></a>7.2 贪心算法  
 > [返回目录](#zero)  
 
