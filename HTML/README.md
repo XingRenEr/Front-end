@@ -19,19 +19,19 @@ HTML
 HTML 复习点并不多，可能用的标签之类的不多吧~  
 
 * [x] HTML5
-  * [x] [HTML5 标签](https://github.com/XingRenEr/Front-end/blob/master/HTML/HTML5%20%E6%A0%87%E7%AD%BE.md)
-  * [x] 元素
-    * [x] 表单。新增 type：color emial data range
-    * [x] 图形。canvas 绘图，支持内联SVG。支持MathML
-    * [x] 多媒体。audio video source embed track
-  * [x] API
-    * [x] 地理定位
-    * [x] 拖放
-    * [x] 存储
-      * [x] Web Storage。LocalStorage、SessionStorage
-      * [x] 本地离线存储，把需要离线存储在本地的文件列在一个 manifest 配置文件
-  * [x] Web Workers(多线程编程)
-  * [x] WebSocket(多线程编程)
+  *  [HTML5 标签](https://github.com/XingRenEr/Front-end/blob/master/HTML/HTML5%20%E6%A0%87%E7%AD%BE.md)
+  *  元素
+    *  表单。新增 type：color emial data range
+    *  图形。canvas 绘图，支持内联SVG。支持MathML
+    *  多媒体。audio video source embed track
+  *  API
+    *  地理定位
+    *  拖放
+    *  存储
+      *  Web Storage。LocalStorage、SessionStorage
+      *  本地离线存储，把需要离线存储在本地的文件列在一个 manifest 配置文件
+  *  Web Workers(多线程编程)
+  *  WebSocket(多线程编程)
 * [x] [行内元素和块级元素](https://github.com/XingRenEr/Front-end/blob/master/HTML/%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E5%92%8C%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0.md)
 
 ## <a name="chapter-three" id="chapter-three"></a>三 层级关系
