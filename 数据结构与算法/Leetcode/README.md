@@ -1005,6 +1005,69 @@ var maxSlidingWindow = function(nums, k) {
 若已形成窗口（即 `i≥0` ）：将窗口最大值（即队首元素 `deque[0]` ）添加至列表 `res` 。  
 3. 返回值： 返回结果列表 `res` 。  
 
+### 2.4.3 (中等) 剑指 Offer 59 - II. 队列的最大值
+请定义一个队列并实现函数 max_value 得到队列里的最大值，要求函数max_value、push_back 和 pop_front 的均摊时间复杂度都是O(1)。
+
+若队列为空，pop_front 和 max_value 需要返回 -1
+
+**示例 1：**
+
+```
+输入: 
+["MaxQueue","push_back","push_back","max_value","pop_front","max_value"]
+[[],[1],[2],[],[],[]]
+输出: [null,null,null,2,1,2]
+```
+
+**示例 2：**
+
+```
+输入: 
+["MaxQueue","pop_front","max_value"]
+[[],[],[]]
+输出: [null,-1,-1]
+```
+
+**限制：**
+
+- 1 <= push_back,pop_front,max_value的总操作数 <= 10000
+- 1 <= value <= 10^5
+
+#### 方法一：队列+双端队列
+**解题思路**  
+对于一个普通队列，`push_back` 和 `pop_front` 的时间复杂度都是 O(1)  
+此题重点在于求 max  
+[如何解决 O(1) 复杂度的 API 设计题](https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/solution/ru-he-jie-jue-o1-fu-za-du-de-api-she-ji-ti-by-z1m/)  
+
+```js
+var MaxQueue = function() {
+    this.queue = [];
+    this.deque = [];
+};
+
+MaxQueue.prototype.max_value = function() {
+    return this.deque[0] || -1;
+};
+
+MaxQueue.prototype.push_back = function(value) {
+    this.queue.push(value);
+    while (this.deque.length && this.deque[this.deque.length - 1] < value) {
+        this.deque.pop();
+    }
+    this.deque.push(value);
+};
+
+MaxQueue.prototype.pop_front = function() {
+    if (!this.queue.length) return -1;
+    var res = this.queue.shift();
+    if (res == this.deque[0]) {
+        this.deque.shift();
+    }
+    return res;
+};
+
+```
+
 # <a id="three"></a>三 哈希表(散列表)  
 > [返回目录](#zero)  
 
@@ -1708,53 +1771,53 @@ var pathSum = function(root, target) {
 注意：本题与主站 105 题重复：https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
 
 ![](README_files/1.jpg)
-#### 方法一：递归+传入数组(空间复杂度大)
+#### 方法一：递归+分治——传入数组(空间复杂度大)
 ```js
 var buildTree = function(preorder, inorder) {
-    var dfs = function(preorder, inorder) {
+    var recur = function(preorder, inorder) {
         if (preorder.length == 0) return null;
         if (preorder.length == 1) return new TreeNode(preorder[0]);
         var node = new TreeNode(preorder[0]);
         var leftLen = inorder.indexOf(preorder[0]);
-        node.left = dfs(preorder.slice(1, leftLen + 1), inorder.slice(0, leftLen));
-        node.right = leftLen + 1 == preorder.length ? null : dfs(preorder.slice(leftLen + 1), inorder.slice(leftLen + 1));
+        node.left = recur(preorder.slice(1, leftLen + 1), inorder.slice(0, leftLen));
+        node.right = leftLen + 1 == preorder.length ? null : recur(preorder.slice(leftLen + 1), inorder.slice(leftLen + 1));
         return node;
     }
-    return dfs(preorder, inorder);
+    return recur(preorder, inorder);
 };
 ```
-#### 方法二：递归+传入指针
+#### 方法二：递归+分治——传入指针
 ```js
 var buildTree = function(preorder, inorder) {
-    var dfs = function(preL, preR, inL, inR) {
+    var recur = function(preL, preR, inL, inR) {
         if (preL > preR) return null;
         if (preL == preR) return new TreeNode(preorder[preL]);
         var node = new TreeNode(preorder[preL]);
         var leftLen = inorder.indexOf(preorder[preL]) - inL;
-        node.left = dfs(preL + 1, preL + leftLen, inL, inL + leftLen - 1);
-        node.right = leftLen + 1 == preorder.length ? null : dfs(preL + leftLen + 1, preR, inL + leftLen + 1, inR);
+        node.left = recur(preL + 1, preL + leftLen, inL, inL + leftLen - 1);
+        node.right = leftLen + 1 == preorder.length ? null : recur(preL + leftLen + 1, preR, inL + leftLen + 1, inR);
         return node;
     }
-    return dfs(0, preorder.length - 1, 0, inorder.length - 1);
+    return recur(0, preorder.length - 1, 0, inorder.length - 1);
 };
 ```
 优化利用 `indexOf()` 查找索引的时间复杂度：  
 ```js
 var buildTree = function(preorder, inorder) {
-    var dfs = function(preL, preR, inL, inR) {
+    var recur = function(preL, preR, inL, inR) {
         if (preL > preR) return null;
         if (preL == preR) return new TreeNode(preorder[preL]);
         var node = new TreeNode(preorder[preL]);
         var leftLen = dic[preorder[preL]] - inL; // 查找索引的时间复杂度为O(1)
-        node.left = dfs(preL + 1, preL + leftLen, inL, inL + leftLen - 1);
-        node.right = leftLen + 1 == preorder.length ? null : dfs(preL + leftLen + 1, preR, inL + leftLen + 1, inR);
+        node.left = recur(preL + 1, preL + leftLen, inL, inL + leftLen - 1);
+        node.right = leftLen + 1 == preorder.length ? null : recur(preL + leftLen + 1, preR, inL + leftLen + 1, inR);
         return node;
     }
     var dic = {}; // 创建一个哈希表用来存放索引
     for (let i = 0; i < inorder.length; i++) {
         dic[inorder[i]] = i;
     }
-    return dfs(0, preorder.length - 1, 0, inorder.length - 1);
+    return recur(0, preorder.length - 1, 0, inorder.length - 1);
 };
 ```
 
@@ -1816,6 +1879,55 @@ var isSubStructure = function(A, B) {
 };
 ```
 
+### <a id="four-one-twelve"></a>4.1.12 (中等) 剑指 Offer 33. 二叉搜索树的后序遍历序列
+输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。
+
+参考以下这颗二叉搜索树：
+
+```
+     5
+    / \
+   2   6
+  / \
+ 1   3
+```
+ 
+**示例 1：**
+
+```
+输入: [1,6,3,2,5]
+输出: false
+```
+
+**示例 2：**
+
+```
+输入: [1,3,2,6,5]
+输出: true
+```
+
+**提示：**
+
+- 数组长度 <= 1000
+
+**解题思路**  
+与[4.1.10 (中等) 剑指 Offer 07. 重建二叉树](#four-one-ten)思路相似；使用递归+分治算法  
+
+#### 方法一：递归+分治
+```js
+var verifyPostorder = function(postorder) {
+    var recur = function(l, r) {
+        if (l >= r) return true;
+        var tempL, tempR;
+        for (tempL = l; postorder[tempL] < postorder[r]; tempL++) ; // 依据"二叉搜索树左侧节点值小于根节点"找到根节点的位置
+        for (tempR = r - 1; postorder[tempR] > postorder[r]; tempR--) ; // 依据"二叉搜索树右侧节点值大于根节点"找到根节点的位置
+        if (tempL - 1 != tempR) return false;
+        return recur(l, tempR) && recur(tempL, r - 1);
+    }
+    return postorder.length ? recur(0, postorder.length - 1) : true;
+};
+```
+
 ## <a id="four-two"></a>4.2 二叉搜索树  
 > [返回目录](#zero)  
 ### 4.2.1 (简单) 剑指 Offer 54. 二叉搜索树的第k大节点
@@ -1870,7 +1982,7 @@ var kthLargest = function(root, k) {
 };
 ```
 
-### 4.2.2 (简单) 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
+### <a id="four-two-two"></a>4.2.2 (简单) 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
 
 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（**一个节点也可以是它自己的祖先**）。”
 
@@ -2448,6 +2560,84 @@ var cuttingRope = function(n) {
 };
 ```
 
+### 7.1.6 (中等) 剑指 Offer 47. 礼物的最大价值
+在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？
+
+**示例 1:**
+
+```
+输入: 
+[
+  [1,3,1],
+  [1,5,1],
+  [4,2,1]
+]
+输出: 12
+解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物
+```
+
+**提示：**
+
+- 0 < grid.length <= 200
+- 0 < grid[0].length <= 200
+
+#### 方法一：动态规划
+```js
+var maxValue = function(grid) {
+    for (let i = 1; i < grid.length; i++) {
+        grid[i][0] += grid[i - 1][0];
+    }    
+    for (let j = 1; j < grid[0].length; j++) {
+        grid[0][j] += grid[0][j - 1];
+    }
+    for (let i = 1; i < grid.length; i++) {
+        for (let j = 1; j < grid[0].length; j++) {
+            grid[i][j] += Math.max(grid[i - 1][j], grid[i][j - 1]);
+        }
+    }
+    return grid[grid.length - 1][grid[0].length - 1];
+};
+```
+
+### 7.1.7 (中等) 剑指 Offer 63. 股票的最大利润
+假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？
+
+**示例 1:**
+
+```
+输入: [7,1,5,3,6,4]
+输出: 5
+解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格。
+```
+
+**示例 2:**
+
+```
+输入: [7,6,4,3,1]
+输出: 0
+解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
+```
+
+**限制：**
+
+0 <= 数组长度 <= 10^5
+
+注意：本题与主站 121 题相同：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/
+
+#### 方法一：动态规划
+```js
+var maxProfit = function(prices) {
+    if (prices.length <= 1) return 0;
+    var min = prices[0], res = 0;
+    for (let i = 1; i < prices.length; i++) {
+        if (min > prices[i]) min = prices[i];
+        res = Math.max(res, prices[i] - min);
+    }
+    return res > 0 ? res : 0;
+};
+```
+
 ## <a id="seven-two"></a>7.2 贪心算法  
 > [返回目录](#zero)  
 
@@ -2456,6 +2646,9 @@ var cuttingRope = function(n) {
 
 ## <a id="seven-four"></a>7.4 分治算法  
 > [返回目录](#zero)  
+
+### 7.4.1 [(中等) 剑指 Offer 07. 重建二叉树](#four-one-ten)
+### 7.4.2 [(中等) 剑指 Offer 33. 二叉搜索树的后序遍历序列](#four-one-twelve)
 
 ### (简单) 剑指 Offer 25. 合并两个排序的链表
 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。
@@ -2679,6 +2872,10 @@ var permutation = function(s) {
 };
 ```
 
+### 8.1.6 [(中等) 剑指 Offer 26. 树的子结构](#four-one-eleven)
+
+### 8.1.7 [(中等) 剑指 Offer 68 - II. 二叉树的最近公共祖先](#four-one-three)
+
 ## <a id="eight-two"></a>8.2 广度优先搜索  
 > [返回目录](#zero)  
 
@@ -2846,6 +3043,62 @@ var exchange = function(nums) {
 };
 ```
 
+### 12.2.3 (中等) 剑指 Offer 48. 最长不含重复字符的子字符串
+请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
+
+**示例 1:**
+
+```
+输入: "abcabcbb"
+输出: 3 
+解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+```
+
+**示例 2:**
+
+```
+输入: "bbbbb"
+输出: 1
+解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
+```
+
+**示例 3:**
+
+```
+输入: "pwwkew"
+输出: 3
+解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
+     请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
+```
+
+**提示：**
+
+s.length <= 40000  
+注意：本题与主站 3 题相同：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
+
+#### 方法一：双指针+哈希表(我的方法)(有待优化)
+**复杂度分析**  
+- 时间复杂度：O(n)
+- 空间复杂度：O(1)
+
+```js
+var lengthOfLongestSubstring = function(s) {
+    var hash = {}, maxLen = 0, [l, r] = [0, 0];
+    for (; r < s.length; r++) {
+        if (hash[s[r]] == undefined || hash[s[r]] < l) hash[s[r]] = r;
+        else {
+            maxLen = r - l > maxLen ? r - l : maxLen;
+            l = hash[s[r]] + 1;
+            hash[s[r]] = r;
+        }
+    }
+    return r - l > maxLen ? r - l : maxLen;
+};
+```
+
+[面试题48. 最长不含重复字符的子字符串（动态规划 / 双指针 + 哈希表，清晰图解）](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/)  
+K神的解题思路用的动态规划的思想  
+
 ## <a id="twelve-three"></a>12.3 设计(69)  
 > [返回目录](#zero)  
 
@@ -2920,6 +3173,54 @@ var add = function(a, b) {
         b = c; // b = 进位
     }
     return a;
+};
+```
+
+### 12.4.3 (中等) 剑指 Offer 56 - I. 数组中数字出现的次数
+一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。
+
+**示例 1：**
+
+```
+输入：nums = [4,1,4,6]
+输出：[1,6] 或 [6,1]
+```
+
+**示例 2：**
+
+```
+输入：nums = [1,2,10,4,1,4,3,3]
+输出：[2,10] 或 [10,2]
+```
+
+**限制：**
+
+2 <= nums.length <= 10000  
+ 
+#### 方法一：位运算
+**解题思路**  
+1. 若只有一个只出现一次的数字，则通过异或运算(相同的数字两两抵消)，可直接找到该数字  
+2. 若有两个只出现一次的数字，则：
+ - 遍历数组。通过异或运算，得到两个数字的异或；
+ - 通过循环移位，得到两个数字在哪一位不同，记为第 k 位；
+ - 遍历数组。按照第 k 位为 0/1，划分分组，通过异或运算，可找到两个数字  
+
+[剑指 Offer 56 - I. 数组中数字出现的次数（位运算，清晰图解）](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/solution/jian-zhi-offer-56-i-shu-zu-zhong-shu-zi-tykom/)  
+
+```js
+var singleNumbers = function(nums) {
+    var [x, y, n, m] = [0, 0, 0, 1];
+    for (let num of nums) {
+        n ^= num;
+    }
+    while ((n & m) == 0) {
+        m <<= 1;
+    }
+    for (let num of nums) {
+        if ((num & m) != 0) x ^= num;
+        else y ^= num;
+    }
+    return [x, y];
 };
 ```
 
@@ -3044,6 +3345,8 @@ var sumNums = function(n) {
     return (n**2+n) >> 1;
 };
 ```
+
+### 12.6.3 [(简单) 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先](#four-two-two)
 
 ## <a id="twelve-seven"></a>12.7 Ordered Map(13)  
 > [返回目录](#zero)  
