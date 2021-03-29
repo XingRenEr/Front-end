@@ -237,7 +237,7 @@ Connection: close
 
 当然，除此之外我们也可以设置断开的时间等：
 
-```js
+```
 Keep-Alive: timeout=5, max=100
 ```
 
