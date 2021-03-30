@@ -895,7 +895,49 @@ MinStack.prototype.min = function() {
 };
 ```
 
+### 2.3.3 (中等) 剑指 Offer 31. 栈的压入、弹出序列
+输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如，序列 {1,2,3,4,5} 是某栈的压栈序列，序列 {4,5,3,2,1} 是该压栈序列对应的一个弹出序列，但 {4,3,5,1,2} 就不可能是该压栈序列的弹出序列。
 
+**示例 1：**
+```
+输入：pushed = [1,2,3,4,5], popped = [4,5,3,2,1]
+输出：true
+解释：我们可以按以下顺序执行：
+push(1), push(2), push(3), push(4), pop() -> 4,
+push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
+```
+
+**示例 2：**
+```
+输入：pushed = [1,2,3,4,5], popped = [4,3,5,1,2]
+输出：false
+解释：1 不能在 2 之前弹出。
+```
+
+**提示：**
+- 0 <= pushed.length == popped.length <= 1000  
+- 0 <= pushed[i], popped[i] < 1000  
+- pushed 是 popped 的排列。  
+注意：本题与主站 946 题相同：https://leetcode-cn.com/problems/validate-stack-sequences/  
+
+**解题思路**  
+[面试题31. 栈的压入、弹出序列（模拟，清晰图解）](https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/solution/mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2/)  
+
+#### 方法一：辅助栈+模拟
+```js
+var validateStackSequences = function(pushed, popped) {
+    var stack = [];
+    var i = 0;
+    for (let num of pushed) {
+        stack.push(num);
+        while (stack.length && stack[stack.length - 1] == popped[i]) {
+            stack.pop();
+            i++;
+        }
+    }
+    return stack.length == 0;
+};
+```
 
 ## <a id="two-four"></a>2.4 队列
 > [返回目录](#zero)  
@@ -1879,54 +1921,6 @@ var isSubStructure = function(A, B) {
 };
 ```
 
-### <a id="four-one-twelve"></a>4.1.12 (中等) 剑指 Offer 33. 二叉搜索树的后序遍历序列
-输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。
-
-参考以下这颗二叉搜索树：
-
-```
-     5
-    / \
-   2   6
-  / \
- 1   3
-```
- 
-**示例 1：**
-
-```
-输入: [1,6,3,2,5]
-输出: false
-```
-
-**示例 2：**
-
-```
-输入: [1,3,2,6,5]
-输出: true
-```
-
-**提示：**
-
-- 数组长度 <= 1000
-
-**解题思路**  
-与[4.1.10 (中等) 剑指 Offer 07. 重建二叉树](#four-one-ten)思路相似；使用递归+分治算法  
-
-#### 方法一：递归+分治
-```js
-var verifyPostorder = function(postorder) {
-    var recur = function(l, r) {
-        if (l >= r) return true;
-        var tempL, tempR;
-        for (tempL = l; postorder[tempL] < postorder[r]; tempL++) ; // 依据"二叉搜索树左侧节点值小于根节点"找到根节点的位置
-        for (tempR = r - 1; postorder[tempR] > postorder[r]; tempR--) ; // 依据"二叉搜索树右侧节点值大于根节点"找到根节点的位置
-        if (tempL - 1 != tempR) return false;
-        return recur(l, tempR) && recur(tempL, r - 1);
-    }
-    return postorder.length ? recur(0, postorder.length - 1) : true;
-};
-```
 
 ## <a id="four-two"></a>4.2 二叉搜索树  
 > [返回目录](#zero)  
@@ -2062,6 +2056,94 @@ var lowestCommonAncestor = function(root, p, q) {
 };
 ```
 
+### <a id="four-two-three"></a>4.2.3 (中等) 剑指 Offer 33. 二叉搜索树的后序遍历序列
+输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。
+
+参考以下这颗二叉搜索树：
+
+```
+     5
+    / \
+   2   6
+  / \
+ 1   3
+```
+ 
+**示例 1：**
+
+```
+输入: [1,6,3,2,5]
+输出: false
+```
+
+**示例 2：**
+
+```
+输入: [1,3,2,6,5]
+输出: true
+```
+
+**提示：**
+
+- 数组长度 <= 1000
+
+**解题思路**  
+与[4.1.10 (中等) 剑指 Offer 07. 重建二叉树](#four-one-ten)思路相似；使用递归+分治算法  
+
+#### 方法一：递归+分治
+```js
+var verifyPostorder = function(postorder) {
+    var recur = function(l, r) {
+        if (l >= r) return true;
+        var tempL, tempR;
+        for (tempL = l; postorder[tempL] < postorder[r]; tempL++) ; // 依据"二叉搜索树左侧节点值小于根节点"找到根节点的位置
+        for (tempR = r - 1; postorder[tempR] > postorder[r]; tempR--) ; // 依据"二叉搜索树右侧节点值大于根节点"找到根节点的位置
+        if (tempL - 1 != tempR) return false;
+        return recur(l, tempR) && recur(tempL, r - 1);
+    }
+    return postorder.length ? recur(0, postorder.length - 1) : true;
+};
+```
+
+### <a id="four-two-four"></a>4.2.4 (中等) 剑指 Offer 36. 二叉搜索树与双向链表
+[题目](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/)  
+
+输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的循环双向链表。要求不能创建任何新的节点，只能调整树中节点指针的指向。
+
+为了让您更好地理解问题，以下面的二叉搜索树为例：
+
+我们希望将这个二叉搜索树转化为双向循环链表。链表中的每个节点都有一个前驱和后继指针。对于双向循环链表，第一个节点的前驱是最后一个节点，最后一个节点的后继是第一个节点。
+
+下图展示了上面的二叉搜索树转化成的链表。“head” 表示指向链表中有最小元素的节点。
+
+特别地，我们希望可以就地完成转换操作。当转化完成以后，树中节点的左指针需要指向前驱，树中节点的右指针需要指向后继。还需要返回链表中的第一个节点的指针。
+
+注意：本题与主站 426 题相同：https://leetcode-cn.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/
+
+**解题思路**  
+[剑指 Offer 36. 二叉搜索树与双向链表（中序遍历，清晰图解）](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/solution/mian-shi-ti-36-er-cha-sou-suo-shu-yu-shuang-xian-5/)  
+
+#### 方法一：中序遍历+双指针
+```js
+var treeToDoublyList = function(root) {
+    if (!root) return;
+    var pre = null, head;
+    var dfs = function(cur) {
+        if (!cur) return;
+        dfs(cur.left);
+        if (!pre) {
+            head = cur;
+        } else {
+            pre.right = cur, cur.left = pre;
+        }
+        pre = cur;
+        dfs(cur.right);
+    }
+    dfs(root);
+    pre.right = head, head.left = pre;
+    return head;
+};
+```
 
 ## <a id="four-three"></a>4.3 字典树  
 > [返回目录](#zero)  
@@ -2648,7 +2730,7 @@ var maxProfit = function(prices) {
 > [返回目录](#zero)  
 
 ### 7.4.1 [(中等) 剑指 Offer 07. 重建二叉树](#four-one-ten)
-### 7.4.2 [(中等) 剑指 Offer 33. 二叉搜索树的后序遍历序列](#four-one-twelve)
+### 7.4.2 [(中等) 剑指 Offer 33. 二叉搜索树的后序遍历序列](#four-two-three)
 
 ### (简单) 剑指 Offer 25. 合并两个排序的链表
 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。
@@ -2876,6 +2958,8 @@ var permutation = function(s) {
 
 ### 8.1.7 [(中等) 剑指 Offer 68 - II. 二叉树的最近公共祖先](#four-one-three)
 
+### 8.1.8 [(中等) 剑指 Offer 36. 二叉搜索树与双向链表](#four-two-four)
+
 ## <a id="eight-two"></a>8.2 广度优先搜索  
 > [返回目录](#zero)  
 
@@ -2947,6 +3031,7 @@ var minArray = function(numbers) {
 
 ## <a id="twelve-one"></a>12.1 数学(210)  
 > [返回目录](#zero)  
+
 
 ## <a id="twelve-two"></a>12.2 双指针(75)  
 > [返回目录](#zero)  
