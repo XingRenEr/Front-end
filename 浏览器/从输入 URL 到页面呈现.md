@@ -47,7 +47,7 @@
 5. 浏览器解析渲染页面  
 
 在所有这些请求中，还需要关注的就是[**浏览器缓存——缓存机制**](https://github.com/XingRenEr/Front-end/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98.md#chapter-five)  
-> 可缓存的内容有：`DNS` 解析返回的 `IP` 地址；服务器响应返回的 `html` `css` 等资源；浏览器解析渲染页面请求的 `js` 文件、图片等资源
+> 可缓存的内容有：`DNS` 解析返回的 `IP` 地址；服务器响应返回的 `html` `css` 等资源；浏览器解析渲染页面时请求的 `js` 文件、图片等资源
 
 当然，这是整体过程，实际面试过程中会进一步详细问，后面会逐步完善，让小伙伴们对这个系列的问题不在纠结。
 
@@ -86,11 +86,12 @@
 
 发送 `HTTP` 请求的过程就是构建 `HTTP` 请求报文，并通过 `TCP` 协议发送到服务器指定端口（`HTTP` 协议默认端口 `80/8080`，`HTTPS` 协议默认端口 `443`）。
 
-`HTTP` 请求报文由 3 部分组成：**请求行**、**请求报头** 和 **请求正文**。
+`HTTP` 请求报文由 3 部分组成：**请求行**、**请求头** 和 **请求体**。  
+![图](img/HTTPRequest.png)  
 
-* [**请求方法**](https://github.com/XingRenEr/Front-end/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP.md#four-one)：常用方法有：GET、POST、PUT、DELETE、OPTIONS、HEAD。
-* [**请求报头**](https://itbilu.com/other/relate/EJ3fKUwUx.html#http-request-headers)：允许客户端向服务器传递请求的附加信息和客户端自身的信息。
-* **请求正文**：通过 POST、PUT 等方法时，通常需要客户端向服务器传递数据，这些数据就储存在请求正文中。
+* **请求行**：请求方法、请求URL、HTTP协议及版本。[请求方法](https://github.com/XingRenEr/Front-end/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP.md#four-one)：常用方法有：GET、POST、PUT、DELETE、OPTIONS、HEAD。
+* [**请求头**](https://itbilu.com/other/relate/EJ3fKUwUx.html#http-request-headers)：允许客户端向服务器传递请求的附加信息和客户端自身的信息。
+* **请求体**：通过 POST、PUT 等方法时，通常需要客户端向服务器传递数据，这些数据就储存在请求体中。
 
 当然，`HTTP` 请求需要注意是否[跨域](https://github.com/XingRenEr/Front-end/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8/%E8%B7%A8%E5%9F%9F.md)，如何解决跨域问题：
 
@@ -100,11 +101,11 @@
 
 服务器处理请求完毕后，会返回 `HTTP` 报文。
 
-`HTTP` 响应报文也是由 3 部分组成：**状态码**、**响应报头** 和 **响应报文**。
+`HTTP` 响应报文也是由 3 部分组成：**响应行**、**响应头** 和 **响应体**。
 
-* [**状态码**](https://github.com/XingRenEr/Front-end/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP.md#five)：`1xx` 指示信息-表示请求已接收；`2xx` 请求成功-表示请求成功接收并解析；`3xx` 重定向-表示要完成请求需要更进一步操作；`4xx` 客户端错误-请求有语法错误或者请求无法实现；`5xx`：服务端错误-服务端未能实现合法的请求。**常见状态码**：200（成功）、304（请求内容有缓存，不需要更新）、400、401、403、404（网页或者文件找不到）、500（服务器-后端处理错误）。
-* [**响应报头**](https://itbilu.com/other/relate/EJ3fKUwUx.html#http-response-headers)：常见的响应报头字段 `Server`、`Connection` 等。
-* **响应报文**：服务器返回给浏览器的文本信息，通常 HTML、CSS、JS、图片等文件就放在这一部分。
+* **响应行**：HTTP协议及版本、状态码及状态描述。[状态码](https://github.com/XingRenEr/Front-end/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP.md#five)：`1xx` 指示信息-表示请求已接收；`2xx` 请求成功-表示请求成功接收并解析；`3xx` 重定向-表示要完成请求需要更进一步操作；`4xx` 客户端错误-请求有语法错误或者请求无法实现；`5xx`：服务端错误-服务端未能实现合法的请求。**常见状态码**：200（成功）、304（请求内容有缓存，不需要更新）、400、401、403、404（网页或者文件找不到）、500（服务器-后端处理错误）。
+* [**响应头**](https://itbilu.com/other/relate/EJ3fKUwUx.html#http-response-headers)：常见的响应头字段 `Server`、`Connection` 等。
+* **响应体**：服务器返回给浏览器的文本信息，通常 HTML、CSS、JS、图片等文件就放在这一部分。
 
 综上，`URL` 解析过程的步骤 3 和步骤 4 是 `HTTP` 请求和服务器响应，所以这一块会问到 `HTTP` 状态码、[`HTTPS`](https://github.com/XingRenEr/Front-end/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP.md#seven) 等知识点。
 
@@ -127,7 +128,7 @@
 6. 遍历渲染树，由 UI 渲染引擎绘制，此步骤叫 **绘制渲染树**（`Painting the render tree`）  
 
 在解析 `DOM` 的过程中，因为 `html` 文件中会含有图片，视频，音频等资源，遇到这些都会进行并行下载，浏览器对每个域的并行下载数量有一定的限制，一般是 4-6 个。**加载时机**为：  
-1. 解析 HTML【遇到<img>标签**加载**图片】 —> 生成 **`DOM` 树**
+1. 解析 HTML【遇到`<img>`标签**加载**图片】 —> 生成 **`DOM` 树**
 2. 加载 `CSS` —> 解析 `CSS`【遇到背景图片链接**不加载**】 —> 生成 **`CSS` 规则树**  
 3. 加载 `javascript` —> 执行 `javascript` 代码  
 4. 将 `DOM` 树和 `CSS` 规则树相结合，生成 **渲染树**【遍历DOM树时**加载**对应样式规则上的背景图片】  
