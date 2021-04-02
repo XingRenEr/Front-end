@@ -31,8 +31,6 @@ HTML5 标签
 
 > [返回目录](#chapter-one)
 
-![图](img/1.jpg)  
-  
 * `<section>` - 章节
 * `<nav>` - 导航
 * `<article>` - 完整独立内容块
@@ -112,6 +110,8 @@ HTML 有个光荣的任务：
 <!-- 底部 -->
 <footer></footer>
 ```
+
+![图](img/1.jpg)  
 
 ### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 头部
 
