@@ -206,12 +206,66 @@ Web 使用一种名为 `HTTP`（`HyperText Transfer Protocol`，超文本传输�
 ### <a id="four-four"></a>4.4 常见的 HTTP 头部
 `HTTP` 首部分为通用首部，请求首部，响应首部，实体首部  
  
- | 首部类型 | 描述 | 举例 |
- | - | - | - |
- | 通用首部 | 表示一些通用信息 | date(报文创建时间) |
- | 请求首部 | 请求报文中独有的 | cookie，if-Modified-Since(和缓存相关) |
- | 响应首部 | 响应报文中独有的 | set-cookie，location(重定向相关) |
- | 实体首部 | 用来描述实体部分 | allow(描述可执行的请求方法)，content-type(描述主体类型)，content-Encoding(描述主体的编码方式) |
+| 首部类型 | 描述 | 举例 |
+| - | - | - |
+| 通用首部 | 根据上下文环境，通用首部可以是响应头部或者请求头部 | [`Date`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Date)，`Cache-Control`，[`Connection`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Connection)，[`Pragma`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Pragma)，[`Transfer-Encoding`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Transfer-Encoding) |
+| 请求首部 | 有关要获取的资源或客户端本身信息 | 条件请求：[`Accept`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Accept)、`Accept-*`、`If-*`，描述请求本身(以确保服务端返回正确响应)：[`Cookie`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cookie)、[`User-Agent`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/User-Agent)、[`Referer`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Referer) |
+| 响应首部 | 有关响应的信息，如其位置或服务器本身（名称和版本等） | [`Age`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Age)，[`Location`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Location)(重定向，配合响应码使用)，[`Server`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Server)，`ETag` |
+| [实体首部](https://developer.mozilla.org/zh-CN/docs/Glossary/Entity_header) | 用来描述实体部分，既可用于请求也可用于响应中 | [`Allow`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Allow)，`Content-Length`，`Content-Language`，`Content-Encoding`，`Content-Location`，`Content-Type`，`Expires`，`Last-Modified` |
+
+> 与缓存相关的 HTTP 头部有：`Cache-Control`、`Pragma`、`Expires`、`ETag`、`Last-Modified`、`If-None-Match`、`If-Match`、`If-Modified-Since`
+
+**通用首部**  
+- `Cache-Control`：被用于在http请求和响应中  
+```
+// 作为请求头
+Cache-Control: max-age=<seconds>
+Cache-control: no-cache
+Cache-control: no-store
+// 作为响应头
+Cache-control: no-cache
+Cache-control: no-store
+Cache-control: public
+Cache-control: private
+Cache-Control: max-age=<seconds>
+Cache-control: s-maxage=<seconds>
+```
+
+**请求首部**  
+- `Accept-*`  
+  - `Accept-Charset`：可接受的字符集  
+```
+Accept-Charset: <charset>
+Accept-Charset: *
+Accept-Charset: utf-8, iso-8859-1;q=0.5
+```
+  - `Accept-Encoding`：可接受的响应内容的编码方式  
+```
+Accept-Encoding: gzip
+Accept-Encoding: compress
+Accept-Encoding: deflate
+Accept-Encoding: br
+Accept-Encoding: identity
+Accept-Encoding: *
+Accept-Encoding: deflate, gzip;q=1.0, *;q=0.5
+```
+  - `Accept-Language`：可接受的响应内容语言列表  
+```
+Accept-Language: <language>
+Accept-Language: *
+Accept-Language: fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5
+```
+- `If-*`  
+  - `If-Modified-Since`：协商缓存，与`Last-Modified`响应首部配合使用；只可以用在 GET 或 HEAD 请求中；与 If-None-Match 一同出现时，会被忽略；响应码为 200/304  
+```
+If-Modified-Since: <day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT
+```
+  - `If-None-Match`：协商缓存，与`ETag`响应首部配合使用；对于 GET 和 HEAD 方法来说，响应码为 200/304；对于能够引发服务器状态改变的方法，响应码为 412  
+```
+If-None-Match: <etag_value>
+If-None-Match: <etag_value>, <etag_value>, …
+If-None-Match: *
+```
 
 ### <a id="four-five"></a>4.5 keep-alive
 
