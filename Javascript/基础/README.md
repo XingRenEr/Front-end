@@ -272,7 +272,7 @@ console.log('Inside Global Execution Context');
 
 * [x] `this` 永远指向最后调用它的那个对象
   * [x] 普通函数中 `this` 的指向，是 `this` 执行时的上下文
-  * [x] 箭头函数中 this 的指向，是 this 定义时的上下文
+  * [x] 箭头函数中 `this` 的指向，是 `this` 定义时的上下文
 * [x] 全局执行上下文中的 `this`
 * [x] 函数执行上下文中的 `this`
   * [x] 通过 `call/bind/apply` 改变 `this` 指向
