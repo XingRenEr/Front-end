@@ -459,7 +459,7 @@ var missingNumber = function(nums) {
 0 <= n <= 1000
 
 0 <= m <= 1000
- 
+
 **注意：**本题与主站 240 题相同：https://leetcode-cn.com/problems/search-a-2d-matrix-ii/
 
 **解题思路：**  
@@ -597,7 +597,7 @@ var reversePrint = function(head) {
 
 0 <= 节点个数 <= 5000
 
-#### 方法一(我的方法)  
+#### 方法一：(我的方法)  
 pLeft pMiddle pRight三个指针，移动顺序为左中右
 ```js
 var reverseList = function(head) {
@@ -619,18 +619,17 @@ var reverseList = function(head) {
 };
 ```
 
-#### 方法一：双指针(官方方法)  
+#### *方法一：双指针(官方方法)  
+
+**复杂度分析**：空间O(1)，时间O(n)
+
 和上面的方法几乎无差别，但是'双指针'比'三个指针'思路更清晰
 ![1.jpg](./images/1.jpg)  
+
 ```js
 var reverseList = function(head) {
-    if (head === null) { // 空链表
-        return null;
-    }
+    if (!head || !head.next) return head; // 空链表或只有一个元素的链表
     var cur = null, pre = head;
-    if (pre.next === null) { // 只有一个元素的链表
-        return pre;
-    }
     while (pre != null) {
         var t = pre.next;
         pre.next = cur;
@@ -741,7 +740,63 @@ var deleteNode = function(head, val) {
 };
 ```
 
+### 2.2.6 (中等) 61. 旋转链表
+
+给你一个链表的头节点 `head` ，旋转链表，将链表每个节点向右移动 `k` 个位置。
+
+**示例** 1：
+
+```
+输入：head = [1,2,3,4,5], k = 2
+输出：[4,5,1,2,3]
+```
+
+**示例** 2：
+
+```
+输入：head = [0,1,2], k = 4
+输出：[2,0,1]
+```
+
+**提示**：
+
+- 链表中节点的数目在范围 [0, 500] 内
+- -100 <= Node.val <= 100
+- 0 <= k <= 2 * 10^9
+
+#### 方法一：闭合为环
+
+```js
+var rotateRight = function(head, k) {
+    if (k == 0 || !head || !head.next) return head;
+
+    // 计算链表长度
+    let len = 1, cur = head;
+    while(cur.next) {
+        cur = cur.next;
+        len++;
+    }
+	
+    // 找到新链表的最后一个节点
+    let add = len - k % len;
+    if (add == len) return head;
+
+    cur.next = head;
+    while(add--) {
+        cur = cur.next;
+    }
+	
+    // 在指定位置断开
+    let ret = cur.next;
+    cur.next = null;
+    return ret;    
+};
+```
+
+
+
 ## <a id="two-three"></a>2.3 栈  
+
 > [返回目录](#zero)  
 
 ### 2.3.1 (简单) 剑指 Offer 09. 用两个栈实现队列
@@ -829,7 +884,7 @@ minStack.min();   --> 返回 -2.
 提示：
 
 各函数的调用总次数不超过 20000 次
- 
+
 #### 方法一：(我的方法)  
 数组中存储对象
 ```js
@@ -961,7 +1016,7 @@ var validateStackSequences = function(pushed, popped) {
  1  3  -1  -3 [5  3  6] 7       6
  1  3  -1  -3  5 [3  6  7]      7
 ```
- 
+
 
 **提示：**
 
@@ -1003,7 +1058,7 @@ var maxSlidingWindow = function(nums, k) {
  1  3  -1 [-3  5  3] 6  7       5
  1  3  -1  -3 [5  3  6] 7       6
  1  3  -1  -3  5 [3  6  7]      7
- ```
+```
 **示例 2：**
 
 ```
@@ -1448,7 +1503,8 @@ var lowestCommonAncestor = function(root, p, q) {
 ```
 
 
-### <a id="four-one-four"></a>4.1.4 (简单) 剑指 Offer 55 - II. 平衡二叉树输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。
+### <a id="four-one-four"></a>4.1.4 (简单) 剑指 Offer 55 - II. 平衡二叉树
+输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。
 
 **示例 1:**
 
@@ -1515,7 +1571,8 @@ var isBalanced = function(root) {
   return dfs(root) != -1;
 };
 ```
-### <a id="four-one-five"></a>4.1.5 (简单) 剑指 Offer 28. 对称的二叉树请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。
+### <a id="four-one-five"></a>4.1.5 (简单) 剑指 Offer 28. 对称的二叉树
+请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。
 
 例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
 
@@ -1535,7 +1592,7 @@ var isBalanced = function(root) {
    \   \
    3    3
 ```
- 
+
 **示例 1：**
 
 ```
@@ -1575,7 +1632,8 @@ var isSymmetric = function(root) {
 };
 ```
 
-### <a id="four-one-six"></a>4.1.6 (中等) 剑指 Offer 32 - I. 从上到下打印二叉树从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。
+### <a id="four-one-six"></a>4.1.6 (中等) 剑指 Offer 32 - I. 从上到下打印二叉树
+从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。
 
 **例如:**  
 给定二叉树: `[3,9,20,null,null,15,7]`,
@@ -1615,7 +1673,8 @@ var levelOrder = function(root) {
 ```
 
 
-### <a id="four-one-seven"></a>4.1.7 (中等) 剑指 Offer 32 - II. 从上到下打印二叉树 II从上到下按层打印二叉树，同一层的节点按从左到右的顺序打印，每一层打印到一行。
+### <a id="four-one-seven"></a>4.1.7 (中等) 剑指 Offer 32 - II. 从上到下打印二叉树 II
+从上到下按层打印二叉树，同一层的节点按从左到右的顺序打印，每一层打印到一行。
 
 例如:
 给定二叉树: [3,9,20,null,null,15,7],
@@ -1976,7 +2035,8 @@ var kthLargest = function(root, k) {
 };
 ```
 
-### <a id="four-two-two"></a>4.2.2 (简单) 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
+### <a id="four-two-two"></a>4.2.2 (简单) 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先
+给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
 
 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（**一个节点也可以是它自己的祖先**）。”
 
@@ -2068,7 +2128,7 @@ var lowestCommonAncestor = function(root, p, q) {
   / \
  1   3
 ```
- 
+
 **示例 1：**
 
 ```
@@ -2475,7 +2535,7 @@ var fib = function(n) {
 本题的重点在于找到状态转移方程  
 
 ![图](images/fibonacci-sequence-2.png)  
- 
+
  ```f(n) = f(n - 1) + f(n - 2)```
 
 ```js
@@ -3281,7 +3341,7 @@ var add = function(a, b) {
 **限制：**
 
 2 <= nums.length <= 10000  
- 
+
 #### 方法一：位运算
 **解题思路**  
 1. 若只有一个只出现一次的数字，则通过异或运算(相同的数字两两抵消)，可直接找到该数字  
@@ -3515,6 +3575,7 @@ var lastRemaining = function(n, m) {
 假设当前删除的位置是 `idx`，下一个删除的数字的位置是 `idx + m - 1`。取模即 `(idx + m - 1)(mod n)`。可以在 O(1) 时间复杂度内找到下一个要删除的元素，而删除需要的时间复杂度如下：  
 JS 中的数组方法 splice() 时间复杂度最坏的情况应该是 O(n) (将所有n-1元素复制到新数组)。  
 (Java使用此方法勉强通过，JS时间超时)  
+
 ```js
 // 代码丢失
 ```
