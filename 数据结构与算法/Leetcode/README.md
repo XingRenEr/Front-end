@@ -3369,7 +3369,86 @@ var singleNumbers = function(nums) {
 };
 ```
 
+### 12.4.4 (中等) 剑指 Offer 56 - II. 数组中数字出现的次数 II
+
+在一个数组 nums 中除一个数字只出现一次之外，其他数字都出现了三次。请找出那个只出现一次的数字。
+
+ 
+
+**示例** 1：
+
+```
+输入：nums = [3,4,3,3]
+输出：4
+```
+
+**示例** 2：
+
+```
+输入：nums = [9,1,7,9,7,9,7]
+输出：1
+```
+
+**限制**：
+
+- 1 <= nums.length <= 10000
+- 1 <= nums[i] < 2^31
+
+
+
+**解题思路：**
+
+[位运算+有限状态自动机](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/solution/mian-shi-ti-56-ii-shu-zu-zhong-shu-zi-chu-xian-d-4/)
+
+如下图所示，考虑数字的二进制形式，对于出现三次的数字，各 二进制位 出现的次数都是 33 的倍数。
+因此，统计所有数字的各二进制位中 11 的出现次数，并对 33 求余，结果则为只出现一次的数字。
+
+<img src="README.assets/28f2379be5beccb877c8f1586d8673a256594e0fc45422b03773b8d4c8418825-Picture1.png" alt="Picture1.png" style="zoom:50%;" />
+
+#### 方法一：有限状态自动机
+
+           ab    ab    ab    ab
+    状态机: 00 -> 01 -> 10 -> 00
+    真值表:
+    c   a   b   a'  b'
+    0   0   0   0   0
+    0   0   1   0   1
+    0   1   0   1   0
+    1   0   0   0   1
+    1   0   1   1   0
+    1   1   0   0   0
+    取结果为1的情况：b' = ~ab~c + ~a~bc = ~a(b~c+~bc) = ~a(b^c)
+    因此，可以推出: b = b ^ c & ~a
+    
+    先计算 b ，因此应在新 b 的基础上计算 a 
+    在更新b之后：
+    真值表:
+    c   a   b'  a'
+    0   0   0   0
+    0   0   1   0
+    0   1   0   1
+    1   0   1   0
+    1   0   0   1
+    1   1   0   0
+    由此，可以推出：a = a ^ c & ~b
+
+```js
+var singleNumber = function(nums) {
+    var a = 0, b = 0;
+    for (let num of nums) {
+        b = b ^ num & ~a;
+        a = a ^ num & ~b;
+    }
+    return b;
+};
+```
+
+#### 方法二：遍历统计
+
+容易理解但效率低
+
 ## <a id="twelve-five"></a>12.5 Sliding Window(29)  
+
 > [返回目录](#zero)  
 ### 12.5.1 [(简单) 剑指 Offer 59 - Ⅰ. 滑动窗口的最大值](#two-four-one)
 ### 12.5.2 (简单) 剑指 Offer 57 - II. 和为s的连续正数序列
