@@ -3075,8 +3075,116 @@ var minArray = function(numbers) {
 
 ### 9.1.4 [(简单) 剑指 Offer 57. 和为s的两个数字](#twelve-two-one)
 
+### 9.1.5 (中等) 剑指 Offer 16. 数值的整数次方
+
+实现 `pow(x, n) `，即计算 x 的 n 次幂函数（即，x^n）。不得使用库函数，同时不需要考虑大数问题。
+
+ 
+
+**示例** 1：
+
+```
+输入：x = 2.00000, n = 10
+输出：1024.00000
+```
+
+**示例** 2：
+
+```
+输入：x = 2.10000, n = 3
+输出：9.26100
+```
+
+**示例** 3：
+
+```
+输入：x = 2.00000, n = -2
+输出：0.25000
+解释：2-2 = 1/22 = 1/4 = 0.25
+```
+
+
+
+**提示**：
+
+-100.0 < x < 100.0
+-231 <= n <= 231-1
+-104 <= xn <= 104
+
+
+
+[**解题思路**](https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/solution/mian-shi-ti-16-shu-zhi-de-zheng-shu-ci-fang-kuai-s/)：
+
+1. 循环n次，时间复杂度为O(n)
+2. 快速幂法：二分法（递归/非递归）、二进制
+
+#### 方法一：二分法+递归(我的方法)
+
+```js
+var myPow = function(x, n) {
+    if (n < 0) {
+        n = -n;
+        x = 1 / x;
+    }
+    let recur = function(x, n) {
+        if (n == 0) return 1;
+        if (n == 1) return x;
+        if (n % 2 == 0) {
+            let temp = recur(x, n / 2);
+            return temp * temp;
+        }
+        else {
+            return x * recur(x, n - 1);
+        }
+    }
+    return recur(x, n);
+};
+```
+
+
+
 # <a id="ten"></a>十 排序  
 > [返回目录](#zero)  
+
+### <a id="ten-one-one"></a>10.1.1 (中等) 剑指 Offer 45. 把数组排成最小的数
+
+输入一个非负整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。
+
+**示例** 1:
+
+```
+输入: [10,2]
+输出: "102"
+```
+
+**示例** 2:
+
+```
+输入: [3,30,34,5,9]
+输出: "3033459"
+```
+
+
+
+**提示**:
+
+- 0 < nums.length <= 100
+
+**说明**:
+
+- 输出结果可能非常大，所以你需要返回一个字符串而不是整数
+- 拼接起来的数字可能会有前导 0，最后结果不需要去掉前导 0
+
+#### 方法一：自定义排序+内置函数
+
+```js
+var minNumber = function(nums) {
+    nums.sort((a, b) => (String(a) + String(b)) - (String(b) + String(a)));
+    return nums.join('')
+};
+```
+
+#### 方法二：自定义排序+手撕快排
 
 
 # <a id="eleven"></a>十一 其他
@@ -3091,6 +3199,45 @@ var minArray = function(numbers) {
 
 ## <a id="twelve-one"></a>12.1 数学(210)  
 > [返回目录](#zero)  
+
+### <a id="twelve-one-one"></a>12.1.1 (中等) [剑指 Offer 20. 表示数值的字符串](https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/)
+
+请实现一个函数用来判断字符串是否表示**数值**（包括整数和小数）。
+
+#### [方法一：分类归纳](https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/comments/)
+
+‘.’出现正确情况：只出现一次，且在e的前面
+
+‘e’出现正确情况：只出现一次，且出现前有数字
+
+‘+’‘-’出现正确情况：只能在开头和e后一位
+
+```js
+var isNumber = function(s) {
+    if (!s || s.length == 0) return false;
+    //去掉首尾空格
+    s = s.trim();
+    var numFlag = false, dotFlag = false, eFlag = false;
+    for (let i = 0; i < s.length; i++) {
+        //判定为数字，则标记numFlag
+        if (s[i] >= '0' && s[i] <= '9') numFlag = true;
+        //判定为.：需要没出现过.并且没出现过e
+        else if (s[i] == '.' && !dotFlag && !eFlag) dotFlag = true;
+        //判定为e：需要没出现过e，并且出过数字了
+        else if ((s[i] == 'e' || s[i] == 'E') && !eFlag && numFlag) {
+            eFlag = true;
+            numFlag = false;
+        }
+        //判定为+-符号：只能出现在第一位或者紧接e后面
+        else if ((s[i] == '+' || s[i] == '-') && (i == 0 || s[i - 1] == 'e' || s[i - 1] == 'E'));
+        //其他情况，都是非法的
+        else return false;
+    }
+    return numFlag;
+};
+```
+
+
 
 
 ## <a id="twelve-two"></a>12.2 双指针(75)  
