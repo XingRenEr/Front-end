@@ -793,6 +793,59 @@ var rotateRight = function(head, k) {
 };
 ```
 
+### 2.2.7 (中等) [剑指 Offer 35. 复杂链表的复制](https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
+
+请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null。
+
+#### 方法一：哈希表
+
+JS中，若想把对象作为键，则需使用Map类型
+
+**算法流程**：
+
+1. 若头节点 head 为空节点，直接返回 null ；
+2. 初始化： 哈希表 m， 节点 cur 指向头节点；
+3. 复制链表：
+   - 建立新节点，并向 m 添加键值对 (原 cur 节点, 新 cur 节点） ；
+   - cur 遍历至原链表下一节点；
+4. 构建新链表的引用指向：
+   - 构建新节点的 next 和 random 引用指向；
+   - cur 遍历至原链表下一节点；
+5. 返回值： 新链表的头节点 m[head] ；
+
+**复杂度分析**：
+
+- 时间复杂度 O(N) ： 两轮遍历链表，使用 O(N) 时间。
+- 空间复杂度 O(N) ： 哈希表 m 使用线性大小的额外空间。
+
+```js
+var copyRandomList = function(head) {
+    if (!head) return null;
+    var m = new Map(), cur = head;
+    while (cur) {
+        m.set(cur, new Node(cur.val, null, null));
+        cur = cur.next;
+    }
+    cur = head;
+    while (cur) {
+        m.get(cur).next = cur.next ? m.get(cur.next) : null;
+        m.get(cur).random = cur.random ? m.get(cur.random) : null;
+        cur = cur.next;
+    }
+    return m.get(head);
+};
+```
+
+#### 方法二：原地修改：拼接+拆分
+
+https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/solution/jian-zhi-offer-35-fu-za-lian-biao-de-fu-zhi-ha-xi-/
+
+**复杂度分析**：
+
+- 时间复杂度 O(N) ： 三轮遍历链表，使用 O(N) 时间。
+
+- 空间复杂度 O(1) ： 节点引用变量使用常数大小的额外空间。
+
 
 
 ## <a id="two-three"></a>2.3 栈  
@@ -2780,7 +2833,59 @@ var maxProfit = function(prices) {
 };
 ```
 
+### 7.1.8 (中等) 剑指 Offer 60. n个骰子的点数
+
+把n个骰子扔在地上，所有骰子朝上一面的点数之和为s。输入n，打印出s的所有可能的值出现的概率。
+
+你需要用一个浮点数数组返回答案，其中第 i 个元素代表这 n 个骰子所能掷出的点数集合中第 i 小的那个的概率。
+
+**示例** 1:
+
+```
+输入: 1
+输出: [0.16667,0.16667,0.16667,0.16667,0.16667,0.16667]
+```
+
+**示例** 2:
+
+```
+输入: 2
+输出: [0.02778,0.05556,0.08333,0.11111,0.13889,0.16667,0.13889,0.11111,0.08333,0.05556,0.02778]
+```
+
+**限制**：
+
+1 <= n <= 11
+
+#### 方法一：动态规划
+
+分析
+
+<img src="README.assets/image-20210617151400570.png" alt="image-20210617151400570" style="zoom: 50%;" />
+
+代码
+
+<img src="README.assets/image-20210617153409097.png" alt="image-20210617153409097" style="zoom:50%;" />
+
+```js
+var dicesProbability = function(n) {
+    var preArr = [1/6, 1/6, 1/6, 1/6, 1/6, 1/6], curArr;
+    if (n == 1) return preArr;
+    for (let i = 2; i <= n; i++) {
+        curArr = Array(5*i+1).fill(0);
+        for (let j = i - i; j <= 6 * i - i; j++) {
+            for (let k = 1 - 1; k <= 6 - 1; k++) curArr[j] += (preArr[j-k] ? preArr[j-k] / 6 : 0);
+        }
+        preArr = curArr;
+    }
+    return curArr;
+};
+```
+
+
+
 ## <a id="seven-two"></a>7.2 贪心算法  
+
 > [返回目录](#zero)  
 
 ## <a id="seven-three"></a>7.3 回溯算法  
@@ -3200,7 +3305,7 @@ var minNumber = function(nums) {
 ## <a id="twelve-one"></a>12.1 数学(210)  
 > [返回目录](#zero)  
 
-### <a id="twelve-one-one"></a>12.1.1 (中等) [剑指 Offer 20. 表示数值的字符串](https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/)
+### 12.1.1 (中等) [剑指 Offer 20. 表示数值的字符串](https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/)
 
 请实现一个函数用来判断字符串是否表示**数值**（包括整数和小数）。
 
@@ -3237,7 +3342,160 @@ var isNumber = function(s) {
 };
 ```
 
+### 12.1.2 (中等) 剑指 Offer 67. 把字符串转换成整数
 
+写一个函数 StrToInt，实现把字符串转换成整数这个功能。不能使用 atoi 或者其他类似的库函数。
+
+ 
+
+首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。
+
+当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。
+
+该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。
+
+注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。
+
+在任何情况下，若函数不能进行有效的转换时，请返回 0。
+
+说明：
+
+假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−231,  231 − 1]。如果数值超过这个范围，请返回  INT_MAX (231 − 1) 或 INT_MIN (−231) 。
+
+**示例** 1:
+
+```
+输入: "42"
+输出: 42
+```
+
+**示例** 2:
+
+```
+输入: "   -42"
+输出: -42
+解释: 第一个非空白字符为 '-', 它是一个负号。
+     我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。
+```
+
+**示例** 3:
+
+```
+输入: "4193 with words"
+输出: 4193
+解释: 转换截止于数字 '3' ，因为它的下一个字符不为数字。
+```
+
+**示例** 4:
+
+```
+输入: "words and 987"
+输出: 0
+解释: 第一个非空字符是 'w', 但它不是数字或正、负号。
+     因此无法执行有效的转换。
+```
+
+**示例** 5:
+
+```
+输入: "-91283472332"
+输出: -2147483648
+解释: 数字 "-91283472332" 超过 32 位有符号整数范围。 
+     因此返回 INT_MIN (−231) 。
+```
+
+#### 方法一
+
+**解题思路**
+
+根据题意，有以下四种字符需要考虑：
+
+1. 首部空格： 删除之即可；
+2. 符号位： 三种情况，即 ''++'' , ''-−'' , ''无符号" ；新建一个变量保存符号位，返回前判断正负即可。
+3. 非数字字符： 遇到首个非数字的字符时，应立即返回。
+4. 数字字符：
+   - 字符转数字： “此数字的 ASCII 码” 与 “ 00 的 ASCII 码” 相减即可；
+   - 数字拼接： 若从左向右遍历数字，设当前位字符为 cc ，当前位数字为 xx ，数字结果为 resres ，则数字拼接公式为：
+
+![image-20210617162330842](README.assets/image-20210617162330842.png)
+
+**数字越界处理**
+
+设数字拼接边界 bndry = 2147483647 // 10 = 214748364 ，则以下两种情况越界：
+
+![image-20210617162450717](README.assets/image-20210617162450717.png)
+
+**复杂度分析**：
+
+时间复杂度 O(N) ： 其中 N 为字符串长度，线性遍历字符串占用 O(N) 时间。
+空间复杂度 O(N) ： 删除首尾空格后需建立新字符串，最差情况下占用 O(N) 额外空间。
+
+```js
+var strToInt = function(str) {
+    str = str.trim();									// 删除首尾空格
+    if (!str) return 0;									// 字符串为空则直接返回
+    let res = 0, sign = 1, i = 1;
+    const [minInt, maxInt, boundary] = [-(2 ** 31), 2 ** 31 - 1, Math.floor(2 ** 31 / 10)];
+    if (str[0] == '-') sign = -1;						// 保存负号
+    else if (str[0] != '+') i = 0;
+    for (; i < str.length; i++) {
+        if (!(str[i] >= '0' && str[i] <= '9')) break;	// 遇到非数字的字符则跳出
+        if (res > boundary || (res == boundary && str[i] > '7')) return sign > 0 ? maxInt : minInt;	// 数字越界处理
+        res = 10 * res + (str[i] - '0');				// 数字拼接
+    }
+    return sign * res;
+};
+```
+
+#### [方法二](https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/solution/mian-shi-ti-67-ba-zi-fu-chuan-zhuan-huan-cheng-z-4/)
+
+若不使用 `trim()` 方法，而从头开始遍历字符串，则可以将空间复杂度降低至 O(1)
+
+### 12.1.3 (中等) 剑指 Offer 49. 丑数
+
+我们把只包含质因子 2、3 和 5 的数称作丑数（Ugly Number）。求按从小到大的顺序的第 n 个丑数。
+
+ 
+
+**示例**:
+
+```
+输入: n = 10
+输出: 12
+解释: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 是前 10 个丑数。
+```
+
+
+
+**说明**:  
+
+1 是丑数。
+n 不超过1690。
+
+#### [方法一：动态规划](https://leetcode-cn.com/problems/chou-shu-lcof/solution/mian-shi-ti-49-chou-shu-dong-tai-gui-hua-qing-xi-t/)
+
+在已有的丑数序列上每一个数都必须乘2， 乘3， 乘5， 这样才不会漏掉某些丑数。
+
+```js
+var nthUglyNumber = function(n) {
+    let dp = Array(n), a = b = c = 0;
+    dp[0] = 1;
+    for (let i = 1; i < n; i++) {
+        let [n2, n3, n5] = [dp[a] * 2, dp[b] * 3, dp[c] * 5];
+        dp[i] = Math.min(n2, n3, n5);
+        if (dp[i] == n2) a++;
+        if (dp[i] == n3) b++;
+        if (dp[i] == n5) c++;
+    }
+    return dp[n-1];
+};
+```
+
+
+
+#### [方法二：最小堆](https://leetcode-cn.com/problems/chou-shu-lcof/solution/chou-shu-by-leetcode-solution-0e5i/)
+
+JS不自带最小堆
 
 
 ## <a id="twelve-two"></a>12.2 双指针(75)  
