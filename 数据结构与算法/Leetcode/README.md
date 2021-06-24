@@ -258,7 +258,7 @@ for (var i = 1; i < arr.length; i++) {
 console.log('newArr4', newArr4);
 ```
 
-### <a id="two-one-two">2.1.2 (简单) 剑指 Offer 53 - Ⅰ. 在排序数组中查找数字Ⅰ
+### <a id="two-one-two"></a>2.1.2 (简单) 剑指 Offer 53 - Ⅰ. 在排序数组中查找数字Ⅰ
 统计一个数字在排序数组中出现的次数。
 
 **示例 1:**
@@ -370,7 +370,7 @@ var matrix = [
 console.log(spiralOrder(matrix));
 ```
 
-### <a id="two-one-four">2.1.4 (简单) 剑指 Offer 53 - II. 0～n-1中缺失的数字
+### <a id="two-one-four"></a>2.1.4 (简单) 剑指 Offer 53 - II. 0～n-1中缺失的数字
 一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。
 
 **示例 1:**

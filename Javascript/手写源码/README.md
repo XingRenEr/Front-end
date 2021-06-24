@@ -74,6 +74,7 @@
     * [x] **`JSON.parse(JSON.stringify())`**
     * [x] **Lodash 的 `_.cloneDeep()`**
     * [x] **JQuery 的 `$.extend()`**
+  * [x] [手撕十大排序算法](https://juejin.cn/post/6844903444365443080#heading-42)
   * [x] ★ 发布订阅模式(EventHub/EventEmitter): Node 回调函数、Vue event bus
   * [x] 图片懒加载
   * [x] 滚动加载
