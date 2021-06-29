@@ -3251,6 +3251,8 @@ var myPow = function(x, n) {
 # <a id="ten"></a>十 排序  
 > [返回目录](#zero)  
 
+## 10.1 快速排序
+
 ### <a id="ten-one-one"></a>10.1.1 (中等) 剑指 Offer 45. 把数组排成最小的数
 
 输入一个非负整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。
@@ -3290,6 +3292,72 @@ var minNumber = function(nums) {
 ```
 
 #### 方法二：自定义排序+手撕快排
+
+## 10.2 归并排序
+
+### 10.2.1 (困难) 剑指 Offer 51. 数组中的逆序对
+
+在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。
+
+ **示例** 1:
+
+```
+输入: [7,5,6,4]
+输出: 5
+```
+
+**限制**：
+
+0 <= 数组长度 <= 50000
+
+#### 方法一：归并排序
+
+[解题思路](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/jian-zhi-offer-51-shu-zu-zhong-de-ni-xu-pvn2h/)
+
+「归并排序」与「逆序对」是息息相关的，完成归并排序的同时记录逆序对数
+
+![image-20210629163839195](README.assets/image-20210629163839195.png)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var reversePairs = function(nums) {
+    var res = 0; // 记录逆序对数
+    function recursive(l, r) {
+        var len = r - l;
+        if (len < 2) return;
+        var middle = Math.floor((l + r) / 2);
+        recursive(l, middle);
+        recursive(middle, r);
+        if(nums[middle - 1] > nums[middle]) merge(l, middle, r);
+        return;
+    }
+
+    function merge(l, m, r) {
+        var tmp = [];
+        var lLenth, i = l, j = m;
+        while ((lLenth = m - i) && (r - j)) { // 等价于 i < m && j < r; 同时完成赋值 lLenth = m - i;
+            if (nums[i] <= nums[j]) {
+                tmp.push(nums[i++]);
+            } else {
+                tmp.push(nums[j++]);
+                res += lLenth; // 逆序对数增加
+            }
+        }
+        while (i < m) tmp.push(nums[i++]);
+        while (j < r) tmp.push(nums[j++]);
+        for (let k = l; k < r; k++) nums[k] = tmp[k - l];
+        return;
+    }
+
+    recursive(0, nums.length);
+    return res;
+};
+```
+
+
 
 
 # <a id="eleven"></a>十一 其他
