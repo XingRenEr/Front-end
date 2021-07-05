@@ -24,10 +24,10 @@ pattern 中以下字符若要作为正常字符使用，必须使用反斜杠来
 ( [ { \ ^ $ | ) ] } ? * + .
 ```
 
----
 pattern 的语法：  
 
 **组和范围**  
+
 组和范围用于查找某个范围内的字符：  
 
 |表达式	|描述									|
@@ -42,6 +42,7 @@ pattern 的语法：
 |(x)    |捕获组: 匹配x并记住匹配项。 |
 
 **元字符**  
+
 元字符（Metacharacter）是拥有特殊含义的字符：  
 
 |元字符	|描述																				|
@@ -82,15 +83,21 @@ pattern 的语法：
 
 ## 二 RegExp 对象的创建方式  
 - 方式一：正则表达式字面量  
-```js
-let pattern1 = /[bc]at/i;
-```
+
+  ```js
+  let pattern1 = /[bc]at/i;
+  ```
+
 - 方式二：使用 `RegExp` 构造函数  
-接收两个参数：模式字符串和（可选的）标记字符串。  
-```js
-let pattern2 = new RegExp("[bc]at", "i");
-```
+
+  接收两个参数：模式字符串和（可选的）标记字符串。  
+
+  ```js
+  let pattern2 = new RegExp("[bc]at", "i");
+  ```
+
 【注意】所有元字符若要作为正常字符使用，都必须二次转义  
+
 【举例】（包含了元字符的）转义字符序列。如`\n`，在正则表达式字面量字符串中，转义后变为`\\n`，使用 `RegExp` 构造函数的模式字符串时，二次转义变为`\\\\n`。  
 
 ## 三 RegExp 实例属性、方法  
@@ -98,9 +105,10 @@ let pattern2 = new RegExp("[bc]at", "i");
 ### 3.1 RegExp 实例属性  
 实际开发中用得不多  
 - lastIndex：整数，表示在源字符串中下一次搜索的开始位置，始终从0 开始。  
-> 可写。  
-> 在 `exec()` 方法中，受 g 标记、y 标记影响。y 标记会覆盖 g 标记。  
 
+  > 可写。  
+  >
+  > 在 `exec()` 方法中，受 g 标记、y 标记影响。y 标记会覆盖 g 标记。  
 - global：布尔值，表示是否设置了 g 标记、。
 - ignoreCase：布尔值，表示是否设置了 i 标记。
 - unicode：布尔值，表示是否设置了 u 标记。
@@ -113,7 +121,9 @@ let pattern2 = new RegExp("[bc]at", "i");
 ### 3.2 RegExp 实例方法  
 #### `exec()`
 【作用】在该字符串中执行匹配项的搜索。配合捕获组、`lastIndex` 使用。  
+
 【参数】字符串  
+
 【返回值】一个结果数组或 null。结果数组包含属性 index 和 input；若无捕获组，结果数组的长度为1；否则不为1。  
 
 | 数组索引/属性 |描述|
@@ -135,7 +145,9 @@ console.log(matches[1]); // " and dad and baby"
 console.log(matches[2]); // " and baby"
 ```
 【栗子2——全局标记 g】  
+
 每次调用exec()方法会从 ***`lastIndex` 位置开始***返回下一个匹配的信息。  
+
 ```js
 let text = "cat, bat, sat, fat";
 let pattern = /.at/g;
@@ -153,8 +165,11 @@ console.log(matches[0]); // sat
 console.log(pattern.lastIndex); // 13
 ```
 注意 `index` 和 `lastIndex` 的变化。  
+
 【栗子3——粘附标记 y】  
+
 每次调用exec()就只会在 ***`lastIndex` 位置上***寻找匹配项。粘附标记覆盖全局标记。  
+
 ```js
 let text = "cat, bat, sat, fat";
 let pattern = /.at/y;
@@ -177,13 +192,17 @@ console.log(pattern.lastIndex); // 8
 
 #### `test()`
 【作用】该正则在字符串里是否有匹配。  
+
 【参数】字符串  
+
 【返回值】true/false。  
+
 【应用】经常用在if 语句中  
 
 ## 四 RegExp 构造函数属性  
 - `RegExp.$1`-`RegExp.$9`  
-分别包含第 1-9 个捕获组的匹配项。  
+
+  分别包含第 1-9 个捕获组的匹配项。  
 
 > 其他的构造函数属性未被标准化  
 
