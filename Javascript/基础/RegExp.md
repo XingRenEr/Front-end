@@ -206,6 +206,59 @@ console.log(pattern.lastIndex); // 8
 
 > 其他的构造函数属性未被标准化  
 
-## 五 参考文献
+## 五 捕获组
+
+### 5.1 概述
+
+**什么是捕获组**
+
+捕获组就是把正则表达式中子表达式匹配的内容，保存到内存中以数字编号或显式命名的组里，方便后面引用。
+
+这种引用既可以是在正则表达式内部（反向引用），也可以是在正则表达式外部（字符串的`replace()`方法中、程序任意位置）。
+
+**捕获组编号规则**
+
+在只有普通捕获组（JavaScript只有普通捕获组没有命名捕获组）的情况下，捕获组的编号是按照“*(*”出现的顺序，从左到右，从*1*开始进行编号的 。
+
+### 5.2 捕获组的引用
+
+**反向引用**
+
+普通捕获组反向引用：*`\k<number>`*，通常简写为*`\number`*
+
+- [x] [牛客网前端大挑战——FED56 检查重复字符串](https://www.nowcoder.com/practice/5ef31f11adf64d9fb18d74860e9ab873?tpId=2&&tqId=37910&rp=1&ru=/ta/front-end&qru=/ta/front-end/question-ranking)
+
+栗子：
+
+描述
+
+给定字符串 str，检查其是否包含连续重复的字母（a-zA-Z），包含返回 true，否则返回 false
+
+示例1
+
+```
+输入：'rattler'
+输出：true
+```
+
+题解
+
+```js
+function containsRepeatingLetter(str) {
+    let pattern = /([A-z])\1/;
+    return pattern.test(str);
+}
+```
+
+**字符串的`replace()`方法**
+
+`data.replace(reg, "<$1>")`
+
+**程序任意位置**
+
+`RegExp.$1`-`RegExp.$9` 
+
+## 六 参考文献
 * [x] [JavaScript RegExp 对象](https://www.w3school.com.cn/jsref/jsref_obj_regexp.asp)
-* [x] 
+* [x] [正则基础之——捕获组（capture group）](https://blog.csdn.net/lxcnn/article/details/4146148)
+
