@@ -1,3 +1,5 @@
+- [Egg.js视频教程_Eggjs入门实战视频教程-2021年更新的egg.js教程——哔哩哔哩](https://www.bilibili.com/video/BV1Ct411e7zG?p=1)
+
 # 一、介绍、环境搭建、项目的创建与运行
 
 ## 1.1 简介
