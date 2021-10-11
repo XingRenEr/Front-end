@@ -1322,6 +1322,9 @@ var majorityElement = function(nums) {
 # <a id="four"></a>四 树形结构
 > [返回目录](#zero)  
 
+- [x] [树形数据的遍历和过滤（任意层级）](https://www.jianshu.com/p/93f875473712)
+- [x] [js：数组与树形结构的相互转换](https://blog.csdn.net/weixin_43972437/article/details/105239906)
+
 ## <a id="four-one"></a>4.1 树  
 > [返回目录](#zero)  
 ### 4.1.1 (简单) 剑指 Offer 27. 二叉树的镜像
@@ -1592,33 +1595,16 @@ var lowestCommonAncestor = function(root, p, q) {
 0 <= 树的结点个数 <= 10000
 注意：本题与主站 110 题相同：https://leetcode-cn.com/problems/balanced-binary-tree/
 
-#### 方法一：后序遍历 + 提前返回（我的方法）
-```js
-var isBalanced = function(root) {
-  var balanceFlag = true;
-  var dfs = function(root) {
-    if (!balanceFlag) return; // 若不平衡，提前返回（即类似方法二中的剪枝操作）
-    if (!root || root.val == null) return 0; // 递归的初始值
-    var lson = dfs(root.left),
-      rson = dfs(root.right);
-    if (Math.abs(lson - rson) > 1) {
-      balanceFlag = false;
-      return;
-    }
-    return Math.max(lson, rson) + 1;
-  }
-  dfs(root);
-  return balanceFlag;
-};
-```
-#### 方法二：后序遍历 + 剪枝（从底至顶）  
+#### 方法一：后序遍历 + 剪枝（从底至顶）  
 巧用 return -1
 ```js
 var isBalanced = function(root) {
   var dfs = function(root) {
     if (!root || root.val == null) return 0; // 递归的初始值
-    var lson = dfs(root.left), rson = dfs(root.right);
-    if (lson == -1 || rson == -1) return -1;
+    var lson = dfs(root.left);
+    if (lson == -1) return -1;
+    var rson = dfs(root.right);
+    if (rson == -1) return -1;
     return Math.abs(lson - rson) <= 1 ? Math.max(lson, rson) + 1 : -1;
   }
   return dfs(root) != -1;
@@ -1665,23 +1651,16 @@ var isBalanced = function(root) {
 
 注意：本题与主站 101 题相同：https://leetcode-cn.com/problems/symmetric-tree/
 
-#### 方法一：左右子树同时先序遍历，其中一个中左右，另一个中右左（我的方法）  
+#### 方法一
 巧用 return -1
 ```js
 var isSymmetric = function(root) {
-  var dfs = function(root1, root2) {
-    // 返回 -1 (即不对称的情况) ：
-    // 1. 左右子树根节点一个存在另一个不存在
-    // 2. 左右子树根节点都存在，但是不相等
-    if ((!root1 || root1.val == null) && (!root2 || root2.val == null)) return;
-    if ((!root1 || root1.val == null) && root2 && root2.val != null) return -1;
-    if ((!root2 || root2.val == null) && root1 && root1.val != null) return -1;
-    if (root1.val != root2.val) return -1;
-    var res1 = dfs(root1.left, root2.right);
-    var res2 = dfs(root1.right, root2.left);
-    if (res1 == -1 || res2 == -1) return -1;
+  var dfs = function(L, R) {
+    if (!L && !R) return true;
+    if (!L || !R || L.val != R.val) return false;
+    return dfs(L.left, R.right) && dfs(L.right, R.left);
   }
-  return root ? dfs(root.left, root.right) != -1 : true;
+  return root ? dfs(root.left, root.right) : true;
 };
 ```
 
@@ -1718,8 +1697,8 @@ var levelOrder = function(root) {
     while (queue.length) {
         let node = queue.shift();
         arr.push(node.val);
-        if (node.left != null && node.left.val != null) queue.push(node.left);
-        if (node.right != null && node.right.val != null) queue.push(node.right);
+        if (node.left) queue.push(node.left);
+        if (node.right) queue.push(node.right);
     }
     return arr;
 };
@@ -1759,11 +1738,11 @@ var levelOrder = function(root) {
 ```js
 var levelOrder = function(root) {
   if (!root) return []; // 特例处理
-  var queue = [], arr = [], node;
+  var queue = [], arr = [];
   queue.push(false); // 隔板
   queue.push(root);
   while (queue.length) {
-    node = queue.shift();
+    let node = queue.shift();
     if (!node) {
       if (!queue.length) break; // 如果是队列中的最后一个隔板，则不再给 arr 增加行
       arr[arr.length] = []; // 给 arr 增加行
@@ -1784,13 +1763,12 @@ var levelOrder = function(root) {
 ```js
 var levelOrder = function(root) {
   if (!root) return []; // 特例处理
-  var queue = [], arr = [];
-  queue.push(root);
+  var queue = [root], arr = [];
   while (queue.length) {
     var tmp = [], qLength = queue.length; // 用一个临时数组暂存一层的节点的值
     for (let i = 0; i < qLength; i++) {
       let node = queue.shift();
-      if (node.val != null) tmp.push(node.val);
+      tmp.push(node.val);
       if (node.left) queue.push(node.left);
       if (node.right) queue.push(node.right);
     }
@@ -1834,14 +1812,14 @@ var levelOrder = function(root) {
     if (!root) return [];
     var queue = [root], arr = [], isOdd = true;
     while (queue.length) {
-        let qLength = queue.length, temp = [];
+        let qLength = queue.length, tmp = [];
         for (let i = 0; i < qLength; i++) {
             let node = queue.shift();
-            isOdd ? temp.push(node.val) : temp.unshift(node.val);
-            if (node.left != null && node.left.val != null) queue.push(node.left);
-            if (node.right != null && node.right.val != null) queue.push(node.right);
+            isOdd ? tmp.push(node.val) : tmp.unshift(node.val);
+            if (node.left) queue.push(node.left);
+            if (node.right) queue.push(node.right);
         }
-        arr.push(temp);
+        arr.push(tmp);
         isOdd = !isOdd;
     }
     return arr;
