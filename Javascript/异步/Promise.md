@@ -584,7 +584,7 @@ console.log(4);
 */
 ```
 
-### <a id="five-three"></a>5.3 题目三
+### <a id="five-three"></a>*5.3 题目三
 
 > [返回目录](#one)
 
@@ -611,7 +611,7 @@ console.log(4);
 */
 ```
 
-### <a id="five-four"></a>5.4 题目四
+### <a id="five-four"></a>*5.4 题目四
 
 > [返回目录](#one)
 
@@ -1726,7 +1726,7 @@ Promise
 */
 ```
 
-### <a id="ten-twelve"></a>10.12 题目十二
+### <a id="ten-twelve"></a>*10.12 题目十二
 
 > [返回目录](#one)
 
