@@ -36,11 +36,11 @@
 
 <img src="README.assets/image-20211011171918745.png" alt="image-20211011171918745" style="zoom: 67%;" />
 
-其中，依赖收集是通过`Dep`类实现的。该类包含了用来存储订阅信息的`subscribers`数组、用来追加订阅信息的`depend`方法、用来重新执行所有订阅信息的`notify`方法。
+其中，依赖收集是通过`Dep`类实现的。该类包含了用来存储`watcher`的`subscribers`数组、用来追加`watcher`的`depend`方法、用来通知所有`watcher`更新内容的`notify`方法。
 
-劫持是通过`Object.defineProperty()`的`getter`和`setter`实现的。遍历 `data` 对象，为每一个属性（也就是Vue的状态）创建依赖收集器，通过`get()`劫持取值操作，通过`set()`劫持赋值操作。当初始化`watcher`时，响应式属性被获取，在`getter`内部会调用`dep.depend()`，订阅信息被依赖收集器（`dep`）收集；当属性被重新赋值，在`setter`内部会调用`dep.notify()`来触发与该属性相关的全部订阅信息。
+遍历 `data` 对象，为每一个属性（也就是Vue的状态）创建依赖收集器，通过`Object.defineProperty()`的`getter`和`setter`实现取值操作和赋值操作的劫持。当初始化`watcher`时，响应式属性被访问，在`getter`内部会调用`dep.depend()`，`watcher`被依赖收集器（`dep`）收集；当属性被重新赋值，在`setter`内部会调用`dep.notify()`来通知与该属性相关的所有`watcher`更新内容。
 
-事件的订阅是通过`watcher`实现的。订阅者（DOM元素）与Vue的状态相关联，初始化`watcher`时需传入订阅信息，携带着订阅信息的订阅者会自动被依赖收集器存储，在相应的Vue状态改变时，订阅信息会被自动地触发，即订阅者根据最新数据更新内容。
+订阅者是通过`Watcher`实现的。订阅者（DOM元素）与Vue的状态相关联，初始化`watcher`时需传入更新内容所需的回调函数，订阅者会自动被依赖收集器存储，在相应的Vue状态改变时，会通过`dep.notify()`触发`watcher`的`update()`方法，调用回调函数，内容得到更新。
 
 **技术点**：
 
